@@ -12,12 +12,13 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRCS	= 	
+SRCS_PARSING	= parsing/get_map.c
 
+SRCS_FREE = free_and_destroy/free_all.c
 
-SRCS_MAIN	= so_long.c $(SRCS)
+SRCS_MAIN	= main.c $(SRCS)
 
-OBJS	= $(SRCS_MAIN:.c=.o)
+OBJS	= $(SRCS_MAIN:.c=.o) $(SRCS_PARSING:.c=.o) $(SRCS_FREE:.c=.o)
 
 CC	= @cc
 
