@@ -16,8 +16,6 @@ int	check_floor_and_ceiling(t_map *map)
 {
 	char	**tab_f;
 	char	**tab_c;
-	int		n_f[3];
-	int		n_c[3];
 	int		i;
 
 	i = 0;
@@ -29,10 +27,10 @@ int	check_floor_and_ceiling(t_map *map)
 		return (printf("Error\nMalloc error!\n"), 1);
 	while (i < 3)
 	{
-		n_f[i] = ft_atoi(tab_f[i]);
-		n_c[i] = ft_atoi(tab_c[i]);
-		if (tab_f[3] != NULL || tab_c[3] != NULL || n_f[i] < 0 || n_f[i] > 255
-			|| n_c[i] < 0 || n_c[i] > 255)
+		map->rgb_f[i] = ft_atoi(tab_f[i]);
+		map->rgb_c[i] = ft_atoi(tab_c[i]);
+		if (tab_f[3] != NULL || tab_c[3] != NULL || map->rgb_f[i] < 0 || map->rgb_f[i] > 255
+			|| map->rgb_c[i] < 0 || map->rgb_c[i] > 255)
 		{
 			printf("Error\nWrong RGB format!\n");
 			ft_free_tab(tab_f);

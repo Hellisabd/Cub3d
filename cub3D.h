@@ -22,6 +22,8 @@ typedef struct s_map
 	char	*ea;
 	char	*f;
 	char	*c;
+	int		rgb_f[3];
+	int		rgb_c[3];
 	int		height;
 }	t_map;
 
