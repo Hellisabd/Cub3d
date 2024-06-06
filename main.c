@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		open_map(&map, argv);
-		// parsing_map();
+		parsing_map(&map);
 		free_and_destroy(&map);
 	}
 	if (argc > 2)

@@ -82,9 +82,8 @@ void	open_map(t_map *map, char **argv)
 {
 	int		fd;
 	char	*line;
-	int		i;
 
-	i = 0;
+	map->i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		exit((ft_printf("Error\nError while opening the map!\n"), EXIT_FAILURE));
@@ -100,7 +99,7 @@ void	open_map(t_map *map, char **argv)
 		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
 			&& line[0] != 'F' && line[0] != 'C' && line[0] != '\n'
 			&& ft_strisspace(line) == false)
-			map->map[i++] = ft_strdup(line);
+			map->map[map->i++] = ft_strdup(line);
 		free(line);
 		line = get_next_line(fd);
 	}
