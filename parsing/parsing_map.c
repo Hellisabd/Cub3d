@@ -19,12 +19,12 @@ int	parsing_map(t_map *map)
 
 	map->length = get_length(map);
 	i = 0;
-	while (map->map[0][j] && (map->map[0][j] == 1 || ft_isspace(map->map[0][j])))
+	while (map->map[0][j] && (map->map[0][j] == '1' || ft_isspace(map->map[0][j])))
 		j++;
 	if (map->map[0][j])
-		return (-1);
+		return (debug_str(BLUE, NULL, "sortie 1"), -1);
 	j = 0;
-	while (map->map[map->height - 1][j] && (map->map[map->height - 1][j] == 1 || ft_isspace(map->map[map->height - 1][j])))
+	while (map->map[map->height - 1][j] && (map->map[map->height - 1][j] == '1' || ft_isspace(map->map[map->height - 1][j])))
 		j++;
 	if (map->map[map->height - 1][j])
 		return (-1);
@@ -35,13 +35,13 @@ int	parsing_map(t_map *map)
 		{
 			if (map->map[i][j] == 0)
 			{
-				if (map->map[i][j - 1] != 1 || ft_isspace(map->map[i][j - 1]))
+				if (map->map[i][j - 1] != '1' || ft_isspace(map->map[i][j - 1]))
+					return (debug_str(BLUE, NULL, "sortie 3"), -1);
+				if (map->map[i][j + 1] != '1' || ft_isspace(map->map[i][j + 1]))
 					return (-1);
-				if (map->map[i][j + 1] != 1 || ft_isspace(map->map[i][j + 1]))
+				if (map->length[i - 1] < j - 1 || map->map[i - 1][j] != '1' || ft_isspace(map->map[i - 1][j]))
 					return (-1);
-				if (map->length[i - 1] < j - 1 || map->map[i - 1][j] != 1 || ft_isspace(map->map[i - 1][j]))
-					return (-1);
-				if (map->length[i - 1] < j + 1 || map->map[i - 1][j] != 1 || ft_isspace(map->map[i + 1][j]))
+				if (map->length[i + 1] < j + 1 || map->map[i + 1][j] != '1' || ft_isspace(map->map[i + 1][j]))
 					return (-1);
 			}
 			j++;

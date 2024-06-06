@@ -52,6 +52,7 @@ void	free_and_destroy(t_map *map);
 void    debug_nbr(char *color, char *msg, long long int content);
 void    debug_str(char *color, char *msg, char *content);
 void    debug_tab_nbr(char *color, char *msg, long long int *content);
+void    debug_char(char *color, char *msg, char content);
 void    debug_tab_str(char *color, char *msg, char **content);
 
 
