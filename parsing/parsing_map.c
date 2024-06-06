@@ -18,6 +18,7 @@ int	parsing_map(t_map *map)
 	int	j = 0;
 
 	map->length = get_length(map);
+	debug_tab_nbr(RED, "map->length", map->length, map->height);
 	i = 0;
 	while (map->map[0][j] && (map->map[0][j] == '1' || ft_isspace(map->map[0][j])))
 		j++;
@@ -33,9 +34,9 @@ int	parsing_map(t_map *map)
 		j = 0;
 		while (map->map[i][j])
 		{
-			if (map->map[i][j] == 0)
+			if (map->map[i][j] == '0')
 			{
-				if (map->map[i][j - 1] != '1' || ft_isspace(map->map[i][j - 1]))
+				if (map->map[i][map->length[i] - 1] != '1' || ft_isspace(map->map[i][j - 1]))
 					return (debug_str(BLUE, NULL, "sortie 3"), -1);
 				if (map->map[i][j + 1] != '1' || ft_isspace(map->map[i][j + 1]))
 					return (-1);
@@ -49,5 +50,6 @@ int	parsing_map(t_map *map)
 		i++;
 	}
 	debug_str(PURPLE, NULL, "sort");
+	debug_nbr(PURPLE, NULL, i);
 	return (0);
 }

@@ -12,7 +12,7 @@ int	main(int argc, char **argv)
 		if (-1 == parsing_map(&map))
 			printf("open map\n");
 		debug_nbr(RED, "bonjour Antoine", 9);
-		debug_str(BLUE, "Comment tu vasde bon matin?\n", "J arrive tqt!");
+		debug_str(BLUE, "Comment tu vas de bon matin?\n", "J arrive tqt!");
 		free_and_destroy(&map);
 	}
 	if (argc > 2)

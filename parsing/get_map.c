@@ -105,8 +105,8 @@ void	open_map(t_map *map, char **argv)
 	}
 	map->map[map->i] = NULL;
 	if (!map->no || !map->so || !map->we || !map->ea || !map->f || !map->c)
-		exit((printf("Error\nTexture is missing!\n"), EXIT_FAILURE));
+		exit((printf("Error\nTexture is missing!\n"), EXIT_FAILURE));//FREE MAP
 	if (check_floor_and_ceiling(map) == 1)
-		exit (EXIT_FAILURE);
+		exit (EXIT_FAILURE);//FREE MAP
 	close (fd);
 }
