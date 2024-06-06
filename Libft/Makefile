@@ -58,6 +58,7 @@ SRCS		=	ft_isalpha.c	\
 			ft_free_triple_tab.c \
 			ft_strstartdup.c	\
 			ft_sort_tab_int.c	\
+			ft_isspace.c	\
 			ft_epur_str.c
 
 

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/05 14:41:38 by amirloup          #+#    #+#             */
-/*   Updated: 2024/06/05 16:30:15 by amirloup         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../cub3D.h"
 
 void	check_cub(char *s)
@@ -34,12 +22,17 @@ int	check_floor_and_ceiling(t_map *map)
 
 	i = 0;
 	tab_f = ft_split(map->f, ',');
+	if (!tab_f)
+		return (printf("Error\nMalloc error!\n"), 1);
 	tab_c = ft_split(map->c, ',');
+	if (!tab_c)
+		return (printf("Error\nMalloc error!\n"), 1);
 	while (i < 3)
 	{
 		n_f[i] = ft_atoi(tab_f[i]);
 		n_c[i] = ft_atoi(tab_c[i]);
-		if (n_f[i] < 0 || n_f[i] > 255 || n_c[i] < 0 || n_c[i] > 255)
+		if (tab_f[3] != NULL || tab_c[3] != NULL || n_f[i] < 0 || n_f[i] > 255
+			|| n_c[i] < 0 || n_c[i] > 255)
 		{
 			printf("Error\nWrong RGB format!\n");
 			ft_free_tab(tab_f);
@@ -69,20 +62,51 @@ void	get_textures(t_map *map, char *line)
 		map->c = ft_strdup(line + 2);
 }
 
-void	open_map(t_map *map, char **argv)
+void	get_map_heigth(t_map *map, char **argv)
 {
 	int		fd;
 	char	*line;
 
+	map->height = 0;
+	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		exit((ft_printf("Error\nError while opening the map!\n"), EXIT_FAILURE));
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
+			&& line[0] != 'F' && line[0] != 'C' && line[0] != '\n'
+			&& ft_strisspace(line) == false)
+			map->height++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close (fd);
+}
+
+void	open_map(t_map *map, char **argv)
+{
+	int		fd;
+	char	*line;
+	int		i;
+
+	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		exit((ft_printf("Error\nError while opening the map!\n"), EXIT_FAILURE));
 	check_cub(argv[1]);
+	get_map_heigth(map, argv);
+	map->map = malloc(sizeof(char *) * map->height);
+	if (!map->map)
+		exit((printf("Error\nMalloc error\n"), EXIT_FAILURE));
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		get_textures(map, line);
-		
+		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
+			&& line[0] != 'F' && line[0] != 'C' && line[0] != '\n'
+			&& ft_strisspace(line) == false)
+			map->map[i++] = ft_strdup(line);
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -90,11 +114,5 @@ void	open_map(t_map *map, char **argv)
 		exit((printf("Error\nTexture is missing!\n"), EXIT_FAILURE));
 	if (check_floor_and_ceiling(map) == 1)
 		exit (EXIT_FAILURE);
-	printf("%s", map->no);
-	printf("%s", map->so);
-	printf("%s", map->we);
-	printf("%s", map->ea);
-	printf("%s", map->f);
-	printf("%s", map->c);
 	close (fd);
 }

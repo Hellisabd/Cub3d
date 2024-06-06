@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 17:31:02 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/04/12 13:18:29 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/06/06 11:05:31 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,5 +115,7 @@ char	*ft_strndup(char *s, int n);
 void	ft_free_spec_tab(char **tab, int size);
 int		ft_strisdigit(char *s);
 char	*ft_epur_str(char *s, char c);
+bool	ft_isspace(char c);
+bool	ft_strisspace(char *s);
 
 #endif
