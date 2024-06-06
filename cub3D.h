@@ -24,7 +24,10 @@ typedef struct s_map
 	char	*c;
 	int		rgb_f[3];
 	int		rgb_c[3];
+	char	**tab_f;
+	char	**tab_c;
 	int		height;
+	int		i;	
 }	t_map;
 
 // PARSING

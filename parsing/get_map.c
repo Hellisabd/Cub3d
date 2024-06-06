@@ -14,34 +14,30 @@ void	check_cub(char *s)
 
 int	check_floor_and_ceiling(t_map *map)
 {
-	char	**tab_f;
-	char	**tab_c;
-	int		i;
-
-	i = 0;
-	tab_f = ft_split(map->f, ',');
-	if (!tab_f)
+	map->i = 0;
+	map->tab_f = ft_split(map->f, ',');
+	if (!map->tab_f)
 		return (printf("Error\nMalloc error!\n"), 1);
-	tab_c = ft_split(map->c, ',');
-	if (!tab_c)
+	map->tab_c = ft_split(map->c, ',');
+	if (!map->tab_c)
 		return (printf("Error\nMalloc error!\n"), 1);
-	while (i < 3)
+	if (map->tab_f[0] == NULL || map->tab_f[1] == NULL || map->tab_f[2] == NULL
+		|| map->tab_f[3] != NULL || map->tab_c[0] == NULL
+		|| map->tab_c[1] == NULL || map->tab_c[2] == NULL
+		|| map->tab_c[3] != NULL)
+		return (printf("Error\nWrong RGB format!\n"), ft_free_tab(map->tab_f), \
+			ft_free_tab(map->tab_c), 1);
+	while (map->i < 3)
 	{
-		map->rgb_f[i] = ft_atoi(tab_f[i]);
-		map->rgb_c[i] = ft_atoi(tab_c[i]);
-		if (tab_f[3] != NULL || tab_c[3] != NULL || map->rgb_f[i] < 0 || map->rgb_f[i] > 255
-			|| map->rgb_c[i] < 0 || map->rgb_c[i] > 255)
-		{
-			printf("Error\nWrong RGB format!\n");
-			ft_free_tab(tab_f);
-			ft_free_tab(tab_c);
-			return (1);
-		}
-		i++;
+		map->rgb_f[map->i] = ft_atoi(map->tab_f[map->i]);
+		map->rgb_c[map->i] = ft_atoi(map->tab_c[map->i]);
+		if (map->rgb_f[map->i] < 0 || map->rgb_f[map->i] > 255
+			|| map->rgb_c[map->i] < 0 || map->rgb_c[map->i] > 255)
+			return (printf("Error\nWrong RGB format!\n"), \
+			ft_free_tab(map->tab_f), ft_free_tab(map->tab_c), 1);
+		map->i++;
 	}
-	ft_free_tab(tab_f);
-	ft_free_tab(tab_c);
-	return (0);
+	return (ft_free_tab(map->tab_f), ft_free_tab(map->tab_c), 0);
 }
 
 void	get_textures(t_map *map, char *line)
