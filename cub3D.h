@@ -33,6 +33,7 @@ typedef struct s_map
 // PARSING
 
 void	open_map(t_map *map, char **argv);
+int		parsing_map(t_map *map);
 
 // FREE AND DESTROY
 void	free_and_destroy(t_map *map);

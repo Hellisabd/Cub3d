@@ -12,7 +12,8 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRCS_PARSING	= parsing/get_map.c
+SRCS_PARSING	=	parsing/get_map.c \
+					parsing/parsing_map.c
 
 SRCS_FREE = free_and_destroy/free_all.c
 

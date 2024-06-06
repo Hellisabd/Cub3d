@@ -5,9 +5,10 @@ int	*get_length(t_map *map)
 	int *length;
 	int	i;
 
+	i =  -1;
 	length = malloc(sizeof(int) * map->height);
-	while (map->map[i])
-		length[i++] = ft_strlen(map->map[i]);
+	while (map->map[++i])
+		length[i] = ft_strlen(map->map[i]);
 	return (length);
 }
 
@@ -18,12 +19,13 @@ int	parsing_map(t_map *map)
 	int	*length;
 
 	length = get_length(map);
+	i = 0;
 	while (map->map[0][j] && (map->map[0][j] == 1 || ft_isspace(map->map[0][j])))
 		j++;
 	if (map->map[0][j])
 		return (-1);
 	j = 0;
-	while (map->map[map->height - 1] && (map->map[map->height - 1][i] == 1 || ft_isspace(map->map[map->height - 1][j])))
+	while (map->map[map->height - 1][j] && (map->map[map->height - 1][j] == 1 || ft_isspace(map->map[map->height - 1][j])))
 		j++;
 	if (map->map[map->height - 1][j])
 		return (-1);
@@ -38,13 +40,14 @@ int	parsing_map(t_map *map)
 					return (-1);
 				if (map->map[i][j + 1] != 1 || ft_isspace(map->map[i][j + 1]))
 					return (-1);
-				if (map->map[i - 1][j] != 1 || ft_isspace(map->map[i - 1][j]))
+				if (length[i - 1] < j - 1 || map->map[i - 1][j] != 1 || ft_isspace(map->map[i - 1][j]))
 					return (-1);
-				if (map->map[i - 1][j] != 1 || ft_isspace(map->map[i + 1][j]))
+				if (length[i - 1] < j + 1 || map->map[i - 1][j] != 1 || ft_isspace(map->map[i + 1][j]))
 					return (-1);
 			}
 			j++;
 		}
 		i++;
 	}
+	return (0);
 }
