@@ -89,7 +89,7 @@ void	open_map(t_map *map, char **argv)
 		exit((ft_printf("Error\nError while opening the map!\n"), EXIT_FAILURE));
 	check_cub(argv[1]);
 	get_map_heigth(map, argv);
-	map->map = malloc(sizeof(char *) * map->height);
+	map->map = malloc(sizeof(char *) * (map->height + 1));
 	if (!map->map)
 		exit((printf("Error\nMalloc error\n"), EXIT_FAILURE));
 	line = get_next_line(fd);
@@ -103,6 +103,7 @@ void	open_map(t_map *map, char **argv)
 		free(line);
 		line = get_next_line(fd);
 	}
+	map->map[map->i] = NULL;
 	if (!map->no || !map->so || !map->we || !map->ea || !map->f || !map->c)
 		exit((printf("Error\nTexture is missing!\n"), EXIT_FAILURE));
 	if (check_floor_and_ceiling(map) == 1)

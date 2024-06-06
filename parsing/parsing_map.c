@@ -2,8 +2,8 @@
 
 int	*get_length(t_map *map)
 {
-	int *length;
 	int	i;
+	int *length;
 
 	i =  -1;
 	length = malloc(sizeof(int) * map->height);
@@ -16,9 +16,8 @@ int	parsing_map(t_map *map)
 {
 	int i = 1;
 	int	j = 0;
-	int	*length;
 
-	length = get_length(map);
+	map->length = get_length(map);
 	i = 0;
 	while (map->map[0][j] && (map->map[0][j] == 1 || ft_isspace(map->map[0][j])))
 		j++;
@@ -40,9 +39,9 @@ int	parsing_map(t_map *map)
 					return (-1);
 				if (map->map[i][j + 1] != 1 || ft_isspace(map->map[i][j + 1]))
 					return (-1);
-				if (length[i - 1] < j - 1 || map->map[i - 1][j] != 1 || ft_isspace(map->map[i - 1][j]))
+				if (map->length[i - 1] < j - 1 || map->map[i - 1][j] != 1 || ft_isspace(map->map[i - 1][j]))
 					return (-1);
-				if (length[i - 1] < j + 1 || map->map[i - 1][j] != 1 || ft_isspace(map->map[i + 1][j]))
+				if (map->length[i - 1] < j + 1 || map->map[i - 1][j] != 1 || ft_isspace(map->map[i + 1][j]))
 					return (-1);
 			}
 			j++;

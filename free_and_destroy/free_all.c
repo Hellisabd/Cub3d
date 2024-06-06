@@ -8,5 +8,6 @@ void	free_and_destroy(t_map *map)
 	free(map->ea);
 	free(map->f);
 	free(map->c);
+	free(map->length);
 	ft_free_tab(map->map);
 }

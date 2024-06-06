@@ -17,7 +17,7 @@ SRCS_PARSING	=	parsing/get_map.c \
 
 SRCS_FREE = free_and_destroy/free_all.c
 
-SRCS_MAIN	= main.c $(SRCS)
+SRCS_MAIN	= main.c debug_stderr.c $(SRCS)
 
 OBJS	= $(SRCS_MAIN:.c=.o) $(SRCS_PARSING:.c=.o) $(SRCS_FREE:.c=.o)
 
