@@ -48,5 +48,6 @@ int	parsing_map(t_map *map)
 		}
 		i++;
 	}
+	debug_str(PURPLE, NULL, "sort");
 	return (0);
 }
