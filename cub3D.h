@@ -36,7 +36,7 @@ typedef struct s_map
 	char	**tab_c;
 	int		*length;
 	int		height;
-	int		i;	
+	int		i;
 }	t_map;
 
 // PARSING
@@ -49,11 +49,10 @@ void	free_and_destroy(t_map *map);
 
 //DEBUG
 
-void    debug_nbr(char *color, char *msg, long long int content);
-void    debug_str(char *color, char *msg, char *content);
-void    debug_tab_nbr(char *color, char *msg, int *content, int size);
-void    debug_char(char *color, char *msg, char content);
-void    debug_tab_str(char *color, char *msg, char **content);
-
+void	debug_nbr(char *color, char *msg, long long int content);
+void	debug_str(char *color, char *msg, char *content);
+void	debug_tab_nbr(char *color, char *msg, int *content, int size);
+void	debug_char(char *color, char *msg, char content);
+void	debug_tab_str(char *color, char *msg, char **content);
 
 #endif
