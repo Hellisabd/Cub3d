@@ -47,10 +47,19 @@ typedef struct s_map
 	int		i;
 }	t_map;
 
+typedef struct s_cub
+{
+	t_map	*map;
+	mlx_t	*mlx;
+}	t_cub;
+
 // PARSING
 
 void	open_map(t_map *map, char **argv);
 int		parsing_map(t_map *map);
+
+// GAME
+void	open_window(t_cub *cub);
 
 // FREE AND DESTROY
 void	free_and_destroy(t_map *map);

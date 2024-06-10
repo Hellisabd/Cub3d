@@ -42,7 +42,6 @@ int	check_floor_and_ceiling(t_map *map)
 
 void	get_textures(t_map *map, char *line)
 {
-
 	if (line[0] == 'N' && line[1] == 'O')
 		map->no = ft_strdup(line + 3);
 	if (line[0] == 'S' && line[1] == 'O')
@@ -79,6 +78,21 @@ void	get_map_heigth(t_map *map, char **argv)
 	close (fd);
 }
 
+void	get_map(char *line, t_map *map, int fd)
+{
+	while (line != NULL)
+	{
+		get_textures(map, line);
+		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
+			&& line[0] != 'F' && line[0] != 'C' && line[0] != '\n'
+			&& ft_strisspace(line) == false)
+			map->map[map->i++] = ft_strdup(line);
+		free(line);
+		line = get_next_line(fd);
+	}
+	map->map[map->i] = NULL;
+}
+
 void	open_map(t_map *map, char **argv)
 {
 	int		fd;
@@ -94,17 +108,7 @@ void	open_map(t_map *map, char **argv)
 	if (!map->map)
 		exit((print_error(MALLOC), EXIT_FAILURE));
 	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		get_textures(map, line);
-		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
-			&& line[0] != 'F' && line[0] != 'C' && line[0] != '\n'
-			&& ft_strisspace(line) == false)
-			map->map[map->i++] = ft_strdup(line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	map->map[map->i] = NULL;
+	get_map(line, map, fd);
 	if (!map->no || !map->so || !map->we || !map->ea || !map->f || !map->c)
 		exit((print_error(TEXTURE), free_and_destroy(map), EXIT_FAILURE));
 	if (check_floor_and_ceiling(map) == 1)

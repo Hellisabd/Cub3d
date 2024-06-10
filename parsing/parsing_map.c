@@ -13,7 +13,8 @@ int	count_player(t_map *map)
 		j = 0;
 		while (map->map[i][j])
 		{
-			if (map->map[i][j] == 'N' || map->map[i][j] == 'S' || map->map[i][j] == 'E' || map->map[i][j] == 'W')
+			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
+				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 				c++;
 			j++;
 		}
@@ -36,48 +37,64 @@ int	*get_length(t_map *map)
 	return (length);
 }
 
-int	parsing_map(t_map *map)
+int	check_hole(t_map *map, int *i, int *j)
 {
-	int i = 1;
-	int	j = 0;
+	if (map->map[*i][*j] == '0' || map->map[*i][*j] == 'E'
+		|| map->map[*i][*j] == 'S' || map->map[*i][*j] == 'N'
+			|| map->map[*i][*j] == 'W')
+	{
+		if (ft_isspace(map->map[*i][(*j) - 1]))
+			return (debug_str(BLUE, NULL, "sortie 3"), -1);
+		if (ft_isspace(map->map[*i][(*j) + 1]))
+			return (-1);
+		if (map->length[(*i) - 1] < (*j) - 1
+			|| ft_isspace(map->map[*i - 1][*j]))
+			return (-1);
+		if (map->length[(*i) + 1] < (*j) + 1
+			|| ft_isspace(map->map[(*i) + 1][*j]))
+			return (-1);
+	}
+	return (0);
+}
 
-
-	map->length = get_length(map);
+int	basic_check(t_map *map, int j)
+{
 	if (count_player(map) != 1)
 		return (-2);
-	// debug_tab_nbr(RED, "map->length", map->length, map->height);
-	i = 0;
-	while (map->map[0][j] && (map->map[0][j] == '1' || ft_isspace(map->map[0][j])))
+	while (map->map[0][j] && (map->map[0][j] == '1'
+		|| ft_isspace(map->map[0][j])))
 		j++;
 	if (map->map[0][j])
 		return (debug_str(BLUE, NULL, "sortie 1"), -1);
 	j = 0;
-	while (map->map[map->height - 1][j] && (map->map[map->height - 1][j] == '1' || ft_isspace(map->map[map->height - 1][j])))
+	while (map->map[map->height - 1][j] && (map->map[map->height - 1][j] == '1'
+		|| ft_isspace(map->map[map->height - 1][j])))
 		j++;
 	if (map->map[map->height - 1][j])
+		return (-1);
+	return (0);
+}
+
+int	parsing_map(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	map->length = get_length(map);
+	if (basic_check(map, j) == -1)
 		return (-1);
 	while (i < map->height - 1)
 	{
 		j = 0;
 		while (map->map[i][j])
 		{
-			if (map->map[i][j] == '0' || map->map[i][j] == 'E' || map->map[i][j] == 'S' || map->map[i][j] == 'N' || map->map[i][j] == 'W')
-			{
-				if (ft_isspace(map->map[i][j - 1]))
-					return (debug_str(BLUE, NULL, "sortie 3"), -1);
-				if (ft_isspace(map->map[i][j + 1]))
-					return (-1);
-				if (map->length[i - 1] < j - 1 || ft_isspace(map->map[i - 1][j]))
-					return (-1);
-				if (map->length[i + 1] < j + 1 || ft_isspace(map->map[i + 1][j]))
-					return (-1);
-			}
+			if (check_hole(map, &i, &j) == -1)
+				return (-1);
 			j++;
 		}
-		debug_nbr(GREEN, "i :", i);
 		i++;
 	}
-	debug_str(PURPLE, NULL, "sort");
-	debug_nbr(PURPLE, NULL, i);
 	return (0);
 }

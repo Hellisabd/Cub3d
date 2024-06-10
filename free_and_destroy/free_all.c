@@ -18,4 +18,5 @@ void	free_and_destroy(t_map *map)
 		free(map->length);
 	if (map->map)
 		ft_free_tab(map->map);
+	free(map);
 }
