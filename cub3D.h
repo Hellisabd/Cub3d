@@ -51,6 +51,7 @@ typedef struct s_cub
 {
 	t_map	*map;
 	mlx_t	*mlx;
+	int		fov;
 }	t_cub;
 
 // PARSING
