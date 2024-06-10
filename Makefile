@@ -12,14 +12,14 @@ MAGENTA = \033[0;95m
 CYAN = \033[0;96m
 WHITE = \033[0;97m
 
-SRCS_PARSING	=	parsing/get_map.c \
-					parsing/parsing_map.c
+SRCS	=	parsing/get_map.c \
+			parsing/parsing_map.c \
+			free_and_destroy/free_all.c \
+			error.c
 
-SRCS_FREE = free_and_destroy/free_all.c
+SRCS_MAIN	= main.c debug_stderr.c
 
-SRCS_MAIN	= main.c debug_stderr.c $(SRCS)
-
-OBJS	= $(SRCS_MAIN:.c=.o) $(SRCS_PARSING:.c=.o) $(SRCS_FREE:.c=.o)
+OBJS	= $(SRCS_MAIN:.c=.o) $(SRCS:.c=.o)
 
 CC	= @cc
 

@@ -29,6 +29,8 @@ int	*get_length(t_map *map)
 
 	i = -1;
 	length = malloc(sizeof(int) * map->height);
+	if (!length)
+		return (NULL);
 	while (map->map[++i])
 		length[i] = ft_strlen(map->map[i]);
 	return (length);
@@ -41,6 +43,8 @@ int	parsing_map(t_map *map)
 
 
 	map->length = get_length(map);
+	if (count_player(map) != 1)
+		return (-2);
 	// debug_tab_nbr(RED, "map->length", map->length, map->height);
 	i = 0;
 	while (map->map[0][j] && (map->map[0][j] == '1' || ft_isspace(map->map[0][j])))

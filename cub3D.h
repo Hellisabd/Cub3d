@@ -9,6 +9,14 @@
 # define PURPLE "\e[1;35m"
 # define BLUE "\e[1;36m"
 
+# define OPEN "Wrong input : map open.\n"
+# define PLAYER "Wrong input : too many players.\n"
+# define CUB "The map is not a .cub file!\n"
+# define MALLOC "Malloc error!\n"
+# define RGB "Wrong RGB format!\n"
+# define LOAD_MAP "Error while opening the map!\n"
+# define TEXTURE "Texture is missing!\n"
+
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -46,6 +54,9 @@ int		parsing_map(t_map *map);
 
 // FREE AND DESTROY
 void	free_and_destroy(t_map *map);
+
+// ERROR
+void	print_error(char *msg);
 
 //DEBUG
 
