@@ -57,6 +57,7 @@ typedef struct s_cub
 
 void	open_map(t_map *map, char **argv);
 int		parsing_map(t_map *map);
+void	check_cub(char *s);
 
 // GAME
 void	open_window(t_cub *cub);

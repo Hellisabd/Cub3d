@@ -14,6 +14,7 @@ WHITE = \033[0;97m
 
 SRCS	=	parsing/get_map.c \
 			parsing/parsing_map.c \
+			parsing/parsing_utils.c \
 			free_and_destroy/free_all.c \
 			game/open_window.c \
 			error.c
