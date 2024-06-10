@@ -61,6 +61,7 @@ void	check_cub(char *s);
 
 // GAME
 void	open_window(t_cub *cub);
+void	raycasting(t_cub *cub);
 
 // FREE AND DESTROY
 void	free_and_destroy(t_map *map);
