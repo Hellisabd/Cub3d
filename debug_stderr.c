@@ -31,7 +31,8 @@ void	debug_tab_nbr(char *color, char *msg, int *content, int size)
 	i = -1;
 	if (msg)
 		while (++i < size)
-			fprintf(stderr, "%s %s [%d] : %d%s\n", color, msg, i, content[i], NC);
+			fprintf(stderr, "%s %s [%d] : %d%s\n", color, msg, i, \
+			content[i], NC);
 	else
 		while (++i < size)
 			fprintf(stderr, "%s [%d] : %d%s\n", color, i, content[i], NC);
