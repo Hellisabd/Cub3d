@@ -24,7 +24,7 @@
 # include <math.h>
 
 # include "Libft/libft.h"
-# include "MLX42/include/MLX42/MLX42.h"
+# include ".MLX42/include/MLX42/MLX42.h"
 
 # define WIDTH 2000
 # define HEIGHT 1000
