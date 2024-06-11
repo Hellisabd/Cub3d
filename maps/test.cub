@@ -1,0 +1,19 @@
+NO ./assests/yellow_square.png
+SO ./assests/blue_square.png
+WE ./assests/red_square.png
+EA ./assests/green_square.png
+
+F 220,100,0
+C 225,30,0
+
+		
+1111111111
+1000000001
+1000000001
+1000N00001
+1000000001
+1000000001
+1000000001
+1000000001
+1000000001
+1111111111
