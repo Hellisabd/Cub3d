@@ -84,9 +84,7 @@ void	raycasting(t_cub *cub)
 	set_player_pos(cub);
 	reset_y = false;
 	x = cub->p_x;
-	next_x = 0;
 	y = cub->p_y;
-	next_y = 0;
 	cub->fov = 1.151917;
 	// cub->fov = PI * 11 / 30;
 	printf("x: %f\n", x);
@@ -95,42 +93,43 @@ void	raycasting(t_cub *cub)
 	j = floor(x);
 	printf("i: %i\n", i);
 	printf("j: %i\n", j);
-	next_y += x + fabs(round(x));
-	next_y += y + fabs(round(y));
-	if (cub->map->map[i - 1][j] == '1')
-		reset_y = true;
+	next_x = x - fabs(round(x));
+	next_y = y - fabs(round(y));
+	debug_float(YELLOW, "next_x :", next_x);
+	debug_float(YELLOW, "next_y :", next_y);
+	printf("next_y : %f\n", next_y);
 	while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->d || cub->map->map[i][j] == 'P')
 	{
 		debug_float(RED, "next_y :", next_y);
 		debug_float(PURPLE, "y :", y);
 		debug_float(BLUE, "next_x :", next_x);
 		debug_float(GREEN, "x :", x);
-		if (next_y < y && fabs(next_x) >= fabs(next_y))
+		if (next_y < y - fabs(round(y)) && fabs(next_x) >= fabs(next_y))
 		{
 			cub->map->map[i][j] = 'P';
 			i--;
-			next_y +=  calc_ray_y(x, y + next_y + 1, cub);
+			next_y +=  calc_ray_y(x + next_x, y, cub);
 			// y += next_y;
 		}
-		else if (next_y > y && fabs(next_x) >= fabs(next_y))
+		else if (next_y > y - fabs(round(y)) && fabs(next_x) >= fabs(next_y))
 		{
 			cub->map->map[i][j] = 'P';
 			i++;
-			next_y +=  calc_ray_y(x, y + next_y + 1, cub);
+			next_y +=  calc_ray_y(x + next_x, y, cub);
 			// y += next_y;
 		}
-		else if (next_x < x && fabs(next_y) >= fabs(next_x))
+		else if (next_x < x - fabs(round(x)) && fabs(next_y) >= fabs(next_x))
 		{
 			cub->map->map[i][j] = 'P';
 			j--;
 			// x += next_x;
-			next_x +=  calc_ray_x(x + next_x + 1, y, cub);
+			next_x +=  calc_ray_x(x, y + next_y, cub);
 		}
-		else if (next_x > x && fabs(next_y) >= fabs(next_x))
+		else if (next_x > x - fabs(round(x)) && fabs(next_y) >= fabs(next_x))
 		{
 			cub->map->map[i][j] = 'P';
 			j++;
-			next_x +=  calc_ray_x(x + next_x + 1, y, cub);
+			next_x +=  calc_ray_x(x , y + next_y, cub);
 			// x += next_x;
 		}
 		// if (fabs(next_x) >= fabs(next_y))
