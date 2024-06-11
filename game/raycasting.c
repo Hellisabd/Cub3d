@@ -85,7 +85,7 @@ void	raycasting(t_cub *cub)
 	reset_y = false;
 	x = cub->p_x;
 	y = cub->p_y;
-	cub->fov = 1.151917;
+	cub->fov = 3.1416;
 	// cub->fov = PI * 11 / 30;
 	printf("x: %f\n", x);
 	printf("y: %f\n", y);
@@ -104,28 +104,28 @@ void	raycasting(t_cub *cub)
 		debug_float(PURPLE, "y :", y);
 		debug_float(BLUE, "next_x :", next_x);
 		debug_float(GREEN, "x :", x);
-		if (next_y < y - fabs(round(y)) && fabs(next_x) >= fabs(next_y))
+		if (cub->dir_y < 0 && fabs(next_x) >= fabs(next_y))
 		{
 			cub->map->map[i][j] = 'P';
 			i--;
 			next_y +=  calc_ray_y(x + next_x, y, cub);
 			// y += next_y;
 		}
-		else if (next_y > y - fabs(round(y)) && fabs(next_x) >= fabs(next_y))
+		else if (fabs(next_x) >= fabs(next_y))
 		{
 			cub->map->map[i][j] = 'P';
 			i++;
 			next_y +=  calc_ray_y(x + next_x, y, cub);
 			// y += next_y;
 		}
-		else if (next_x < x - fabs(round(x)) && fabs(next_y) >= fabs(next_x))
+		else if (cub->dir_x < 0 && fabs(next_y) >= fabs(next_x))
 		{
 			cub->map->map[i][j] = 'P';
 			j--;
 			// x += next_x;
 			next_x +=  calc_ray_x(x, y + next_y, cub);
 		}
-		else if (next_x > x - fabs(round(x)) && fabs(next_y) >= fabs(next_x))
+		else if (fabs(next_y) >= fabs(next_x))
 		{
 			cub->map->map[i][j] = 'P';
 			j++;
