@@ -8,6 +8,14 @@ void	debug_nbr(char *color, char *msg, long long int content)
 		fprintf(stderr, "%s%s %lld%s\n", color, msg, content, NC);
 }
 
+void	debug_float(char *color, char *msg, double content)
+{
+	if (!msg)
+		fprintf(stderr, "%s %f%s\n", color, content, NC);
+	else
+		fprintf(stderr, "%s%s %f%s\n", color, msg, content, NC);
+}
+
 void	debug_char(char *color, char *msg, char content)
 {
 	if (!msg)

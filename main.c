@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	{
 		init_var(cub.map);
 		open_map(cub.map, argv);
-		if (-1 == parsing_map(cub.map))
+		if (-1 == parsing_map(cub.map, &cub))
 			printf("open map\n");
 		open_window(&cub);
 		free_and_destroy(cub.map);

@@ -26,6 +26,7 @@
 # include "Libft/libft.h"
 # include ".MLX42/include/MLX42/MLX42.h"
 
+# define PI		3.14159265358979323846
 # define WIDTH 2000
 # define HEIGHT 1000
 
@@ -44,6 +45,7 @@ typedef struct s_map
 	char	**tab_c;
 	int		*length;
 	int		height;
+	char	d;
 	int		i;
 }	t_map;
 
@@ -51,15 +53,17 @@ typedef struct s_cub
 {
 	t_map	*map;
 	mlx_t	*mlx;
-	int		fov;
+	float	fov;
 	float	p_x;
 	float	p_y;
+	float	dir_x;
+	float	dir_y;
 }	t_cub;
 
 // PARSING
 
 void	open_map(t_map *map, char **argv);
-int		parsing_map(t_map *map);
+int		parsing_map(t_map *map, t_cub *cub);
 void	check_cub(char *s);
 
 // GAME
@@ -78,6 +82,7 @@ void	debug_nbr(char *color, char *msg, long long int content);
 void	debug_str(char *color, char *msg, char *content);
 void	debug_tab_nbr(char *color, char *msg, int *content, int size);
 void	debug_char(char *color, char *msg, char content);
+void	debug_float(char *color, char *msg, double content);
 void	debug_tab_str(char *color, char *msg, char **content);
 
 #endif

@@ -1,6 +1,30 @@
 #include "../cub3D.h"
 
-int	count_player(t_map *map)
+void	set_player(char dir, t_cub *cub)
+{
+	if (dir == 'N')
+	{
+		cub->dir_x = 0;
+		cub->dir_y = -1;
+	}
+	if (dir == 'S')
+	{
+		cub->dir_x = 0;
+		cub->dir_y = 1;
+	}
+	if (dir == 'E')
+	{
+		cub->dir_x = 1;
+		cub->dir_y = 0;
+	}
+	if (dir == 'W')
+	{
+		cub->dir_x = -1;
+		cub->dir_x = 0;
+	}
+}
+
+int	count_player(t_map *map, t_cub *cub)
 {
 	int	i;
 	int	j;
@@ -15,7 +39,11 @@ int	count_player(t_map *map)
 		{
 			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
 				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
+			{
+				map->d = map->map[i][j];
+				set_player(map->map[i][j], cub);
 				c++;
+			}
 			j++;
 		}
 		i++;
@@ -57,9 +85,9 @@ int	check_hole(t_map *map, int *i, int *j)
 	return (0);
 }
 
-int	basic_check(t_map *map, int j)
+int	basic_check(t_map *map, int j, t_cub *cub)
 {
-	if (count_player(map) != 1)
+	if (count_player(map, cub) != 1)
 		return (-2);
 	while (map->map[0][j] && (map->map[0][j] == '1'
 		|| ft_isspace(map->map[0][j])))
@@ -75,7 +103,7 @@ int	basic_check(t_map *map, int j)
 	return (0);
 }
 
-int	parsing_map(t_map *map)
+int	parsing_map(t_map *map, t_cub *cub)
 {
 	int	i;
 	int	j;
@@ -83,7 +111,7 @@ int	parsing_map(t_map *map)
 	i = 1;
 	j = 0;
 	map->length = get_length(map);
-	if (basic_check(map, j) == -1)
+	if (basic_check(map, j, cub) == -1)
 		return (-1);
 	while (i < map->height - 1)
 	{
