@@ -54,6 +54,7 @@ typedef struct s_cub
 	t_map	*map;
 	mlx_t	*mlx;
 	float	fov;
+	float	angle;
 	float	p_x;
 	float	p_y;
 	float	dir_x;
