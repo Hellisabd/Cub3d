@@ -8,6 +8,7 @@ void	open_window(t_cub *cub)
 	mlx_set_window_pos(cub->mlx, 1000, 500);
 	mlx_set_window_limit(cub->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
 	raycasting(cub);
+	map_to_window(cub);
 	while (1)
 		;
 	// mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);

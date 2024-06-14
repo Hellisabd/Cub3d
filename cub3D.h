@@ -17,6 +17,11 @@
 # define LOAD_MAP "Error while opening the map!\n"
 # define TEXTURE "Texture is missing!\n"
 
+# define WALL "assets/red_square.png"
+# define BACKGROUND "assets/white_square.png"
+# define PLAYER "assets/red_square.png"
+
+
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -27,7 +32,7 @@
 # include ".MLX42/include/MLX42/MLX42.h"
 
 # define PI		3.14159265358979323846
-# define WIDTH 2000
+# define WIDTH 1000
 # define HEIGHT 1000
 
 typedef struct s_map
@@ -49,6 +54,14 @@ typedef struct s_map
 	int		i;
 }	t_map;
 
+typedef struct s_map
+{
+	mlx_texture_t *wall_t;
+	mlx_texture_t *background_t;
+	mlx_texture_t *wall_i;
+	mlx_texture_t *background_i;
+}	t_mini_map;
+
 typedef struct s_cub
 {
 	t_map	*map;
@@ -59,6 +72,7 @@ typedef struct s_cub
 	float	p_y;
 	float	dir_x;
 	float	dir_y;
+	t_mini_map	mini_map;
 }	t_cub;
 
 // PARSING
