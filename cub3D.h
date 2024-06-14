@@ -49,16 +49,30 @@ typedef struct s_map
 	int		i;
 }	t_map;
 
+typedef struct s_ray
+{
+	float			hyp;
+	float			angle;
+	struct s_ray	*next;
+}	t_ray;
+
 typedef struct s_cub
 {
+	float	dist_y;
+	float	dist_x;
+	float	next_x;
+	float	next_y;
+	float	n;
 	t_map	*map;
+	t_ray	**ray;
 	mlx_t	*mlx;
 	float	fov;
-	float	angle;
 	float	p_x;
 	float	p_y;
 	float	dir_x;
 	float	dir_y;
+	float	hyp;
+	float	angle;
 }	t_cub;
 
 // PARSING
@@ -70,9 +84,12 @@ void	check_cub(char *s);
 // GAME
 void	open_window(t_cub *cub);
 void	raycasting(t_cub *cub);
+void	ft_add_back_raycast(t_ray **ray, float angle, float distance);
+void	printlist(t_ray *node);
 
 // FREE AND DESTROY
-void	free_and_destroy(t_map *map);
+void	free_map_stuff(t_map *map);
+void	free_rays(t_ray **ray);
 
 // ERROR
 void	print_error(char *msg);

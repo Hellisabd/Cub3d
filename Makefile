@@ -18,6 +18,7 @@ SRCS	=	parsing/get_map.c \
 			free_and_destroy/free_all.c \
 			game/open_window.c \
 			game/raycasting.c \
+			game/raycasting_utils.c \
 			error.c
 
 SRCS_MAIN	= main.c debug_stderr.c

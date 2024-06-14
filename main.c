@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 		if (-1 == parsing_map(cub.map, &cub))
 			printf("open map\n");
 		open_window(&cub);
-		free_and_destroy(cub.map);
+		free_map_stuff(cub.map);
+		free_rays(cub.ray);
 	}
 }
