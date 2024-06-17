@@ -63,6 +63,8 @@ void	set_player_pos(t_cub *cub)
 			if (cub->map->map[i][j] == 'N' || cub->map->map[i][j] == 'S'
 				|| cub->map->map[i][j] == 'E' || cub->map->map[i][j] == 'W')
 			{
+				cub->player.pos_x = j + 0.5;
+				cub->player.pos_y = i + 0.5;
 				cub->p_x = j + 0.5;
 				cub->p_y = i + 0.5;
 			}
@@ -88,54 +90,63 @@ float	calc_ray_x(float dist_x, t_cub *cub)
 	return (next);
 }
 
-void	apply_rotation(t_ray *ray, t_cub *cub)
-{
-	float	x_r;
-	float	y_r;
-	int		i;
-	int		j;
+// void	apply_rotation(t_ray *ray, t_cub *cub)
+// {
+// 	float	x_r;
+// 	float	y_r;
+// 	int		i;
+// 	int		j;
 
+// 	while (ray)
+// 	{
+// 		x_r = ray->x * cos(cub->rot) - ray->y * sin(cub->rot);
+// 		y_r = ray->x * sin(cub->rot) + ray->y * cos(cub->rot);
+// 		ray->x = x_r;
+// 		ray->y = y_r;
+// 		ray = ray->next;
+// 	}
+// 	cub->angle += cub->rot;
+// 	while (ray)
+// 	{
+// 		if (cub->angle > 2 * PI)
+// 			cub->angle -= 2 * PI;
+// 		if (cub->angle < -2 * PI)
+// 			cub ->angle += 2 * PI;
+// 		i = floor(cub->p_y);
+// 		j = floor(cub->p_x);
+// 		cub->dist_x = cub->p_x - fabs(floor(cub->p_x));
+// 		cub->dist_x = cub->p_x - fabs(floor(cub->p_x));
+// 		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->d || cub->map->map[i][j] == 'P' || cub->map->map[i][j] == 'Q')
+// 		{
+// 			if (cub->angle >= 0 && cub->angle < PI / 2)
+// 			{
+				
+// 			}
+// 			if (cub->angle >= PI / 2 && cub->angle < PI)
+// 			{
+				
+// 			}
+// 			if (cub->angle >= PI && cub->angle < -PI / 2)
+// 			{
+				
+// 			}
+// 			if (cub->angle >= -PI / 2 && cub->angle < 0)
+// 			{
+				
+// 			}
+// 		}
+// 		ray = ray->next;
+// 	}
+// 	print_map(cub);
+// }
+
+void	draw_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub)
+{
 	while (ray)
 	{
-		x_r = ray->x * cos(cub->rot) - ray->y * sin(cub->rot);
-		y_r = ray->x * sin(cub->rot) + ray->y * cos(cub->rot);
-		ray->x = x_r;
-		ray->y = y_r;
+		drawline(ray, mini_map, &cub->player);
 		ray = ray->next;
 	}
-	cub->angle += cub->rot;
-	while (ray)
-	{
-		if (cub->angle > 2 * PI)
-			cub->angle -= 2 * PI;
-		if (cub->angle < -2 * PI)
-			cub ->angle += 2 * PI;
-		i = floor(cub->p_y);
-		j = floor(cub->p_x);
-		cub->dist_x = cub->p_x - fabs(floor(cub->p_x));
-		cub->dist_x = cub->p_x - fabs(floor(cub->p_x));
-		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->d || cub->map->map[i][j] == 'P' || cub->map->map[i][j] == 'Q')
-		{
-			if (cub->angle >= 0 && cub->angle < PI / 2)
-			{
-				
-			}
-			if (cub->angle >= PI / 2 && cub->angle < PI)
-			{
-				
-			}
-			if (cub->angle >= PI && cub->angle < -PI / 2)
-			{
-				
-			}
-			if (cub->angle >= -PI / 2 && cub->angle < 0)
-			{
-				
-			}
-		}
-		ray = ray->next;
-	}
-	print_map(cub);
 }
 
 void	raycasting(t_cub *cub)
@@ -143,10 +154,10 @@ void	raycasting(t_cub *cub)
 	int		i;
 	int		j;
 
-	cub->ray = malloc(sizeof(t_ray *));
-	if (!cub->ray)
-		return ;
-	*(cub->ray) = NULL;
+	// cub->ray = malloc(sizeof(t_ray *));
+	// if (!cub->ray)
+	// 	return ;
+	// *(cub->ray) = NULL;
 	set_player_pos(cub);
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
@@ -165,7 +176,7 @@ void	raycasting(t_cub *cub)
 			cub->dist_y = cub->p_y - fabs(ceil(cub->p_y));
 		cub->next_x =  calc_ray_x(cub->dist_x, cub);		
 		cub->next_y =  calc_ray_y(cub->dist_y, cub);
-		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->d || cub->map->map[i][j] == 'P' || cub->map->map[i][j] == 'Q')
+		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->player_char || cub->map->map[i][j] == 'P' || cub->map->map[i][j] == 'Q')
 		{
 			
 			if (cub->dist_y < 0 && fabs(cub->next_x) >= fabs(cub->next_y))
@@ -221,11 +232,11 @@ void	raycasting(t_cub *cub)
 		}
 		cub->y = cos(cub->angle) * cub->hyp;
 		cub->x = sin(cub->angle) * cub->hyp;
-		ft_add_back_raycast(cub->ray, cub, cub->x, cub->y);
+		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
-	print_map(cub);
-	reinit_map(cub);
-	printlist(*(cub->ray), RED);
-	apply_rotation(*(cub->ray), cub);
+	// print_map(cub);
+	// reinit_map(cub);
+	// printlist(*(cub->ray), RED);
+	// apply_rotation(*(cub->ray), cub);
 }

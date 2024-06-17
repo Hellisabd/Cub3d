@@ -94,7 +94,7 @@ typedef struct s_mini_map
 typedef struct s_cub
 {
 	t_map	*map;
-	t_ray	**ray;
+	t_ray	*ray;
 	mlx_t	*mlx;
 	float	dist_y;
 	float	dist_x;
@@ -125,6 +125,8 @@ void	check_cub(char *s);
 void	open_window(t_cub *cub);
 void	raycasting(t_cub *cub);
 void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y);
+void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player);
+void	draw_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub);
 void	printlist(t_ray *node, char *color);
 
 // MINIMAP
@@ -135,7 +137,7 @@ int init_mini_map(t_cub *cub, t_mini_map *mini_map);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);
-void	free_rays(t_ray **ray);
+void	free_rays(t_ray *ray);
 void	free_and_destroy(t_map *map);
 void	free_in_window(t_cub *cub);
 

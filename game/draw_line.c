@@ -1,16 +1,17 @@
-#include "cub3D.h"
+#include "../cub3D.h"
 
-int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
+void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 {
 	int dy;
 	int dx;
 	int e;
-	start_x = 0;
-	start_x = 0;
-	end_x = 550;
-	end_y = 780;
+	int start_x = player->pos_x;
+	int start_y = player->pos_y;
+	int end_x = ray->x;
+	int end_y = ray->y;
 	dy = end_y - start_y;
 	dx = end_x - start_x;
+	e = 0;
 
 	if (dx != 0)
 	{
@@ -27,7 +28,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 						dy = dy * 2;
 						while (1)
 						{
-							mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 							start_x++;
 							if (start_x == end_x)
 								break ;
@@ -46,7 +47,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 						dx *= 2;
 						while (1)
 						{
-							mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 							start_y++;
 							if (start_y == end_y)
 								break ;
@@ -68,7 +69,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 						dy *= 2;
 						while (1)
 						{
-							mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 							start_x++;
 							if (start_x == end_x)
 								break ;
@@ -87,7 +88,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 						dx = dx *2;
 						while (1)
 						{
-							mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 							start_y--;
 							if (start_y == end_y)
 								break ;
@@ -105,7 +106,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 			{
 				while (start_x != end_x)
 				{
-					mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+					mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 					start_x++;
 				}
 			}
@@ -123,7 +124,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 						dy = dy * 2;
 						while (1)
 						{
-							mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 							start_x--;
 							if (start_x == end_x)
 								break ;
@@ -142,7 +143,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 						dx *= 2;
 						while (1)
 						{
-							mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 							start_y++;
 							if (start_y == end_y)
 								break ;
@@ -164,7 +165,8 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 						dy = dy * 2;
 						while (1)
 						{
-							mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+							debug_nbr(RED, "start_x :", start_x);
+							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 							start_x--;
 							if (start_x == end_x)
 								break ;
@@ -183,7 +185,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 						dx *= 2;
 						while (1)
 						{
-							mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 							start_y--;
 							if (start_y == end_y)
 								break ;
@@ -201,7 +203,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 			{
 				while (start_x != end_x)
 				{
-					mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+					mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 					start_x--;
 				}
 			}
@@ -215,7 +217,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 			{
 				while (start_y != end_y)
 				{
-					mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+					mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 					start_y++;
 				}
 			}
@@ -223,7 +225,7 @@ int	drawline(int start_x, int start_y, int end_x, int end_y, t_cub *cub)
 			{
 				while (start_y != end_y)
 				{
-					mlx_put_pixel(cub->mini_map.background_i, start_x, start_y, 0x00FF00FF);
+					mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 					start_y--;
 				}
 			}

@@ -10,6 +10,7 @@ void	open_window(t_cub *cub)
 	mlx_set_window_limit(cub->mlx, cub->mini_map.width, cub->mini_map.height, cub->mini_map.width, cub->mini_map.height);
 	raycasting(cub);
 	map_to_window(cub);
+	draw_ray(cub->ray, &cub->mini_map, cub);
 	// mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);

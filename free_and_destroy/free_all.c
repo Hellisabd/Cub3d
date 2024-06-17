@@ -31,17 +31,17 @@ void	free_map_stuff(t_map *map)
 	free(map);
 }
 
-void	free_rays(t_ray **ray)
+void	free_rays(t_ray *ray)
 {
 	t_ray	*tmp;
 
-	while (ray && *ray)
+	while (ray)
 	{
-		tmp = *ray;
-		*ray = (*ray)->next;
+		tmp = ray;
+		ray = ray->next;
 		free(tmp);
 	}
-	free(ray);
+	// free(ray);
 	ray = NULL;
 }
 
