@@ -19,6 +19,8 @@ SRCS	=	parsing/get_map.c \
 			game/open_window.c \
 			game/raycasting.c \
 			game/raycasting_utils.c \
+			minimap/minimap.c \
+			minimap/init_textures.c \
 			error.c
 
 SRCS_MAIN	= main.c debug_stderr.c
