@@ -161,7 +161,7 @@ void	raycasting(t_cub *cub)
 	set_player_pos(cub);
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
-	cub->n = 3;
+	cub->n = 66;
 	while (cub->angle < cub->fov / 2)
 	{
 		i = floor(cub->p_y);
