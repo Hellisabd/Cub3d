@@ -27,6 +27,28 @@ void	print_map(t_cub *cub)
 	printf("\n");
 }
 
+void	reinit_map(t_cub *cub)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (i < (size_t)cub->map->height)
+	{
+		j = 0;
+		while (j < ft_strlen(cub->map->map[i]))
+		{
+			if (cub->map->map[i][j] == 'P')
+				cub->map->map[i][j] = '0';
+			if (i == cub->p_y - 0.5 && j == cub->p_x - 0.5)
+				cub->map->map[i][j] = 'N';
+			j++;
+		}
+		i++;
+	}
+}
+
 void	set_player_pos(t_cub *cub)
 {
 	int	i;
@@ -66,6 +88,56 @@ float	calc_ray_x(float dist_x, t_cub *cub)
 	return (next);
 }
 
+void	apply_rotation(t_ray *ray, t_cub *cub)
+{
+	float	x_r;
+	float	y_r;
+	int		i;
+	int		j;
+
+	while (ray)
+	{
+		x_r = ray->x * cos(cub->rot) - ray->y * sin(cub->rot);
+		y_r = ray->x * sin(cub->rot) + ray->y * cos(cub->rot);
+		ray->x = x_r;
+		ray->y = y_r;
+		ray = ray->next;
+	}
+	cub->angle += cub->rot;
+	while (ray)
+	{
+		if (cub->angle > 2 * PI)
+			cub->angle -= 2 * PI;
+		if (cub->angle < -2 * PI)
+			cub ->angle += 2 * PI;
+		i = floor(cub->p_y);
+		j = floor(cub->p_x);
+		cub->dist_x = cub->p_x - fabs(floor(cub->p_x));
+		cub->dist_x = cub->p_x - fabs(floor(cub->p_x));
+		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->d || cub->map->map[i][j] == 'P' || cub->map->map[i][j] == 'Q')
+		{
+			if (cub->angle >= 0 && cub->angle < PI / 2)
+			{
+				
+			}
+			if (cub->angle >= PI / 2 && cub->angle < PI)
+			{
+				
+			}
+			if (cub->angle >= PI && cub->angle < -PI / 2)
+			{
+				
+			}
+			if (cub->angle >= -PI / 2 && cub->angle < 0)
+			{
+				
+			}
+		}
+		ray = ray->next;
+	}
+	print_map(cub);
+}
+
 void	raycasting(t_cub *cub)
 {
 	int		i;
@@ -78,7 +150,7 @@ void	raycasting(t_cub *cub)
 	set_player_pos(cub);
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
-	cub->n = 33;
+	cub->n = 3;
 	while (cub->angle < cub->fov / 2)
 	{
 		i = floor(cub->p_y);
@@ -98,10 +170,7 @@ void	raycasting(t_cub *cub)
 			
 			if (cub->dist_y < 0 && fabs(cub->next_x) >= fabs(cub->next_y))
 			{
-				if (cub->angle < 0)
-					cub->map->map[i][j] = 'P';
-				else
-					cub->map->map[i][j] = 'Q';
+				cub->map->map[i][j] = 'P';
 				i--;
 				cub->dist_y -= 1;
 				cub->hyp = cub->next_y;
@@ -109,10 +178,7 @@ void	raycasting(t_cub *cub)
 			}
 			else if (cub->dist_y > 0 && fabs(cub->next_x) >= fabs(cub->next_y))
 			{
-				if (cub->angle < 0)
-					cub->map->map[i][j] = 'P';
-				else
-					cub->map->map[i][j] = 'Q';
+				cub->map->map[i][j] = 'P';
 				i++;
 				cub->dist_y += 1;
 				cub->hyp = cub->next_y;
@@ -120,10 +186,7 @@ void	raycasting(t_cub *cub)
 			}
 			else if (cub->dist_x < 0 && fabs(cub->next_y) >= fabs(cub->next_x))
 			{
-				if (cub->angle < 0)
-					cub->map->map[i][j] = 'P';
-				else
-					cub->map->map[i][j] = 'Q';
+				cub->map->map[i][j] = 'P';
 				if (cub->angle < 0)
 				{
 					j--;
@@ -140,10 +203,7 @@ void	raycasting(t_cub *cub)
 			}
 			else if (cub->dist_x > 0 && fabs(cub->next_y) >= fabs(cub->next_x))
 			{
-				if (cub->angle < 0)
-					cub->map->map[i][j] = 'P';
-				else
-					cub->map->map[i][j] = 'Q';
+				cub->map->map[i][j] = 'P';
 				if (cub->angle < 0)
 				{
 					j++;
@@ -159,9 +219,13 @@ void	raycasting(t_cub *cub)
 				}
 			}
 		}
-		ft_add_back_raycast(cub->ray, cub->angle, cub->hyp);
+		cub->y = cos(cub->angle) * cub->hyp;
+		cub->x = sin(cub->angle) * cub->hyp;
+		ft_add_back_raycast(cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
 	print_map(cub);
-	printlist(*(cub->ray));
+	reinit_map(cub);
+	printlist(*(cub->ray), RED);
+	apply_rotation(*(cub->ray), cub);
 }
