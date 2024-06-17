@@ -7,8 +7,8 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 	int e;
 	int start_x = player->pos_x;
 	int start_y = player->pos_y;
-	int end_x = ray->x;
-	int end_y = ray->y;
+	int end_x = round(ray->x);
+	int end_y = round(ray->y);
 	dy = end_y - start_y;
 	dx = end_x - start_x;
 	e = 0;
