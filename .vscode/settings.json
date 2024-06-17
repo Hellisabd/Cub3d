@@ -6,6 +6,7 @@
 		"fcntl.h": "c",
 		"mlx42.h": "c",
 		"libft.h": "c",
-		"math.h": "c"
+		"math.h": "c",
+		"cstdlib": "c"
 	}
 }

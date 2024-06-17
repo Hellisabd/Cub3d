@@ -17,6 +17,11 @@
 # define LOAD_MAP "Error while opening the map!\n"
 # define TEXTURE "Texture is missing!\n"
 
+# define WALL "assets/red_square.png"
+# define BACKGROUND "assets/white_square.png"
+# define PLAYER_T "assets/blue_square.png"
+
+
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -27,8 +32,14 @@
 # include ".MLX42/include/MLX42/MLX42.h"
 
 # define PI		3.14159265358979323846
-# define WIDTH 2000
+# define WIDTH 1000
 # define HEIGHT 1000
+
+typedef struct s_player
+{
+	int pos_x;
+	int pos_y;
+}	t_player;
 
 typedef struct s_map
 {
@@ -45,9 +56,31 @@ typedef struct s_map
 	char	**tab_c;
 	int		*length;
 	int		height;
-	char	d;
+	char	player_char;
 	int		i;
 }	t_map;
+
+typedef struct s_line
+{
+	int	start_x;
+	int	start_y;
+	int	end_x;
+	int	end_y;
+}	t_line;
+
+typedef struct s_mini_map
+{
+	mlx_texture_t	*wall_t;
+	mlx_texture_t	*player_t;
+	mlx_texture_t	*background_t;
+	mlx_image_t		*wall_i;
+	mlx_image_t		*background_i;
+	mlx_image_t		*player_i;
+	int				height;
+	int				width;
+	int				size_wall_x;
+	int				size_wall_y;
+}	t_mini_map;
 
 typedef struct s_cub
 {
@@ -59,6 +92,8 @@ typedef struct s_cub
 	float	p_y;
 	float	dir_x;
 	float	dir_y;
+	t_mini_map	mini_map;
+	t_player player;
 }	t_cub;
 
 // PARSING
@@ -71,8 +106,15 @@ void	check_cub(char *s);
 void	open_window(t_cub *cub);
 void	raycasting(t_cub *cub);
 
+// MINIMAP
+
+int map_to_window(t_cub *cub);
+int init_data_mini_map(t_mini_map *minimap, t_map *map);
+int init_mini_map(t_cub *cub, t_mini_map *mini_map);
+
 // FREE AND DESTROY
 void	free_and_destroy(t_map *map);
+void	free_in_window(t_cub *cub);
 
 // ERROR
 void	print_error(char *msg);
