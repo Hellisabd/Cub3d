@@ -60,6 +60,15 @@ typedef struct s_map
 	int		i;
 }	t_map;
 
+typedef struct s_ray
+{
+	float			hyp;
+	float			angle;
+	float			x;
+	float			y;
+	struct s_ray	*next;
+}	t_ray;
+
 typedef struct s_line
 {
 	int	start_x;
@@ -85,13 +94,23 @@ typedef struct s_mini_map
 typedef struct s_cub
 {
 	t_map	*map;
+	t_ray	**ray;
 	mlx_t	*mlx;
+	float	dist_y;
+	float	dist_x;
+	float	next_x;
+	float	next_y;
+	float	n;
 	float	fov;
-	float	angle;
 	float	p_x;
 	float	p_y;
 	float	dir_x;
 	float	dir_y;
+	float	hyp;
+	float	angle;
+	float	x;
+	float	y;
+	float	rot;
 	t_mini_map	mini_map;
 	t_player player;
 }	t_cub;
@@ -105,6 +124,8 @@ void	check_cub(char *s);
 // GAME
 void	open_window(t_cub *cub);
 void	raycasting(t_cub *cub);
+void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y);
+void	printlist(t_ray *node, char *color);
 
 // MINIMAP
 
@@ -113,6 +134,8 @@ int init_data_mini_map(t_mini_map *minimap, t_map *map);
 int init_mini_map(t_cub *cub, t_mini_map *mini_map);
 
 // FREE AND DESTROY
+void	free_map_stuff(t_map *map);
+void	free_rays(t_ray **ray);
 void	free_and_destroy(t_map *map);
 void	free_in_window(t_cub *cub);
 

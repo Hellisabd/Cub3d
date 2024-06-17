@@ -10,7 +10,7 @@ void	destroyer(t_mini_map *mini, mlx_t *mlx)
 	mlx_delete_texture(mini->background_t);
 }
 
-void	free_and_destroy(t_map *map)
+void	free_map_stuff(t_map *map)
 {
 	if (map->no)
 		free(map->no);
@@ -31,8 +31,22 @@ void	free_and_destroy(t_map *map)
 	free(map);
 }
 
+void	free_rays(t_ray **ray)
+{
+	t_ray	*tmp;
+
+	while (ray && *ray)
+	{
+		tmp = *ray;
+		*ray = (*ray)->next;
+		free(tmp);
+	}
+	free(ray);
+	ray = NULL;
+}
+
 void	free_in_window(t_cub *cub)
 {
-	free_and_destroy(cub->map);
+	free_map_stuff(cub->map);
 	destroyer(&cub->mini_map, cub->mlx);
 }

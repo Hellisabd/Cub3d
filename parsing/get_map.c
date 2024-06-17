@@ -98,8 +98,8 @@ void	open_map(t_map *map, char **argv)
 	line = get_next_line(fd);
 	get_map(line, map, fd);
 	if (!map->no || !map->so || !map->we || !map->ea || !map->f || !map->c)
-		exit((print_error(TEXTURE), free_and_destroy(map), EXIT_FAILURE));
+		exit((print_error(TEXTURE), free_map_stuff(map), EXIT_FAILURE));
 	if (check_floor_and_ceiling(map) == 1)
-		exit ((free_and_destroy(map), EXIT_FAILURE));
+		exit ((free_map_stuff(map), EXIT_FAILURE));
 	close (fd);
 }
