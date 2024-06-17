@@ -40,7 +40,7 @@ int	count_player(t_map *map, t_cub *cub)
 			if (map->map[i][j] == 'N' || map->map[i][j] == 'S'
 				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 			{
-				map->d = map->map[i][j];
+				map->player_char = map->map[i][j];
 				set_player(map->map[i][j], cub);
 				c++;
 			}
