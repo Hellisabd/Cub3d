@@ -63,8 +63,8 @@ void	set_player_pos(t_cub *cub)
 			if (cub->map->map[i][j] == 'N' || cub->map->map[i][j] == 'S'
 				|| cub->map->map[i][j] == 'E' || cub->map->map[i][j] == 'W')
 			{
-				cub->player.pos_x = j + 0.5;
-				cub->player.pos_y = i + 0.5;
+				cub->player.pos_x = j;
+				cub->player.pos_y = i;
 				cub->p_x = j + 0.5;
 				cub->p_y = i + 0.5;
 			}
@@ -235,7 +235,7 @@ void	raycasting(t_cub *cub)
 		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
-	// print_map(cub);
+	print_map(cub);
 	// reinit_map(cub);
 	// printlist(*(cub->ray), RED);
 	// apply_rotation(*(cub->ray), cub);

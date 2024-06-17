@@ -5,10 +5,14 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 	int dy;
 	int dx;
 	int e;
-	int start_x = player->pos_x;
-	int start_y = player->pos_y;
-	int end_x = round(ray->x);
-	int end_y = round(ray->y);
+	int start_x = player->pos_x * mini_map->size_wall_x;
+	int start_y = player->pos_y * mini_map->size_wall_y;
+	int end_x = round(ray->x * mini_map->size_wall_x);
+	int end_y = round(ray->y * mini_map->size_wall_y);
+	debug_nbr(GREEN, "start_x: ", start_x);
+	debug_nbr(GREEN, "end_x: ", end_x);
+	debug_nbr(GREEN, "start_y: ", start_y);
+	debug_nbr(GREEN, "end_y: ", end_y);
 	dy = end_y - start_y;
 	dx = end_x - start_x;
 	e = 0;
@@ -165,7 +169,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 						dy = dy * 2;
 						while (1)
 						{
-							debug_nbr(RED, "start_x :", start_x);
+							// debug_nbr(RED, "start_x :", start_x);
 							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
 							start_x--;
 							if (start_x == end_x)
