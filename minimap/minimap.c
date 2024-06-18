@@ -59,6 +59,12 @@ int	put_wall(t_map *map, t_cub *g)
 			{
 				g->player.pos_x = pos_x;
 				g->player.pos_y = pos_y;
+				debug_nbr(BLUE, "size_wal_x : ", g->mini_map.size_wall_x);
+				debug_nbr(BLUE, "size_wal_y : ", g->mini_map.size_wall_y);
+				debug_nbr(RED, "player_posx : ", g->player.pos_x);
+				debug_nbr(RED, "player_posy : ", g->player.pos_y);
+				debug_nbr(RED, "posx : ", pos_x);
+				debug_nbr(RED, "posy : ", pos_y);
 				mlx_image_to_window(g->mlx, g->mini_map.player_i, pos_x, pos_y);
 				// mlx_set_instance_depth(g->mini_map.player_i->instances, 76666);
 			}
@@ -76,6 +82,5 @@ int map_to_window(t_cub *cub)
 	if (-1 == mlx_image_to_window(cub->mlx, cub->mini_map.background_i, 0, 0))
 		exit(1);
 	put_wall(cub->map, cub);
-	debug_str(BLUE, NULL, "passe");
 	return (0);
 }

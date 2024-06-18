@@ -60,11 +60,8 @@ void	set_player_pos(t_cub *cub)
 		j = 0;
 		while (cub->map->map[i][j])
 		{
-			if (cub->map->map[i][j] == 'N' || cub->map->map[i][j] == 'S'
-				|| cub->map->map[i][j] == 'E' || cub->map->map[i][j] == 'W')
+			if (cub->map->map[i][j] == cub->map->player_char)
 			{
-				cub->player.pos_x = j;
-				cub->player.pos_y = i;
 				cub->p_x = j + 0.5;
 				cub->p_y = i + 0.5;
 			}
@@ -126,7 +123,6 @@ void	raycasting(t_cub *cub)
 	int		i;
 	int		j;
 
-	set_player_pos(cub);
 	if (cub->rot > 2 * PI)
 		cub->rot -= 2 * PI;
 	if (cub->rot < -2 * PI)
@@ -135,6 +131,10 @@ void	raycasting(t_cub *cub)
 	cub->angle = -cub->fov / 2;
 	cub->angle += cub->rot;
 	cub->n = 360;
+	// debug_nbr(BLUE, "size_wal_x : ", cub->mini_map.size_wall_x);
+	// debug_nbr(BLUE, "size_wal_y : ", cub->mini_map.size_wall_y);
+	// debug_nbr(RED, "player_posx : ", cub->player.pos_x);
+	// debug_nbr(RED, "player_posy : ", cub->player.pos_y);
 	while (cub->angle < ((cub->fov / 2) + cub->rot))
 	{
 		i = floor(cub->p_y);
@@ -224,11 +224,11 @@ void	raycasting(t_cub *cub)
 				}
 			}
 		}
-		cub->y = cub->player.pos_y + cos(cub->angle) * fabs(cub->hyp);
-		cub->x = cub->player.pos_x + sin(cub->angle) * fabs(cub->hyp);
+		cub->y = (cub->player.pos_y / cub->mini_map.size_wall_y) + cos(cub->angle) * fabs(cub->hyp);
+		cub->x = (cub->player.pos_x / cub->mini_map.size_wall_x) + sin(cub->angle) * fabs(cub->hyp);
 		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
-	// print_map(cub);
+	print_map(cub);
 	// reinitmap(cub);
 }
