@@ -5,8 +5,8 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 	int dy;
 	int dx;
 	int e;
-	int start_x = player->pos_x * mini_map->size_wall_x;
-	int start_y = player->pos_y * mini_map->size_wall_y;
+	int start_x = player->pos_x;
+	int start_y = player->pos_y;
 	int end_x = round((ray->x) * mini_map->size_wall_x);
 	int end_y = round((ray->y) * mini_map->size_wall_y);
 	static int i = 0;
