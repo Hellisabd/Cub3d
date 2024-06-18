@@ -125,6 +125,8 @@ void	raycasting(t_cub *cub)
 	int		j;
 
 	set_player_pos(cub);
+	debug_float(GREEN, "p_x :", cub->p_x);
+	debug_float(GREEN, "p_y :", cub->p_y);
 	if (cub->rot > 2 * PI)
 		cub->rot -= 2 * PI;
 	if (cub->rot < -2 * PI)
