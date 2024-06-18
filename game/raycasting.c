@@ -133,7 +133,7 @@ void	raycasting(t_cub *cub)
 			if (cub->dist_y < 0 && fabs(cub->next_x) >= fabs(cub->next_y))
 			{
 				cub->map->map[i][j] = 'P';
-				if (cub->angle > PI / 2 && cub->angle < 3 * PI / 2)
+				if ((cub->angle > PI / 2 && cub->angle < 3 * PI / 2) || (cub->angle < -PI / 2 && cub->angle > -3 * PI / 2))
 				{
 					i--;
 					cub->dist_y -= 1;
@@ -151,7 +151,7 @@ void	raycasting(t_cub *cub)
 			else if (cub->dist_y > 0 && fabs(cub->next_x) >= fabs(cub->next_y))
 			{
 				cub->map->map[i][j] = 'P';
-				if (cub->angle > PI / 2 && cub->angle < 3 * PI / 2)
+				if ((cub->angle > PI / 2 && cub->angle < 3 * PI / 2) || (cub->angle < -PI / 2 && cub->angle > -3 * PI / 2))
 				{
 					i--;
 					cub->dist_y += 1;
@@ -169,7 +169,7 @@ void	raycasting(t_cub *cub)
 			else if (cub->dist_x < 0 && fabs(cub->next_y) >= fabs(cub->next_x))
 			{
 				cub->map->map[i][j] = 'P';
-				if (cub->angle < 0)
+				if ((cub->angle < 0 && cub->angle > -PI) || (cub->angle > PI && cub->angle < 2 * PI))
 				{
 					j--;
 					cub->dist_x -= 1;
@@ -189,7 +189,7 @@ void	raycasting(t_cub *cub)
 			else if (cub->dist_x > 0 && fabs(cub->next_y) >= fabs(cub->next_x))
 			{
 				cub->map->map[i][j] = 'P';
-				if (cub->angle < 0)
+				if ((cub->angle < 0 && cub->angle > -PI) || (cub->angle > PI && cub->angle < 2 * PI))
 				{
 					j++;
 					cub->dist_x += 1;
