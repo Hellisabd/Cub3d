@@ -16,8 +16,6 @@ int init_mini_map(t_cub *cub, t_mini_map *mini_map)
 	mini_map->wall_i = mlx_texture_to_image(cub->mlx, mini_map->wall_t);
 	mlx_resize_image(mini_map->player_i, mini_map->size_wall_x, mini_map->size_wall_y);
 	mlx_resize_image(mini_map->wall_i, mini_map->size_wall_x, mini_map->size_wall_y);
-	debug_nbr(RED, "size_wall_y", mini_map->size_wall_y);
-	debug_nbr(RED, "size_wall_x", mini_map->size_wall_x);
 	mlx_resize_image(mini_map->background_i, mini_map->width, mini_map->height);
 	return (0);
 }

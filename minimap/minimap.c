@@ -29,8 +29,6 @@ int init_data_mini_map(t_mini_map *minimap, t_map *map)
 			max_length = ft_strlen_custom(map->map[i]);
 		i++;
 	}
-	printf("max_length : %ld\n", max_length);
-	printf("height map : %d\n", i);
 	minimap->size_wall_x = ceil(WIDTH / (float)(max_length));
 	minimap->size_wall_y = ceil(HEIGHT / (float)(i));
 	minimap->width = minimap->size_wall_x * max_length;
@@ -38,7 +36,7 @@ int init_data_mini_map(t_mini_map *minimap, t_map *map)
 	return (0);
 }
 
-int	put_wall(t_map *map, t_cub *g)
+int	put_wall(t_map *map, t_cub *g, t_player *player)
 {
 	int pos_x = 0;
 	int pos_y = 0;
@@ -57,8 +55,8 @@ int	put_wall(t_map *map, t_cub *g)
 			}
 			if (map->map[i][j] == g->map->player_char)
 			{
-				g->player.pos_x = pos_x;
-				g->player.pos_y = pos_y;
+				player->pos_x = pos_x;
+				player->pos_y = pos_y;
 				mlx_image_to_window(g->mlx, g->mini_map.player_i, pos_x, pos_y);
 				// mlx_set_instance_depth(g->mini_map.player_i->instances, 76666);
 			}
@@ -75,7 +73,6 @@ int map_to_window(t_cub *cub)
 	init_mini_map(cub, &cub->mini_map);
 	if (-1 == mlx_image_to_window(cub->mlx, cub->mini_map.background_i, 0, 0))
 		exit(1);
-	put_wall(cub->map, cub);
-	debug_str(BLUE, NULL, "passe");
+	put_wall(cub->map, cub, &cub->player);
 	return (0);
 }
