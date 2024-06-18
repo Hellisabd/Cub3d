@@ -105,11 +105,11 @@ void	raycasting(t_cub *cub)
 	int		j;
 
 	set_player_pos(cub);
-	cub->rot = PI;
+	cub->rot = PI / 2;
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
 	cub->angle += cub->rot;
-	cub->n = 66;
+	cub->n = 30;
 	while (cub->angle < ((cub->fov / 2) + cub->rot))
 	{
 		if (cub->angle > 2 * PI)
