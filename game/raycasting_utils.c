@@ -9,7 +9,7 @@ void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y)
 	if (!new)
 		exit(EXIT_FAILURE);
 	new->angle = cub->angle;
-	new->hyp = cub->hyp;
+	new->hyp = fabs(cub->hyp);
 	new->x = x;
 	new->y = y;
 	new->next = NULL;

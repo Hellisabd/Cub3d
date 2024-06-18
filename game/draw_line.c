@@ -39,8 +39,8 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 						e = dx;
 						dx = e * 2;
 						dy = dy * 2;
-						debug_nbr(YELLOW, "rayon n :", i);
-						debug_str(GREEN, NULL, "1st octan");
+						// debug_nbr(YELLOW, "rayon n :", i);
+						// debug_str(GREEN, NULL, "1st octan");
 						while (1)
 						{
 							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
@@ -60,8 +60,8 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 						e = dy;
 						dy = e * 2;
 						dx *= 2;
-						debug_nbr(YELLOW, "rayon n :", i);
-						debug_str(GREEN, NULL, "2d octan");
+						// debug_nbr(YELLOW, "rayon n :", i);
+						// debug_str(GREEN, NULL, "2d octan");
 						while (1)
 						{
 							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
@@ -84,8 +84,8 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 						e = dx;
 						dx *= 2;
 						dy *= 2;
-						debug_nbr(YELLOW, "rayon n :", i);
-						debug_str(GREEN, NULL, "8eme octan");
+						// debug_nbr(YELLOW, "rayon n :", i);
+						// debug_str(GREEN, NULL, "8eme octan");
 						while (1)
 						{
 							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
@@ -105,8 +105,8 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 						e = dy;
 						dy = e * 2;
 						dx = dx *2;
-						debug_nbr(YELLOW, "rayon n :", i);
-						debug_str(GREEN, NULL, "7eme octan");
+						// debug_nbr(YELLOW, "rayon n :", i);
+						// debug_str(GREEN, NULL, "7eme octan");
 						while (1)
 						{
 							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
@@ -143,8 +143,8 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 						e += dx;
 						dx = e * 2;
 						dy = dy * 2;
-						debug_nbr(YELLOW, "rayon n :", i);
-						debug_str(GREEN, NULL, "4eme octan");
+						// debug_nbr(YELLOW, "rayon n :", i);
+						// debug_str(GREEN, NULL, "4eme octan");
 						while (1)
 						{
 							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
@@ -164,8 +164,8 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 						e = dy;
 						dy *= 2;
 						dx *= 2;
-						debug_nbr(YELLOW, "rayon n :", i);
-						debug_str(GREEN, NULL, "3eme octan");
+						// debug_nbr(YELLOW, "rayon n :", i);
+						// debug_str(GREEN, NULL, "3eme octan");
 						while (1)
 						{
 							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
@@ -188,8 +188,8 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 						e = dx;
 						dx = dx * 2;
 						dy = dy * 2;
-						debug_nbr(YELLOW, "rayon n :", i);
-						debug_str(GREEN, NULL, "5eme octan");
+						// debug_nbr(YELLOW, "rayon n :", i);
+						// debug_str(GREEN, NULL, "5eme octan");
 						while (1)
 						{
 							// debug_nbr(RED, "start_x :", start_x);
@@ -210,8 +210,8 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 						e = dy;
 						dy *= 2;
 						dx *= 2;
-						debug_nbr(YELLOW, "rayon n :", i);
-						debug_str(GREEN, NULL, "6eme octan");
+						// debug_nbr(YELLOW, "rayon n :", i);
+						// debug_str(GREEN, NULL, "6eme octan");
 						while (1)
 						{
 							mlx_put_pixel(mini_map->background_i, start_x, start_y, 0x00FF00FF);
