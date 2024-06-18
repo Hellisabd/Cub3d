@@ -15,15 +15,19 @@ void	move(mlx_key_data_t key, void *param)
 	// 	move_rigth(cub);
 	if (key.key == MLX_KEY_RIGHT && (key.action == 1 || key.action == 2))
 		{
-			raycasting(cub);
-			draw_ray(cub->ray, &cub->mini_map, cub);
 			cub->rot -= PI / 10;
+			raycasting(cub);
+			cub->mini_map.background_i->instances->enabled = false;
+			cub->mini_map.background_i->instances->enabled = true;
+			draw_ray(cub->ray, &cub->mini_map, cub, H_GREEN);
 		}
 	if (key.key == MLX_KEY_LEFT && (key.action == 1 || key.action == 2))
 		{
-			raycasting(cub);
-			draw_ray(cub->ray, &cub->mini_map, cub);
 			cub->rot += PI / 10;
+			raycasting(cub);
+			cub->mini_map.background_i->instances->enabled = false;
+			cub->mini_map.background_i->instances->enabled = true;
+			draw_ray(cub->ray, &cub->mini_map, cub, H_GREEN);
 		}
 }
 

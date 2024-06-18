@@ -27,6 +27,28 @@ void	print_map(t_cub *cub)
 	printf("\n");
 }
 
+void	reinitmap(t_cub *cub)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (i < (size_t)cub->map->height)
+	{
+		j = 0;
+		while (j < ft_strlen(cub->map->map[i]))
+		{
+			if (cub->map->map[i][j] == 'P')
+				cub->map->map[i][j] = '0';
+			if (i == cub->player.pos_x - 0.5 && j == cub->player.pos_y - 0.5)
+				cub->map->map[i][j] = 'N';
+			j++;
+		}
+		i++;
+	}
+}
+
 void	set_player_pos(t_cub *cub)
 {
 	int	i;
@@ -70,13 +92,13 @@ float	calc_ray_x(float dist_x, t_cub *cub)
 
 void	erase_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub, int color)
 {
-	t_ray *tmp;
+	// t_ray *tmp;
 	while (ray)
 	{
 		drawline(ray, mini_map, &cub->player, color);
-		tmp = ray;
+		// tmp = ray;
 		ray = ray->next;
-		free(ray);
+		// free(ray);
 	}
 }
 
@@ -95,8 +117,7 @@ void	raycasting(t_cub *cub)
 	int		j;
 
 	set_player_pos(cub);
-	erase_ray(cub->ray, &cub->mini_map, cub, 0x000000FF);
-	cub->rot = PI / 2;
+	// erase_ray(cub->ray, &cub->mini_map, cub, 0x00000000);
 	if (cub->rot > 2 * PI)
 		cub->rot -= 2 * PI;
 	if (cub->rot < -2 * PI)
@@ -199,5 +220,6 @@ void	raycasting(t_cub *cub)
 		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
-	// print_map(cub);
+	print_map(cub);
+	reinitmap(cub);
 }
