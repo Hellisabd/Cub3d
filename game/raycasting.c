@@ -125,8 +125,13 @@ void	raycasting(t_cub *cub)
 	int		j;
 
 	set_player_pos(cub);
-	debug_float(GREEN, "p_x :", cub->p_x);
-	debug_float(GREEN, "p_y :", cub->p_y);
+	debug_float(RED, "p_x :", cub->p_x);
+	debug_nbr(GREEN, "player pos_x :", cub->player.pos_x);
+	debug_float(RED, "p_y :", cub->p_y);
+	debug_nbr(GREEN, "player pos_y :", cub->player.pos_y);
+	debug_float(BLUE, "trying to ind good res :", cub->player.pos_x / cub->mini_map.size_wall_x + (cub->p_x - fabs(floor(cub->p_x))));
+	cub->p_x = cub->player.pos_x / cub->mini_map.size_wall_x + (cub->p_x - fabs(floor(cub->p_x)));
+	cub->p_y = cub->player.pos_y / cub->mini_map.size_wall_y + (cub->p_y - fabs(floor(cub->p_y)));
 	if (cub->rot > 2 * PI)
 		cub->rot -= 2 * PI;
 	if (cub->rot < -2 * PI)
