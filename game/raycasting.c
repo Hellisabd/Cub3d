@@ -27,28 +27,6 @@ void	print_map(t_cub *cub)
 	printf("\n");
 }
 
-void	reinit_map(t_cub *cub)
-{
-	size_t	i;
-	size_t	j;
-
-	i = 0;
-	j = 0;
-	while (i < (size_t)cub->map->height)
-	{
-		j = 0;
-		while (j < ft_strlen(cub->map->map[i]))
-		{
-			if (cub->map->map[i][j] == 'P')
-				cub->map->map[i][j] = '0';
-			if (i == cub->p_y - 0.5 && j == cub->p_x - 0.5)
-				cub->map->map[i][j] = 'N';
-			j++;
-		}
-		i++;
-	}
-}
-
 void	set_player_pos(t_cub *cub)
 {
 	int	i;
@@ -126,7 +104,7 @@ void	raycasting(t_cub *cub)
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
 	cub->angle += cub->rot;
-	cub->n = 30;
+	cub->n = 360;
 	while (cub->angle < ((cub->fov / 2) + cub->rot))
 	{
 		i = floor(cub->p_y);
@@ -188,7 +166,6 @@ void	raycasting(t_cub *cub)
 					cub->dist_x -= 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = -calc_ray_x(cub->dist_x, cub);
-					// printf("passe angle negatif, dist_x negatif\n");
 				}
 				else
 				{
@@ -196,7 +173,6 @@ void	raycasting(t_cub *cub)
 					cub->dist_x -= 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = calc_ray_x(cub->dist_x, cub);
-					// printf("passe angle positif, dist_x negatif\n");
 				}
 			}
 			else if (cub->dist_x > 0 && fabs(cub->next_y) >= fabs(cub->next_x))
@@ -208,26 +184,20 @@ void	raycasting(t_cub *cub)
 					cub->dist_x += 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = calc_ray_x(cub->dist_x, cub);
-					// printf("passe angle negatif, dist_x positif\n");
 				}
 				else
 				{
-					// printf("passe angle positif, dist_x positif\n");
 					j--;
 					cub->dist_x += 1;
 					cub->hyp = cub->next_x;
 					cub->next_x =  -calc_ray_x(cub->dist_x, cub);
 				}
 			}
-			// debug_float(RED, "dist_x after boucle", cub->dist_x);
 		}
 		cub->y = cub->player.pos_y + cos(cub->angle) * fabs(cub->hyp);
 		cub->x = cub->player.pos_x + sin(cub->angle) * fabs(cub->hyp);
 		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
-	print_map(cub);
-	// reinit_map(cub);
-	printlist(cub->ray, RED);
-	// apply_rotation(*(cub->ray), cub);
+	// print_map(cub);
 }
