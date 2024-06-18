@@ -13,14 +13,14 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player)
 	i = 0;
 	if (i == 0)
 	{
-		debug_float(YELLOW, "ray_x: ", ray->x);
-		debug_float(YELLOW, "ray_y: ", ray->y);
-		debug_float(YELLOW, "player->pos_x: ", player->pos_x);
-		debug_float(YELLOW, "player->pos_y: ", player->pos_y);
-		debug_nbr(GREEN, "start_x: ", start_x);
-		debug_nbr(GREEN, "end_x: ", end_x);
-		debug_nbr(GREEN, "start_y: ", start_y);
-		debug_nbr(GREEN, "end_y: ", end_y);
+		// debug_float(YELLOW, "ray_x: ", ray->x);
+		// debug_float(YELLOW, "ray_y: ", ray->y);
+		// debug_float(YELLOW, "player->pos_x: ", player->pos_x);
+		// debug_float(YELLOW, "player->pos_y: ", player->pos_y);
+		// debug_nbr(GREEN, "start_x: ", start_x);
+		// debug_nbr(GREEN, "end_x: ", end_x);
+		// debug_nbr(GREEN, "start_y: ", start_y);
+		// debug_nbr(GREEN, "end_y: ", end_y);
 	}
 	i++;
 	dy = end_y - start_y;

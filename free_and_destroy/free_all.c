@@ -41,7 +41,6 @@ void	free_rays(t_ray *ray)
 		ray = ray->next;
 		free(tmp);
 	}
-	// free(ray);
 	ray = NULL;
 }
 

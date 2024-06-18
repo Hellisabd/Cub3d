@@ -90,56 +90,6 @@ float	calc_ray_x(float dist_x, t_cub *cub)
 	return (next);
 }
 
-// void	apply_rotation(t_ray *ray, t_cub *cub)
-// {
-// 	float	x_r;
-// 	float	y_r;
-// 	int		i;
-// 	int		j;
-
-// 	while (ray)
-// 	{
-// 		x_r = ray->x * cos(cub->rot) - ray->y * sin(cub->rot);
-// 		y_r = ray->x * sin(cub->rot) + ray->y * cos(cub->rot);
-// 		ray->x = x_r;
-// 		ray->y = y_r;
-// 		ray = ray->next;
-// 	}
-// 	cub->angle += cub->rot;
-// 	while (ray)
-// 	{
-// 		if (cub->angle > 2 * PI)
-// 			cub->angle -= 2 * PI;
-// 		if (cub->angle < -2 * PI)
-// 			cub ->angle += 2 * PI;
-// 		i = floor(cub->p_y);
-// 		j = floor(cub->p_x);
-// 		cub->dist_x = cub->p_x - fabs(floor(cub->p_x));
-// 		cub->dist_x = cub->p_x - fabs(floor(cub->p_x));
-// 		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->d || cub->map->map[i][j] == 'P' || cub->map->map[i][j] == 'Q')
-// 		{
-// 			if (cub->angle >= 0 && cub->angle < PI / 2)
-// 			{
-				
-// 			}
-// 			if (cub->angle >= PI / 2 && cub->angle < PI)
-// 			{
-				
-// 			}
-// 			if (cub->angle >= PI && cub->angle < -PI / 2)
-// 			{
-				
-// 			}
-// 			if (cub->angle >= -PI / 2 && cub->angle < 0)
-// 			{
-				
-// 			}
-// 		}
-// 		ray = ray->next;
-// 	}
-// 	print_map(cub);
-// }
-
 void	draw_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub)
 {
 	while (ray)
@@ -154,16 +104,17 @@ void	raycasting(t_cub *cub)
 	int		i;
 	int		j;
 
-	// cub->ray = malloc(sizeof(t_ray *));
-	// if (!cub->ray)
-	// 	return ;
-	// *(cub->ray) = NULL;
 	set_player_pos(cub);
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
+	cub->angle += cub->rot;
 	cub->n = 66;
 	while (cub->angle < cub->fov / 2)
 	{
+		if (cub->angle > 2 * PI)
+			cub->angle -= 2 * PI;
+		if (cub->angle < -2 * PI)
+			cub ->angle += 2 * PI;
 		i = floor(cub->p_y);
 		j = floor(cub->p_x);
 		if (cub->dir_x < 0)
@@ -198,37 +149,42 @@ void	raycasting(t_cub *cub)
 			else if (cub->dist_x < 0 && fabs(cub->next_y) >= fabs(cub->next_x))
 			{
 				cub->map->map[i][j] = 'P';
-				if (cub->angle < 0)
-				{
+				// if (cub->angle < 0)
+				// {
 					j--;
 					cub->dist_x -= 1;
-					cub->next_x =  calc_ray_x(cub->dist_x, cub);
-				}
-				else
-				{
-					j++;
-					cub->dist_x -= 1;
 					cub->hyp = cub->next_x;
-					cub->next_x =  -calc_ray_x(cub->dist_x, cub);
-				}
+					cub->next_x =  calc_ray_x(cub->dist_x, cub);
+				// }
+				// else
+				// {
+				// 	j++;
+				// 	cub->dist_x += 1;
+				// 	cub->hyp = cub->next_x;
+				// 	cub->next_x =  -calc_ray_x(cub->dist_x, cub);
+				// }
 			}
 			else if (cub->dist_x > 0 && fabs(cub->next_y) >= fabs(cub->next_x))
 			{
 				cub->map->map[i][j] = 'P';
-				if (cub->angle < 0)
-				{
+				// if (cub->angle < 0)
+				// {
 					j++;
 					cub->dist_x += 1;
-					cub->next_x =  calc_ray_x(cub->dist_x, cub);
-				}
-				else
-				{
-					j--;
-					cub->dist_x += 1;
 					cub->hyp = cub->next_x;
-					cub->next_x =  -calc_ray_x(cub->dist_x, cub);
-				}
+					cub->next_x =  calc_ray_x(cub->dist_x, cub);
+					printf("passe angle negatif, dist_x positif");
+				// }
+				// else
+				// {
+				// 	printf("passe angle positif, dist_x positif");
+				// 	j--;
+				// 	cub->dist_x += 1;
+				// 	cub->hyp = cub->next_x;
+				// 	cub->next_x =  -calc_ray_x(cub->dist_x, cub);
+				// }
 			}
+			debug_float(RED, "dist_x after boucle", cub->dist_x);
 		}
 		cub->y = cos(cub->angle) * cub->hyp;
 		cub->x = sin(cub->angle) * cub->hyp;
