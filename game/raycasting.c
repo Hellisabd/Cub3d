@@ -90,32 +90,35 @@ float	calc_ray_x(float dist_x, t_cub *cub)
 	return (next);
 }
 
-void	draw_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub, int color)
+void	draw_ray(t_ray **ray, t_mini_map *mini_map, t_cub *cub, int color)
 {
 	int y;
 	int x;
 
 	x = 0;
 	y = 0;
-	if (mini_map->background_i)
-		mlx_delete_image(cub->mlx, mini_map->background_i);
-	mini_map->background_i = mlx_new_image(cub->mlx, cub->mini_map.width, cub->mini_map.height);
+	// mini_map->background_i = mlx_new_image(cub->mlx, cub->mini_map.width, cub->mini_map.height);
 	while (y != cub->mini_map.height)
 	{
 		x = 0;
 		while (x != cub->mini_map.width)
 		{
-			mlx_put_pixel(mini_map->background_i, x, y, 0x00000FF);
+			mlx_put_pixel(mini_map->background_i, x, y, 0xFFFFFFFF);
 			x++;
 		}
 		y++;
 	}
-	while (ray)
+	t_ray *tmp;
+	while (*ray)
 	{
-		drawline(ray, mini_map, &cub->player, color);
-		ray = ray->next;
+		drawline(*ray, mini_map, &cub->player, color);
+		tmp = *ray;
+		*ray = (*ray)->next;
+		free(tmp);
 	}
-	mlx_image_to_window(cub->mlx, mini_map->background_i, 0, 0);
+	ray = NULL;
+	// mlx_image_to_window(cub->mlx, mini_map->background_i, 0, 0);
+	// mlx_set_instance_depth(mini_map->background_i->instances, depth++);
 }
 
 void	raycasting(t_cub *cub)

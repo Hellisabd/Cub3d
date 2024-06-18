@@ -17,13 +17,13 @@ void	move(mlx_key_data_t key, void *param)
 		{
 			cub->rot -= PI / 10;
 			raycasting(cub);
-			draw_ray(cub->ray, &cub->mini_map, cub, H_GREEN);
+			draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 		}
 	if (key.key == MLX_KEY_LEFT && (key.action == 1 || key.action == 2))
 		{
 			cub->rot += PI / 10;
 			raycasting(cub);
-			draw_ray(cub->ray, &cub->mini_map, cub, H_GREEN);
+			draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 		}
 }
 
@@ -50,7 +50,7 @@ void	open_window(t_cub *cub)
 	cub->rot = 0;
 	raycasting(cub);
 	map_to_window(cub);
-	draw_ray(cub->ray, &cub->mini_map, cub, H_GREEN);
+	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);

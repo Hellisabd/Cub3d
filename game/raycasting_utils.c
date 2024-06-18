@@ -20,7 +20,7 @@ void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y)
 		return ;
 	}
 	tmp = *ray;
-	while (tmp->next)
+	while (tmp && tmp->next)
 		tmp = tmp->next;
 	tmp->next = new;
 }
