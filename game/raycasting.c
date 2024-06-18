@@ -105,7 +105,7 @@ void	raycasting(t_cub *cub)
 	int		j;
 
 	set_player_pos(cub);
-	cub->rot = PI / 4;
+	cub->rot = PI;
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
 	cub->angle += cub->rot;
@@ -128,7 +128,6 @@ void	raycasting(t_cub *cub)
 			cub->dist_y = cub->p_y - fabs(ceil(cub->p_y));
 		cub->next_x =  calc_ray_x(cub->dist_x, cub);		
 		cub->next_y =  calc_ray_y(cub->dist_y, cub);
-		debug_float(GREEN, "angle: ", cub->angle);
 		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->player_char || cub->map->map[i][j] == 'P' || cub->map->map[i][j] == 'Q')
 		{
 			if (cub->dist_y < 0 && fabs(cub->next_x) >= fabs(cub->next_y))
@@ -209,13 +208,13 @@ void	raycasting(t_cub *cub)
 			}
 			// debug_float(RED, "dist_x after boucle", cub->dist_x);
 		}
-		cub->y = cos(cub->angle) * cub->hyp;
-		cub->x = sin(cub->angle) * cub->hyp;
+		cub->y = cub->player.pos_y + cos(cub->angle) * fabs(cub->hyp);
+		cub->x = cub->player.pos_x + sin(cub->angle) * fabs(cub->hyp);
 		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
 	print_map(cub);
 	// reinit_map(cub);
-	// printlist(*(cub->ray), RED);
+	printlist(cub->ray, RED);
 	// apply_rotation(*(cub->ray), cub);
 }

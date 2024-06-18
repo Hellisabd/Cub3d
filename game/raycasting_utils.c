@@ -27,9 +27,13 @@ void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y)
 
 void	printlist(t_ray *node, char *color)
 {
+	int	i;
+	
+	i = 0;
 	while (node != NULL)
 	{
-		printf("%sangle: %f | dist: %f | x: %f | y: %f%s\n", color, node->angle, node->hyp, node->x, node->y, NC);
+		printf("%s%d: angle: %f | dist: %f | x: %f | y: %f%s\n", color, i, node->angle, node->hyp, node->x, node->y, NC);
+		i++;
 		node = node->next;
 	}
 }
