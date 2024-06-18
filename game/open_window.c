@@ -17,16 +17,12 @@ void	move(mlx_key_data_t key, void *param)
 		{
 			cub->rot -= PI / 10;
 			raycasting(cub);
-			cub->mini_map.background_i->instances->enabled = false;
-			cub->mini_map.background_i->instances->enabled = true;
 			draw_ray(cub->ray, &cub->mini_map, cub, H_GREEN);
 		}
 	if (key.key == MLX_KEY_LEFT && (key.action == 1 || key.action == 2))
 		{
 			cub->rot += PI / 10;
 			raycasting(cub);
-			cub->mini_map.background_i->instances->enabled = false;
-			cub->mini_map.background_i->instances->enabled = true;
 			draw_ray(cub->ray, &cub->mini_map, cub, H_GREEN);
 		}
 }
@@ -49,6 +45,8 @@ void	open_window(t_cub *cub)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
 	mlx_set_window_pos(cub->mlx, 1000, 500);
 	mlx_set_window_limit(cub->mlx, cub->mini_map.width, cub->mini_map.height, cub->mini_map.width, cub->mini_map.height);
+	debug_nbr(RED, "mini_map_height :", cub->mini_map.height);
+	debug_nbr(RED, "mini_map_width :", cub->mini_map.width);
 	cub->rot = 0;
 	raycasting(cub);
 	map_to_window(cub);

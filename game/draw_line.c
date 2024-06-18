@@ -43,7 +43,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 						// debug_str(GREEN, NULL, "1st octan");
 						while (1)
 						{
-							mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+							mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 							start_x++;
 							if (start_x == end_x)
 								break ;
@@ -64,7 +64,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 						// debug_str(GREEN, NULL, "2d octan");
 						while (1)
 						{
-							mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+							mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 							start_y++;
 							if (start_y == end_y)
 								break ;
@@ -88,7 +88,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 						// debug_str(GREEN, NULL, "8eme octan");
 						while (1)
 						{
-							mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+							mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 							start_x++;
 							if (start_x == end_x)
 								break ;
@@ -109,7 +109,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 						// debug_str(GREEN, NULL, "7eme octan");
 						while (1)
 						{
-							mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+							mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 							start_y--;
 							if (start_y == end_y)
 								break ;
@@ -127,7 +127,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 			{
 				while (start_x != end_x)
 				{
-					mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+					mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 					start_x++;
 				}
 			}
@@ -147,7 +147,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 						// debug_str(GREEN, NULL, "4eme octan");
 						while (1)
 						{
-							mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+							mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 							start_x--;
 							if (start_x == end_x)
 								break ;
@@ -168,7 +168,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 						// debug_str(GREEN, NULL, "3eme octan");
 						while (1)
 						{
-							mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+							mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 							start_y++;
 							if (start_y == end_y)
 								break ;
@@ -193,7 +193,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 						while (1)
 						{
 							// debug_nbr(RED, "start_x :", start_x);
-							mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+							mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 							start_x--;
 							if (start_x == end_x)
 								break ;
@@ -214,7 +214,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 						// debug_str(GREEN, NULL, "6eme octan");
 						while (1)
 						{
-							mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+							mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 							start_y--;
 							if (start_y == end_y)
 								break ;
@@ -232,7 +232,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 			{
 				while (start_x != end_x)
 				{
-					mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+					mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 					start_x--;
 				}
 			}
@@ -246,7 +246,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 			{
 				while (start_y != end_y)
 				{
-					mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+					mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 					start_y++;
 				}
 			}
@@ -254,7 +254,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 			{
 				while (start_y != end_y)
 				{
-					mlx_put_pixel(mini_map->background_i, start_x, start_y, color);
+					mlx_put_pixel(mini_map->background_i, start_x + round(mini_map->size_wall_x / 2), start_y + round(mini_map->size_wall_y / 2), color);
 					start_y--;
 				}
 			}

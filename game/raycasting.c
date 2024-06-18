@@ -90,25 +90,35 @@ float	calc_ray_x(float dist_x, t_cub *cub)
 	return (next);
 }
 
-void	erase_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub, int color)
-{
-	// t_ray *tmp;
-	while (ray)
-	{
-		drawline(ray, mini_map, &cub->player, color);
-		// tmp = ray;
-		ray = ray->next;
-		// free(ray);
-	}
-}
-
 void	draw_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub, int color)
 {
+	int y;
+	int x;
+
+	x = 0;
+	y = 0;
+	if (mini_map->background_i)
+		mlx_delete_image(cub->mlx, mini_map->background_i);
+	mini_map->background_i = mlx_new_image(cub->mlx, cub->mini_map.width, cub->mini_map.height);
+	debug_nbr(RED, "mini_map_height :", cub->mini_map.height);
+	debug_nbr(RED, "mini_map_width :", cub->mini_map.width);
+	while (y != cub->mini_map.height)
+	{
+		x = 0;
+		while (x != cub->mini_map.width)
+		{
+			mlx_put_pixel(mini_map->background_i, x, y, 0x0000000);
+			x++;
+		}
+		y++;
+	}
+	// sleep(3);
 	while (ray)
 	{
 		drawline(ray, mini_map, &cub->player, color);
 		ray = ray->next;
 	}
+	mlx_image_to_window(cub->mlx, mini_map->background_i, 0, 0);
 }
 
 void	raycasting(t_cub *cub)
@@ -117,7 +127,6 @@ void	raycasting(t_cub *cub)
 	int		j;
 
 	set_player_pos(cub);
-	// erase_ray(cub->ray, &cub->mini_map, cub, 0x00000000);
 	if (cub->rot > 2 * PI)
 		cub->rot -= 2 * PI;
 	if (cub->rot < -2 * PI)
@@ -220,6 +229,6 @@ void	raycasting(t_cub *cub)
 		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
-	print_map(cub);
-	reinitmap(cub);
+	// print_map(cub);
+	// reinitmap(cub);
 }
