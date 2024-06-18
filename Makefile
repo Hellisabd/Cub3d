@@ -1,6 +1,6 @@
 NAME	= cub3D
 
-LIBS	= .MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBS	= libmlx42.a -ldl -lglfw -pthread -lm
 
 DEF_COLOR = \033[0;39m
 GRAY = \033[0;90m
