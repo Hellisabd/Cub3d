@@ -90,11 +90,23 @@ float	calc_ray_x(float dist_x, t_cub *cub)
 	return (next);
 }
 
-void	draw_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub)
+void	erase_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub, int color)
+{
+	t_ray *tmp;
+	while (ray)
+	{
+		drawline(ray, mini_map, &cub->player, color);
+		tmp = ray;
+		ray = ray->next;
+		free(ray);
+	}
+}
+
+void	draw_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub, int color)
 {
 	while (ray)
 	{
-		drawline(ray, mini_map, &cub->player);
+		drawline(ray, mini_map, &cub->player, color);
 		ray = ray->next;
 	}
 }
@@ -105,17 +117,18 @@ void	raycasting(t_cub *cub)
 	int		j;
 
 	set_player_pos(cub);
+	erase_ray(cub->ray, &cub->mini_map, cub, 0x000000FF);
 	cub->rot = PI / 2;
+	if (cub->rot > 2 * PI)
+		cub->rot -= 2 * PI;
+	if (cub->rot < -2 * PI)
+		cub ->rot += 2 * PI;
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
 	cub->angle += cub->rot;
 	cub->n = 30;
 	while (cub->angle < ((cub->fov / 2) + cub->rot))
 	{
-		if (cub->angle > 2 * PI)
-			cub->angle -= 2 * PI;
-		if (cub->angle < -2 * PI)
-			cub ->angle += 2 * PI;
 		i = floor(cub->p_y);
 		j = floor(cub->p_x);
 		if (cub->dir_x < 0)

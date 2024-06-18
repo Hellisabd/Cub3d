@@ -9,6 +9,8 @@
 # define PURPLE "\e[1;35m"
 # define BLUE "\e[1;36m"
 
+# define H_GREEN 0x00FF00FF
+
 # define OPEN "Wrong input : map open.\n"
 # define PLAYER "Wrong input : too many players.\n"
 # define CUB "The map is not a .cub file!\n"
@@ -125,8 +127,8 @@ void	check_cub(char *s);
 void	open_window(t_cub *cub);
 void	raycasting(t_cub *cub);
 void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y);
-void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player);
-void	draw_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub);
+void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int clor);
+void	draw_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub, int color);
 void	printlist(t_ray *node, char *color);
 
 // MINIMAP
