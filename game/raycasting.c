@@ -210,25 +210,6 @@ void	raycasting(t_cub *cub)
 				cub->map->map[i][j] = 'P';
 				if ((cub->angle < 0 && cub->angle > -PI) || (cub->angle > PI && cub->angle < 2 * PI))
 				{
-					j++;
-					cub->dist_x += 1;
-					cub->hyp = cub->next_x;
-					cub->next_x = calc_ray_x(cub->dist_x, cub);
-				}
-				else
-				{
-					j--;
-					cub->dist_x += 1;
-					cub->hyp = cub->next_x;
-					cub->next_x =  -calc_ray_x(cub->dist_x, cub);
-				}
-			}
-		}
-		cub->y = (cub->player.pos_y / cub->mini_map.size_wall_y) + cos(cub->angle) * fabs(cub->hyp);
-		cub->x = (cub->player.pos_x / cub->mini_map.size_wall_x) + sin(cub->angle) * fabs(cub->hyp);
-		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
-		cub->angle += cub->fov / cub->n;
-	}
-	print_map(cub);
+					j++;p(cub);
 	// reinitmap(cub);
 }
