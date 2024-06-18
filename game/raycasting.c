@@ -100,19 +100,16 @@ void	draw_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub, int color)
 	if (mini_map->background_i)
 		mlx_delete_image(cub->mlx, mini_map->background_i);
 	mini_map->background_i = mlx_new_image(cub->mlx, cub->mini_map.width, cub->mini_map.height);
-	debug_nbr(RED, "mini_map_height :", cub->mini_map.height);
-	debug_nbr(RED, "mini_map_width :", cub->mini_map.width);
 	while (y != cub->mini_map.height)
 	{
 		x = 0;
 		while (x != cub->mini_map.width)
 		{
-			mlx_put_pixel(mini_map->background_i, x, y, 0x0000000);
+			mlx_put_pixel(mini_map->background_i, x, y, 0x00000FF);
 			x++;
 		}
 		y++;
 	}
-	// sleep(3);
 	while (ray)
 	{
 		drawline(ray, mini_map, &cub->player, color);
