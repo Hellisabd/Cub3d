@@ -22,6 +22,7 @@
 # define WALL "assets/red_square.png"
 # define BACKGROUND "assets/white_square.png"
 # define PLAYER_T "assets/blue_circle.png"
+# define CURSOR "assets/invisible_pixel.png"
 
 
 # include <unistd.h>
@@ -95,26 +96,27 @@ typedef struct s_mini_map
 
 typedef struct s_cub
 {
-	t_map	*map;
-	t_ray	*ray;
-	mlx_t	*mlx;
-	float	dist_y;
-	float	dist_x;
-	float	next_x;
-	float	next_y;
-	float	n;
-	float	fov;
-	float	p_x;
-	float	p_y;
-	float	dir_x;
-	float	dir_y;
-	float	hyp;
-	float	angle;
-	float	x;
-	float	y;
-	float	rot;
-	t_mini_map	mini_map;
-	t_player player;
+	t_map			*map;
+	t_ray			*ray;
+	mlx_t			*mlx;
+	float			dist_y;
+	float			dist_x;
+	float			next_x;
+	float			next_y;
+	float			n;
+	float			fov;
+	float			p_x;
+	float			p_y;
+	float			dir_x;
+	float			dir_y;
+	float			hyp;
+	float			angle;
+	float			x;
+	float			y;
+	float			rot;
+	mlx_texture_t	*cursor_t;
+	t_mini_map		mini_map;
+	t_player 		player;
 }	t_cub;
 
 // PARSING
