@@ -138,15 +138,15 @@ void	raycasting(t_cub *cub)
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
 	cub->angle += cub->rot;
-	cub->n = 3.00001;
+	cub->n = 10.00001;
 	while (cub->angle <= ((cub->fov / 2) + cub->rot))
 	{
 		i = floor(cub->p_y);
 		j = floor(cub->p_x);
 		if ((cub->angle > PI / 2 && cub->angle < 3 * PI / 2) || (cub->angle < -PI / 2 && cub->angle > -3 * PI / 2))
-			cub->dist_x = cub->p_x - fabs(ceil(cub->p_x));
-		else
 			cub->dist_x = cub->p_x - fabs(floor(cub->p_x));
+		else
+			cub->dist_x = cub->p_x - fabs(ceil(cub->p_x));
 		if ((cub->angle < 0 && cub->angle > -PI) || (cub->angle > PI && cub->angle < 2 * PI))
 			cub->dist_y = cub->p_y - fabs(ceil(cub->p_y));
 		else
@@ -224,16 +224,17 @@ void	raycasting(t_cub *cub)
 				}
 			}
 		}
-		cub->y = (cub->player.pos_y / cub->mini_map.size_wall_y) + cos(cub->angle) * fabs(cub->hyp);
-		cub->x = (cub->player.pos_x  / cub->mini_map.size_wall_x) + sin(cub->angle) * fabs(cub->hyp);
+
+		cub->y = (cub->p_y) + cos(cub->angle) * fabs(cub->hyp);
+		cub->x = (cub->p_x) + sin(cub->angle) * fabs(cub->hyp);
 		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
 	debug_float(RED, "rot: ", cub->rot);
-	debug_float(BLUE, "pos_x: ", cub->player.pos_x);
-	debug_float(BLUE, "pos_y: ", cub->player.pos_y);
-	debug_float(YELLOW, "p_x :", cub->p_x);
-	debug_float(YELLOW, "p_y :", cub->p_y);
+	debug_float(YELLOW, "PI/2 = ", PI / 2);
+	debug_float(YELLOW, "PI = ", PI);
+	debug_float(YELLOW, "3PI/2 = ", 3 * PI / 2);
+	debug_float(YELLOW, "2PI = ", 2 * PI);
 	printlist((cub->ray), GREEN);
 	printf("\n");
 }
