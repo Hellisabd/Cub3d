@@ -1,35 +1,97 @@
 #include "../cub3D.h"
 
+bool	next_step_is_not_wall(int x, int y, t_cub *cub, int dir)
+{
+	int i;
+	int j;
+
+	if (dir == RIGHT)
+	{
+		i = floor(y / cub->mini_map.size_wall_y);
+		j = 2 + floor(x / cub->mini_map.size_wall_x);
+		if (j < 2 + floor((x + 10) / cub->mini_map.size_wall_x))
+		{
+			if (cub->map->map[i][j] == '1')
+				return (false);
+			return (true);
+		}
+	}
+	else if (dir == LEFT)
+	{
+		i = floor(y / cub->mini_map.size_wall_y);
+		j = floor(x / cub->mini_map.size_wall_x);
+		// debug_nbr(RED, "pos_x on map", j);
+		// debug_nbr(RED, "next_pos", floor((x - 10) / cub->mini_map.size_wall_x));
+		// debug_char(BLUE, "pos player on map", cub->map->map[i][j]);
+		if (cub->map->map[i][(int)floor((x - 10) / cub->mini_map.size_wall_x)] == '1')
+			return (false);
+	}
+	else if (dir == UP)
+	{
+		i = floor(y / cub->mini_map.size_wall_y);
+		j = floor(x / cub->mini_map.size_wall_x);
+		// debug_nbr(RED, "pos_x on map", j);
+		// debug_nbr(RED, "next_pos", floor((x - 10) / cub->mini_map.size_wall_x));
+		// debug_char(BLUE, "pos player on map", cub->map->map[i][j]);
+		if (cub->map->map[(int)floor((y - 10) / cub->mini_map.size_wall_y)][j] == '1')
+			return (false);
+	}
+	else if (dir == DOWN)
+	{
+		i = 2 + floor(y / cub->mini_map.size_wall_y);
+		j = floor(x / cub->mini_map.size_wall_x);
+		if (i < 2 + floor((y + 10) / cub->mini_map.size_wall_y))
+		{
+			if (cub->map->map[i][j] == '1')
+				return (false);
+			return (true);
+		}
+	}
+	return (true);
+}
+
 void	move_left(t_cub *cub)
 {
-	cub->player.pos_x -= 10;
-	cub->mini_map.player_i->instances->x -= 10;
-	raycasting(cub);
-	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, LEFT))
+	{
+		cub->player.pos_x -= 10;
+		cub->mini_map.player_i->instances->x -= 10;
+		raycasting(cub);
+		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	}
 }
 
 void	move_right(t_cub *cub)
 {
-	cub->player.pos_x += 10;
-	cub->mini_map.player_i->instances->x += 10;
-	raycasting(cub);
-	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, RIGHT))
+	{
+		cub->player.pos_x += 10;
+		cub->mini_map.player_i->instances->x += 10;
+		raycasting(cub);
+		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	}
 }
 
 void	move_down(t_cub *cub)
 {
-	cub->player.pos_y += 10;
-	cub->mini_map.player_i->instances->y += 10;
-	raycasting(cub);
-	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, DOWN))
+	{
+		cub->player.pos_y += 10;
+		cub->mini_map.player_i->instances->y += 10;
+		raycasting(cub);
+		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	}
 }
 
 void	move_up(t_cub *cub)
 {
-	cub->player.pos_y -= 10;
-	cub->mini_map.player_i->instances->y -= 10;
-	raycasting(cub);
-	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, UP))
+	{
+		cub->player.pos_y -= 10;
+		cub->mini_map.player_i->instances->y -= 10;
+		raycasting(cub);
+		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	}
 }
 
 void	rotations(double xpos, double ypos, void *param)

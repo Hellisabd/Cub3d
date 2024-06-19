@@ -35,8 +35,13 @@
 # include ".MLX42/include/MLX42/MLX42.h"
 
 # define PI		3.14159265358979323846
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 1000
+# define HEIGHT 1000
+
+# define RIGHT 0
+# define LEFT 1
+# define UP 2
+# define DOWN 3
 
 typedef struct s_player
 {
