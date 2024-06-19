@@ -21,7 +21,7 @@
 
 # define WALL "assets/red_square.png"
 # define BACKGROUND "assets/white_square.png"
-# define PLAYER_T "assets/blue_square.png"
+# define PLAYER_T "assets/blue_circle.png"
 
 
 # include <unistd.h>

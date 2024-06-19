@@ -3,6 +3,7 @@
 void	move_left(t_cub *cub)
 {
 	cub->player.pos_x -= 10;
+	cub->mini_map.player_i->instances->x -= 10;
 	raycasting(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
@@ -10,6 +11,7 @@ void	move_left(t_cub *cub)
 void	move_right(t_cub *cub)
 {
 	cub->player.pos_x += 10;
+	cub->mini_map.player_i->instances->x += 10;
 	raycasting(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
@@ -17,6 +19,7 @@ void	move_right(t_cub *cub)
 void	move_down(t_cub *cub)
 {
 	cub->player.pos_y += 10;
+	cub->mini_map.player_i->instances->y += 10;
 	raycasting(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
@@ -24,8 +27,34 @@ void	move_down(t_cub *cub)
 void	move_up(t_cub *cub)
 {
 	cub->player.pos_y -= 10;
+	cub->mini_map.player_i->instances->y -= 10;
 	raycasting(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+}
+
+void	rotations(double xpos, double ypos, void *param)
+{
+	t_cub	*cub;
+	int		x;
+	int		y;
+
+	cub = param;
+	x = (int)xpos;
+	y = (int)ypos;
+	mlx_get_mouse_pos(cub->mlx, &x, &y);
+	if (x > WIDTH / 2)
+	{
+		cub->rot -= PI / 40;
+		raycasting(cub);
+		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	}
+	if (x < WIDTH / 2)
+	{
+		cub->rot += PI / 40;
+		raycasting(cub);
+		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	}
+	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
 void	move(mlx_key_data_t key, void *param)
@@ -42,17 +71,17 @@ void	move(mlx_key_data_t key, void *param)
 	if (key.key == MLX_KEY_D && (key.action == 1 || key.action == 2))
 		move_right(cub);
 	if (key.key == MLX_KEY_RIGHT && (key.action == 1 || key.action == 2))
-		{
-			cub->rot -= PI / 10;
-			raycasting(cub);
-			draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
-		}
+	{
+		cub->rot -= PI / 10;
+		raycasting(cub);
+		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	}
 	if (key.key == MLX_KEY_LEFT && (key.action == 1 || key.action == 2))
-		{
-			cub->rot += PI / 10;
-			raycasting(cub);
-			draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
-		}
+	{
+		cub->rot += PI / 10;
+		raycasting(cub);
+		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	}
 }
 
 void	ft_hook(void *param)
@@ -60,6 +89,7 @@ void	ft_hook(void *param)
 	t_cub	*cub;
 
 	cub = param;
+	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
 	mlx_key_hook(cub->mlx, move, (void *)cub);
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cub->mlx);
@@ -77,6 +107,7 @@ void	open_window(t_cub *cub)
 	map_to_window(cub);
 	raycasting(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);
