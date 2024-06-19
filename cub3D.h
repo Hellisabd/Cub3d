@@ -136,7 +136,7 @@ void	raycasting(t_cub *cub);
 void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y);
 void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int clor);
 void	draw_ray(t_ray **ray, t_mini_map *mini_map, t_cub *cub, int color);
-void	erase_ray(t_ray *ray, t_mini_map *mini_map, t_cub *cub, int color);
+void	set_player_pos(t_cub *cub);
 void	printlist(t_ray *node, char *color);
 
 // MINIMAP

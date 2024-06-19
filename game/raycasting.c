@@ -124,14 +124,13 @@ void	raycasting(t_cub *cub)
 	int		i;
 	int		j;
 
-	set_player_pos(cub);
 	// debug_float(RED, "p_x :", cub->p_x);
 	// debug_nbr(GREEN, "player pos_x :", cub->player.pos_x);
 	// debug_float(RED, "p_y :", cub->p_y);
 	// debug_nbr(GREEN, "player pos_y :", cub->player.pos_y);
 	// debug_float(BLUE, "trying to ind good res :", cub->player.pos_x / cub->mini_map.size_wall_x + (cub->p_x - fabs(floor(cub->p_x))));
-	cub->p_x = cub->player.pos_x / cub->mini_map.size_wall_x + (cub->p_x - fabs(floor(cub->p_x)));
-	cub->p_y = cub->player.pos_y / cub->mini_map.size_wall_y + (cub->p_y - fabs(floor(cub->p_y)));
+	cub->p_x = 0.5 + (float)cub->player.pos_x / (float)cub->mini_map.size_wall_x;
+	cub->p_y = 0.5 + (float)cub->player.pos_y / (float)cub->mini_map.size_wall_y;
 	if (cub->rot > 2 * PI)
 		cub->rot -= 2 * PI;
 	if (cub->rot < -2 * PI)
@@ -139,7 +138,7 @@ void	raycasting(t_cub *cub)
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
 	cub->angle += cub->rot;
-	cub->n = 360;
+	cub->n = 3;
 	while (cub->angle < ((cub->fov / 2) + cub->rot))
 	{
 		i = floor(cub->p_y);
@@ -230,6 +229,7 @@ void	raycasting(t_cub *cub)
 		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
-	// print_map(cub);
-	// reinitmap(cub);
+	debug_float(RED, "rot: ", cub->rot);
+	printlist((cub->ray), GREEN);
+	printf("\n");
 }

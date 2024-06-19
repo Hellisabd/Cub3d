@@ -171,7 +171,8 @@ void	ft_cursor(t_cub *cub)
 void	open_window(t_cub *cub)
 {
 	init_data_mini_map(&cub->mini_map, cub->map);
-	cub->mlx = mlx_init(cub->mini_map.width, cub->mini_map.height, "cub3D", true);
+	set_player_pos(cub);
+	cub->mlx = mlx_init(2000, 1000, "cub3D", true);
 	if (!cub->mlx)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
 	mlx_set_window_pos(cub->mlx, 1000, 500);
