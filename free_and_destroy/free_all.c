@@ -1,6 +1,6 @@
 #include "../cub3D.h"
 
-void	destroyer(t_mini_map *mini, mlx_t *mlx)
+void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub)
 {
 	mlx_delete_image(mlx, mini->background_i);
 	mlx_delete_image(mlx, mini->wall_i);
@@ -8,6 +8,7 @@ void	destroyer(t_mini_map *mini, mlx_t *mlx)
 	mlx_delete_texture(mini->player_t);
 	mlx_delete_texture(mini->wall_t);
 	mlx_delete_texture(mini->background_t);
+	mlx_delete_texture(cub->cursor_t);
 }
 
 void	free_map_stuff(t_map *map)
@@ -47,5 +48,5 @@ void	free_rays(t_ray *ray)
 void	free_in_window(t_cub *cub)
 {
 	free_map_stuff(cub->map);
-	destroyer(&cub->mini_map, cub->mlx);
+	destroyer(&cub->mini_map, cub->mlx, cub);
 }
