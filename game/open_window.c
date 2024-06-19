@@ -157,6 +157,17 @@ void	ft_hook(void *param)
 		mlx_close_window(cub->mlx);
 }
 
+void	ft_cursor(t_cub *cub)
+{
+	mlx_win_cursor_t	*cursor;
+	
+	cub->cursor_t = mlx_load_png(CURSOR);
+	if (cub->cursor_t == NULL)
+		debug_str(RED, NULL, "failed to load textures");
+	cursor = mlx_create_cursor(cub->cursor_t);
+	mlx_set_cursor(cub->mlx, cursor);
+}
+
 void	open_window(t_cub *cub)
 {
 	init_data_mini_map(&cub->mini_map, cub->map);
@@ -165,8 +176,8 @@ void	open_window(t_cub *cub)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
 	mlx_set_window_pos(cub->mlx, 1000, 500);
 	mlx_set_window_limit(cub->mlx, cub->mini_map.width, cub->mini_map.height, cub->mini_map.width, cub->mini_map.height);
-	cub->rot = 0;
 	map_to_window(cub);
+	ft_cursor(cub);
 	raycasting(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
