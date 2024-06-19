@@ -3,6 +3,7 @@
 void	move_left(t_cub *cub)
 {
 	cub->player.pos_x -= 10;
+	cub->mini_map.player_i->instances->x -= 10;
 	raycasting(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
@@ -10,6 +11,7 @@ void	move_left(t_cub *cub)
 void	move_right(t_cub *cub)
 {
 	cub->player.pos_x += 10;
+	cub->mini_map.player_i->instances->x += 10;
 	raycasting(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
@@ -17,6 +19,7 @@ void	move_right(t_cub *cub)
 void	move_down(t_cub *cub)
 {
 	cub->player.pos_y += 10;
+	cub->mini_map.player_i->instances->y += 10;
 	raycasting(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
@@ -24,6 +27,7 @@ void	move_down(t_cub *cub)
 void	move_up(t_cub *cub)
 {
 	cub->player.pos_y -= 10;
+	cub->mini_map.player_i->instances->y -= 10;
 	raycasting(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
