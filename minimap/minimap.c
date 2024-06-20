@@ -75,12 +75,12 @@ int map_to_window(t_cub *cub)
 		exit(1);
 	put_wall(cub->map, cub, &cub->player);
 	if (cub->map->player_char == 'N')
-		cub->rot = PI;
-	if (cub->map->player_char == 'S')
-		cub->rot = 0;
-	if (cub->map->player_char == 'E')
 		cub->rot = PI / 2;
-	if (cub->map->player_char == 'W')
+	if (cub->map->player_char == 'S')
 		cub->rot = -PI / 2;
+	if (cub->map->player_char == 'E')
+		cub->rot = 0;
+	if (cub->map->player_char == 'W')
+		cub->rot = PI;
 	return (0);
 }
