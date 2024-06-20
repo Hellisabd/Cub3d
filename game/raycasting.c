@@ -101,8 +101,8 @@ void	raycasting(t_cub *cub)
 {
 	int		i;
 	int		j;
-	// float		dist_hyp_x;
-	// float		dist_hyp_y;
+	float		dist_hyp_x;
+	float		dist_hyp_y;
 	// bool	incr_y;
 	// bool	incr_x;
 
@@ -137,9 +137,9 @@ void	raycasting(t_cub *cub)
 		else
 			cub->dist_x = fabs(ceil(cub->p_x)) - cub->p_x;
 		cub->next_x =  calc_ray_x(fabs(cub->dist_x), cub);
-		// dist_hyp_x = cub->next_x;
+		dist_hyp_x = cub->next_x;
 		cub->next_y =  calc_ray_y(fabs(cub->dist_y), cub);
-		// dist_hyp_y = cub->next_y;
+		dist_hyp_y = cub->next_y;
 		// printf("%sangle: %f | dist_x: %f | dist_y: %f%s\n", BLUE, cub->angle, cub->dist_x, cub->dist_y, NC);
 		// debug_float(GREEN, "next_x", cub->next_x);
 		// debug_float(GREEN, "next_y", cub->next_y);
@@ -152,7 +152,7 @@ void	raycasting(t_cub *cub)
 				{
 					// incr_x = true;
 					j--;
-					// dist_hyp_x = cub->dist_x;
+					dist_hyp_x = cub->dist_x;
 					cub->dist_x -= 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = calc_ray_x((cub->dist_x), cub);
@@ -161,7 +161,7 @@ void	raycasting(t_cub *cub)
 				{
 					// incr_y = true;
 					i--;
-					// dist_hyp_y = cub->dist_y;
+					dist_hyp_y = cub->dist_y;
 					cub->dist_y -= 1;
 					cub->hyp = cub->next_y;
 					cub->next_y = calc_ray_y((cub->dist_y), cub);
@@ -174,7 +174,7 @@ void	raycasting(t_cub *cub)
 				{
 					// incr_x = true;
 					j--;
-					// dist_hyp_x = cub->dist_x;
+					dist_hyp_x = cub->dist_x;
 					cub->dist_x -= 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = calc_ray_x((cub->dist_x), cub);
@@ -183,7 +183,7 @@ void	raycasting(t_cub *cub)
 				{
 					// incr_y = true;
 					i++;
-					// dist_hyp_y = cub->dist_y;
+					dist_hyp_y = cub->dist_y;
 					cub->dist_y += 1;
 					cub->hyp = cub->next_y;
 					cub->next_y = calc_ray_y((cub->dist_y), cub);
@@ -196,7 +196,7 @@ void	raycasting(t_cub *cub)
 				{
 					// incr_x = true;
 					j++;
-					// dist_hyp_x = cub->dist_x;
+					dist_hyp_x = cub->dist_x;
 					cub->dist_x += 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = calc_ray_x((cub->dist_x), cub);
@@ -205,7 +205,7 @@ void	raycasting(t_cub *cub)
 				{
 					// incr_y = true;
 					i++;
-					// dist_hyp_y = cub->dist_y;
+					dist_hyp_y = cub->dist_y;
 					cub->dist_y += 1;
 					cub->hyp = cub->next_y;
 					cub->next_y = calc_ray_y((cub->dist_y), cub);
@@ -218,7 +218,7 @@ void	raycasting(t_cub *cub)
 				{
 					// incr_x = true;
 					j++;
-					// dist_hyp_x = cub->dist_x;
+					dist_hyp_x = cub->dist_x;
 					cub->dist_x += 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = calc_ray_x((cub->dist_x), cub);
@@ -227,7 +227,7 @@ void	raycasting(t_cub *cub)
 				{
 					// incr_y = true;
 					i--;
-					// dist_hyp_y = cub->dist_y;
+					dist_hyp_y = cub->dist_y;
 					cub->dist_y -= 1;
 					cub->hyp = cub->next_y;
 					cub->next_y = calc_ray_y((cub->dist_y), cub);
