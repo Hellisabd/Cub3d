@@ -101,13 +101,13 @@ void	raycasting(t_cub *cub)
 {
 	int		i;
 	int		j;
-	float		dist_hyp_x;
-	float		dist_hyp_y;
-	bool	incr_y;
-	bool	incr_x;
+	// float		dist_hyp_x;
+	// float		dist_hyp_y;
+	// bool	incr_y;
+	// bool	incr_x;
 
-	incr_x = false;
-	incr_y = false;
+	// incr_x = false;
+	// incr_y = false;
 
 	// debug_float(RED, "p_x :", cub->p_x);
 	// debug_nbr(GREEN, "player pos_x :", cub->player.pos_x);
@@ -132,101 +132,102 @@ void	raycasting(t_cub *cub)
 			cub->dist_y = fabs(ceil(cub->p_y)) - cub->p_y;
 		else
 			cub->dist_y = fabs(floor(cub->p_y)) - cub->p_y;
-		if ((cub->angle < PI / 2 && cub->angle > -PI / 2) || (cub->angle > -3 * PI * 2 && cub->angle < 3 * PI / 2))
-			cub->dist_x = fabs(ceil(cub->p_x)) - cub->p_x;
-		else
+		if ((cub->angle > PI / 2 && cub->angle < 3 * PI / 2) || (cub->angle > -3 * PI / 2 && cub->angle < -PI / 2))
 			cub->dist_x = fabs(floor(cub->p_x)) - cub->p_x;
+		else
+			cub->dist_x = fabs(ceil(cub->p_x)) - cub->p_x;
 		cub->next_x =  calc_ray_x(fabs(cub->dist_x), cub);
-		dist_hyp_x = cub->next_x;
+		// dist_hyp_x = cub->next_x;
 		cub->next_y =  calc_ray_y(fabs(cub->dist_y), cub);
-		dist_hyp_y = cub->next_y;
+		// dist_hyp_y = cub->next_y;
+		printf("%sangle: %f | dist_x: %f | dist_y: %f%s\n", BLUE, cub->angle, cub->dist_x, cub->dist_y, NC);
 		// debug_float(GREEN, "next_x", cub->next_x);
 		// debug_float(GREEN, "next_y", cub->next_y);
 		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->player_char)
 		{
-			if (cub->dist_x < 0 && cub->dist_y < 0) //4eme quadrant
+			if (cub->dist_x < 0 && cub->dist_y < 0) //2eme quadrant
 			{
-				// debug_str(RED, NULL, "4eme quadrant");
+				// debug_str(RED, NULL, "2eme quadrant");
 				if (fabs(cub->next_x) <= fabs(cub->next_y))
 				{
-					incr_x = true;
+					// incr_x = true;
 					j--;
-					dist_hyp_x = cub->dist_x;
+					// dist_hyp_x = cub->dist_x;
 					cub->dist_x -= 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = calc_ray_x((cub->dist_x), cub);
 				}
 				else
 				{
-					incr_y = true;
+					// incr_y = true;
 					i--;
-					dist_hyp_y = cub->dist_y;
+					// dist_hyp_y = cub->dist_y;
 					cub->dist_y -= 1;
 					cub->hyp = cub->next_y;
 					cub->next_y = calc_ray_y((cub->dist_y), cub);
 				}
 			}
-			else if (cub->dist_x < 0 && cub->dist_y > 0) //1st quadrant
+			else if (cub->dist_x < 0 && cub->dist_y > 0) //3eme quadrant
 			{
+				// debug_str(RED, NULL, "3eme quadrant");
 				if (fabs(cub->next_x) <= fabs(cub->next_y))
 				{
-					// debug_str(RED, NULL, "1s quadrant");
-					incr_x = true;
+					// incr_x = true;
 					j--;
-					dist_hyp_x = cub->dist_x;
+					// dist_hyp_x = cub->dist_x;
 					cub->dist_x -= 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = calc_ray_x((cub->dist_x), cub);
 				}
 				else
 				{
-					incr_y = true;
+					// incr_y = true;
 					i++;
-					dist_hyp_y = cub->dist_y;
+					// dist_hyp_y = cub->dist_y;
 					cub->dist_y += 1;
 					cub->hyp = cub->next_y;
 					cub->next_y = calc_ray_y((cub->dist_y), cub);
 				}
 			}
-			else if (cub->dist_x > 0 && cub->dist_y > 0) //2d quadrant
+			else if (cub->dist_x > 0 && cub->dist_y > 0) //4eme quadrant
 			{
-				// debug_str(RED, NULL, "2d quadrant");
+				// debug_str(RED, NULL, "4eme quadrant");
 				if (fabs(cub->next_x) <= fabs(cub->next_y))
 				{
-					incr_x = true;
+					// incr_x = true;
 					j++;
-					dist_hyp_x = cub->dist_x;
+					// dist_hyp_x = cub->dist_x;
 					cub->dist_x += 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = calc_ray_x((cub->dist_x), cub);
 				}
 				else
 				{
-					incr_y = true;
+					// incr_y = true;
 					i++;
-					dist_hyp_y = cub->dist_y;
+					// dist_hyp_y = cub->dist_y;
 					cub->dist_y += 1;
 					cub->hyp = cub->next_y;
 					cub->next_y = calc_ray_y((cub->dist_y), cub);
 				}
 			}
-			else if (cub->dist_x > 0 && cub->dist_y < 0) //3rd 
+			else if (cub->dist_x > 0 && cub->dist_y < 0) //1er quadrant 
 			{
-				// debug_str(RED, NULL, "3rd quadrant");
+				// debug_str(RED, NULL, "1er quadrant");
 				if (fabs(cub->next_x) <= fabs(cub->next_y))
 				{
-					incr_x = true;
+					// incr_x = true;
 					j++;
-					dist_hyp_x = cub->dist_x;
+					// dist_hyp_x = cub->dist_x;
 					cub->dist_x += 1;
 					cub->hyp = cub->next_x;
 					cub->next_x = calc_ray_x((cub->dist_x), cub);
 				}
 				else
 				{
-					incr_y = true;
+					// incr_y = true;
 					i--;
-					dist_hyp_y = cub->dist_y;
+					// dist_hyp_y = cub->dist_y;
 					cub->dist_y -= 1;
 					cub->hyp = cub->next_y;
 					cub->next_y = calc_ray_y((cub->dist_y), cub);
