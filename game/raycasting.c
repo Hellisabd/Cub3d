@@ -140,7 +140,7 @@ void	raycasting(t_cub *cub)
 		// dist_hyp_x = cub->next_x;
 		cub->next_y =  calc_ray_y(fabs(cub->dist_y), cub);
 		// dist_hyp_y = cub->next_y;
-		printf("%sangle: %f | dist_x: %f | dist_y: %f%s\n", BLUE, cub->angle, cub->dist_x, cub->dist_y, NC);
+		// printf("%sangle: %f | dist_x: %f | dist_y: %f%s\n", BLUE, cub->angle, cub->dist_x, cub->dist_y, NC);
 		// debug_float(GREEN, "next_x", cub->next_x);
 		// debug_float(GREEN, "next_y", cub->next_y);
 		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->player_char)
@@ -308,7 +308,7 @@ void	raycasting(t_cub *cub)
 		else
 			cub->y = (cub->p_y) + sin(cub->angle) * fabs(cub->hyp);
 			// cub->y = (cub->p_y) + dist_hyp_y;
-		if (round(cub->angle * 10000) == round(10000 *PI / 2) || round(cub->angle * 10000) == round(10000 * 3 *PI / 2))
+		if (round(cub->angle * 10000) == round(10000 * PI / 2) || round(cub->angle * 10000) == round(10000 * 3 * PI / 2))
 			cub->x = cub->p_x;
 		else
 			cub->x = (cub->p_x) + cos(cub->angle) * fabs(cub->hyp);
@@ -319,12 +319,12 @@ void	raycasting(t_cub *cub)
 	debug_float(RED, "rot: ", cub->rot);
 	// debug_float(RED, "next_x", cub->next_x);
 	// debug_float(RED, "next_y", cub->next_y);
-	// debug_float(RED, "pos_x", cub->p_x);
-	// debug_float(RED, "pos_y ", cub->p_y);
 	debug_float(YELLOW, "PI/2 = ", PI / 2);
 	debug_float(YELLOW, "PI = ", PI);
 	debug_float(YELLOW, "3PI/2 = ", 3 * PI / 2);
 	debug_float(YELLOW, "2PI = ", 2 * PI);
+	debug_float(RED, "pos_x", cub->p_x);
+	debug_float(RED, "pos_y ", cub->p_y);
 	// debug_float(BLUE, "dist_x: ", cub->dist_x);
 	// debug_float(BLUE, "dist_y: ", cub->dist_y);
 	// debug_float(BLUE, "dist_hyp_x: ", dist_hyp_x);
