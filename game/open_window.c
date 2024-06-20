@@ -106,13 +106,13 @@ void	rotations(double xpos, double ypos, void *param)
 	mlx_get_mouse_pos(cub->mlx, &x, &y);
 	if (x > WIDTH / 2)
 	{
-		cub->rot -= PI / 40;
+		cub->rot += PI / 40;
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
 	if (x < WIDTH / 2)
 	{
-		cub->rot += PI / 40;
+		cub->rot -= PI / 40;
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
@@ -134,13 +134,13 @@ void	move(mlx_key_data_t key, void *param)
 		move_right(cub);
 	if (key.key == MLX_KEY_RIGHT && (key.action == 1 || key.action == 2))
 	{
-		cub->rot -= PI / 10;
+		cub->rot += PI / 10;
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
 	if (key.key == MLX_KEY_LEFT && (key.action == 1 || key.action == 2))
 	{
-		cub->rot += PI / 10;
+		cub->rot -= PI / 10;
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
