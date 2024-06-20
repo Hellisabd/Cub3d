@@ -324,10 +324,10 @@ void	raycasting(t_cub *cub)
 	debug_float(YELLOW, "PI = ", PI);
 	debug_float(YELLOW, "3PI/2 = ", 3 * PI / 2);
 	debug_float(YELLOW, "2PI = ", 2 * PI);
-	debug_float(BLUE, "dist_x: ", cub->dist_x);
-	debug_float(BLUE, "dist_y: ", cub->dist_y);
-	debug_float(BLUE, "dist_hyp_x: ", dist_hyp_x);
-	debug_float(BLUE, "dist_hyp_y: ", dist_hyp_y);
+	// debug_float(BLUE, "dist_x: ", cub->dist_x);
+	// debug_float(BLUE, "dist_y: ", cub->dist_y);
+	// debug_float(BLUE, "dist_hyp_x: ", dist_hyp_x);
+	// debug_float(BLUE, "dist_hyp_y: ", dist_hyp_y);
 	printlist((cub->ray), GREEN);
 	printf("\n");
 }
