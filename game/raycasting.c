@@ -74,16 +74,16 @@ void	draw_ray(t_ray **ray, t_mini_map *mini_map, t_cub *cub, int color)
 	x = 0;
 	y = 0;
 	// mini_map->background_i = mlx_new_image(cub->mlx, cub->mini_map.width, cub->mini_map.height);
-	// while (y != cub->mini_map.height)
-	// {
-	// 	x = 0;
-	// 	while (x != cub->mini_map.width)
-	// 	{
-	// 		mlx_put_pixel(mini_map->background_i, x, y, 0xFFFFFFFF);
-	// 		x++;
-	// 	}
-	// 	y++;
-	// }
+	while (y != cub->mini_map.height)
+	{
+		x = 0;
+		while (x != cub->mini_map.width)
+		{
+			mlx_put_pixel(mini_map->background_i, x, y, 0xFFFFFFFF);
+			x++;
+		}
+		y++;
+	}
 	t_ray *tmp;
 	while (*ray)
 	{

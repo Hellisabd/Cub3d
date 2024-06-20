@@ -151,7 +151,7 @@ void	ft_hook(void *param)
 	t_cub	*cub;
 
 	cub = param;
-	// mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
+	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
 	mlx_key_hook(cub->mlx, move, (void *)cub);
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cub->mlx);
