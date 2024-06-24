@@ -151,7 +151,7 @@ void	ft_hook(void *param)
 	t_cub	*cub;
 
 	cub = param;
-	// mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
+	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
 	mlx_key_hook(cub->mlx, move, (void *)cub);
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cub->mlx);
@@ -175,7 +175,7 @@ void	open_window(t_cub *cub)
 	cub->mlx = mlx_init(2000, 1000, "cub3D", true);
 	if (!cub->mlx)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
-	mlx_set_window_pos(cub->mlx, 1000, 500);
+	mlx_set_window_pos(cub->mlx, 500, 250);
 	mlx_set_window_limit(cub->mlx, cub->mini_map.width, cub->mini_map.height, cub->mini_map.width, cub->mini_map.height);
 	map_to_window(cub);
 	ft_cursor(cub);

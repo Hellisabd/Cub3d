@@ -35,8 +35,8 @@
 # include ".MLX42/include/MLX42/MLX42.h"
 
 # define PI		3.14159265358979323846
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 3000
+# define HEIGHT 1500
 
 # define RIGHT 0
 # define LEFT 1
