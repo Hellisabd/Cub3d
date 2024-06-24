@@ -74,13 +74,5 @@ int map_to_window(t_cub *cub)
 	if (-1 == mlx_image_to_window(cub->mlx, cub->mini_map.background_i, 0, 0))
 		exit(1);
 	put_wall(cub->map, cub, &cub->player);
-	if (cub->map->player_char == 'N')
-		cub->rot = -PI / 2;
-	if (cub->map->player_char == 'S')
-		cub->rot = PI / 2;
-	if (cub->map->player_char == 'E')
-		cub->rot = 0;
-	if (cub->map->player_char == 'W')
-		cub->rot = PI;
 	return (0);
 }

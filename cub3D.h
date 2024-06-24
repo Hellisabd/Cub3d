@@ -44,8 +44,8 @@
 
 typedef struct s_player
 {
-	int pos_x;
-	int pos_y;
+	int	pos_x;
+	int	pos_y;
 }	t_player;
 
 typedef struct s_map
@@ -135,7 +135,7 @@ typedef struct s_cub
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
 	t_world			world;
-	t_player 		player;
+	t_player		player;
 }	t_cub;
 
 // PARSING
@@ -154,13 +154,13 @@ void	printlist(t_ray *node, char *color);
 
 // MINIMAP
 
-int map_to_window(t_cub *cub);
-int init_data_mini_map(t_mini_map *minimap, t_map *map);
-int init_mini_map(t_cub *cub, t_mini_map *mini_map);
+int		map_to_window(t_cub *cub);
+int		init_data_mini_map(t_mini_map *minimap, t_map *map);
+int		init_mini_map(t_cub *cub, t_mini_map *mini_map);
 
 // GAME
 void	open_window(t_cub *cub);
-int		lets_go_3D(t_cub *cub);
+int		lets_go_3d(t_cub *cub);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);

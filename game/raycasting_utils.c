@@ -15,8 +15,7 @@ void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y)
 	new->next = NULL;
 	if (ray == NULL || *ray == NULL)
 	{
-		if (ray)
-			*ray = new;
+		*ray = new;
 		return ;
 	}
 	tmp = *ray;

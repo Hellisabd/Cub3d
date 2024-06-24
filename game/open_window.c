@@ -160,12 +160,25 @@ void	ft_hook(void *param)
 void	ft_cursor(t_cub *cub)
 {
 	mlx_win_cursor_t	*cursor;
-	
+
 	cub->cursor_t = mlx_load_png(CURSOR);
 	if (cub->cursor_t == NULL)
 		debug_str(RED, NULL, "failed to load textures");
 	cursor = mlx_create_cursor(cub->cursor_t);
 	mlx_set_cursor(cub->mlx, cursor);
+}
+
+void	init_raycast(t_cub *cub)
+{
+	if (cub->map->player_char == 'N')
+		cub->rot = -PI / 2;
+	if (cub->map->player_char == 'S')
+		cub->rot = PI / 2;
+	if (cub->map->player_char == 'E')
+		cub->rot = 0;
+	if (cub->map->player_char == 'W')
+		cub->rot = PI;
+	cub->ray = NULL;
 }
 
 void	open_window(t_cub *cub)
@@ -177,10 +190,11 @@ void	open_window(t_cub *cub)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
 	mlx_set_window_pos(cub->mlx, 500, 250);
 	mlx_set_window_limit(cub->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
-	lets_go_3D(cub);
-	map_to_window(cub);
 	ft_cursor(cub);
+	init_raycast(cub);
 	raycasting(cub);
+	// lets_go_3d(cub);
+	// map_to_window(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);

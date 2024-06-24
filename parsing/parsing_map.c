@@ -1,29 +1,5 @@
 #include "../cub3D.h"
 
-// void	set_player(char dir, t_cub *cub)
-// {
-// 	if (dir == 'N')
-// 	{
-// 		cub->dir_x = 0;
-// 		cub->dir_y = -1;
-// 	}
-// 	if (dir == 'S')
-// 	{
-// 		cub->dir_x = 0;
-// 		cub->dir_y = 1;
-// 	}
-// 	if (dir == 'E')
-// 	{
-// 		cub->dir_x = 1;
-// 		cub->dir_y = 0;
-// 	}
-// 	if (dir == 'W')
-// 	{
-// 		cub->dir_x = -1;
-// 		cub->dir_x = 0;
-// 	}
-// }
-
 int	count_player(t_map *map, t_cub *cub)
 {
 	int	i;
@@ -42,7 +18,6 @@ int	count_player(t_map *map, t_cub *cub)
 				|| map->map[i][j] == 'E' || map->map[i][j] == 'W')
 			{
 				map->player_char = map->map[i][j];
-				// set_player(map->map[i][j], cub);
 				c++;
 			}
 			j++;
