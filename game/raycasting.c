@@ -128,7 +128,7 @@ void	raycasting(t_cub *cub)
 	{
 		i = floor(cub->p_y);
 		j = floor(cub->p_x);
-		if ((cub->angle < 0 && cub->angle > -PI) || (cub->angle > PI && cub->angle < 2 * PI))
+		if ((cub->angle > 0 && cub->angle < PI) || (cub->angle > -PI && cub->angle < -2 * PI))
 			cub->dist_y = fabs(ceil(cub->p_y)) - cub->p_y;
 		else
 			cub->dist_y = fabs(floor(cub->p_y)) - cub->p_y;
@@ -303,14 +303,14 @@ void	raycasting(t_cub *cub)
 			// 	}
 			// }
 		}
-		if (round(cub->angle * 10000) == 0 || round(cub->angle * 10000) == round(10000 * PI))
-			cub->y = cub->p_y;
-		else
+		// if (round(cub->angle * 10000) == 0 || round(cub->angle * 10000) == round(10000 * PI))
+		// 	cub->y = cub->p_y;
+		// else
 			cub->y = (cub->p_y) + sin(cub->angle) * fabs(cub->hyp);
 			// cub->y = (cub->p_y) + dist_hyp_y;
-		if (round(cub->angle * 10000) == round(10000 * PI / 2) || round(cub->angle * 10000) == round(10000 * 3 * PI / 2))
-			cub->x = cub->p_x;
-		else
+		// if (round(cub->angle * 10000) == round(10000 * PI / 2) || round(cub->angle * 10000) == round(10000 * 3 * PI / 2))
+		// 	cub->x = cub->p_x;
+		// else
 			cub->x = (cub->p_x) + cos(cub->angle) * fabs(cub->hyp);
 			// cub->x = (cub->p_x) + dist_hyp_x;
 		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
