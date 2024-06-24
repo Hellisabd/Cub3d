@@ -172,11 +172,11 @@ void	open_window(t_cub *cub)
 {
 	init_data_mini_map(&cub->mini_map, cub->map);
 	set_player_pos(cub);
-	cub->mlx = mlx_init(2000, 1000, "cub3D", true);
+	cub->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!cub->mlx)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
 	mlx_set_window_pos(cub->mlx, 500, 250);
-	mlx_set_window_limit(cub->mlx, cub->mini_map.width, cub->mini_map.height, cub->mini_map.width, cub->mini_map.height);
+	mlx_set_window_limit(cub->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
 	map_to_window(cub);
 	ft_cursor(cub);
 	raycasting(cub);
