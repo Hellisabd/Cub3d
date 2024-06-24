@@ -42,6 +42,10 @@ void	get_textures(t_map *map, char *line)
 		map->f = ft_strdup(line + 2);
 	if (line[0] == 'C')
 		map->c = ft_strdup(line + 2);
+	map->no = ft_strtrim(map->no, "\n");
+	map->so = ft_strtrim(map->so, "\n");
+	map->we = ft_strtrim(map->we, "\n");
+	map->ea = ft_strtrim(map->ea, "\n");
 }
 
 void	get_map_heigth(t_map *map, char **argv)

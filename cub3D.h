@@ -24,7 +24,6 @@
 # define PLAYER_T "assets/blue_circle.png"
 # define CURSOR "assets/invisible_pixel.png"
 
-
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -85,6 +84,20 @@ typedef struct s_line
 	int	end_y;
 }	t_line;
 
+typedef struct s_world
+{
+	mlx_texture_t	*background_t;
+	mlx_texture_t	*no_t;
+	mlx_texture_t	*so_t;
+	mlx_texture_t	*we_t;
+	mlx_texture_t	*ea_t;
+	mlx_image_t		*background_i;
+	mlx_image_t		*no_i;
+	mlx_image_t		*so_i;
+	mlx_image_t		*we_i;
+	mlx_image_t		*ea_i;
+}	t_world;
+
 typedef struct s_mini_map
 {
 	mlx_texture_t	*wall_t;
@@ -121,6 +134,7 @@ typedef struct s_cub
 	float			rot;
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
+	t_world			world;
 	t_player 		player;
 }	t_cub;
 
@@ -130,8 +144,7 @@ void	open_map(t_map *map, char **argv);
 int		parsing_map(t_map *map, t_cub *cub);
 void	check_cub(char *s);
 
-// GAME
-void	open_window(t_cub *cub);
+// RAYCASTING
 void	raycasting(t_cub *cub);
 void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y);
 void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int clor);
@@ -144,6 +157,10 @@ void	printlist(t_ray *node, char *color);
 int map_to_window(t_cub *cub);
 int init_data_mini_map(t_mini_map *minimap, t_map *map);
 int init_mini_map(t_cub *cub, t_mini_map *mini_map);
+
+// GAME
+void	open_window(t_cub *cub);
+int		lets_go_3D(t_cub *cub);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);

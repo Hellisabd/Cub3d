@@ -5,10 +5,20 @@ void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub)
 	mlx_delete_image(mlx, mini->background_i);
 	mlx_delete_image(mlx, mini->wall_i);
 	mlx_delete_image(mlx, mini->player_i);
+	mlx_delete_image(mlx, cub->world.background_i);
+	mlx_delete_image(mlx, cub->world.no_i);
+	mlx_delete_image(mlx, cub->world.so_i);
+	mlx_delete_image(mlx, cub->world.we_i);
+	mlx_delete_image(mlx, cub->world.ea_i);
 	mlx_delete_texture(mini->player_t);
 	mlx_delete_texture(mini->wall_t);
 	mlx_delete_texture(mini->background_t);
 	mlx_delete_texture(cub->cursor_t);
+	mlx_delete_texture(cub->world.background_t);
+	mlx_delete_texture(cub->world.no_t);
+	mlx_delete_texture(cub->world.so_t);
+	mlx_delete_texture(cub->world.we_t);
+	mlx_delete_texture(cub->world.ea_t);
 }
 
 void	free_map_stuff(t_map *map)

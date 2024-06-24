@@ -1,7 +1,7 @@
-NO ./assests/yellow_square.png
-SO ./assests/blue_square.png
-WE ./assests/red_square.png
-EA ./assests/green_square.png
+NO assets/yellow_square.png
+SO assets/blue_square.png
+WE assets/red_square.png
+EA assets/green_square.png
 
 F 220,100,0
 C 225,30,0

@@ -177,6 +177,7 @@ void	open_window(t_cub *cub)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
 	mlx_set_window_pos(cub->mlx, 500, 250);
 	mlx_set_window_limit(cub->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
+	lets_go_3D(cub);
 	map_to_window(cub);
 	ft_cursor(cub);
 	raycasting(cub);

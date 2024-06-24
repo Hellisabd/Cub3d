@@ -215,6 +215,6 @@ void	raycasting(t_cub *cub)
 	// debug_nbr(RED, "apres pos_x", cub->player.pos_x);
 	// debug_float(RED, "apres p_y ", cub->p_y);
 	// debug_nbr(RED, "apres pos_y", cub->player.pos_y);
-	printlist((cub->ray), GREEN);
-	printf("\n");
+	// printlist((cub->ray), GREEN);
+	// printf("\n");
 }
