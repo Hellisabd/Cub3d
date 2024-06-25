@@ -30,22 +30,29 @@ void	print_map(t_cub *cub)
 void	set_player_pos(t_cub *cub)
 {
 	int	i;
+	int pos_x;
+	int pos_y;
 	int	j;
 
-	i = 1;
+	i = 0;
+	pos_y = 0;
 	while (i < cub->map->height)
 	{
+		pos_x = 0;
 		j = 0;
 		while (cub->map->map[i][j])
 		{
-			if (cub->map->map[i][j] == 'N' || cub->map->map[i][j] == 'S'
-				|| cub->map->map[i][j] == 'E' || cub->map->map[i][j] == 'W')
+			if (cub->map->map[i][j] == cub->map->player_char)
 			{
 				cub->p_x = j + 0.5;
 				cub->p_y = i + 0.5;
+				cub->player.pos_x = pos_x;
+				cub->player.pos_y = pos_y;
 			}
+			pos_x += cub->mini_map.size_wall_x;
 			j++;
 		}
+		pos_y += cub->mini_map.size_wall_y;
 		i++;
 	}
 }

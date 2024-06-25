@@ -193,8 +193,8 @@ void	open_window(t_cub *cub)
 	ft_cursor(cub);
 	init_raycast(cub);
 	raycasting(cub);
-	// lets_go_3d(cub);
-	// map_to_window(cub);
+	lets_go_3d(cub);
+	map_to_window(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);

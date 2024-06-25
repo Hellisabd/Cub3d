@@ -36,7 +36,7 @@ int init_data_mini_map(t_mini_map *minimap, t_map *map)
 	return (0);
 }
 
-int	put_wall(t_map *map, t_cub *g, t_player *player)
+int	put_wall(t_map *map, t_cub *g)
 {
 	int pos_x = 0;
 	int pos_y = 0;
@@ -49,17 +49,9 @@ int	put_wall(t_map *map, t_cub *g, t_player *player)
 		while (map->map[i][j] && map->map[i][j] != '\n')
 		{
 			if (map->map[i][j] == '1')
-			{
 				mlx_image_to_window(g->mlx, g->mini_map.wall_i, pos_x, pos_y);
-				// mlx_set_instance_depth(g->mini_map.wall_i->instances, 76666);
-			}
 			if (map->map[i][j] == g->map->player_char)
-			{
-				player->pos_x = pos_x;
-				player->pos_y = pos_y;
 				mlx_image_to_window(g->mlx, g->mini_map.player_i, pos_x, pos_y);
-				// mlx_set_instance_depth(g->mini_map.player_i->instances, 76666);
-			}
 			pos_x += g->mini_map.size_wall_x;
 			j++;
 		}
@@ -73,6 +65,6 @@ int map_to_window(t_cub *cub)
 	init_mini_map(cub, &cub->mini_map);
 	if (-1 == mlx_image_to_window(cub->mlx, cub->mini_map.background_i, 0, 0))
 		exit(1);
-	put_wall(cub->map, cub, &cub->player);
+	put_wall(cub->map, cub);
 	return (0);
 }
