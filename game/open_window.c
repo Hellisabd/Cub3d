@@ -50,12 +50,20 @@ bool	next_step_is_not_wall(int x, int y, t_cub *cub, int dir)
 	return (true);
 }
 
+void move_player(t_cub *cub, float dir)
+{
+	int dist = 10;
+	cub->player.pos_x += (int)round(cos(dir) * dist);
+	cub->mini_map.player_i->instances->x += (int)round(cos(dir) * dist);
+	cub->player.pos_y += (int)round(sin(dir) * dist);
+	cub->mini_map.player_i->instances->y += (int)round(sin(dir) * dist);
+}
+
 void	move_left(t_cub *cub)
 {
 	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, LEFT))
 	{
-		cub->player.pos_x -= 10;
-		cub->mini_map.player_i->instances->x -= 10;
+		// move_player(cub, cub->player.dir_left);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
@@ -146,6 +154,20 @@ void	move(mlx_key_data_t key, void *param)
 	}
 }
 
+void	refresh(t_cub *cub)
+{
+	cub->player.dir_up = cub->rot;
+	cub->player.dir_down = cub->rot + PI;
+	if (cub->player.dir_down >= 2 * PI)
+		cub->player.dir_down -= 2 * PI;
+	cub->player.dir_left = cub->rot + 3 * PI / 2;
+	if (cub->player.dir_left >= 2 * PI)
+		cub->player.dir_left -= 2 * PI;
+	cub->player.dir_right = cub->rot + PI / 2;
+	if (cub->player.dir_right >= 2 * PI)
+		cub->player.dir_right -= 2 * PI;
+}
+
 void	ft_hook(void *param)
 {
 	t_cub	*cub;
@@ -155,6 +177,7 @@ void	ft_hook(void *param)
 	mlx_key_hook(cub->mlx, move, (void *)cub);
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cub->mlx);
+	refresh(cub);
 }
 
 void	ft_cursor(t_cub *cub)
@@ -192,8 +215,8 @@ void	open_window(t_cub *cub)
 	mlx_set_window_limit(cub->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
 	ft_cursor(cub);
 	init_raycast(cub);
-	raycasting(cub);
 	lets_go_3d(cub);
+	raycasting(cub);
 	map_to_window(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);

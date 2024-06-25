@@ -217,6 +217,7 @@ void	raycasting(t_cub *cub)
 		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
+	draw_walls(cub, cub->ray);
 	// debug_float(YELLOW, "rot: ", cub->rot);
 	// debug_float(RED, "apres p_x", cub->p_x);
 	// debug_nbr(RED, "apres pos_x", cub->player.pos_x);

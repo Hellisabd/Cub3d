@@ -10,6 +10,9 @@
 # define BLUE "\e[1;36m"
 
 # define H_GREEN 0x00FF00FF
+# define H_BLUE 0x0000FFFF
+# define H_RED 0xFF0000FF
+# define H_BLACK 0x000000FF
 
 # define OPEN "Wrong input : map open.\n"
 # define PLAYER "Wrong input : too many players.\n"
@@ -44,8 +47,12 @@
 
 typedef struct s_player
 {
-	int	pos_x;
-	int	pos_y;
+	int		pos_x;
+	int		pos_y;
+	int		dir_right;
+	int		dir_up;
+	int		dir_left;
+	int		dir_down;
 }	t_player;
 
 typedef struct s_map
@@ -57,6 +64,8 @@ typedef struct s_map
 	char	*ea;
 	char	*f;
 	char	*c;
+	// char	*f_h;
+	// char	*c_h;
 	int		rgb_f[3];
 	int		rgb_c[3];
 	char	**tab_f;
@@ -161,6 +170,7 @@ int		init_mini_map(t_cub *cub, t_mini_map *mini_map);
 // GAME
 void	open_window(t_cub *cub);
 int		lets_go_3d(t_cub *cub);
+int		draw_walls(t_cub *cub, t_ray *ray);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);
