@@ -13,6 +13,7 @@
 # define H_BLUE 0x0000FFFF
 # define H_RED 0xFF0000FF
 # define H_BLACK 0x000000FF
+# define H_PINK 0xFF33FFFF
 
 # define OPEN "Wrong input : map open.\n"
 # define PLAYER "Wrong input : too many players.\n"

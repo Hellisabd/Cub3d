@@ -62,7 +62,7 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 			if (ray->y > cub->p_y)
 				mlx_put_pixel(cub->world.background_i, x, y, H_RED);
 			else
-				mlx_put_pixel(cub->world.background_i, x, y, H_BLACK);
+				mlx_put_pixel(cub->world.background_i, x, y, H_PINK);
 		}
 		y++;
 	}
