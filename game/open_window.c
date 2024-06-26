@@ -58,7 +58,7 @@ void	move_player(t_cub *cub, float dir)
 
 	deplacement_x = (int)(round(cos(dir) * dist));
 	deplacement_y = (int)(round(sin(dir) * dist));
-	debug_nbr(RED, "next_pos_x :", (int)round((float)(cub->player.pos_x + deplacement_x) / (float)cub->mini_map.size_wall_x));
+	// debug_nbr(RED, "next_pos_x :", (int)round((float)(cub->player.pos_x + deplacement_x) / (float)cub->mini_map.size_wall_x));
 	if (cub->map->map[(int)round((cub->player.pos_y + deplacement_y) / (float)cub->mini_map.size_wall_y)][(int)round((float)(cub->player.pos_x + deplacement_x) / (float)cub->mini_map.size_wall_x)] == '1')
 		return ;
 	cub->player.pos_x += deplacement_x;

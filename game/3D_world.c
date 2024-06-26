@@ -32,17 +32,12 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 	int y;
 	float	dist_max;
 	float	ratio;
-
-	dist_max = 20;
-	// printf("->ray-> y : %f\n", ray->y);
 	int end_y = HEIGHT;
 
+	dist_max = 10;
 	y = 0;
 	dy = end_y - y;
-	ratio = ray->hyp / dist_max;
-	// debug_float(BLUE, "ratio : ", ratio);
-	// debug_float(RED, "up: ", HEIGHT * (1 - ratio) / 2);
-	// debug_float(RED, "down: ", HEIGHT * ratio);
+	ratio = ray->hyp * cos(ray->angle - cub->rot) / dist_max ;
 	while (y <= (int)(HEIGHT / 2 * (ratio / 2)))
 	{
 		mlx_put_pixel(cub->world.background_i, x, y, cub->map->c_h);
