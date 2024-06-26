@@ -50,7 +50,7 @@ bool	next_step_is_not_wall(int x, int y, t_cub *cub, int dir)
 	return (true);
 }
 
-void move_player(t_cub *cub, float dir)
+void	move_player(t_cub *cub, float dir)
 {
 	int dist = 10;
 	int	deplacement_x;
@@ -58,6 +58,9 @@ void move_player(t_cub *cub, float dir)
 
 	deplacement_x = (int)(round(cos(dir) * dist));
 	deplacement_y = (int)(round(sin(dir) * dist));
+	debug_nbr(RED, "next_pos_x :", (int)round((float)(cub->player.pos_x + deplacement_x) / (float)cub->mini_map.size_wall_x));
+	if (cub->map->map[(int)round((cub->player.pos_y + deplacement_y) / (float)cub->mini_map.size_wall_y)][(int)round((float)(cub->player.pos_x + deplacement_x) / (float)cub->mini_map.size_wall_x)] == '1')
+		return ;
 	cub->player.pos_x += deplacement_x;
 	cub->mini_map.player_i->instances->x += deplacement_x;
 	cub->player.pos_y += deplacement_y;
@@ -88,7 +91,7 @@ void	move_down(t_cub *cub)
 {
 	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, DOWN))
 	{
-		move_player(cub, cub->player.dir_up);
+		move_player(cub, cub->player.dir_down);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
