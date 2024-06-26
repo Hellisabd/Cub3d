@@ -69,42 +69,30 @@ void	move_player(t_cub *cub, float dir)
 
 void	move_left(t_cub *cub)
 {
-	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, LEFT))
-	{
 		move_player(cub, cub->player.dir_left);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
-	}
 }
 
 void	move_right(t_cub *cub)
 {
-	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, RIGHT))
-	{
 		move_player(cub, cub->player.dir_right);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
-	}
 }
 
 void	move_down(t_cub *cub)
 {
-	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, DOWN))
-	{
 		move_player(cub, cub->player.dir_down);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
-	}
 }
 
 void	move_up(t_cub *cub)
 {
-	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, UP))
-	{
 		move_player(cub, cub->player.dir_up);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
-	}
 }
 
 void	rotations(double xpos, double ypos, void *param)
