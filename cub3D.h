@@ -64,8 +64,8 @@ typedef struct s_map
 	char	*ea;
 	char	*f;
 	char	*c;
-	// char	*f_h;
-	// char	*c_h;
+	int		f_h;
+	int		c_h;
 	int		rgb_f[3];
 	int		rgb_c[3];
 	char	**tab_f;
@@ -152,6 +152,7 @@ typedef struct s_cub
 void	open_map(t_map *map, char **argv);
 int		parsing_map(t_map *map, t_cub *cub);
 void	check_cub(char *s);
+int		rgb_to_hex(char *rgb);
 
 // RAYCASTING
 void	raycasting(t_cub *cub);

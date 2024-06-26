@@ -3,8 +3,8 @@ SO assets/blue_square.png
 WE assets/red_square.png
 EA assets/green_square.png
 
-F 220,100,0
-C 225,30,0
+F 51,153,51
+C 51,204,255
 
 11111111111111111111111
 11111111111111111111111

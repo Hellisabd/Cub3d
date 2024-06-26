@@ -45,7 +45,7 @@ void	disp_world(t_cub *cub, t_ray *ray, int x, int color)
 	// debug_float(RED, "down: ", HEIGHT * ratio);
 	while (y <= (int)(HEIGHT / 2 * (ratio / 2)))
 	{
-		// mlx_put_pixel(cub->world.background_i, x, y, cub->map->f);
+		mlx_put_pixel(cub->world.background_i, x, y, cub->map->c_h);
 		y++;
 	}
 	while (y <= (int)(HEIGHT * (1 - ratio + (ratio / 2))))
@@ -55,7 +55,7 @@ void	disp_world(t_cub *cub, t_ray *ray, int x, int color)
 	}
 	while (y < end_y)
 	{
-		// mlx_put_pixel(cub->world.background_i, x, y, cub->map->c);
+		mlx_put_pixel(cub->world.background_i, x, y, cub->map->f_h);
 		y++;
 	}
 }
