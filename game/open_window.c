@@ -50,29 +50,27 @@ bool	next_step_is_not_wall(int x, int y, t_cub *cub, int dir)
 	return (true);
 }
 
-void move_player_back(t_cub *cub, float dir)
+void	move_player(t_cub *cub, float dir)
 {
 	int dist = 10;
-	cub->player.pos_x -= (int)round(cos(dir) * dist);
-	cub->mini_map.player_i->instances->x -= (int)round(cos(dir) * dist);
-	cub->player.pos_y -= (int)round(sin(dir) * dist);
-	cub->mini_map.player_i->instances->y -= (int)round(sin(dir) * dist);
-}
+	int	deplacement_x;
+	int	deplacement_y;
 
-void move_player(t_cub *cub, float dir)
-{
-	int dist = 10;
-	cub->player.pos_x += (int)(round(cos(dir) * dist));
-	cub->mini_map.player_i->instances->x += (int)(round(cos(dir) * dist));
-	cub->player.pos_y += (int)(round(sin(dir) * dist));
-	cub->mini_map.player_i->instances->y += (int)(round(sin(dir)) * dist);
+	deplacement_x = (int)(round(cos(dir) * dist));
+	deplacement_y = (int)(round(sin(dir) * dist));
+	debug_nbr(RED, "next_pos_x :", (int)round((float)(cub->player.pos_x + deplacement_x) / (float)cub->mini_map.size_wall_x));
+	if (cub->map->map[(int)round((cub->player.pos_y + deplacement_y) / (float)cub->mini_map.size_wall_y)][(int)round((float)(cub->player.pos_x + deplacement_x) / (float)cub->mini_map.size_wall_x)] == '1')
+		return ;
+	cub->player.pos_x += deplacement_x;
+	cub->mini_map.player_i->instances->x += deplacement_x;
+	cub->player.pos_y += deplacement_y;
+	cub->mini_map.player_i->instances->y += deplacement_y;
 }
 
 void	move_left(t_cub *cub)
 {
 	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, LEFT))
 	{
-		debug_float(RED, "angle before :", cub->player.dir_left);
 		move_player(cub, cub->player.dir_left);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
@@ -93,7 +91,7 @@ void	move_down(t_cub *cub)
 {
 	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, DOWN))
 	{
-		move_player_back(cub, cub->player.dir_up);
+		move_player(cub, cub->player.dir_down);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
@@ -164,6 +162,9 @@ void	move(mlx_key_data_t key, void *param)
 void	refresh(t_cub *cub)
 {
 	cub->player.dir_up = cub->rot;
+	cub->player.dir_down = cub->rot + PI;
+	if (cub->player.dir_down >= 2 * PI)
+		cub->player.dir_down -= 2 * PI;
 	cub->player.dir_left = cub->rot + 3 * PI / 2;
 	if (cub->player.dir_left >= 2 * PI)
 		cub->player.dir_left -= 2 * PI;
