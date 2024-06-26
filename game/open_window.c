@@ -50,9 +50,22 @@ bool	next_step_is_not_wall(int x, int y, t_cub *cub, int dir)
 	return (true);
 }
 
+void move_player_back(t_cub *cub, float dir)
+{
+	int dist = 10;
+	debug_nbr(RED, "movement x", (int)round(cos(dir) * dist));
+	debug_nbr(RED, "movement y", (int)round(sin(dir) * dist));
+	cub->player.pos_x -= (int)round(cos(dir) * dist);
+	cub->mini_map.player_i->instances->x -= (int)round(cos(dir) * dist);
+	cub->player.pos_y -= (int)round(sin(dir) * dist);
+	cub->mini_map.player_i->instances->y -= (int)round(sin(dir) * dist);
+}
+
 void move_player(t_cub *cub, float dir)
 {
 	int dist = 10;
+	debug_nbr(RED, "movement x", (int)round(cos(dir) * dist));
+	debug_float(BLUE, "movement y", sin(dir));
 	cub->player.pos_x += (int)round(cos(dir) * dist);
 	cub->mini_map.player_i->instances->x += (int)round(cos(dir) * dist);
 	cub->player.pos_y += (int)round(sin(dir) * dist);
@@ -63,7 +76,7 @@ void	move_left(t_cub *cub)
 {
 	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, LEFT))
 	{
-		// move_player(cub, cub->player.dir_left);
+		move_player(cub, cub->player.dir_left);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
@@ -73,8 +86,7 @@ void	move_right(t_cub *cub)
 {
 	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, RIGHT))
 	{
-		cub->player.pos_x += 10;
-		cub->mini_map.player_i->instances->x += 10;
+		move_player(cub, cub->player.dir_right);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
@@ -84,8 +96,7 @@ void	move_down(t_cub *cub)
 {
 	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, DOWN))
 	{
-		cub->player.pos_y += 10;
-		cub->mini_map.player_i->instances->y += 10;
+		move_player_back(cub, cub->player.dir_up);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
@@ -95,8 +106,7 @@ void	move_up(t_cub *cub)
 {
 	if (next_step_is_not_wall(cub->player.pos_x, cub->player.pos_y, cub, UP))
 	{
-		cub->player.pos_y -= 10;
-		cub->mini_map.player_i->instances->y -= 10;
+		move_player(cub, cub->player.dir_up);
 		raycasting(cub);
 		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
@@ -156,10 +166,10 @@ void	move(mlx_key_data_t key, void *param)
 
 void	refresh(t_cub *cub)
 {
+	debug_float(RED, "up :", cub->rot);
+	debug_float(RED, "left :", cub->rot + 3 * PI / 2);
+	debug_float(RED, "right :", cub->rot + PI / 2);
 	cub->player.dir_up = cub->rot;
-	cub->player.dir_down = cub->rot + PI;
-	if (cub->player.dir_down >= 2 * PI)
-		cub->player.dir_down -= 2 * PI;
 	cub->player.dir_left = cub->rot + 3 * PI / 2;
 	if (cub->player.dir_left >= 2 * PI)
 		cub->player.dir_left -= 2 * PI;
