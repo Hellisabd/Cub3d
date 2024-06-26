@@ -12,24 +12,22 @@ void	check_cub(char *s)
 		exit((print_error(CUB), EXIT_FAILURE));
 }
 
-// char	*rgb_to_hex(char *rgb)
-// {
-// 	int		i;
-// 	char	hex[10];
-// 	char	**r_g_b;
-// 	int		tab[3];
-// 	char	*base;
+int	rgb_to_hex(char *rgb)
+{
+	int		i;
+	int		hex;
+	char	**r_g_b;
+	int		tab[4];
 
-// 	i = 0;
-// 	hex[0] = '0';
-// 	hex[1] = 'x';
-// 	base = "0123456789ABCDEF";
-// 	r_g_b = ft_split(rgb, ',');
-// 	while (i < 3)
-// 	{
-// 		tab[i] = ft_atoi(rgb[i]);
-// 		i++;
-// 	}
-
-// 	return (hex);
-// }
+	i = 0;
+	r_g_b = ft_split(rgb, ',');
+	while (i < 3)
+	{
+		tab[i] = ft_atoi(r_g_b[i]);
+		i++;
+	}
+	tab[3] = 255;
+	hex = (tab[0] << 24) | (tab[1] << 16) | (tab[2] << 8) | tab[3];
+	ft_free_tab(r_g_b);
+	return (hex);
+}

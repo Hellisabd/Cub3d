@@ -42,10 +42,6 @@ void	get_textures(t_map *map, char *line)
 		map->f = ft_strdup(line + 2);
 	if (line[0] == 'C')
 		map->c = ft_strdup(line + 2);
-	map->no = ft_strtrim(map->no, "\n");
-	map->so = ft_strtrim(map->so, "\n");
-	map->we = ft_strtrim(map->we, "\n");
-	map->ea = ft_strtrim(map->ea, "\n");
 }
 
 void	get_map_heigth(t_map *map, char **argv)
@@ -82,7 +78,14 @@ void	get_map(char *line, t_map *map, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	map->map[map->i] = NULL;
+	map->map[map->i] = NULL;	
+	map->no = ft_strtrim(map->no, "\n");
+	map->so = ft_strtrim(map->so, "\n");
+	map->we = ft_strtrim(map->we, "\n");
+	map->ea = ft_strtrim(map->ea, "\n");
+	map->f_h = rgb_to_hex(map->f);
+	map->c_h = rgb_to_hex(map->c);
+
 }
 
 void	open_map(t_map *map, char **argv)
