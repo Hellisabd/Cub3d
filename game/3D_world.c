@@ -34,7 +34,7 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 	float	ratio;
 	int end_y = HEIGHT;
 
-	dist_max = 10;
+	dist_max = 50;
 	y = 0;
 	dy = end_y - y;
 	ratio = ray->hyp * cos(ray->angle - cub->rot) / dist_max ;
