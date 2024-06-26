@@ -26,7 +26,7 @@ int	init_world(t_cub *cub)
 	return (0);
 }
 
-void	disp_world(t_cub *cub, t_ray *ray, int x, int color)
+void	disp_world(t_cub *cub, t_ray *ray, int x)
 {
 	int dy;
 	int y;
@@ -50,7 +50,20 @@ void	disp_world(t_cub *cub, t_ray *ray, int x, int color)
 	}
 	while (y <= (int)(HEIGHT * (1 - ratio + (ratio / 2))))
 	{
-		mlx_put_pixel(cub->world.background_i, x, y, color);
+		if ((int)round(ray->x *1000) % 1000 == 0)
+		{
+			if (ray->x > cub->p_x)
+				mlx_put_pixel(cub->world.background_i, x, y, H_BLUE);
+			else
+				mlx_put_pixel(cub->world.background_i, x, y, H_GREEN);
+		}
+		if ((int)round(ray->y *1000) % 1000 == 0)
+		{
+			if (ray->y > cub->p_y)
+				mlx_put_pixel(cub->world.background_i, x, y, H_RED);
+			else
+				mlx_put_pixel(cub->world.background_i, x, y, H_BLACK);
+		}
 		y++;
 	}
 	while (y < end_y)
@@ -59,10 +72,6 @@ void	disp_world(t_cub *cub, t_ray *ray, int x, int color)
 		y++;
 	}
 }
-
-// int calc_perspective(t_ray *ray)
-// {	
-// }
 
 int	draw_walls(t_cub *cub, t_ray *ray)
 {
@@ -75,16 +84,14 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 	ratio = WIDTH / cub->n;
 	while (i < WIDTH && ray)
 	{
-		// calc_perspective(cub->ray);
 		if (i % ratio == 0)
 		{
-			// printf("prout!!\n");
 			rayon++;
 			ray = ray->next;
 			if (!ray)
 				break ;
 		}
-		disp_world(cub, ray, i, H_BLUE);
+		disp_world(cub, ray, i);
 		i++;
 	}
 	return (0);
