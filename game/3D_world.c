@@ -23,48 +23,60 @@ int	init_world(t_cub *cub)
 	cub->world.we_i = mlx_texture_to_image(cub->mlx, cub->world.we_t);
 	cub->world.ea_i = mlx_texture_to_image(cub->mlx, cub->world.ea_t);
 	mlx_resize_image(cub->world.background_i, WIDTH, HEIGHT);
+	cub->world.tab_no = image_to_tab(cub->world.no_i);
+	cub->world.tab_so = image_to_tab(cub->world.so_i);
+	cub->world.tab_we = image_to_tab(cub->world.we_i);
+	cub->world.tab_ea = image_to_tab(cub->world.ea_i);
 	return (0);
+}
+
+void put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, int **pixel_tab)
+{
+	int column;
+	int line;
+
+
+	wall->ratio_width = wall->ray->y - floor(wall->ray->y);
+	wall->ratio_height = image->height / wall->img_height;
+	line = 0;
+	column = (int)(wall->ratio_width * image->width);
+	while (line < (int)image->height)
+		mlx_put_pixel(cub->world.background_i, wall->x, wall->y++, pixel_tab[column][line++]);
 }
 
 void	disp_world(t_cub *cub, t_ray *ray, int x)
 {
-	int dy;
-	int y;
-	float	dist_max;
-	float	ratio;
-	int end_y = HEIGHT;
+	t_wall	wall;
 
-	dist_max = 50;
-	y = 0;
-	dy = end_y - y;
-	ratio = ray->hyp * cos(ray->angle - cub->rot) / dist_max ;
-	while (y <= (int)(HEIGHT / 2 * (ratio / 2)))
+	wall.dist_max = 20;
+	wall.y = 0;
+	wall.ray = ray;
+	wall.ratio = ray->hyp * cos(ray->angle - cub->rot) / wall.dist_max;
+	wall.img_height = (int)(HEIGHT * (1 - wall.ratio));
+	wall.x = x;
+	while (wall.y <= (int)(HEIGHT / 2 * (wall.ratio / 2)))
 	{
-		mlx_put_pixel(cub->world.background_i, x, y, cub->map->c_h);
-		y++;
+		mlx_put_pixel(cub->world.background_i, x, wall.y, cub->map->c_h);
+		wall.y++;
 	}
-	while (y <= (int)(HEIGHT * (1 - ratio + (ratio / 2))))
+	if ((int)round(ray->x *1000) % 1000 == 0)
 	{
-		if ((int)round(ray->x *1000) % 1000 == 0)
-		{
-			if (ray->x > cub->p_x)
-				mlx_put_pixel(cub->world.background_i, x, y, H_BLUE);
-			else
-				mlx_put_pixel(cub->world.background_i, x, y, H_GREEN);
-		}
-		if ((int)round(ray->y *1000) % 1000 == 0)
-		{
-			if (ray->y > cub->p_y)
-				mlx_put_pixel(cub->world.background_i, x, y, H_RED);
-			else
-				mlx_put_pixel(cub->world.background_i, x, y, H_PINK);
-		}
-		y++;
+		if (ray->x > cub->p_x)
+			put_wall_in3d(&wall, cub, cub->world.ea_i, cub->world.tab_ea);
+		else
+			put_wall_in3d(&wall, cub, cub->world.we_i, cub->world.tab_we);
 	}
-	while (y < end_y)
+	if ((int)round(ray->y *1000) % 1000 == 0)
 	{
-		mlx_put_pixel(cub->world.background_i, x, y, cub->map->f_h);
-		y++;
+		if (ray->y > cub->p_y)
+			put_wall_in3d(&wall, cub, cub->world.so_i, cub->world.tab_so);
+		else
+			put_wall_in3d(&wall, cub, cub->world.no_i, cub->world.tab_no);
+	}
+	while (wall.y < HEIGHT)
+	{
+		mlx_put_pixel(cub->world.background_i, x, wall.y, cub->map->f_h);
+		wall.y++;
 	}
 }
 
@@ -97,6 +109,5 @@ int	lets_go_3d(t_cub *cub)
 	init_world(cub);
 	if (mlx_image_to_window(cub->mlx, cub->world.background_i, 0, 0) == -1)
 		exit (1);
-	// draw_walls(cub, cub->ray);
 	return (0);
 }

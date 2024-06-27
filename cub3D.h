@@ -86,6 +86,18 @@ typedef struct s_ray
 	struct s_ray	*next;
 }	t_ray;
 
+typedef struct s_wall
+{
+	t_ray *ray;
+	int img_height;
+	int x;
+	int y;
+	float	dist_max;
+	float	ratio;
+	float	ratio_height;
+	float	ratio_width;
+}	t_wall;
+
 typedef struct s_line
 {
 	int	start_x;
@@ -106,6 +118,10 @@ typedef struct s_world
 	mlx_image_t		*so_i;
 	mlx_image_t		*we_i;
 	mlx_image_t		*ea_i;
+	int				**tab_ea;
+	int				**tab_so;
+	int				**tab_no;
+	int				**tab_we;
 }	t_world;
 
 typedef struct s_mini_map
@@ -154,6 +170,7 @@ void	open_map(t_map *map, char **argv);
 int		parsing_map(t_map *map, t_cub *cub);
 void	check_cub(char *s);
 int		rgb_to_hex(char *rgb);
+int		**image_to_tab(mlx_image_t *image);
 
 // RAYCASTING
 void	raycasting(t_cub *cub);
