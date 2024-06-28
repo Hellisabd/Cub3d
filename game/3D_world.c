@@ -32,16 +32,21 @@ int	init_world(t_cub *cub)
 
 void put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, int **pixel_tab)
 {
-	int column;
-	int line;
+	int column_tab;
+	float line_tab;
 
-
-	wall->ratio_width = wall->ray->y - floor(wall->ray->y);
-	wall->ratio_height = image->height / wall->img_height;
-	line = 0;
-	column = (int)(wall->ratio_width * image->width);
-	while (line < (int)image->height)
-		mlx_put_pixel(cub->world.background_i, wall->x, wall->y++, pixel_tab[column][line++]);
+	if (pixel_tab == cub->world.tab_ea || pixel_tab == cub->world.tab_we)
+		wall->ratio_width = wall->ray->y - floor(wall->ray->y);
+	else
+		wall->ratio_width = wall->ray->x - floor(wall->ray->x);
+	wall->ratio_height = (float)image->height / (float)wall->img_height;
+	line_tab = 0;
+	column_tab = (int)(wall->ratio_width * image->width);
+	while ((int)floor(line_tab) < (int)image->height)
+	{
+		mlx_put_pixel(cub->world.background_i, wall->x, wall->y++, pixel_tab[column_tab][(int)floor(line_tab)]);
+		line_tab += wall->ratio_height;
+	}
 }
 
 void	disp_world(t_cub *cub, t_ray *ray, int x)
@@ -59,14 +64,14 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		mlx_put_pixel(cub->world.background_i, x, wall.y, cub->map->c_h);
 		wall.y++;
 	}
-	if ((int)round(ray->x *1000) % 1000 == 0)
+	if ((int)round(ray->x *1000) % 1000 == 0 && (int)round(ray->y *1000) % 1000 != 0)
 	{
 		if (ray->x > cub->p_x)
 			put_wall_in3d(&wall, cub, cub->world.ea_i, cub->world.tab_ea);
 		else
 			put_wall_in3d(&wall, cub, cub->world.we_i, cub->world.tab_we);
 	}
-	if ((int)round(ray->y *1000) % 1000 == 0)
+	else if ((int)round(ray->y *1000) % 1000 == 0 && (int)round(ray->x *1000) % 1000 != 0)
 	{
 		if (ray->y > cub->p_y)
 			put_wall_in3d(&wall, cub, cub->world.so_i, cub->world.tab_so);
@@ -83,17 +88,14 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 int	draw_walls(t_cub *cub, t_ray *ray)
 {
 	int	ratio;
-	int	rayon;
 	int	i;
 
 	i = 0;
-	rayon = 0;
 	ratio = WIDTH / cub->n;
 	while (i < WIDTH && ray)
 	{
 		if (i % ratio == 0)
 		{
-			rayon++;
 			ray = ray->next;
 			if (!ray)
 				break ;
