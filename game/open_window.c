@@ -70,29 +70,29 @@ void	move_player(t_cub *cub, float dir)
 void	move_left(t_cub *cub)
 {
 		move_player(cub, cub->player.dir_left);
-		raycasting(cub);
-		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+		// raycasting(cub);
+		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
 
 void	move_right(t_cub *cub)
 {
 		move_player(cub, cub->player.dir_right);
-		raycasting(cub);
-		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+		// raycasting(cub);
+		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
 
 void	move_down(t_cub *cub)
 {
 		move_player(cub, cub->player.dir_down);
-		raycasting(cub);
-		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+		// raycasting(cub);
+		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
 
 void	move_up(t_cub *cub)
 {
 		move_player(cub, cub->player.dir_up);
-		raycasting(cub);
-		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+		// raycasting(cub);
+		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
 
 void	rotations(double xpos, double ypos, void *param)
@@ -108,14 +108,14 @@ void	rotations(double xpos, double ypos, void *param)
 	if (x > WIDTH / 2)
 	{
 		cub->rot += PI / 40;
-		raycasting(cub);
-		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+		// raycasting(cub);
+		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
 	if (x < WIDTH / 2)
 	{
 		cub->rot -= PI / 40;
-		raycasting(cub);
-		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+		// raycasting(cub);
+		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 }
@@ -136,14 +136,14 @@ void	move(mlx_key_data_t key, void *param)
 	if (key.key == MLX_KEY_RIGHT && (key.action == 1 || key.action == 2))
 	{
 		cub->rot += PI / 10;
-		raycasting(cub);
-		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+		// raycasting(cub);
+		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
 	if (key.key == MLX_KEY_LEFT && (key.action == 1 || key.action == 2))
 	{
 		cub->rot -= PI / 10;
-		raycasting(cub);
-		draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+		// raycasting(cub);
+		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
 }
 
@@ -159,6 +159,8 @@ void	refresh(t_cub *cub)
 	cub->player.dir_right = cub->rot + PI / 2;
 	if (cub->player.dir_right >= 2 * PI)
 		cub->player.dir_right -= 2 * PI;
+	raycasting(cub);
+	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
 
 void	ft_hook(void *param)
