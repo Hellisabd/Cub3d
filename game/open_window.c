@@ -107,13 +107,13 @@ void	rotations(double xpos, double ypos, void *param)
 	mlx_get_mouse_pos(cub->mlx, &x, &y);
 	if (x > WIDTH / 2)
 	{
-		cub->rot += PI / 40;
+		cub->rot += PI / 20;
 		// raycasting(cub);
 		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
 	if (x < WIDTH / 2)
 	{
-		cub->rot -= PI / 40;
+		cub->rot -= PI / 20;
 		// raycasting(cub);
 		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	}
