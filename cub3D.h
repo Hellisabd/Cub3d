@@ -114,6 +114,7 @@ typedef struct s_world
 	mlx_texture_t	*we_t;
 	mlx_texture_t	*ea_t;
 	mlx_image_t		*background_i;
+	mlx_image_t		*fog;
 	mlx_image_t		*no_i;
 	mlx_image_t		*so_i;
 	mlx_image_t		*we_i;
