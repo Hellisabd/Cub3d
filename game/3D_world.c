@@ -42,9 +42,11 @@ void put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, int **pixel_tab
 	wall->ratio_height = (float)image->height / (float)wall->img_height;
 	line_tab = 0;
 	column_tab = (int)(wall->ratio_width * image->width);
-	while ((int)floor(line_tab) < (int)image->height)
+		// debug_nbr(RED, "wall->x :", wall->x);
+		// debug_nbr(RED, "wall->y :", wall->y);
+	while ((int)floor(line_tab) < (int)image->height && wall->y < HEIGHT)
 	{
-		mlx_put_pixel(cub->world.background_i, wall->x, wall->y++, pixel_tab[column_tab][(int)floor(line_tab)]);
+		mlx_put_pixel(cub->world.background_i, wall->x, wall->y++, (int)pixel_tab[column_tab][(int)floor(line_tab)]);
 		line_tab += wall->ratio_height;
 	}
 }
@@ -64,20 +66,26 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		mlx_put_pixel(cub->world.background_i, x, wall.y, cub->map->c_h);
 		wall.y++;
 	}
-	if ((int)round(ray->x *1000) % 1000 == 0 && (int)round(ray->y *1000) % 1000 != 0)
+	if ((int)round(ray->x *100000) % 100000 == 0 && (int)round(ray->y *100000) % 100000 == 0)
+	{
+		ray->x += 0.01;
+		ray->y += 0.01;
+	}
+	if ((int)round(ray->x *100000) % 100000 == 0 && (int)round(ray->y *100000) % 100000 != 0)
 	{
 		if (ray->x > cub->p_x)
 			put_wall_in3d(&wall, cub, cub->world.ea_i, cub->world.tab_ea);
 		else
 			put_wall_in3d(&wall, cub, cub->world.we_i, cub->world.tab_we);
 	}
-	else if ((int)round(ray->y *1000) % 1000 == 0 && (int)round(ray->x *1000) % 1000 != 0)
+	else if ((int)round(ray->y *100000) % 100000 == 0 && (int)round(ray->x *100000) % 100000 != 0)
 	{
 		if (ray->y > cub->p_y)
 			put_wall_in3d(&wall, cub, cub->world.so_i, cub->world.tab_so);
 		else
 			put_wall_in3d(&wall, cub, cub->world.no_i, cub->world.tab_no);
 	}
+	
 	while (wall.y < HEIGHT)
 	{
 		mlx_put_pixel(cub->world.background_i, x, wall.y, cub->map->f_h);

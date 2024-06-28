@@ -109,24 +109,28 @@ void	raycasting(t_cub *cub)
 	int		i;
 	int		j;
 
-	// debug_float(RED, "avant p_x :", cub->p_x);
 	// debug_nbr(GREEN, "avant player pos_x :", cub->player.pos_x);
-	// debug_float(RED, "avant p_y :", cub->p_y);
 	// debug_nbr(GREEN, "avant player pos_y :", cub->player.pos_y);
-	cub->p_x = 0.5 + (float)cub->player.pos_x / (float)cub->mini_map.size_wall_x;
-	cub->p_y =  0.5 +(float)cub->player.pos_y / (float)cub->mini_map.size_wall_y;
+	cub->p_x = 3.217647;//0.5 + (float)cub->player.pos_x / (float)cub->mini_map.size_wall_x;
+	cub->p_y = 3.895349;//0.5 +(float)cub->player.pos_y / (float)cub->mini_map.size_wall_y;
+	// debug_float(RED, "p_x :", cub->p_x);
+	// debug_float(RED, "p_y :", cub->p_y);
 	if (cub->rot >= 2 * PI)
 		cub->rot -= 2 * PI;
 	if (cub->rot <= -2 * PI)
 		cub ->rot += 2 * PI;
 	cub->fov = PI * 66 / 180;
-	cub->angle = -cub->fov / 2;
-	cub->angle += cub->rot;
-	cub->n = 1000.00001;
+	cub->angle = -4.136432;//-cub->fov / 2;
+	// cub->angle += cub->rot;
+	cub->n = 0.00001;
+		// debug_str(PURPLE, NULL, "ONE CAST \n \n");
 	while (cub->angle <= ((cub->fov / 2) + cub->rot))
 	{
 		i = floor(cub->p_y);
 		j = floor(cub->p_x);
+		// debug_nbr(GREEN, "i :", );
+		debug_nbr(GREEN, "i :", i);
+		debug_nbr(GREEN, "j :", j);
 		if ((cub->angle >= 0 && cub->angle <= PI) || (cub->angle >= -PI && cub->angle <= -2 * PI))
 			cub->dist_y = fabs(ceil(cub->p_y)) - cub->p_y;
 		else
@@ -141,7 +145,9 @@ void	raycasting(t_cub *cub)
 		{
 			if (cub->dist_x <= 0 && cub->dist_y <= 0) //3eme quadrant
 			{
-				// debug_str(RED, NULL, "3eme quadrant");
+				debug_str(RED, NULL, "3eme quadrant");
+				debug_float(BLUE, "dist_x :", cub->dist_x);
+				debug_float(BLUE, "dist_y :", cub->dist_y);
 				if (fabs(cub->next_x) <= fabs(cub->next_y))
 				{
 					j--;
@@ -159,7 +165,9 @@ void	raycasting(t_cub *cub)
 			}
 			else if (cub->dist_x <= 0 && cub->dist_y >= 0) //2eme quadrant
 			{
-				// debug_str(RED, NULL, "2eme quadrant");
+				debug_str(RED, NULL, "2eme quadrant");
+				debug_float(BLUE, "dist_x :", cub->dist_x);
+				debug_float(BLUE, "dist_y :", cub->dist_y);
 				if (fabs(cub->next_x) <= fabs(cub->next_y))
 				{
 					j--;
@@ -177,7 +185,9 @@ void	raycasting(t_cub *cub)
 			}
 			else if (cub->dist_x >= 0 && cub->dist_y >= 0) //1eme quadrant
 			{
-				// debug_str(RED, NULL, "1er quadrant");
+				debug_str(RED, NULL, "1er quadrant");
+				debug_float(BLUE, "dist_x :", cub->dist_x);
+				debug_float(BLUE, "dist_y :", cub->dist_y);
 				if (fabs(cub->next_x) <= fabs(cub->next_y))
 				{
 					j++;
@@ -195,7 +205,9 @@ void	raycasting(t_cub *cub)
 			}
 			else if (cub->dist_x >= 0 && cub->dist_y <= 0) //4eme quadrant 
 			{
-				// debug_str(RED, NULL, "4eme quadrant");
+				debug_str(RED, NULL, "4eme quadrant");
+				debug_float(BLUE, "dist_x :", cub->dist_x);
+				debug_float(BLUE, "dist_y :", cub->dist_y);
 				if (fabs(cub->next_x) <= fabs(cub->next_y))
 				{
 					j++;
@@ -223,6 +235,6 @@ void	raycasting(t_cub *cub)
 	// debug_nbr(RED, "apres pos_x", cub->player.pos_x);
 	// debug_float(RED, "apres p_y ", cub->p_y);
 	// debug_nbr(RED, "apres pos_y", cub->player.pos_y);
-	// printlist((cub->ray), GREEN);
-	// printf("\n");
+	printlist((cub->ray), GREEN);
+	printf("\n");
 }
