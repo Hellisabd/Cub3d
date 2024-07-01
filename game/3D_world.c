@@ -102,9 +102,9 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 	}
 	int opacity = 0;
 	wall.y = 0;
-	while (wall.y <= (int) wall.img_height + (HEIGHT / 2 * (wall.ratio / 2)))
+	while (wall.y <= (HEIGHT - wall.img_height) / 2 + wall.img_height)
 	{
-		while (wall.y <= (int)(HEIGHT / 2 * (wall.ratio / 2)))
+		while (wall.y <= (HEIGHT - wall.img_height) / 2)
 		{
 			mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
 			wall.y++;
