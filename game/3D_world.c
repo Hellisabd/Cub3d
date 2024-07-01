@@ -29,18 +29,26 @@ void put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, int **pixel_tab
 {
 	int column_tab;
 	float line_tab;
+	int start;
 
 	if (pixel_tab == cub->world.tab_ea || pixel_tab == cub->world.tab_we)
 		wall->ratio_width = wall->ray->y - floor(wall->ray->y);
 	else
 		wall->ratio_width = wall->ray->x - floor(wall->ray->x);
 	wall->ratio_height = (float)image->height / (float)wall->img_height;
-	line_tab = 0;
+	start = (wall->img_height - HEIGHT) / 2;
+	if (start < 0)
+		start = 0;
+	line_tab = start * wall->ratio_height;
 	column_tab = (int)(wall->ratio_width * image->width);
 		// debug_nbr(RED, "wall->x :", wall->x);
 		// debug_nbr(RED, "wall->y :", wall->y);
 	while ((int)floor(line_tab) < (int)image->height && wall->y < HEIGHT)
 	{
+		// debug_nbr(BLUE, "x :", wall->x);
+		// debug_nbr(BLUE, "y :", wall->y);
+		// debug_nbr(BLUE, "column :", column_tab);
+		// debug_nbr(BLUE, "line :", line_tab);
 		mlx_put_pixel(cub->world.background_i, wall->x, wall->y, (int)pixel_tab[column_tab][(int)floor(line_tab)]);
 		wall->y++;
 		line_tab += wall->ratio_height;
@@ -51,13 +59,18 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 {
 	t_wall	wall;
 
-	wall.dist_max = 7;
+	// wall.dist_max = 7;
 	wall.y = 0;
 	wall.ray = ray;
-	wall.ratio = ray->hyp * cos(ray->angle - cub->rot) / wall.dist_max;
-	wall.img_height = (int)(HEIGHT * (1 - wall.ratio));
+	wall.ratio = ray->hyp * cos(ray->angle - cub->rot);
+	// if (wall.ratio < 1.1)
+		wall.img_height = (int)(HEIGHT / wall.ratio) ;
+	// else 
+	// 	wall.img_height = (int)(HEIGHT * (1 - (wall.ratio / 10)));
+	debug_nbr(RED, "wall heigth :", wall.img_height);
+	debug_float(BLUE, "wall ratio :", wall.ratio);
 	wall.x = x;
-	while (wall.y <= (int)(HEIGHT / 2 * (wall.ratio / 2)))
+	while (wall.y <= (HEIGHT - wall.img_height) / 2)
 	{
 		mlx_put_pixel(cub->world.background_i, x, wall.y, cub->map->c_h);
 		wall.y++;
@@ -82,18 +95,48 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		else
 			put_wall_in3d(&wall, cub, cub->world.no_i, cub->world.tab_no);
 	}
-	else
-		debug_str(RED, "PROUT\n", NULL);
 	while (wall.y < HEIGHT)
 	{
 		mlx_put_pixel(cub->world.background_i, x, wall.y, cub->map->f_h);
 		wall.y++;
 	}
+	// int opacity = 0;
 	// wall.y = 0;
+	// while (wall.y <= (int) wall.img_height + (HEIGHT / 2 * (wall.ratio / 2)))
+	// {
+	// 	while (wall.y <= (int)(HEIGHT / 2 * (wall.ratio / 2)))
+	// 	{
+	// 		mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
+	// 		wall.y++;
+	// 		opacity++;
+	// 		if (opacity > 255)
+	// 		opacity = 255;
+	// 	}
+	// 	// if (ray->hyp >= 7)
+	// 	// 	opacity = 255;
+	// 	// if (ray->hyp <= 3)
+	// 	// 	opacity = 0;
+	// 	opacity -= round(255 / ray->hyp);
+	// 	if (opacity < 0)
+	// 		opacity = 0;
+	// 	// if (opacity > 255)
+	// 	// 	opacity = 255;
+	// 	// if (opacity < 0)
+	// 	// 	opacity = 0;
+	// 	mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
+	// 	opacity = 255;
+	// 	wall.y++;
+		
+	// }
+	// opacity = 255;
 	// while (wall.y < HEIGHT)
 	// {
-	// 	mlx_put_pixel(cub->world.fog, x, wall.y, 0x0000000DD);
+	// 	mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
 	// 	wall.y++;
+	// 	if (wall.y >= HEIGHT - 255)
+	// 		opacity--;
+	// 	if (opacity < 0)
+	// 		opacity = 0;
 	// }
 }
 
@@ -124,8 +167,8 @@ int	lets_go_3d(t_cub *cub)
 	cub->world.background_i = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.background_i, 0, 0) == -1)
 		exit (1);
-	// cub->world.fog = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
-	// if (mlx_image_to_window(cub->mlx, cub->world.fog, 0, 0) == -1)
-	// 	exit (1);
+	cub->world.fog = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	if (mlx_image_to_window(cub->mlx, cub->world.fog, 0, 0) == -1)
+		exit (1);
 	return (0);
 }
