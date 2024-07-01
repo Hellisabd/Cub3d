@@ -2,10 +2,27 @@
 
 void	move_player(t_cub *cub, float dir)
 {
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT))
+	static int	stamina = 100;
+	
+	cub->speed = cub->mini_map.size_wall_x / 8;
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT) && stamina > 0)
+	{
 		cub->speed = cub->mini_map.size_wall_x / 4;
-	else
+		if (cub->speed == 0)
+			cub->speed = 2;
+		debug_nbr(GREEN, NULL, stamina);
+		stamina--;
+	}
+	if (!mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT) && stamina < 100)
+	{
 		cub->speed = cub->mini_map.size_wall_x / 8;
+		if (cub->speed == 0)
+			cub->speed = 1;
+		if (stamina > 100)
+			stamina = 100;
+		debug_nbr(BLUE, NULL, stamina);
+		stamina++;
+	}
 	int	deplacement_x;
 	int	deplacement_y;
 
