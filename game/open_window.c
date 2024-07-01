@@ -2,12 +2,15 @@
 
 void	move_player(t_cub *cub, float dir)
 {
-	int dist = cub->mini_map.size_wall_x / 4;
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT))
+		cub->speed = cub->mini_map.size_wall_x / 4;
+	else
+		cub->speed = cub->mini_map.size_wall_x / 8;
 	int	deplacement_x;
 	int	deplacement_y;
 
-	deplacement_x = (int)(round(cos(dir) * dist));
-	deplacement_y = (int)(round(sin(dir) * dist));
+	deplacement_x = (int)(round(cos(dir) * cub->speed));
+	deplacement_y = (int)(round(sin(dir) * cub->speed));
 	
 	// debug_nbr(RED, "next_pos_x :", (int)round((float)(cub->player.pos_x + deplacement_x) / (float)cub->mini_map.size_wall_x));
 	if (cub->map->map[(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 2) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 2) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
@@ -146,6 +149,7 @@ void	open_window(t_cub *cub)
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);	
 	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
+	// mlx_key_hook(cub->mlx, key_modifiers, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);
 }

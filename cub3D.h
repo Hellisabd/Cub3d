@@ -158,6 +158,7 @@ typedef struct s_cub
 	float			x;
 	float			y;
 	float			rot;
+	int				speed;
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
 	t_world			world;
