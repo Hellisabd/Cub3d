@@ -52,7 +52,7 @@ bool	next_step_is_not_wall(int x, int y, t_cub *cub, int dir)
 
 void	move_player(t_cub *cub, float dir)
 {
-	int dist = 10;
+	int dist = cub->mini_map.size_wall_x / 4;
 	int	deplacement_x;
 	int	deplacement_y;
 
