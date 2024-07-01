@@ -93,7 +93,6 @@ typedef struct s_wall
 	int x;
 	int y;
 	float	dist_max;
-	float	ratio;
 	float	ratio_height;
 	float	ratio_width;
 }	t_wall;
