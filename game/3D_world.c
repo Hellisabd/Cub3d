@@ -100,44 +100,44 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		mlx_put_pixel(cub->world.background_i, x, wall.y, cub->map->f_h);
 		wall.y++;
 	}
-	// int opacity = 0;
-	// wall.y = 0;
-	// while (wall.y <= (int) wall.img_height + (HEIGHT / 2 * (wall.ratio / 2)))
-	// {
-	// 	while (wall.y <= (int)(HEIGHT / 2 * (wall.ratio / 2)))
-	// 	{
-	// 		mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
-	// 		wall.y++;
-	// 		opacity++;
-	// 		if (opacity > 255)
-	// 		opacity = 255;
-	// 	}
-	// 	// if (ray->hyp >= 7)
-	// 	// 	opacity = 255;
-	// 	// if (ray->hyp <= 3)
-	// 	// 	opacity = 0;
-	// 	opacity -= round(255 / ray->hyp);
-	// 	if (opacity < 0)
-	// 		opacity = 0;
-	// 	// if (opacity > 255)
-	// 	// 	opacity = 255;
-	// 	// if (opacity < 0)
-	// 	// 	opacity = 0;
-	// 	mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
-	// 	opacity = 255;
-	// 	wall.y++;
+	int opacity = 0;
+	wall.y = 0;
+	while (wall.y <= (int) wall.img_height + (HEIGHT / 2 * (wall.ratio / 2)))
+	{
+		while (wall.y <= (int)(HEIGHT / 2 * (wall.ratio / 2)))
+		{
+			mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
+			wall.y++;
+			opacity++;
+			if (opacity > 255)
+			opacity = 255;
+		}
+		// if (ray->hyp >= 7)
+		// 	opacity = 255;
+		// if (ray->hyp <= 3)
+		// 	opacity = 0;
+		opacity -= round(255 / ray->hyp);
+		if (opacity < 0)
+			opacity = 0;
+		// if (opacity > 255)
+		// 	opacity = 255;
+		// if (opacity < 0)
+		// 	opacity = 0;
+		mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
+		opacity = 255;
+		wall.y++;
 		
-	// }
-	// opacity = 255;
-	// while (wall.y < HEIGHT)
-	// {
-	// 	mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
-	// 	wall.y++;
-	// 	if (wall.y >= HEIGHT - 255)
-	// 		opacity--;
-	// 	if (opacity < 0)
-	// 		opacity = 0;
-	// }
+	}
+	opacity = 255;
+	while (wall.y < HEIGHT)
+	{
+		mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
+		wall.y++;
+		if (wall.y >= HEIGHT - 255)
+			opacity--;
+		if (opacity < 0)
+			opacity = 0;
+	}
 }
 
 int	draw_walls(t_cub *cub, t_ray *ray)
