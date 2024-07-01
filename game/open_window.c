@@ -132,26 +132,18 @@ void	move(mlx_key_data_t key, void *param)
 	t_cub	*cub;
 
 	cub = param;
-	if (key.key == MLX_KEY_W && (key.action == 1 || key.action == 2))
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_W))
 		move_up(cub);
-	if (key.key == MLX_KEY_S && (key.action == 1 || key.action == 2))
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_S))
 		move_down(cub);
-	if (key.key == MLX_KEY_A && (key.action == 1 || key.action == 2))
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_A))
 		move_left(cub);
-	if (key.key == MLX_KEY_D && (key.action == 1 || key.action == 2))
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_D))
 		move_right(cub);
-	if (key.key == MLX_KEY_RIGHT && (key.action == 1 || key.action == 2))
-	{
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_RIGHT))
 		cub->rot += PI / 10;
-		// raycasting(cub);
-		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
-	}
-	if (key.key == MLX_KEY_LEFT && (key.action == 1 || key.action == 2))
-	{
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT))
 		cub->rot -= PI / 10;
-		// raycasting(cub);
-		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
-	}
 }
 
 void	refresh(t_cub *cub)
@@ -175,8 +167,6 @@ void	ft_hook(void *param)
 	t_cub	*cub;
 
 	cub = param;
-	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
-	mlx_key_hook(cub->mlx, move, (void *)cub);
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cub->mlx);
 	refresh(cub);
@@ -222,7 +212,9 @@ void	open_window(t_cub *cub)
 	map_to_window(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
-	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);
+	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);	
+	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
+	mlx_key_hook(cub->mlx, move, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);
 }
