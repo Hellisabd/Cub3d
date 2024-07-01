@@ -1,55 +1,5 @@
 #include "../cub3D.h"
 
-bool	next_step_is_not_wall(int x, int y, t_cub *cub, int dir)
-{
-	int i;
-	int j;
-
-	if (dir == RIGHT)
-	{
-		i = floor(y / cub->mini_map.size_wall_y);
-		j = 2 + floor(x / cub->mini_map.size_wall_x);
-		if (j < 2 + floor((x + 10) / cub->mini_map.size_wall_x))
-		{
-			if (cub->map->map[i][j] == '1')
-				return (false);
-			return (true);
-		}
-	}
-	else if (dir == LEFT)
-	{
-		i = floor(y / cub->mini_map.size_wall_y);
-		j = floor(x / cub->mini_map.size_wall_x);
-		// debug_nbr(RED, "pos_x on map", j);
-		// debug_nbr(RED, "next_pos", floor((x - 10) / cub->mini_map.size_wall_x));
-		// debug_char(BLUE, "pos player on map", cub->map->map[i][j]);
-		if (cub->map->map[i][(int)floor((x - 10) / cub->mini_map.size_wall_x)] == '1')
-			return (false);
-	}
-	else if (dir == UP)
-	{
-		i = floor(y / cub->mini_map.size_wall_y);
-		j = floor(x / cub->mini_map.size_wall_x);
-		// debug_nbr(RED, "pos_x on map", j);
-		// debug_nbr(RED, "next_pos", floor((x - 10) / cub->mini_map.size_wall_x));
-		// debug_char(BLUE, "pos player on map", cub->map->map[i][j]);
-		if (cub->map->map[(int)floor((y - 10) / cub->mini_map.size_wall_y)][j] == '1')
-			return (false);
-	}
-	else if (dir == DOWN)
-	{
-		i = 2 + floor(y / cub->mini_map.size_wall_y);
-		j = floor(x / cub->mini_map.size_wall_x);
-		if (i < 2 + floor((y + 10) / cub->mini_map.size_wall_y))
-		{
-			if (cub->map->map[i][j] == '1')
-				return (false);
-			return (true);
-		}
-	}
-	return (true);
-}
-
 void	move_player(t_cub *cub, float dir)
 {
 	int dist = cub->mini_map.size_wall_x / 4;
@@ -77,29 +27,21 @@ void	move_player(t_cub *cub, float dir)
 void	move_left(t_cub *cub)
 {
 		move_player(cub, cub->player.dir_left);
-		// raycasting(cub);
-		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
 
 void	move_right(t_cub *cub)
 {
 		move_player(cub, cub->player.dir_right);
-		// raycasting(cub);
-		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
 
 void	move_down(t_cub *cub)
 {
 		move_player(cub, cub->player.dir_down);
-		// raycasting(cub);
-		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
 
 void	move_up(t_cub *cub)
 {
 		move_player(cub, cub->player.dir_up);
-		// raycasting(cub);
-		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
 
 void	rotations(double xpos, double ypos, void *param)
@@ -113,25 +55,14 @@ void	rotations(double xpos, double ypos, void *param)
 	y = (int)ypos;
 	mlx_get_mouse_pos(cub->mlx, &x, &y);
 	if (x > WIDTH / 2)
-	{
 		cub->rot += PI / 20;
-		// raycasting(cub);
-		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
-	}
 	if (x < WIDTH / 2)
-	{
 		cub->rot -= PI / 20;
-		// raycasting(cub);
-		// draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
-	}
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
-void	move(mlx_key_data_t key, void *param)
+void	move(t_cub *cub)
 {
-	t_cub	*cub;
-
-	cub = param;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_W))
 		move_up(cub);
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_S))
@@ -169,6 +100,7 @@ void	ft_hook(void *param)
 	cub = param;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cub->mlx);
+	move(cub);
 	refresh(cub);
 }
 
@@ -214,7 +146,6 @@ void	open_window(t_cub *cub)
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);	
 	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
-	mlx_key_hook(cub->mlx, move, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);
 }
