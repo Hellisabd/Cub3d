@@ -40,7 +40,9 @@ void put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, int **pixel_tab
 	if (start < 0)
 		start = 0;
 	line_tab = start * wall->ratio_height;
-	column_tab = (int)(wall->ratio_width * image->width);
+	column_tab = (int)(wall->ratio_width * image->width) - 1;
+	if (column_tab < 0)
+		column_tab = 0;
 		// debug_nbr(RED, "wall->x :", wall->x);
 		// debug_nbr(RED, "wall->y :", wall->y);
 	while ((int)floor(line_tab) < (int)image->height && wall->y < HEIGHT)
@@ -100,44 +102,44 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		mlx_put_pixel(cub->world.background_i, x, wall.y, cub->map->f_h);
 		wall.y++;
 	}
-	int opacity = 0;
-	wall.y = 0;
-	while (wall.y <= (HEIGHT - wall.img_height) / 2 + wall.img_height)
-	{
-		while (wall.y <= (HEIGHT - wall.img_height) / 2)
-		{
-			mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
-			wall.y++;
-			opacity++;
-			if (opacity > 255)
-			opacity = 255;
-		}
-		// if (ray->hyp >= 7)
-		// 	opacity = 255;
-		// if (ray->hyp <= 3)
-		// 	opacity = 0;
-		opacity -= round(255 / ray->hyp);
-		if (opacity < 0)
-			opacity = 0;
-		// if (opacity > 255)
-		// 	opacity = 255;
-		// if (opacity < 0)
-		// 	opacity = 0;
-		mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
-		opacity = 255;
-		wall.y++;
+	// int opacity = 5;
+	// wall.y = 0;
+	// while (wall.y <= (HEIGHT - wall.img_height) / 2 + wall.img_height)
+	// {
+	// 	while (wall.y <= (HEIGHT - wall.img_height) / 2)
+	// 	{
+	// 		mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
+	// 		wall.y++;
+	// 		opacity++;
+	// 		if (opacity > 255)
+	// 		opacity = 255;
+	// 	}
+	// 	// if (ray->hyp >= 7)
+	// 	// 	opacity = 255;
+	// 	// if (ray->hyp <= 3)
+	// 	// 	opacity = 0;
+	// 	opacity -= round(255 / ray->hyp);
+	// 	if (opacity < 5)
+	// 		opacity = 5;
+	// 	// if (opacity > 255)
+	// 	// 	opacity = 255;
+	// 	// if (opacity < 0)
+	// 	// 	opacity = 0;
+	// 	mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
+	// 	opacity = 255;
+	// 	wall.y++;
 		
-	}
-	opacity = 255;
-	while (wall.y < HEIGHT)
-	{
-		mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
-		wall.y++;
-		if (wall.y >= HEIGHT - 255)
-			opacity--;
-		if (opacity < 0)
-			opacity = 0;
-	}
+	// }
+	// opacity = 255;
+	// while (wall.y < HEIGHT)
+	// {
+	// 	mlx_put_pixel(cub->world.fog, x, wall.y, opacity);
+	// 	wall.y++;
+	// 	if (wall.y >= HEIGHT - 255)
+	// 		opacity--;
+	// 	if (opacity < 0)
+	// 		opacity = 0;
+	// }
 }
 
 int	draw_walls(t_cub *cub, t_ray *ray)

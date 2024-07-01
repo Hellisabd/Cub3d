@@ -48,6 +48,7 @@ int	**image_to_tab(mlx_image_t *image)
 			x = 0;
 			colonne++;
 		}
+		tab_colonnes[y][x] = (tab_color[0] << 24) | (tab_color[1] << 16) | (tab_color[2] << 8) | tab_color[3];
 		x++;
 		j++;
 	}
