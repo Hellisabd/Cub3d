@@ -67,8 +67,8 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		wall.img_height = (int)(HEIGHT / wall.ratio) ;
 	// else 
 	// 	wall.img_height = (int)(HEIGHT * (1 - (wall.ratio / 10)));
-	debug_nbr(RED, "wall heigth :", wall.img_height);
-	debug_float(BLUE, "wall ratio :", wall.ratio);
+	// debug_nbr(RED, "wall heigth :", wall.img_height);
+	// debug_float(BLUE, "wall ratio :", wall.ratio);
 	wall.x = x;
 	while (wall.y <= (HEIGHT - wall.img_height) / 2)
 	{
