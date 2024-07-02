@@ -5,12 +5,14 @@ void	move_player(t_cub *cub, float dir)
 	static int	stamina = 100;
 	
 	cub->speed = cub->mini_map.size_wall_x / 8;
+	cub->stamina = stamina;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT) && stamina > 0)
 	{
 		cub->speed = cub->mini_map.size_wall_x / 4;
 		if (cub->speed == 0)
 			cub->speed = 2;
-		debug_nbr(GREEN, NULL, stamina);
+		// debug_nbr(GREEN, NULL, stamina);
+		cub->stamina = stamina;
 		stamina--;
 	}
 	if (!mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT) && stamina < 100)
@@ -20,7 +22,8 @@ void	move_player(t_cub *cub, float dir)
 			cub->speed = 1;
 		if (stamina > 100)
 			stamina = 100;
-		debug_nbr(BLUE, NULL, stamina);
+		// debug_nbr(BLUE, NULL, stamina);
+		cub->stamina = stamina;
 		stamina++;
 	}
 	int	deplacement_x;
@@ -44,24 +47,57 @@ void	move_player(t_cub *cub, float dir)
 	cub->mini_map.player_i->instances->y += deplacement_y;
 }
 
+void	put_stamina(t_cub *cub)
+{
+	int	n;
+	int	x;
+	int	y;
+	
+	n = 100;
+	y = HEIGHT - 150;
+	x = WIDTH / 2 - 300;
+	while (n-- >= cub->stamina)
+	{
+		if (n == cub->stamina)
+		{
+			while (x++ < WIDTH / 2 + 300 - (6 * (100 - n)))
+			{
+				y = HEIGHT - 150;
+				while (y < HEIGHT - 100)
+					mlx_put_pixel(cub->world.hud, x, y++, H_YELLOW);
+			}
+			while (x++ < WIDTH / 2 + 300)
+			{
+				y = HEIGHT - 150;
+				while (y < HEIGHT - 100)
+					mlx_put_pixel(cub->world.hud, x, y++, 0);
+			}
+		}
+	}
+}
+
 void	move_left(t_cub *cub)
 {
-		move_player(cub, cub->player.dir_left);
+	move_player(cub, cub->player.dir_left);
+	put_stamina(cub);
 }
 
 void	move_right(t_cub *cub)
 {
-		move_player(cub, cub->player.dir_right);
+	move_player(cub, cub->player.dir_right);
+	put_stamina(cub);
 }
 
 void	move_down(t_cub *cub)
 {
-		move_player(cub, cub->player.dir_down);
+	move_player(cub, cub->player.dir_down);
+	put_stamina(cub);
 }
 
 void	move_up(t_cub *cub)
 {
-		move_player(cub, cub->player.dir_up);
+	move_player(cub, cub->player.dir_up);
+	put_stamina(cub);
 }
 
 void	rotations(double xpos, double ypos, void *param)

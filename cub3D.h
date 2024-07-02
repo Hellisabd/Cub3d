@@ -14,6 +14,7 @@
 # define H_RED 0xFF0000FF
 # define H_BLACK 0x000000FF
 # define H_PINK 0xFF33FFFF
+# define H_YELLOW 0xF0C127FF
 
 # define OPEN "Wrong input : map open.\n"
 # define PLAYER "Wrong input : too many players.\n"
@@ -114,6 +115,7 @@ typedef struct s_world
 	mlx_texture_t	*ea_t;
 	mlx_image_t		*background_i;
 	mlx_image_t		*fog;
+	mlx_image_t		*hud;
 	mlx_image_t		*no_i;
 	mlx_image_t		*so_i;
 	mlx_image_t		*we_i;
@@ -159,6 +161,7 @@ typedef struct s_cub
 	float			y;
 	float			rot;
 	int				speed;
+	int				stamina;
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
 	t_world			world;
