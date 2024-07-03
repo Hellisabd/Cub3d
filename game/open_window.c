@@ -202,7 +202,6 @@ void	open_window(t_cub *cub)
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);	
 	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
-	// mlx_key_hook(cub->mlx, key_modifiers, (void *)cub);
 	mlx_loop(cub->mlx);
 	mlx_terminate(cub->mlx);
 }
