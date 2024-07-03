@@ -287,7 +287,7 @@ void	blink_ea(t_cub *cub)
 void	blink(t_cub *cub)
 {
 	cub->anim.count++;
-	if (cub->anim.count % 10000 == 0)
+	if (cub->anim.count % 5000 == 0)
 	{
 		blink_no(cub);
 		blink_so(cub);
