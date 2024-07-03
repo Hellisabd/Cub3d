@@ -184,6 +184,45 @@ void	init_raycast(t_cub *cub)
 	cub->ray = NULL;
 }
 
+void	fog(t_cub *cub)
+{
+	int x = 0;
+	int y = 0;
+	int opacity = 255;
+	int calc_x;
+	int calc_y;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			if (x % 4 == 0 || y % 4 == 0)
+			{
+				if (x >= WIDTH / 2)
+				{
+					calc_x = x - WIDTH / 2;
+				}
+				else
+					calc_x = WIDTH / 2 - x;
+				if (y > HEIGHT / 2)
+					calc_y = y - HEIGHT / 2;
+				else 
+					calc_y = HEIGHT / 2 - y;
+				opacity = sqrt(calc_x * calc_x + calc_y * calc_y);
+				opacity /= 3;
+			}
+			if (opacity > 255)
+				opacity = 255;
+			if (opacity < 0)
+				opacity = 0;
+			// debug_nbr(GREEN, "opacity :", opacity);
+			mlx_put_pixel(cub->world.fog, x, y, opacity);
+			x++;
+		}
+		y++;
+	}
+}
+
 void	open_window(t_cub *cub)
 {
 	init_data_mini_map(&cub->mini_map, cub->map);
@@ -200,6 +239,7 @@ void	open_window(t_cub *cub)
 	map_to_window(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
+	fog(cub);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);	
 	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
 	mlx_loop(cub->mlx);

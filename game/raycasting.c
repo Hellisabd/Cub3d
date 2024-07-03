@@ -123,7 +123,7 @@ void	raycasting(t_cub *cub)
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
 	cub->angle += cub->rot;
-	cub->n = 1000.00001;
+	cub->n = 500.00001;
 	while (cub->angle <= ((cub->fov / 2) + cub->rot))
 	{
 		i = floor(cub->p_y);
