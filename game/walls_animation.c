@@ -87,7 +87,6 @@ void	blink_no(t_cub *cub)
 		b = true;
 	if (b == true)
 	{
-		debug_nbr(RED, NULL, i);
 		if (i == 0)
 		{
 			cub->world.no_i = cub->world.no[0];
