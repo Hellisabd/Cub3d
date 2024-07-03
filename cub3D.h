@@ -28,6 +28,7 @@
 # define BACKGROUND "assets/white_square.png"
 # define PLAYER_T "assets/blue_circle.png"
 # define CURSOR "assets/invisible_pixel.png"
+# define DOOR "assets/yellow_square.png"
 
 # include <unistd.h>
 # include <fcntl.h>
@@ -84,6 +85,7 @@ typedef struct s_ray
 	float			angle;
 	float			x;
 	float			y;
+	bool			door;
 	struct s_ray	*next;
 }	t_ray;
 
@@ -96,6 +98,7 @@ typedef struct s_wall
 	float	dist_max;
 	float	ratio_height;
 	float	ratio_width;
+	bool	side;
 }	t_wall;
 
 typedef struct s_line
@@ -113,6 +116,7 @@ typedef struct s_world
 	mlx_texture_t	*so_t;
 	mlx_texture_t	*we_t;
 	mlx_texture_t	*ea_t;
+	mlx_texture_t	**door_t;
 	mlx_image_t		*background_i;
 	mlx_image_t		*fog;
 	mlx_image_t		*hud;
@@ -120,18 +124,22 @@ typedef struct s_world
 	mlx_image_t		*so_i;
 	mlx_image_t		*we_i;
 	mlx_image_t		*ea_i;
+	mlx_image_t		**door_i;
 	int				**tab_ea;
 	int				**tab_so;
 	int				**tab_no;
 	int				**tab_we;
+	int				***tab_anim_door;
 }	t_world;
 
 typedef struct s_mini_map
 {
 	mlx_texture_t	*wall_t;
+	mlx_texture_t	*door_t;
 	mlx_texture_t	*player_t;
 	mlx_texture_t	*background_t;
 	mlx_image_t		*wall_i;
+	mlx_image_t		*door_i;
 	mlx_image_t		*background_i;
 	mlx_image_t		*player_i;
 	int				height;

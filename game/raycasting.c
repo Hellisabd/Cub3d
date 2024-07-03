@@ -108,6 +108,7 @@ void	raycasting(t_cub *cub)
 {
 	int		i;
 	int		j;
+	// static int count_middle;
 
 	// debug_float(RED, "avant p_x :", cub->p_x);
 	// debug_nbr(GREEN, "avant player pos_x :", cub->player.pos_x);
@@ -226,11 +227,11 @@ void	raycasting(t_cub *cub)
 		cub->angle += cub->fov / cub->n;
 	}
 	draw_walls(cub, cub->ray);
+	// printlist((cub->ray), GREEN);
 	// debug_float(YELLOW, "rot: ", cub->rot);
 	// debug_float(RED, "apres p_x", cub->p_x);
 	// debug_nbr(RED, "apres pos_x", cub->player.pos_x);
 	// debug_float(RED, "apres p_y ", cub->p_y);
 	// debug_nbr(RED, "apres pos_y", cub->player.pos_y);
-	// printlist((cub->ray), GREEN);
 	// printf("\n");
 }

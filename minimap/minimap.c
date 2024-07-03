@@ -48,6 +48,8 @@ int	put_wall(t_map *map, t_cub *g)
 		j = 0;
 		while (map->map[i][j] && map->map[i][j] != '\n')
 		{
+			if (map->map[i][j] == 'D')
+				mlx_image_to_window(g->mlx, g->mini_map.door_i, pos_x, pos_y);
 			if (map->map[i][j] == '1')
 				mlx_image_to_window(g->mlx, g->mini_map.wall_i, pos_x, pos_y);
 			if (map->map[i][j] == g->map->player_char)
