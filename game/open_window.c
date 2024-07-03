@@ -133,6 +133,132 @@ void	move(t_cub *cub)
 		cub->rot -= PI / 10;
 }
 
+int	respawn_doors(t_map *map, int actual_x, int actual_y)
+{
+	int pos_x = actual_x - 2;
+	int pos_y = actual_y - 2;
+	if (pos_y < 0)
+		pos_y = 0;
+	if (pos_x < 0)
+		pos_x = 0;
+	if (pos_x == 0)
+	{
+		while (map->map[pos_y][pos_x] && pos_x <= actual_x + 2)
+		{
+			if (map->map[pos_y][pos_x] == 'd')
+				return (map->map[pos_y][pos_x] = 'D', 1);
+			else
+				pos_x++;
+		}
+		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y + 2)
+		{
+			if (map->map[pos_y][pos_x] == 'd')
+				return (map->map[pos_y][pos_x] = 'D', 1);
+			else
+				pos_y++;
+		}
+		while (map->map[pos_y][pos_x] && pos_x <= actual_x - 2 && pos_x > 0)
+		{
+			if (map->map[pos_y][pos_x] == 'd')
+				return (map->map[pos_y][pos_x] = 'D', 1);
+			else
+				pos_x--;
+		}
+	}
+	else if (pos_y == 0)
+	{
+		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y + 2)
+		{
+			if (map->map[pos_y][pos_x] == 'd')
+				return (map->map[pos_y][pos_x] = 'D', 1);
+			else
+				pos_y++;
+		}
+		while (map->map[pos_y][pos_x] && pos_x <= actual_x + 2)
+		{
+			if (map->map[pos_y][pos_x] == 'd')
+				return (map->map[pos_y][pos_x] = 'D', 1);
+			else
+				pos_x++;
+		}
+		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y - 2 && pos_y > 0)
+		{
+			if (map->map[pos_y][pos_x] == 'd')
+				return (map->map[pos_y][pos_x] = 'D', 1);
+			else
+				pos_y--;
+		}
+	}
+	else
+	{
+		while (map->map[pos_y][pos_x] && pos_x <= actual_x + 2)
+		{
+			if (map->map[pos_y][pos_x] == 'd')
+				return (map->map[pos_y][pos_x] = 'D', 1);
+			else
+				pos_x++;
+		}
+		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y - 2 && pos_y > 0)
+		{
+			if (map->map[pos_y][pos_x] == 'd')
+				return (map->map[pos_y][pos_x] = 'D', 1);
+			else
+				pos_y--;
+		}
+		while (map->map[pos_y][pos_x] && pos_x <= actual_x - 2 && pos_x > 0)
+		{
+			if (map->map[pos_y][pos_x] == 'd')
+				return (map->map[pos_y][pos_x] = 'D', 1);
+			else
+				pos_x--;
+		}
+		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y - 2 && pos_y > 0)
+		{
+			if (map->map[pos_y][pos_x] == 'd')
+				return (map->map[pos_y][pos_x] = 'D', 1);
+			else
+				pos_y--;
+		}
+	}
+	return (0);
+}
+
+int open_door(t_cub *cub)
+{
+	int player_y;
+	int player_x;
+
+	player_y = cub->player.pos_y / cub->mini_map.size_wall_y;
+	player_x = cub->player.pos_x / cub->mini_map.size_wall_x;
+	if (cub->map->map[player_y][player_x + 1] == 'D')
+	{
+		cub->map->map[player_y][player_x] = cub->map->player_char;
+		cub->map->map[player_y][player_x + 1] = 'd';
+		return (1);
+	}
+	if (cub->map->map[player_y + 1][player_x] == 'D')
+	{
+		cub->map->map[player_y][player_x] = cub->map->player_char;
+		cub->map->map[player_y + 1][player_x] = 'd';
+		return (1);
+	}
+	if (cub->map->map[player_y - 1][player_x] == 'D')
+	{
+		cub->map->map[player_y][player_x] = cub->map->player_char;
+		cub->map->map[player_y - 1][player_x] = 'd';
+		return (1);
+	}
+	if (cub->map->map[player_y][player_x - 1] == 'D')
+	{
+		cub->map->map[player_y][player_x] = cub->map->player_char;
+		cub->map->map[player_y][player_x - 1] = 'd';
+		return (1);
+	}
+	if (respawn_doors(cub->map, player_x, player_y) == 1)
+		return (1);
+	return (0);
+}
+
 void	refresh(t_cub *cub)
 {
 	cub->player.dir_up = cub->rot;
@@ -146,6 +272,11 @@ void	refresh(t_cub *cub)
 	if (cub->player.dir_right >= 2 * PI)
 		cub->player.dir_right -= 2 * PI;
 	raycasting(cub);
+	if (open_door(cub) == 1)
+	{
+		mlx_delete_image(cub->mlx, cub->mini_map.background_i);
+		map_to_window(cub);
+	}
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
 

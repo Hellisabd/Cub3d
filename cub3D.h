@@ -50,8 +50,10 @@
 
 typedef struct s_player
 {
-	int		pos_x;
-	int		pos_y;
+	int			pos_x;
+	int			instance_x;
+	int			pos_y;
+	int			instance_y;
 	float		dir_right;
 	float		dir_up;
 	float		dir_left;
