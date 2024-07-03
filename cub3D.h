@@ -106,24 +106,40 @@ typedef struct s_line
 	int	end_y;
 }	t_line;
 
+typedef struct s_anim
+{
+	double	time;
+	int		count;
+}	t_anim;
+
+
 typedef struct s_world
 {
 	mlx_texture_t	*background_t;
-	mlx_texture_t	*no_t;
-	mlx_texture_t	*so_t;
-	mlx_texture_t	*we_t;
-	mlx_texture_t	*ea_t;
+	mlx_texture_t	*black_t;
+	mlx_texture_t	*no_t[4];
+	mlx_texture_t	*so_t[4];
+	mlx_texture_t	*we_t[4];
+	mlx_texture_t	*ea_t[4];
 	mlx_image_t		*background_i;
 	mlx_image_t		*fog;
 	mlx_image_t		*hud;
 	mlx_image_t		*no_i;
+	mlx_image_t		*no[4];
 	mlx_image_t		*so_i;
+	mlx_image_t		*so[4];
 	mlx_image_t		*we_i;
+	mlx_image_t		*we[4];
 	mlx_image_t		*ea_i;
+	mlx_image_t		*ea[4];
 	int				**tab_ea;
 	int				**tab_so;
 	int				**tab_no;
 	int				**tab_we;
+	int				**tab_tab_no[4];
+	int				**tab_tab_so[4];
+	int				**tab_tab_ea[4];
+	int				**tab_tab_we[4];
 }	t_world;
 
 typedef struct s_mini_map
@@ -166,6 +182,7 @@ typedef struct s_cub
 	t_mini_map		mini_map;
 	t_world			world;
 	t_player		player;
+	t_anim			anim;
 }	t_cub;
 
 // PARSING
@@ -194,6 +211,8 @@ int		init_mini_map(t_cub *cub, t_mini_map *mini_map);
 void	open_window(t_cub *cub);
 int		lets_go_3d(t_cub *cub);
 int		draw_walls(t_cub *cub, t_ray *ray);
+int		init_blink(t_cub *cub);
+void	blink(t_cub *cub);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);
