@@ -156,8 +156,13 @@ void	ft_hook(void *param)
 	cub = param;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(cub->mlx);
-	move(cub);
-	refresh(cub);
+	cub->anim.time += cub->mlx->delta_time;
+	if (cub->anim.time > 0.03)
+	{
+		move(cub);
+		refresh(cub);
+		cub->anim.time = 0;
+	}
 }
 
 void	ft_cursor(t_cub *cub)
@@ -193,6 +198,8 @@ void	open_window(t_cub *cub)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
 	mlx_set_window_pos(cub->mlx, 500, 250);
 	mlx_set_window_limit(cub->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
+	cub->anim.time = 0;
+	cub->anim.count = 0;
 	ft_cursor(cub);
 	init_raycast(cub);
 	lets_go_3d(cub);
