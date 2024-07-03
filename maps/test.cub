@@ -1,7 +1,7 @@
-NO assets/red_eye.png
-SO assets/blue_eye.png
-WE assets/green_red_eye.png
-EA assets/green_eye.png
+NO assets/walls/red_eye.png
+SO assets/walls/blue_eye.png
+WE assets/walls/green_red_eye.png
+EA assets/walls/green_eye.png
 
 F 51,153,51
 C 51,204,255
