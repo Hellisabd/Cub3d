@@ -88,6 +88,10 @@ typedef struct s_ray
 	float			x;
 	float			y;
 	bool			door;
+	bool			enemy;
+	float			x_e;
+	float			y_e;
+	float			hyp_e;
 	struct s_ray	*next;
 }	t_ray;
 
@@ -129,6 +133,7 @@ typedef struct s_enemy
 {
 	mlx_texture_t	*enemy_t[2];
 	mlx_image_t		*enemy_i[2];
+	int				**tab_enemy[2];
 }	t_enemy;
 
 typedef struct s_world
@@ -199,9 +204,13 @@ typedef struct s_cub
 	float			angle;
 	float			x;
 	float			y;
+	float			x_e;
+	float			y_e;
+	float			hyp_e;
 	float			rot;
 	int				speed;
 	int				stamina;
+	bool			ene;
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
 	t_world			world;
@@ -237,6 +246,9 @@ void	open_window(t_cub *cub);
 int		lets_go_3d(t_cub *cub);
 int		draw_walls(t_cub *cub, t_ray *ray);
 int		init_blink(t_cub *cub);
+int		init_enemy(t_cub *cub);
+void 	put_enemy(t_cub *cub, t_ray *ray, int x);
+void	blank_npc(t_cub *cub, int x);
 void	blink(t_cub *cub);
 
 // FREE AND DESTROY

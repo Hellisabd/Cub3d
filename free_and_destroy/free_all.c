@@ -33,6 +33,12 @@ void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub)
 	free(cub->world.tab_anim_door);
 	free(cub->world.door_t);
 	free(cub->world.door_i);
+	mlx_delete_texture(cub->enemy.enemy_t[0]);
+	mlx_delete_texture(cub->enemy.enemy_t[1]);
+	mlx_delete_image(mlx, cub->enemy.enemy_i[0]);
+	mlx_delete_image(mlx, cub->enemy.enemy_i[1]);
+	ft_free_tab_int(cub->enemy.tab_enemy[0]);
+	ft_free_tab_int(cub->enemy.tab_enemy[1]);
 	mlx_delete_image(mlx, mini->background_i);
 	mlx_delete_image(mlx, mini->wall_i);
 	mlx_delete_image(mlx, mini->player_i);
