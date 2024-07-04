@@ -5,25 +5,34 @@ void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 24)
 	{
-		mlx_delete_image(mlx, cub->world.no[i]);
-		mlx_delete_image(mlx, cub->world.so[i]);
-		mlx_delete_image(mlx, cub->world.we[i]);
-		mlx_delete_image(mlx, cub->world.ea[i]);
-		ft_free_tab_int(cub->world.tab_tab_no[i]);
-		ft_free_tab_int(cub->world.tab_tab_so[i]);
-		ft_free_tab_int(cub->world.tab_tab_ea[i]);
-		ft_free_tab_int(cub->world.tab_tab_we[i]);
-		if (i != 3)
+		if (i < 4)
 		{
-			mlx_delete_texture(cub->world.no_t[i]);
-			mlx_delete_texture(cub->world.so_t[i]);
-			mlx_delete_texture(cub->world.ea_t[i]);
-			mlx_delete_texture(cub->world.we_t[i]);
+			mlx_delete_image(mlx, cub->world.no[i]);
+			mlx_delete_image(mlx, cub->world.so[i]);
+			mlx_delete_image(mlx, cub->world.we[i]);
+			mlx_delete_image(mlx, cub->world.ea[i]);
+			ft_free_tab_int(cub->world.tab_tab_no[i]);
+			ft_free_tab_int(cub->world.tab_tab_so[i]);
+			ft_free_tab_int(cub->world.tab_tab_ea[i]);
+			ft_free_tab_int(cub->world.tab_tab_we[i]);
+			if (i != 3)
+			{
+				mlx_delete_texture(cub->world.no_t[i]);
+				mlx_delete_texture(cub->world.so_t[i]);
+				mlx_delete_texture(cub->world.ea_t[i]);
+				mlx_delete_texture(cub->world.we_t[i]);
+			}
 		}
+		mlx_delete_image(mlx, cub->world.door_i[i]);
+		mlx_delete_texture(cub->world.door_t[i]);
+		ft_free_tab_int(cub->world.tab_anim_door[i]);
 		i++;
 	}
+	free(cub->world.tab_anim_door);
+	free(cub->world.door_t);
+	free(cub->world.door_i);
 	mlx_delete_image(mlx, mini->background_i);
 	mlx_delete_image(mlx, mini->wall_i);
 	mlx_delete_image(mlx, mini->player_i);

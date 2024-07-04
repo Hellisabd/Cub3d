@@ -4,6 +4,7 @@ void	load_door(t_cub *cub)
 {
 	int i;
 	char *str;
+	char *nbr_str;
 
 	i = 1;
 	cub->world.door_t = malloc(sizeof(mlx_texture_t *) * 24);
@@ -11,8 +12,10 @@ void	load_door(t_cub *cub)
 	cub->world.tab_anim_door = malloc(sizeof(int **) * 24);
 	while (i < 25)
 	{
-		str = ft_strjoin_const("assets/door/evil_door_anim", ft_itoa(i));
+		nbr_str = ft_itoa(i);
+		str = ft_strjoin_const("assets/door/evil_door_anim", nbr_str);
 		str = ft_strjoin(str, ".png");
+		free(nbr_str);
 		cub->world.door_t[i - 1] = mlx_load_png(str);
 		cub->world.door_i[i - 1] = mlx_texture_to_image(cub->mlx, cub->world.door_t[i - 1]);
 		cub->world.tab_anim_door[i - 1] = image_to_tab(cub->world.door_i[i - 1]);
