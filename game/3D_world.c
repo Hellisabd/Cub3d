@@ -117,9 +117,12 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		wall.side = 1;
 		if (ray->x > cub->p_x)
 		{
-			// debug_char(BLUE, "char in :", cub->map->map[(int)floor(ray->y)][(int)(ray->x)]);
-			// debug_nbr(RED, "y:", (int)floor(ray->y));
-			// debug_nbr(RED, "x:", (int)(ray->x));
+			if ((int)(ray->x) > 24)
+			{
+				debug_nbr(RED, "y:", (int)floor(ray->y));
+				debug_nbr(RED, "x:", (int)(ray->x));
+				debug_char(BLUE, "char in :", cub->map->map[(int)floor(ray->y)][(int)(ray->x)]);
+			}
 			if (cub->map->map[(int)floor(ray->y)][(int)(ray->x)] == 'D')
 				put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
 			else

@@ -66,13 +66,6 @@ int	put_wall(t_map *map, t_cub *g)
 	if (round != 0)
 		mlx_image_to_window(g->mlx, g->mini_map.player_i, g->player.pos_x, g->player.pos_y);
 	round++;
-	i = 0;
-	j = 0;
-	while (map->map[i])
-	{
-		printf("%s", map->map[i]);
-		i++;
-	}
 	return (0);
 }
 
