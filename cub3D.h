@@ -129,10 +129,6 @@ typedef struct s_anim
 typedef struct s_world
 {
 	mlx_texture_t	*background_t;
-	mlx_texture_t	*no_t;
-	mlx_texture_t	*so_t;
-	mlx_texture_t	*we_t;
-	mlx_texture_t	*ea_t;
 	mlx_texture_t	**door_t;
 	mlx_texture_t	*black_t;
 	mlx_texture_t	*no_t[4];

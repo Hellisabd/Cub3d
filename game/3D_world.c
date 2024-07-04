@@ -24,8 +24,6 @@ void	load_door(t_cub *cub)
 int	init_world(t_cub *cub)
 {
 	load_door(cub);
-	cub->world.no_t = mlx_load_png(cub->map->no);
-	if (cub->world.no_t == NULL)
 	cub->world.no_t[0] = mlx_load_png(cub->map->no);
 	if (cub->world.no_t[0] == NULL)
 		debug_str(RED, NULL, "failed to load textures");
