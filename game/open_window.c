@@ -205,6 +205,9 @@ void	open_window(t_cub *cub)
 	cub->anim.i_we = 0;
 	cub->anim.i_ea = 0;
 	cub->anim.b_no = false;
+	cub->anim.b_so = false;
+	cub->anim.b_we = false;
+	cub->anim.b_ea = false;
 	ft_cursor(cub);
 	init_raycast(cub);
 	lets_go_3d(cub);

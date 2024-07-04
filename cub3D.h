@@ -115,6 +115,9 @@ typedef struct s_anim
 	int		i_we;
 	int		i_ea;
 	bool	b_no;
+	bool	b_so;
+	bool	b_we;
+	bool	b_ea;
 }	t_anim;
 
 

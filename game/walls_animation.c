@@ -79,7 +79,6 @@ int	init_blink(t_cub *cub)
 void	blink_no(t_cub *cub)
 {
 	int	r;
-	// static bool b = false;
 
 	r = rand();
 	if (r % 10 == 0 && cub->anim.b_no == false)
@@ -130,12 +129,11 @@ void	blink_no(t_cub *cub)
 void	blink_so(t_cub *cub)
 {
 	int	r;
-	static bool b = false;
 
 	r = rand();
-	if (r % 10 == 0 && b == false)
-		b = true;
-	if (b == true)
+	if (r % 10 == 0 && cub->anim.b_so == false)
+		cub->anim.b_so = true;
+	if (cub->anim.b_so == true)
 	{
 		if (cub->anim.i_so == 0)
 		{
@@ -172,7 +170,7 @@ void	blink_so(t_cub *cub)
 			cub->world.so_i = cub->world.so[0];
 			cub->world.tab_so = cub->world.tab_tab_so[0];
 			cub->anim.i_so = -1;
-			b = false;
+			cub->anim.b_so = false;
 		}
 		cub->anim.i_so++;
 	}
@@ -181,12 +179,11 @@ void	blink_so(t_cub *cub)
 void	blink_we(t_cub *cub)
 {
 	int	r;
-	static bool b = false;
 
 	r = rand();
-	if (r % 10 == 0 && b == false)
-		b = true;
-	if (b == true)
+	if (r % 10 == 0 && cub->anim.b_we == false)
+		cub->anim.b_we = true;
+	if (cub->anim.b_we == true)
 	{
 		if (cub->anim.i_we == 0)
 		{
@@ -223,7 +220,7 @@ void	blink_we(t_cub *cub)
 			cub->world.we_i = cub->world.we[0];
 			cub->world.tab_we = cub->world.tab_tab_we[0];
 			cub->anim.i_we = -1;
-			b = false;
+			cub->anim.b_we = false;
 		}
 		cub->anim.i_we++;
 	}
@@ -232,12 +229,11 @@ void	blink_we(t_cub *cub)
 void	blink_ea(t_cub *cub)
 {
 	int	r;
-	static bool b = false;
 
 	r = rand();
-	if (r % 10 == 0 && b == false)
-		b = true;
-	if (b == true)
+	if (r % 10 == 0 && cub->anim.b_ea == false)
+		cub->anim.b_ea = true;
+	if (cub->anim.b_ea == true)
 	{
 		if (cub->anim.i_ea == 0)
 		{
@@ -274,7 +270,7 @@ void	blink_ea(t_cub *cub)
 			cub->world.ea_i = cub->world.ea[0];
 			cub->world.tab_ea = cub->world.tab_tab_ea[0];
 			cub->anim.i_ea = -1;
-			b = false;
+			cub->anim.b_ea = false;
 		}
 		cub->anim.i_ea++;
 	}
