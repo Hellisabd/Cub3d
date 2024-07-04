@@ -145,6 +145,8 @@ int	respawn_doors(t_map *map, int actual_x, int actual_y)
 	{
 		while (map->map[pos_y][pos_x] && pos_x <= actual_x + 2)
 		{
+		debug_nbr(RED, "pos_x :", pos_x);
+		debug_nbr(RED, "pos_y :", pos_y);
 			if (map->map[pos_y][pos_x] == 'd')
 				return (map->map[pos_y][pos_x] = 'D', 1);
 			else
@@ -152,13 +154,21 @@ int	respawn_doors(t_map *map, int actual_x, int actual_y)
 		}
 		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y + 2)
 		{
+			debug_nbr(RED, "pos_x :", pos_x);
+			debug_nbr(RED, "pos_y :", pos_y);
 			if (map->map[pos_y][pos_x] == 'd')
 				return (map->map[pos_y][pos_x] = 'D', 1);
 			else
 				pos_y++;
 		}
+		if (!map->map[pos_y])
+			pos_y--;
+		debug_nbr(RED, "pos_x :", pos_x);
+		debug_nbr(RED, "pos_y :", pos_y);
 		while (map->map[pos_y][pos_x] && pos_x <= actual_x - 2 && pos_x > 0)
 		{
+			debug_nbr(RED, "pos_x :", pos_x);
+			debug_nbr(RED, "pos_y :", pos_y);
 			if (map->map[pos_y][pos_x] == 'd')
 				return (map->map[pos_y][pos_x] = 'D', 1);
 			else
@@ -169,6 +179,8 @@ int	respawn_doors(t_map *map, int actual_x, int actual_y)
 	{
 		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y + 2)
 		{
+			debug_nbr(RED, "pos_x :", pos_x);
+			debug_nbr(RED, "pos_y :", pos_y);
 			if (map->map[pos_y][pos_x] == 'd')
 				return (map->map[pos_y][pos_x] = 'D', 1);
 			else
@@ -176,6 +188,8 @@ int	respawn_doors(t_map *map, int actual_x, int actual_y)
 		}
 		while (map->map[pos_y][pos_x] && pos_x <= actual_x + 2)
 		{
+			debug_nbr(RED, "pos_x :", pos_x);
+			debug_nbr(RED, "pos_y :", pos_y);
 			if (map->map[pos_y][pos_x] == 'd')
 				return (map->map[pos_y][pos_x] = 'D', 1);
 			else
@@ -183,6 +197,8 @@ int	respawn_doors(t_map *map, int actual_x, int actual_y)
 		}
 		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y - 2 && pos_y > 0)
 		{
+			debug_nbr(RED, "pos_x :", pos_x);
+			debug_nbr(RED, "pos_y :", pos_y);
 			if (map->map[pos_y][pos_x] == 'd')
 				return (map->map[pos_y][pos_x] = 'D', 1);
 			else
@@ -193,6 +209,8 @@ int	respawn_doors(t_map *map, int actual_x, int actual_y)
 	{
 		while (map->map[pos_y][pos_x] && pos_x <= actual_x + 2)
 		{
+			debug_nbr(RED, "pos_x :", pos_x);
+			debug_nbr(RED, "pos_y :", pos_y);
 			if (map->map[pos_y][pos_x] == 'd')
 				return (map->map[pos_y][pos_x] = 'D', 1);
 			else
@@ -200,6 +218,8 @@ int	respawn_doors(t_map *map, int actual_x, int actual_y)
 		}
 		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y - 2 && pos_y > 0)
 		{
+			debug_nbr(RED, "pos_x :", pos_x);
+			debug_nbr(RED, "pos_y :", pos_y);
 			if (map->map[pos_y][pos_x] == 'd')
 				return (map->map[pos_y][pos_x] = 'D', 1);
 			else
@@ -207,6 +227,8 @@ int	respawn_doors(t_map *map, int actual_x, int actual_y)
 		}
 		while (map->map[pos_y][pos_x] && pos_x <= actual_x - 2 && pos_x > 0)
 		{
+			debug_nbr(RED, "pos_x :", pos_x);
+			debug_nbr(RED, "pos_y :", pos_y);
 			if (map->map[pos_y][pos_x] == 'd')
 				return (map->map[pos_y][pos_x] = 'D', 1);
 			else
@@ -214,6 +236,8 @@ int	respawn_doors(t_map *map, int actual_x, int actual_y)
 		}
 		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y - 2 && pos_y > 0)
 		{
+			debug_nbr(RED, "pos_x :", pos_x);
+			debug_nbr(RED, "pos_y :", pos_y);
 			if (map->map[pos_y][pos_x] == 'd')
 				return (map->map[pos_y][pos_x] = 'D', 1);
 			else
@@ -340,10 +364,10 @@ void	fog(t_cub *cub)
 				else 
 					calc_y = HEIGHT / 2 - y;
 				opacity = sqrt(calc_x * calc_x + calc_y * calc_y);
-				opacity /= 3;
+				opacity /= 4;
 			}
-			if (opacity > 255)
-				opacity = 255;
+			if (opacity > 240)
+				opacity = 240;
 			if (opacity < 0)
 				opacity = 0;
 			// debug_nbr(GREEN, "opacity :", opacity);
