@@ -78,7 +78,6 @@ int	init_blink(t_cub *cub)
 
 void	blink_no(t_cub *cub)
 {
-	static int	i = 0;
 	int	r;
 	static bool b = false;
 
@@ -87,50 +86,49 @@ void	blink_no(t_cub *cub)
 		b = true;
 	if (b == true)
 	{
-		if (i == 0)
+		if (cub->anim.i_no == 0)
 		{
 			cub->world.no_i = cub->world.no[0];
 			cub->world.tab_no = cub->world.tab_tab_no[0];
 		}
-		else if (i == 1)
+		else if (cub->anim.i_no == 1)
 		{
 			cub->world.no_i = cub->world.no[1];
 			cub->world.tab_no = cub->world.tab_tab_no[1];
 		}
-		else if (i == 2)
+		else if (cub->anim.i_no == 2)
 		{
 			cub->world.no_i = cub->world.no[2];
 			cub->world.tab_no = cub->world.tab_tab_no[2];
 		}
-		else if (i == 3)
+		else if (cub->anim.i_no == 3)
 		{
 			cub->world.no_i = cub->world.no[3];
 			cub->world.tab_no = cub->world.tab_tab_no[3];
 		}
-		else if (i == 4)
+		else if (cub->anim.i_no == 4)
 		{
 			cub->world.no_i = cub->world.no[2];
 			cub->world.tab_no = cub->world.tab_tab_no[2];
 		}
-		else if (i == 5)
+		else if (cub->anim.i_no == 5)
 		{
 			cub->world.no_i = cub->world.no[1];
 			cub->world.tab_no = cub->world.tab_tab_no[1];
 		}
-		else if (i == 6)
+		else if (cub->anim.i_no == 6)
 		{
 			cub->world.no_i = cub->world.no[0];
 			cub->world.tab_no = cub->world.tab_tab_no[0];
-			i = -1;
+			cub->anim.i_no = -1;
 			b = false;
 		}
-		i++;
+		cub->anim.i_no++;
 	}
 }
 
 void	blink_so(t_cub *cub)
 {
-	static int	i = 0;
 	int	r;
 	static bool b = false;
 
@@ -139,50 +137,49 @@ void	blink_so(t_cub *cub)
 		b = true;
 	if (b == true)
 	{
-		if (i == 0)
+		if (cub->anim.i_so == 0)
 		{
 			cub->world.so_i = cub->world.so[0];
 			cub->world.tab_so = cub->world.tab_tab_so[0];
 		}
-		else if (i == 1)
+		else if (cub->anim.i_so == 1)
 		{
 			cub->world.so_i = cub->world.so[1];
 			cub->world.tab_so = cub->world.tab_tab_so[1];
 		}
-		else if (i == 2)
+		else if (cub->anim.i_so == 2)
 		{
 			cub->world.so_i = cub->world.so[2];
 			cub->world.tab_so = cub->world.tab_tab_so[2];
 		}
-		else if (i == 3)
+		else if (cub->anim.i_so == 3)
 		{
 			cub->world.so_i = cub->world.so[3];
 			cub->world.tab_so = cub->world.tab_tab_so[3];
 		}
-		else if (i == 4)
+		else if (cub->anim.i_so == 4)
 		{
 			cub->world.so_i = cub->world.so[2];
 			cub->world.tab_so = cub->world.tab_tab_so[2];
 		}
-		else if (i == 5)
+		else if (cub->anim.i_so == 5)
 		{
 			cub->world.so_i = cub->world.so[1];
 			cub->world.tab_so = cub->world.tab_tab_so[1];
 		}
-		else if (i == 6)
+		else if (cub->anim.i_so == 6)
 		{
 			cub->world.so_i = cub->world.so[0];
 			cub->world.tab_so = cub->world.tab_tab_so[0];
-			i = -1;
+			cub->anim.i_so = -1;
 			b = false;
 		}
-		i++;
+		cub->anim.i_so++;
 	}
 }
 
 void	blink_we(t_cub *cub)
 {
-	static int	i = 0;
 	int	r;
 	static bool b = false;
 
@@ -191,50 +188,49 @@ void	blink_we(t_cub *cub)
 		b = true;
 	if (b == true)
 	{
-		if (i == 0)
+		if (cub->anim.i_we == 0)
 		{
 			cub->world.we_i = cub->world.we[0];
 			cub->world.tab_we = cub->world.tab_tab_we[0];
 		}
-		else if (i == 1)
+		else if (cub->anim.i_we == 1)
 		{
 			cub->world.we_i = cub->world.we[1];
 			cub->world.tab_we = cub->world.tab_tab_we[1];
 		}
-		else if (i == 2)
+		else if (cub->anim.i_we == 2)
 		{
 			cub->world.we_i = cub->world.we[2];
 			cub->world.tab_we = cub->world.tab_tab_we[2];
 		}
-		else if (i == 3)
+		else if (cub->anim.i_we == 3)
 		{
 			cub->world.we_i = cub->world.we[3];
 			cub->world.tab_we = cub->world.tab_tab_we[3];
 		}
-		else if (i == 4)
+		else if (cub->anim.i_we == 4)
 		{
 			cub->world.we_i = cub->world.we[2];
 			cub->world.tab_we = cub->world.tab_tab_we[2];
 		}
-		else if (i == 5)
+		else if (cub->anim.i_we == 5)
 		{
 			cub->world.we_i = cub->world.we[1];
 			cub->world.tab_we = cub->world.tab_tab_we[1];
 		}
-		else if (i == 6)
+		else if (cub->anim.i_we == 6)
 		{
 			cub->world.we_i = cub->world.we[0];
 			cub->world.tab_we = cub->world.tab_tab_we[0];
-			i = -1;
+			cub->anim.i_we = -1;
 			b = false;
 		}
-		i++;
+		cub->anim.i_we++;
 	}
 }
 
 void	blink_ea(t_cub *cub)
 {
-	static int	i = 0;
 	int	r;
 	static bool b = false;
 
@@ -243,44 +239,44 @@ void	blink_ea(t_cub *cub)
 		b = true;
 	if (b == true)
 	{
-		if (i == 0)
+		if (cub->anim.i_ea == 0)
 		{
 			cub->world.ea_i = cub->world.ea[0];
 			cub->world.tab_ea = cub->world.tab_tab_ea[0];
 		}
-		else if (i == 1)
+		else if (cub->anim.i_ea == 1)
 		{
 			cub->world.ea_i = cub->world.ea[1];
 			cub->world.tab_ea = cub->world.tab_tab_ea[1];
 		}
-		else if (i == 2)
+		else if (cub->anim.i_ea == 2)
 		{
 			cub->world.ea_i = cub->world.ea[2];
 			cub->world.tab_ea = cub->world.tab_tab_ea[2];
 		}
-		else if (i == 3)
+		else if (cub->anim.i_ea == 3)
 		{
 			cub->world.ea_i = cub->world.ea[3];
 			cub->world.tab_ea = cub->world.tab_tab_ea[3];
 		}
-		else if (i == 4)
+		else if (cub->anim.i_ea == 4)
 		{
 			cub->world.ea_i = cub->world.ea[2];
 			cub->world.tab_ea = cub->world.tab_tab_ea[2];
 		}
-		else if (i == 5)
+		else if (cub->anim.i_ea == 5)
 		{
 			cub->world.ea_i = cub->world.ea[1];
 			cub->world.tab_ea = cub->world.tab_tab_ea[1];
 		}
-		else if (i == 6)
+		else if (cub->anim.i_ea == 6)
 		{
 			cub->world.ea_i = cub->world.ea[0];
 			cub->world.tab_ea = cub->world.tab_tab_ea[0];
-			i = -1;
+			cub->anim.i_ea = -1;
 			b = false;
 		}
-		i++;
+		cub->anim.i_ea++;
 	}
 }
 

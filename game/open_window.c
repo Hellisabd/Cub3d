@@ -200,6 +200,10 @@ void	open_window(t_cub *cub)
 	mlx_set_window_limit(cub->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
 	cub->anim.time = 0;
 	cub->anim.count = 0;
+	cub->anim.i_no = 0;
+	cub->anim.i_so = 0;
+	cub->anim.i_we = 0;
+	cub->anim.i_ea = 0;
 	ft_cursor(cub);
 	init_raycast(cub);
 	lets_go_3d(cub);

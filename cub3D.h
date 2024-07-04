@@ -110,6 +110,10 @@ typedef struct s_anim
 {
 	double	time;
 	int		count;
+	int		i_no;
+	int		i_so;
+	int		i_we;
+	int		i_ea;
 }	t_anim;
 
 
