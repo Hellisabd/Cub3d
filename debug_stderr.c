@@ -55,6 +55,6 @@ void	debug_tab_str(char *color, char *msg, char **content)
 		while (content[++i])
 			fprintf(stderr, "%s%s [%d] : %s%s\n", color, msg, i, content[i], NC);
 	else
-		while (content[i])
-			fprintf(stderr, "%s [%d] : %s%s\n", color, i, content[i], NC);
+		while (content[++i])
+			fprintf(stderr, "%s [%d] : %s%s", color, i, content[i], NC);
 }

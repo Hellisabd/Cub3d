@@ -49,29 +49,39 @@ int	put_wall(t_map *map, t_cub *g)
 		j = 0;
 		while (map->map[i][j] && map->map[i][j] != '\n')
 		{
+			if (map->map[i][j] == 'd' && g->anim.door_opening == END)
+				map->map[i][j] = 'o';
+			else if (map->map[i][j] == 'd' && g->anim.door_closing == END)
+				map->map[i][j] = 'D';
 			if (map->map[i][j] == 'D')
 				mlx_image_to_window(g->mlx, g->mini_map.door_i, pos_x, pos_y);
 			if (map->map[i][j] == '1')
 				mlx_image_to_window(g->mlx, g->mini_map.wall_i, pos_x, pos_y);
-			if (round == 0 &&  map->map[i][j] == g->map->player_char)
-			{
-				map->map[i][j] = '0';
-				mlx_image_to_window(g->mlx, g->mini_map.player_i, pos_x, pos_y);
-			} 
+			// if (round == 0 &&  map->map[i][j] == g->map->player_char)
+			// {
+			// 	map->map[i][j] = '0';
+			// 	mlx_image_to_window(g->mlx, g->mini_map.player_i, pos_x, pos_y);
+			// } 
 			pos_x += g->mini_map.size_wall_x;
 			j++;
 		}
 		pos_y += g->mini_map.size_wall_y;
 	}
-	if (round != 0)
-		mlx_image_to_window(g->mlx, g->mini_map.player_i, g->player.pos_x, g->player.pos_y);
+	// if (round != 0)
+	// 	mlx_image_to_window(g->mlx, g->mini_map.player_i, g->player.pos_x, g->player.pos_y);
 	round++;
 	return (0);
 }
 
-int map_to_window(t_cub *cub)
+int map_to_window(t_cub *cub, bool actualise)
 {
-	init_mini_map(cub, &cub->mini_map);
+	if (actualise == false)
+		init_mini_map(cub, &cub->mini_map);
+	else
+	{
+		 cub->mini_map.background_i = mlx_texture_to_image(cub->mlx, cub->mini_map.background_t);
+			mlx_resize_image(cub->mini_map.background_i, cub->mini_map.width, cub->mini_map.height);
+	}
 	if (-1 == mlx_image_to_window(cub->mlx, cub->mini_map.background_i, 0, 0))
 		exit(1);
 	put_wall(cub->map, cub);

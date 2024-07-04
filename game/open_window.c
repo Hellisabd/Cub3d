@@ -31,20 +31,88 @@ void	move_player(t_cub *cub, float dir)
 
 	deplacement_x = (int)(round(cos(dir) * cub->speed));
 	deplacement_y = (int)(round(sin(dir) * cub->speed));
-	
+	// int next_pos_x;
+	// int next_pos_y;
+	// int old_pos_x;
+	// int old_pos_y;
+
 	// debug_nbr(RED, "next_pos_x :", (int)round((float)(cub->player.pos_x + deplacement_x) / (float)cub->mini_map.size_wall_x));
-	if (cub->map->map[(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 2) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 2) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
-		return ;
-	else if (cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 2) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 2) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
-		return ;
-	else if (cub->map->map[(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 2) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 2) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
-		return ;
-	else if (cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 2) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 2) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
-		return ;
+	if ((dir <= PI && dir > 0) || (dir <= -PI && dir >= -2 * PI))
+	{
+		if ((dir < PI / 2 && dir > 0) || (dir < -3 * PI / 2 && dir > -2 * PI))
+		{
+			// debug_char(BLUE, "bas_droite :", cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))]);
+			// debug_nbr(BLUE, "deplacement_y", deplacement_y);
+			// debug_nbr(BLUE, "deplacement_x", deplacement_x);
+			// debug_nbr(BLUE, "pos_x",((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x)));
+			// debug_nbr(BLUE, "pos_y",(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y));
+			if (deplacement_y != 0)
+			{
+				if (cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
+					return ;
+				if (cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == 'D')
+					return ;
+			}
+			else
+			{
+				if (cub->map->map[(int)floor(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
+					return ;
+				if (cub->map->map[(int)floor(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == 'D')
+					return ;
+			}
+		}
+		else
+		{
+			// debug_char(GREEN, "bas_gauche :", cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))]);
+			// debug_nbr(GREEN, "deplacement_y", deplacement_y);
+			// debug_nbr(GREEN, "deplacement_x", deplacement_x);
+			// debug_nbr(GREEN, "pos_x",((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) - deplacement_x) / (float)cub->mini_map.size_wall_x)));
+			// debug_nbr(GREEN, "pos_y",(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y));
+			if (cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
+				return ;
+			if (cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == 'D')
+				return ;
+		}
+	}
+	else
+	{
+		if ((dir > 3 * PI / 2 && dir <= PI * 2) || (dir >= -PI / 2 && dir <= 0))
+		{
+			// debug_char(PURPLE, "haut droit", cub->map->map[(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))]);
+			// debug_nbr(PURPLE, "deplacement_y", deplacement_y);
+			// debug_nbr(PURPLE, "deplacement_x", deplacement_x);
+			// debug_nbr(PURPLE, "pos_x",((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x)));
+			// debug_nbr(PURPLE, "pos_y",(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y));
+			if (cub->map->map[(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
+				return ;
+			if (cub->map->map[(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == 'D')
+				return ;
+		}
+		else
+		{
+			// debug_char(RED, "haut gauche :", cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 4) - deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 4) - deplacement_x) / (float)cub->mini_map.size_wall_x))]);
+			// debug_nbr(RED, "deplacement_y", deplacement_y);
+			// debug_nbr(RED, "deplacement_x", deplacement_x);
+			// debug_nbr(RED, "pos_x",((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x)));
+			// debug_nbr(RED, "pos_y",(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y));
+			if (cub->map->map[(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
+				return ;
+			if (cub->map->map[(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 4) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 4) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == 'D')
+				return ;
+		}
+	}
+	// if (cub->map->map[(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 2) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 2) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
+	// 	return ;
+	// else if (cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 2) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 2) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
+	// 	return ;
+	// else if (cub->map->map[(int)round(((cub->player.pos_y - cub->mini_map.size_wall_y / 2) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x + cub->mini_map.size_wall_x / 2) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
+	// 	return ;
+	// else if (cub->map->map[(int)round(((cub->player.pos_y + cub->mini_map.size_wall_y / 2) + deplacement_y) / (float)cub->mini_map.size_wall_y)][((int)round((float)((cub->player.pos_x - cub->mini_map.size_wall_x / 2) + deplacement_x) / (float)cub->mini_map.size_wall_x))] == '1')
+	// 	return ;
 	cub->player.pos_x += deplacement_x;
-	cub->mini_map.player_i->instances->x += deplacement_x;
+	// cub->mini_map.player_i->instances->x += deplacement_x;
 	cub->player.pos_y += deplacement_y;
-	cub->mini_map.player_i->instances->y += deplacement_y;
+	// cub->mini_map.player_i->instances->y += deplacement_y;
 }
 
 void	put_stamina(t_cub *cub)
@@ -133,117 +201,39 @@ void	move(t_cub *cub)
 		cub->rot -= PI / 10;
 }
 
-int	respawn_doors(t_map *map, int actual_x, int actual_y)
+int close_door(t_cub *cub)
 {
-	int pos_x = actual_x - 2;
-	int pos_y = actual_y - 2;
-	if (pos_y < 0)
-		pos_y = 0;
-	if (pos_x < 0)
-		pos_x = 0;
-	if (pos_x == 0)
+	int player_y;
+	int player_x;
+
+	player_y = cub->player.pos_y / cub->mini_map.size_wall_y;
+	player_x = cub->player.pos_x / cub->mini_map.size_wall_x;
+	if (cub->map->map[player_y][player_x + 1] == 'o')
 	{
-		while (map->map[pos_y][pos_x] && pos_x <= actual_x + 2)
-		{
-		// debug_nbr(RED, "pos_x :", pos_x);
-		// debug_nbr(RED, "pos_y :", pos_y);
-			if (map->map[pos_y][pos_x] == 'd')
-				return (map->map[pos_y][pos_x] = 'D', 1);
-			else
-				pos_x++;
-		}
-		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y + 2)
-		{
-			// debug_nbr(RED, "pos_x :", pos_x);
-			// debug_nbr(RED, "pos_y :", pos_y);
-			if (map->map[pos_y][pos_x] == 'd')
-				return (map->map[pos_y][pos_x] = 'D', 1);
-			else
-				pos_y++;
-		}
-		if (!map->map[pos_y])
-			pos_y--;
-		// debug_nbr(RED, "pos_x :", pos_x);
-		// debug_nbr(RED, "pos_y :", pos_y);
-		while (map->map[pos_y][pos_x] && pos_x <= actual_x - 2 && pos_x > 0)
-		{
-			// debug_nbr(RED, "pos_x :", pos_x);
-			// debug_nbr(RED, "pos_y :", pos_y);
-			if (map->map[pos_y][pos_x] == 'd')
-				return (map->map[pos_y][pos_x] = 'D', 1);
-			else
-				pos_x--;
-		}
+		cub->map->map[player_y][player_x] = cub->map->player_char;
+		cub->map->map[player_y][player_x + 1] = 'd';
+		return (1);
 	}
-	else if (pos_y == 0)
+	if (cub->map->map[player_y + 1][player_x] == 'o')
 	{
-		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y + 2)
-		{
-			// debug_nbr(RED, "pos_x :", pos_x);
-			// debug_nbr(RED, "pos_y :", pos_y);
-			if (map->map[pos_y][pos_x] == 'd')
-				return (map->map[pos_y][pos_x] = 'D', 1);
-			else
-				pos_y++;
-		}
-		while (map->map[pos_y][pos_x] && pos_x <= actual_x + 2)
-		{
-			// debug_nbr(RED, "pos_x :", pos_x);
-			// debug_nbr(RED, "pos_y :", pos_y);
-			if (map->map[pos_y][pos_x] == 'd')
-				return (map->map[pos_y][pos_x] = 'D', 1);
-			else
-				pos_x++;
-		}
-		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y - 2 && pos_y > 0)
-		{
-			// debug_nbr(RED, "pos_x :", pos_x);
-			// debug_nbr(RED, "pos_y :", pos_y);
-			if (map->map[pos_y][pos_x] == 'd')
-				return (map->map[pos_y][pos_x] = 'D', 1);
-			else
-				pos_y--;
-		}
+		cub->map->map[player_y][player_x] = cub->map->player_char;
+		cub->map->map[player_y + 1][player_x] = 'd';
+		return (1);
 	}
-	else
+	if (player_y != 0 && cub->map->map[player_y - 1][player_x] == 'o')
 	{
-		while (map->map[pos_y][pos_x] && pos_x <= actual_x + 2)
-		{
-			// debug_nbr(RED, "pos_x :", pos_x);
-			// debug_nbr(RED, "pos_y :", pos_y);
-			if (map->map[pos_y][pos_x] == 'd')
-				return (map->map[pos_y][pos_x] = 'D', 1);
-			else
-				pos_x++;
-		}
-		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y - 2 && pos_y > 0)
-		{
-			// debug_nbr(RED, "pos_x :", pos_x);
-			// debug_nbr(RED, "pos_y :", pos_y);
-			if (map->map[pos_y][pos_x] == 'd')
-				return (map->map[pos_y][pos_x] = 'D', 1);
-			else
-				pos_y--;
-		}
-		while (map->map[pos_y][pos_x] && pos_x <= actual_x - 2 && pos_x > 0)
-		{
-			// debug_nbr(RED, "pos_x :", pos_x);
-			// debug_nbr(RED, "pos_y :", pos_y);
-			if (map->map[pos_y][pos_x] == 'd')
-				return (map->map[pos_y][pos_x] = 'D', 1);
-			else
-				pos_x--;
-		}
-		while (map->map[pos_y] && map->map[pos_y][pos_x] && pos_y <= actual_y - 2 && pos_y > 0)
-		{
-			// debug_nbr(RED, "pos_x :", pos_x);
-			// debug_nbr(RED, "pos_y :", pos_y);
-			if (map->map[pos_y][pos_x] == 'd')
-				return (map->map[pos_y][pos_x] = 'D', 1);
-			else
-				pos_y--;
-		}
+		cub->map->map[player_y][player_x] = cub->map->player_char;
+		cub->map->map[player_y - 1][player_x] = 'd';
+		return (1);
 	}
+	if (player_x != 0 && cub->map->map[player_y][player_x - 1] == 'o')
+	{
+		cub->map->map[player_y][player_x] = cub->map->player_char;
+		cub->map->map[player_y][player_x - 1] = 'd';
+		return (1);
+	}
+	// if (respawn_doors(cub->map, player_x, player_y) == 1)
+	// 	return (1);
 	return (0);
 }
 
@@ -256,30 +246,26 @@ int open_door(t_cub *cub)
 	player_x = cub->player.pos_x / cub->mini_map.size_wall_x;
 	if (cub->map->map[player_y][player_x + 1] == 'D')
 	{
-		cub->map->map[player_y][player_x] = cub->map->player_char;
 		cub->map->map[player_y][player_x + 1] = 'd';
 		return (1);
 	}
 	if (cub->map->map[player_y + 1][player_x] == 'D')
 	{
-		cub->map->map[player_y][player_x] = cub->map->player_char;
 		cub->map->map[player_y + 1][player_x] = 'd';
 		return (1);
 	}
-	if (cub->map->map[player_y - 1][player_x] == 'D')
+	if (player_y != 0 && cub->map->map[player_y - 1][player_x] == 'D')
 	{
-		cub->map->map[player_y][player_x] = cub->map->player_char;
 		cub->map->map[player_y - 1][player_x] = 'd';
 		return (1);
 	}
-	if (cub->map->map[player_y][player_x - 1] == 'D')
+	if (player_x != 0 && cub->map->map[player_y][player_x - 1] == 'D')
 	{
-		cub->map->map[player_y][player_x] = cub->map->player_char;
 		cub->map->map[player_y][player_x - 1] = 'd';
 		return (1);
 	}
-	if (respawn_doors(cub->map, player_x, player_y) == 1)
-		return (1);
+	// if (respawn_doors(cub->map, player_x, player_y) == 1)
+	// 	return (1);
 	return (0);
 }
 
@@ -296,10 +282,35 @@ void	refresh(t_cub *cub)
 	if (cub->player.dir_right >= 2 * PI)
 		cub->player.dir_right -= 2 * PI;
 	raycasting(cub);
-	if (open_door(cub) == 1)
+	cub->anim.frame++;
+	blink(cub);
+	if (cub->anim.door_opening == STARTING )
+	{
+		cub->anim.door_count++;
+		if (cub->anim.door_count > 23)
+		{
+			cub->anim.door_opening = END;
+		}
+	}
+	if (cub->anim.door_opening == END)
 	{
 		mlx_delete_image(cub->mlx, cub->mini_map.background_i);
-		map_to_window(cub);
+		map_to_window(cub, true);
+		cub->anim.door_opening = NONE;
+	}
+	if (cub->anim.door_closing == STARTING )
+	{
+		cub->anim.door_count--;
+		if (cub->anim.door_count < 0)
+		{
+			cub->anim.door_closing = END;
+		}
+	}
+	if (cub->anim.door_closing == END)
+	{
+		mlx_delete_image(cub->mlx, cub->mini_map.background_i);
+		map_to_window(cub, true);
+		cub->anim.door_closing = NONE;
 	}
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
@@ -383,6 +394,40 @@ void	fog(t_cub *cub)
 	}
 }
 
+void	init_anim(t_cub *cub)
+{
+	cub->anim.time = 0;
+	cub->anim.frame = 0;
+	cub->anim.i_no = 0;
+	cub->anim.i_so = 0;
+	cub->anim.i_we = 0;
+	cub->anim.i_ea = 0;
+	cub->anim.b_no = false;
+	cub->anim.b_so = false;
+	cub->anim.b_we = false;
+	cub->anim.b_ea = false;
+	cub->anim.door_closing = NONE;
+	cub->anim.door_opening = NONE;
+	cub->anim.door_count = 0;
+}
+
+void	interaction(mlx_key_data_t key, void *param)
+{
+	t_cub *cub;
+
+	cub = (t_cub *)param;
+	if (key.key == MLX_KEY_E && key.action == 1 && open_door(cub) == 1)
+	{
+			cub->anim.door_count = 0;
+			cub->anim.door_opening = STARTING;
+	}
+	if (key.key == MLX_KEY_E && key.action == 1 && close_door(cub) == 1)
+	{
+		cub->anim.door_count = 23;
+		cub->anim.door_closing = STARTING;
+	}
+}
+
 void	open_window(t_cub *cub)
 {
 	init_data_mini_map(&cub->mini_map, cub->map);
@@ -392,24 +437,15 @@ void	open_window(t_cub *cub)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
 	mlx_set_window_pos(cub->mlx, 500, 250);
 	mlx_set_window_limit(cub->mlx, WIDTH, HEIGHT, WIDTH, HEIGHT);
-	cub->anim.time = 0;
-	cub->anim.count = 0;
-	cub->anim.i_no = 0;
-	cub->anim.i_so = 0;
-	cub->anim.i_we = 0;
-	cub->anim.i_ea = 0;
-	cub->anim.b_no = false;
-	cub->anim.b_so = false;
-	cub->anim.b_we = false;
-	cub->anim.b_ea = false;
 	ft_cursor(cub);
 	init_raycast(cub);
 	lets_go_3d(cub);
 	raycasting(cub);
-	map_to_window(cub);
+	map_to_window(cub, false);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	fog(cub);
+	mlx_key_hook(cub->mlx, interaction, cub);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);	
 	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
 	mlx_loop(cub->mlx);

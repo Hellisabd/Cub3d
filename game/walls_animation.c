@@ -81,7 +81,7 @@ void	blink_no(t_cub *cub)
 	int	r;
 
 	r = rand();
-	if (r % 10 == 0 && cub->anim.b_no == false)
+	if (r % 100 == 0 && cub->anim.b_no == false)
 		cub->anim.b_no = true;
 	if (cub->anim.b_no == true)
 	{
@@ -131,7 +131,7 @@ void	blink_so(t_cub *cub)
 	int	r;
 
 	r = rand();
-	if (r % 10 == 0 && cub->anim.b_so == false)
+	if (r % 100 == 0 && cub->anim.b_so == false)
 		cub->anim.b_so = true;
 	if (cub->anim.b_so == true)
 	{
@@ -181,7 +181,7 @@ void	blink_we(t_cub *cub)
 	int	r;
 
 	r = rand();
-	if (r % 10 == 0 && cub->anim.b_we == false)
+	if (r % 100 == 0 && cub->anim.b_we == false)
 		cub->anim.b_we = true;
 	if (cub->anim.b_we == true)
 	{
@@ -231,7 +231,7 @@ void	blink_ea(t_cub *cub)
 	int	r;
 
 	r = rand();
-	if (r % 10 == 0 && cub->anim.b_ea == false)
+	if (r % 100 == 0 && cub->anim.b_ea == false)
 		cub->anim.b_ea = true;
 	if (cub->anim.b_ea == true)
 	{
@@ -278,12 +278,8 @@ void	blink_ea(t_cub *cub)
 
 void	blink(t_cub *cub)
 {
-	cub->anim.count++;
-	if (cub->anim.count % 5000 == 0)
-	{
 		blink_no(cub);
 		blink_so(cub);
 		blink_we(cub);
 		blink_ea(cub);
-	}
 }

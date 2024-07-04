@@ -23,6 +23,9 @@
 # define RGB "Wrong RGB format!\n"
 # define LOAD_MAP "Error while opening the map!\n"
 # define TEXTURE "Texture is missing!\n"
+# define NONE 0
+# define STARTING 1
+# define END 2
 
 # define WALL "assets/red_square.png"
 # define BACKGROUND "assets/white_square.png"
@@ -114,7 +117,7 @@ typedef struct s_line
 typedef struct s_anim
 {
 	double	time;
-	int		count;
+	int		frame;
 	int		i_no;
 	int		i_so;
 	int		i_we;
@@ -123,6 +126,9 @@ typedef struct s_anim
 	bool	b_so;
 	bool	b_we;
 	bool	b_ea;
+	int		door_count;
+	int		door_opening;
+	int		door_closing;
 }	t_anim;
 
 typedef struct s_enemy
@@ -228,7 +234,7 @@ void	printlist(t_ray *node, char *color);
 
 // MINIMAP
 
-int		map_to_window(t_cub *cub);
+int		map_to_window(t_cub *cub, bool actualise);
 int		init_data_mini_map(t_mini_map *minimap, t_map *map);
 int		init_mini_map(t_cub *cub, t_mini_map *mini_map);
 
