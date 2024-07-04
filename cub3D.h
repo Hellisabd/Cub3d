@@ -125,6 +125,11 @@ typedef struct s_anim
 	bool	b_ea;
 }	t_anim;
 
+typedef struct s_enemy
+{
+	mlx_texture_t	*enemy_t[2];
+	mlx_image_t		*enemy_i[2];
+}	t_enemy;
 
 typedef struct s_world
 {
@@ -138,6 +143,7 @@ typedef struct s_world
 	mlx_image_t		*background_i;
 	mlx_image_t		*fog;
 	mlx_image_t		*hud;
+	mlx_image_t		*npc;
 	mlx_image_t		*no_i;
 	mlx_image_t		*no[4];
 	mlx_image_t		*so_i;
@@ -201,6 +207,7 @@ typedef struct s_cub
 	t_world			world;
 	t_player		player;
 	t_anim			anim;
+	t_enemy			enemy;
 }	t_cub;
 
 // PARSING
