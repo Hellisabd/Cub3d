@@ -26,24 +26,34 @@ int	init_world(t_cub *cub)
 	load_door(cub);
 	cub->world.no_t = mlx_load_png(cub->map->no);
 	if (cub->world.no_t == NULL)
+	cub->world.no_t[0] = mlx_load_png(cub->map->no);
+	if (cub->world.no_t[0] == NULL)
 		debug_str(RED, NULL, "failed to load textures");
-	cub->world.so_t = mlx_load_png(cub->map->so);
-	if (cub->world.so_t == NULL)
+	cub->world.so_t[0] = mlx_load_png(cub->map->so);
+	if (cub->world.so_t[0] == NULL)
 		debug_str(RED, NULL, "failed to load textures");
-	cub->world.we_t = mlx_load_png(cub->map->we);
-	if (cub->world.we_t == NULL)
+	cub->world.we_t[0] = mlx_load_png(cub->map->we);
+	if (cub->world.we_t[0] == NULL)
 		debug_str(RED, NULL, "failed to load textures");
-	cub->world.ea_t = mlx_load_png(cub->map->ea);
-	if (cub->world.ea_t == NULL)
+	cub->world.ea_t[0] = mlx_load_png(cub->map->ea);
+	if (cub->world.ea_t[0] == NULL)
 		debug_str(RED, NULL, "failed to load textures");
-	cub->world.no_i = mlx_texture_to_image(cub->mlx, cub->world.no_t);
-	cub->world.so_i = mlx_texture_to_image(cub->mlx, cub->world.so_t);
-	cub->world.we_i = mlx_texture_to_image(cub->mlx, cub->world.we_t);
-	cub->world.ea_i = mlx_texture_to_image(cub->mlx, cub->world.ea_t);
-	cub->world.tab_no = image_to_tab(cub->world.no_i);
-	cub->world.tab_so = image_to_tab(cub->world.so_i);
-	cub->world.tab_we = image_to_tab(cub->world.we_i);
-	cub->world.tab_ea = image_to_tab(cub->world.ea_i);
+	cub->world.no[0] = mlx_texture_to_image(cub->mlx, cub->world.no_t[0]);
+	cub->world.so[0] = mlx_texture_to_image(cub->mlx, cub->world.so_t[0]);
+	cub->world.we[0] = mlx_texture_to_image(cub->mlx, cub->world.we_t[0]);
+	cub->world.ea[0] = mlx_texture_to_image(cub->mlx, cub->world.ea_t[0]);
+	cub->world.tab_tab_no[0] = image_to_tab(cub->world.no[0]);
+	cub->world.tab_tab_so[0] = image_to_tab(cub->world.so[0]);
+	cub->world.tab_tab_we[0] = image_to_tab(cub->world.we[0]);
+	cub->world.tab_tab_ea[0] = image_to_tab(cub->world.ea[0]);
+	cub->world.tab_no = cub->world.tab_tab_no[0];
+	cub->world.tab_so = cub->world.tab_tab_so[0];
+	cub->world.tab_we = cub->world.tab_tab_we[0];
+	cub->world.tab_ea = cub->world.tab_tab_ea[0];
+	cub->world.no_i = cub->world.no[0];
+	cub->world.so_i = cub->world.so[0];
+	cub->world.we_i = cub->world.we[0];
+	cub->world.ea_i = cub->world.ea[0];
 	return (0);
 }
 
@@ -176,6 +186,7 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 			if (!ray)
 				break ;
 		}
+		blink(cub);
 		disp_world(cub, ray, i);
 		i++;
 	}
@@ -185,6 +196,7 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 int	lets_go_3d(t_cub *cub)
 {
 	init_world(cub);
+	init_blink(cub);
 	cub->world.background_i = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.background_i, 0, 0) == -1)
 		exit (1);
