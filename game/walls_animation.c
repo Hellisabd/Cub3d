@@ -79,12 +79,12 @@ int	init_blink(t_cub *cub)
 void	blink_no(t_cub *cub)
 {
 	int	r;
-	static bool b = false;
+	// static bool b = false;
 
 	r = rand();
-	if (r % 10 == 0 && b == false)
-		b = true;
-	if (b == true)
+	if (r % 10 == 0 && cub->anim.b_no == false)
+		cub->anim.b_no = true;
+	if (cub->anim.b_no == true)
 	{
 		if (cub->anim.i_no == 0)
 		{
@@ -121,7 +121,7 @@ void	blink_no(t_cub *cub)
 			cub->world.no_i = cub->world.no[0];
 			cub->world.tab_no = cub->world.tab_tab_no[0];
 			cub->anim.i_no = -1;
-			b = false;
+			cub->anim.b_no = false;
 		}
 		cub->anim.i_no++;
 	}
