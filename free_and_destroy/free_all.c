@@ -29,6 +29,7 @@ void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub)
 	mlx_delete_image(mlx, mini->player_i);
 	mlx_delete_texture(mini->player_t);
 	mlx_delete_texture(mini->wall_t);
+	mlx_delete_texture(mini->door_t);
 	mlx_delete_texture(mini->background_t);
 	mlx_delete_texture(cub->cursor_t);
 	mlx_delete_texture(cub->world.black_t);

@@ -108,6 +108,7 @@ void	raycasting(t_cub *cub)
 {
 	int		i;
 	int		j;
+	// static int count_middle;
 
 	// debug_float(RED, "avant p_x :", cub->p_x);
 	// debug_nbr(GREEN, "avant player pos_x :", cub->player.pos_x);
@@ -122,7 +123,7 @@ void	raycasting(t_cub *cub)
 	cub->fov = PI * 66 / 180;
 	cub->angle = -cub->fov / 2;
 	cub->angle += cub->rot;
-	cub->n = 1000.00001;
+	cub->n = 500.00001;
 	while (cub->angle <= ((cub->fov / 2) + cub->rot))
 	{
 		i = floor(cub->p_y);
@@ -137,7 +138,7 @@ void	raycasting(t_cub *cub)
 			cub->dist_x = fabs(ceil(cub->p_x)) - cub->p_x;
 		cub->next_x =  calc_ray_x(fabs(cub->dist_x), cub);
 		cub->next_y =  calc_ray_y(fabs(cub->dist_y), cub);
-		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->player_char)
+		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->player_char || cub->map->map[i][j] == 'd')
 		{
 			if (cub->dist_x <= 0 && cub->dist_y <= 0) //3eme quadrant
 			{
@@ -226,11 +227,11 @@ void	raycasting(t_cub *cub)
 		cub->angle += cub->fov / cub->n;
 	}
 	draw_walls(cub, cub->ray);
+	// printlist((cub->ray), GREEN);
 	// debug_float(YELLOW, "rot: ", cub->rot);
 	// debug_float(RED, "apres p_x", cub->p_x);
 	// debug_nbr(RED, "apres pos_x", cub->player.pos_x);
 	// debug_float(RED, "apres p_y ", cub->p_y);
 	// debug_nbr(RED, "apres pos_y", cub->player.pos_y);
-	// printlist((cub->ray), GREEN);
 	// printf("\n");
 }

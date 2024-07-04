@@ -12,6 +12,7 @@ void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y)
 	new->hyp = fabs(cub->hyp);
 	new->x = x;
 	new->y = y;
+	new->door = false;
 	new->next = NULL;
 	if (ray == NULL || *ray == NULL)
 	{
