@@ -201,6 +201,9 @@ int	lets_go_3d(t_cub *cub)
 	cub->world.background_i = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.background_i, 0, 0) == -1)
 		exit (1);
+	cub->world.npc = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
+	if (mlx_image_to_window(cub->mlx, cub->world.npc, 0, 0) == -1)
+		exit (1);
 	cub->world.fog = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.fog, 0, 0) == -1)
 		exit (1);
