@@ -117,9 +117,9 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		wall.side = 1;
 		if (ray->x > cub->p_x)
 		{
-				debug_nbr(RED, "y:", (int)floor(ray->y));
-				debug_nbr(RED, "x:", (int)(ray->x));
-				debug_char(BLUE, "char in :", cub->map->map[(int)floor(ray->y)][(int)(ray->x)]);
+				// debug_nbr(RED, "y:", (int)floor(ray->y));
+				// debug_nbr(RED, "x:", (int)(ray->x));
+				// debug_char(BLUE, "char in :", cub->map->map[(int)floor(ray->y)][(int)(ray->x)]);
 			if (cub->map->map[(int)floor(ray->y)][(int)(ray->x)] == 'D')
 				put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
 			else if (cub->map->map[(int)floor(ray->y)][(int)(ray->x)] == 'd')
@@ -159,11 +159,15 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		}
 		else
 		{
-			// if ((int)(ray->y) != 0)
-			// 	debug_char(BLUE, "char in :", cub->map->map[(int)(ray->y) - 1][(int)floor(ray->x)]);
-			// debug_nbr(RED, "y:", (int)(ray->y) - 1);
-			// debug_float(RED, "y:", ray->y);
-			// debug_nbr(RED, "x:", (int)floor(ray->x));
+			if ((int)(ray->y) == 1)
+			{
+				debug_char(BLUE, "char in :", cub->map->map[(int)(ray->y) - 1][(int)floor(ray->x)]);
+				debug_nbr(RED, "y:", (int)(ray->y) - 1);
+				debug_float(RED, "y:", ray->y);
+				debug_nbr(RED, "x:", (int)floor(ray->x));
+			}
+			// if (ray->y < 2.1 && ray->y > 1.9)
+			// 	ray->y += 0.1;
 			if (ray->y > 1 && cub->map->map[(int)(ray->y) - 1][(int)floor(ray->x)] == 'D')
 				put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
 			else if (ray->y > 1 && cub->map->map[(int)(ray->y) - 1][(int)floor(ray->x)] == 'd')
