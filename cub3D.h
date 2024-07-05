@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
+/*   Updated: 2024/07/05 17:40:46 by bgrosjea         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -51,6 +63,18 @@
 # define UP 2
 # define DOWN 3
 
+typedef struct s_color
+{
+	int				i;
+	int				j;
+	unsigned char	**tab;
+	int				tab_color[4];
+	int				**tab_colonnes;
+	int				colonne;
+	int				x;
+	int				y;
+}	t_color;
+
 typedef struct s_player
 {
 	int			pos_x;
@@ -96,10 +120,10 @@ typedef struct s_ray
 
 typedef struct s_wall
 {
-	t_ray *ray;
-	int img_height;
-	int x;
-	int y;
+	t_ray	*ray;
+	int		img_height;
+	int		x;
+	int		y;
 	float	dist_max;
 	float	ratio_height;
 	float	ratio_width;
@@ -225,6 +249,7 @@ int		rgb_to_hex(char *rgb);
 int		**image_to_tab(mlx_image_t *image);
 
 // RAYCASTING
+void	init_raycast(t_cub *cub);
 void	raycasting(t_cub *cub);
 void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y);
 void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int clor);
@@ -244,6 +269,27 @@ int		lets_go_3d(t_cub *cub);
 int		draw_walls(t_cub *cub, t_ray *ray);
 int		init_blink(t_cub *cub);
 void	blink(t_cub *cub);
+
+//MOVEMENT
+void	move(t_cub *cub);
+void	move_player(t_cub *cub, float dir);
+void	rotations(double xpos, double ypos, void *param);
+
+//DISPLAY
+void	fog(t_cub *cub);
+
+//INTERACTION
+void	interaction(mlx_key_data_t key, void *param);
+void	put_stamina(t_cub *cub);
+int		close_door(t_cub *cub, int player_x, int player_y);
+void	check_doors(t_cub *cub);
+int		open_door(t_cub *cub, int player_x, int player_y);
+
+//ANIMATION
+void	blink_we(t_cub *cub);
+void	blink_ea(t_cub *cub);
+void	blink_no(t_cub *cub);
+void	blink_so(t_cub *cub);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);

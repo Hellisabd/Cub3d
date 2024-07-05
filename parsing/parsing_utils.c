@@ -2,58 +2,54 @@
 
 int	**image_to_tab(mlx_image_t *image)
 {
-	int i;
-	int j;
-	unsigned char **tab;
-	int tab_color[4];
-	int **tab_colonnes;
+	t_color	stock;
 
-	tab = malloc(sizeof(unsigned char *) * image->height);
-	j = 0;
-	i = -1;
-	while (++i < (int)image->height)
-		tab[i] = malloc(sizeof(unsigned char) * (image->width * 4));
-	i = 0;
-	while (i < (int)(image->width * image->height * 4))
+	stock.tab = malloc(sizeof(unsigned char *) * image->height);
+	stock.j = 0;
+	stock.i = -1;
+	while (++stock.i < (int)image->height)
+		stock.tab[stock.i] = malloc(sizeof(unsigned char) * (image->width * 4));
+	stock.i = 0;
+	while (stock.i < (int)(image->width * image->height * 4))
 	{
-		tab[j][i % (image->width * 4)] = image->pixels[i];
-		i++;
-		if (i % (image->width * 4) == 0)
-			j++;
+		stock.tab[stock.j][stock.i % (image->width * 4)] = image->pixels[stock.i];
+		stock.i++;
+		if (stock.i % (image->width * 4) == 0)
+			stock.j++;
 	}
-
-	i = -1;
-	j = 0;
-	int colonne = 0;
-	int x = 0;
-	int y = 0;
-	tab_colonnes = malloc(sizeof(int *) * image->width);
-	while (++i < (int)image->width)
-		tab_colonnes[i] = malloc(sizeof (int) * image->height);
-	while (j <= (int)image->height && i < (int)image->width * 4)
+	// tab_line_to_tab_col();
+	stock.colonne = 0;
+	stock.x = 0;
+	stock.y = 0;
+	stock.i = -1;
+	stock.j = 0;
+	stock.tab_colonnes = malloc(sizeof(int *) * image->width);
+	while (++stock.i < (int)image->width)
+		stock.tab_colonnes[stock.i] = malloc(sizeof (int) * image->height);
+	while (stock.j <= (int)image->height && stock.i < (int)image->width * 4)
 	{
-		i = colonne * 4;
+		stock.i = stock.colonne * 4;
 		while (1)
 		{
-			tab_color[i % 4] = (int)tab[j][i];
-			i++;
-			if (i % 4 == 0)
+			stock.tab_color[stock.i % 4] = (int)stock.tab[stock.j][stock.i];
+			stock.i++;
+			if (stock.i % 4 == 0)
 				break ;
 		}
-		tab_colonnes[y][x] = (tab_color[0] << 24) | (tab_color[1] << 16) | (tab_color[2] << 8) | tab_color[3];
-		if (j == (int)(image->height - 1))
+		stock.tab_colonnes[stock.y][stock.x] = (stock.tab_color[0] << 24) | (stock.tab_color[1] << 16) | (stock.tab_color[2] << 8) | stock.tab_color[3];
+		if (stock.j == (int)(image->height - 1))
 		{
-			j = 0;
-			y++;
-			x = 0;
-			colonne++;
+			stock.j = 0;
+			stock.y++;
+			stock.x = 0;
+			stock.colonne++;
 		}
-		tab_colonnes[y][x] = (tab_color[0] << 24) | (tab_color[1] << 16) | (tab_color[2] << 8) | tab_color[3];
-		x++;
-		j++;
+		stock.tab_colonnes[stock.y][stock.x] = (stock.tab_color[0] << 24) | (stock.tab_color[1] << 16) | (stock.tab_color[2] << 8) | stock.tab_color[3];
+		stock.x++;
+		stock.j++;
 	}
-	ft_free_tab_int((int**)tab);
-	return (tab_colonnes);
+	ft_free_tab_int((int **)stock.tab);
+	return (stock.tab_colonnes);
 }
 
 void	check_cub(char *s)

@@ -1,4 +1,4 @@
-#include "cub3D.h"
+#include "../cub3D.h"
 
 void	debug_nbr(char *color, char *msg, long long int content)
 {

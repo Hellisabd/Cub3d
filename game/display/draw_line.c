@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
 void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 {
@@ -9,29 +9,7 @@ void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int color)
 	int start_y = player->pos_y + mini_map->size_wall_y / 2;
 	int end_x = round((ray->x) * (float)mini_map->size_wall_x);
 	int end_y = round((ray->y) * (float)mini_map->size_wall_y);
-	// debug_nbr(PURPLE, "start_x: ", start_x);
-	// debug_nbr(PURPLE, "start_y: ", start_y);
-	// debug_nbr(PURPLE, "end_x: ", end_x);
-	// debug_nbr(PURPLE, "end_y: ", end_y);
-	// debug_nbr(PURPLE, "size_wall_y ", mini_map->size_wall_y);
-	// debug_nbr(PURPLE, "size_wall_x ", mini_map->size_wall_x);
-	// debug_nbr(PURPLE, "res non arrondi x : ", ray->x * mini_map->size_wall_x);
-	// debug_nbr(PURPLE, "res non arrondi y : ", ray->y * mini_map->size_wall_y);
-	// debug_float(PURPLE, "ray_y: ", ray->y);
-	// debug_float(PURPLE, "ray_x: ", ray->x);
-	// static int i = 0;
-	// if (i == 0)
-	// {
-	// 	debug_float(YELLOW, "ray_x: ", ray->x);
-	// 	debug_float(YELLOW, "ray_y: ", ray->y);
-	// 	debug_float(YELLOW, "player->pos_x: ", player->pos_x);
-	// 	debug_float(YELLOW, "player->pos_y: ", player->pos_y);
-	// 	debug_nbr(GREEN, "start_x: ", start_x);
-	// 	debug_nbr(GREEN, "end_x: ", end_x);
-	// 	debug_nbr(GREEN, "start_y: ", start_y);
-	// 	debug_nbr(GREEN, "end_y: ", end_y);
-	// }
-	// i++;
+
 	dy = end_y - start_y;
 	dx = end_x - start_x;
 	e = 0;

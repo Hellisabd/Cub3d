@@ -1,4 +1,4 @@
-#include "../cub3D.h"
+#include "../../cub3D.h"
 
 void	load_door(t_cub *cub)
 {
@@ -58,11 +58,11 @@ int	init_world(t_cub *cub)
 	return (0);
 }
 
-void put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, int **pixel_tab)
+void	put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, int **pixel_tab)
 {
-	int column_tab;
-	float line_tab;
-	int start;
+	int		column_tab;
+	float	line_tab;
+	int		start;
 
 	if (wall->side == 1)
 		wall->ratio_width = wall->ray->y - floor(wall->ray->y);
@@ -76,15 +76,10 @@ void put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, int **pixel_tab
 	column_tab = (int)(wall->ratio_width * image->width) - 1;
 	if (column_tab < 0)
 		column_tab = 0;
-		// debug_nbr(RED, "wall->x :", wall->x);
-		// debug_nbr(RED, "wall->y :", wall->y);
 	while ((int)floor(line_tab) < (int)image->height && wall->y < HEIGHT)
 	{
-		// debug_nbr(BLUE, "x :", wall->x);
-		// debug_nbr(BLUE, "y :", wall->y);
-		// debug_nbr(BLUE, "column :", column_tab);
-		// debug_nbr(BLUE, "line :", line_tab);
-		mlx_put_pixel(cub->world.background_i, wall->x, wall->y, (int)pixel_tab[column_tab][(int)floor(line_tab)]);
+		mlx_put_pixel(cub->world.background_i, wall->x, wall->y, \
+		(int)pixel_tab[column_tab][(int)floor(line_tab)]);
 		wall->y++;
 		line_tab += wall->ratio_height;
 	}
@@ -98,10 +93,6 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 	wall.ray = ray;
 	wall.img_height = (int)(HEIGHT / ray->hyp * cos(ray->angle - cub->rot));
 	wall.x = x;
-	// debug_nbr(RED, "y:", (int)floor(ray->y));
-	// debug_nbr(RED, "x:", (int)(ray->x));
-	// if (cub->map->map[(int)floor(ray->y)][(int)floor(ray->x)] == 'D')
-	// 	ray->door = true;
 	while (wall.y <= (HEIGHT - wall.img_height) / 2)
 	{
 		mlx_put_pixel(cub->world.background_i, x, wall.y, cub->map->c_h);
@@ -112,31 +103,26 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
 		ray->door = false;
 	}
-	if ((int)round(ray->x * 100000) % 100000 == 0 && (int)round(ray->y *100000) % 100000 != 0)
+	if ((int)round(ray->x * 100000) % 100000 == 0 && (int)round(ray->y * 100000) % 100000 != 0)
 	{
 		wall.side = 1;
 		if (ray->x > cub->p_x)
 		{
-				// debug_nbr(RED, "y:", (int)floor(ray->y));
-				// debug_nbr(RED, "x:", (int)(ray->x));
-				// debug_char(BLUE, "char in :", cub->map->map[(int)floor(ray->y)][(int)(ray->x)]);
-			if (cub->map->map[(int)floor(ray->y)][(int)(ray->x)] == 'D')
-				put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
-			else if (cub->map->map[(int)floor(ray->y)][(int)(ray->x)] == 'd')
-				put_wall_in3d(&wall, cub, cub->world.door_i[cub->anim.door_count], cub->world.tab_anim_door[cub->anim.door_count]);
+			if (cub->map->map[(int)floor(ray->y)][(int)round(ray->x)] == 'D')
+				put_wall_in3d(&wall, cub, cub->world.door_i[0], \
+				cub->world.tab_anim_door[0]);
+			else if (cub->map->map[(int)floor(ray->y)] \
+					[(int)round(ray->x)] == 'd')
+				put_wall_in3d(&wall, cub, cub->world.door_i[cub->anim.door_count], \
+				cub->world.tab_anim_door[cub->anim.door_count]);
 			else
 				put_wall_in3d(&wall, cub, cub->world.ea_i, cub->world.tab_ea);
 		}
 		else
 		{
-			if ((int)ray->x != 0 && cub->map->map[(int)floor(ray->y)][(int)(ray->x) - 1] == 'D')
-			{
-				// debug_char(BLUE, "char in :", cub->map->map[(int)floor(ray->y)][(int)(ray->x) - 1]);
-				// debug_nbr(RED, "y:", (int)floor(ray->y));
-				// debug_nbr(RED, "x:", (int)(ray->x - 1));
+			if ((int)ray->x != 0 && cub->map->map[(int)floor(ray->y)][(int)round(ray->x) - 1] == 'D')
 				put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
-			}
-			else if ((int)ray->x != 0 && cub->map->map[(int)floor(ray->y)][(int)(ray->x) - 1] == 'd')
+			else if ((int)ray->x != 0 && cub->map->map[(int)floor(ray->y)][(int)round(ray->x) - 1] == 'd')
 				put_wall_in3d(&wall, cub, cub->world.door_i[cub->anim.door_count], cub->world.tab_anim_door[cub->anim.door_count]);
 			else
 				put_wall_in3d(&wall, cub, cub->world.we_i, cub->world.tab_we);
@@ -147,9 +133,6 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		wall.side = 0;
 		if (ray->y > cub->p_y)
 		{
-			// debug_char(BLUE, "char in :", cub->map->map[(int)(ray->y)][(int)floor(ray->x)]);
-			// debug_nbr(RED, "y:", (int)(ray->y));
-			// debug_nbr(RED, "x:", (int)floor(ray->x));
 			if (cub->map->map[(int)round(ray->y) + 1] && cub->map->map[(int)round(ray->y)][(int)floor(ray->x)] == 'D')
 				put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
 			else if (cub->map->map[(int)round(ray->y) + 1] && cub->map->map[(int)round(ray->y)][(int)floor(ray->x)] == 'd')
@@ -159,18 +142,9 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 		}
 		else
 		{
-			// if ((int)(ray->y) == 1)
-			// {
-			// 	// debug_char(BLUE, "char in :", cub->map->map[(int)(ray->y) - 1][(int)floor(ray->x)]);
-			// 	// debug_nbr(RED, "y:", (int)(ray->y) - 1);
-			// 	// debug_float(RED, "y:", ray->y);
-			// 	// debug_nbr(RED, "x:", (int)floor(ray->x));
-			// }
-			// if (ray->y < 2.1 && ray->y > 1.9)
-			// 	ray->y += 0.1;
-			if (ray->y > 1 && cub->map->map[(int)(ray->y) - 1][(int)floor(ray->x)] == 'D')
+			if (ray->y > 1 && cub->map->map[(int)round(ray->y) - 1][(int)floor(ray->x)] == 'D')
 				put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
-			else if (ray->y > 1 && cub->map->map[(int)(ray->y) - 1][(int)floor(ray->x)] == 'd')
+			else if (ray->y > 1 && cub->map->map[(int)round(ray->y) - 1][(int)floor(ray->x)] == 'd')
 				put_wall_in3d(&wall, cub, cub->world.door_i[cub->anim.door_count], cub->world.tab_anim_door[cub->anim.door_count]);
 			else
 				put_wall_in3d(&wall, cub, cub->world.no_i, cub->world.tab_no);

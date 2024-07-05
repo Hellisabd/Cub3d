@@ -17,17 +17,24 @@ SRCS	=	parsing/get_map.c \
 			parsing/parsing_utils.c \
 			free_and_destroy/free_all.c \
 			game/open_window.c \
-			game/raycasting.c \
-			game/raycasting_utils.c \
-			game/draw_line.c \
-			game/3D_world.c \
-			game/walls_animation.c \
-			game/enemy.c \
+			game/display/raycasting.c \
+			game/display/raycasting_utils.c \
+			game/display/draw_line.c \
+			game/display/3D_world.c \
+			game/display/fog.c \
+			game/animation/init_walls_animation.c \
+			game/animation/wall_ea_we.c \
+			game/animation/wall_no_so.c \
+			game/animation/enemy.c \
+			game/player/movement.c \
+			game/player/movements_setup.c \
+			game/player/interaction.c \
 			minimap/minimap.c \
 			minimap/init_textures.c \
-			error.c
+			parsing/error.c \
+			ne_pas_rendre/debug_stderr.c
 
-SRCS_MAIN	= main.c debug_stderr.c
+SRCS_MAIN	= main.c 
 
 OBJS	= $(SRCS_MAIN:.c=.o) $(SRCS:.c=.o)
 
