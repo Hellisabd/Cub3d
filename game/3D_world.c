@@ -188,10 +188,8 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 				break ;
 		}
 		disp_world(cub, ray, i);
-		if (ray->enemy == true)
-			put_enemy(cub, ray, i);
-		else
-			blank_npc(cub, i);
+		// if (ray->enemy == true)
+		put_enemy(cub, ray, i);
 		blink(cub);
 		i++;
 	}

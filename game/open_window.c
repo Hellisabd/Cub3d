@@ -387,6 +387,7 @@ void	open_window(t_cub *cub)
 {
 	init_data_mini_map(&cub->mini_map, cub->map);
 	set_player_pos(cub);
+	set_enemy_pos(cub);
 	cub->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!cub->mlx)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
