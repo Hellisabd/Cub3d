@@ -410,7 +410,7 @@ void	open_window(t_cub *cub)
 	map_to_window(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
-	fog(cub);
+	// fog(cub);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);	
 	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
 	mlx_loop(cub->mlx);
