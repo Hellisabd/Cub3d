@@ -136,6 +136,10 @@ typedef struct s_enemy
 	int				**tab_enemy[3];
 	int				pos_x;
 	int				pos_y;
+	float			d_x;
+	float			d_y;
+	float			dist;
+	float			angle;
 }	t_enemy;
 
 typedef struct s_world

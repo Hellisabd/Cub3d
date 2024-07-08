@@ -318,6 +318,17 @@ void	ft_hook(void *param)
 		refresh(cub);
 		cub->anim.time = 0;
 	}
+	// debug_float(GREEN, "p_x: ", cub->p_x);
+	// debug_float(GREEN, "p_y: ", cub->p_y);
+	// debug_float(RED, "e_x: ", cub->e_x);
+	// debug_float(RED, "e_y: ", cub->e_y);
+	// debug_float(BLUE, "angle", cub->enemy.angle);
+	// debug_float(YELLOW, "x1: ", cub->enemy.x_1);
+	// debug_float(YELLOW, "y1: ", cub->enemy.y_1);
+	// debug_float(YELLOW, "x2: ", cub->enemy.x_2);
+	// debug_float(YELLOW, "y2: ", cub->enemy.y_2);
+	// printf("\n");
+
 }
 
 void	ft_cursor(t_cub *cub)

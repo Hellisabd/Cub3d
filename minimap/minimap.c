@@ -58,6 +58,11 @@ int	put_wall(t_map *map, t_cub *g)
 				map->map[i][j] = '0';
 				mlx_image_to_window(g->mlx, g->mini_map.player_i, pos_x, pos_y);
 			} 
+			if (map->map[i][j] == 'A')
+			{
+				map->map[i][j] = '0';
+				mlx_image_to_window(g->mlx, g->mini_map.player_i, pos_x, pos_y);
+			} 
 			pos_x += g->mini_map.size_wall_x;
 			j++;
 		}

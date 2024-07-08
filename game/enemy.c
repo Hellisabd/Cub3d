@@ -52,74 +52,70 @@ void	set_enemy_pos(t_cub *cub)
 
 void put_enemy(t_cub *cub, t_ray *ray, int x)
 {
-    float   d_x;
-    float   d_y;
-    float   dist;
-    float   enemy_angle;
-    float   relative_angle;
-    int     y;
-    int     height;
-    float   ratio_height;
-    float   ratio_width;
-    int     column_tab;
-    float   line_tab;
-    int     start;
-    int     enemy_screen_x;
+	int	  	y;
+	int	  	height;
+	// float	width;
+	float	ratio;
+	float	theta1;
+	float	theta2;
+	float	ratio_height;
+	// int		column_tab;
+	// float	line_tab;
+	// int		start;
 
-	(void)ray;
-    // Calculer la distance entre l'ennemi et le joueur
-    d_x = cub->e_x - cub->p_x;
-    d_y = cub->e_y - cub->p_y;
-    dist = fabs(sqrt((d_x * d_x) + (d_y * d_y)));
-    height = (int)(HEIGHT / dist);
+	y = 0;
+		while (y < HEIGHT)
+	{
+		mlx_put_pixel(cub->world.npc, x, y, 0);
+		y++;
+	}
+	cub->enemy.d_x = cub->p_x - cub->e_x;
+	cub->enemy.d_y = cub->p_y - cub->e_y;
+	cub->enemy.dist = fabs(sqrt((cub->enemy.d_x * cub->enemy.d_x) + (cub->enemy.d_y * cub->enemy.d_y)));
+	ratio = HEIGHT / cub->enemy.dist;
+	height = (int)ratio;
+	ratio_height = cub->enemy.enemy_i[0]->height / height;
+	// width = 1 / ratio;
+	if (cub->p_x >= cub->e_x && cub->p_y >= cub->e_y)
+		cub->enemy.angle = PI + acosf(fabs(cub->enemy.d_x) / cub->enemy.dist);
+	if (cub->p_x <= cub->e_x && cub->p_y >= cub->e_y)
+		cub->enemy.angle = PI + acosf(fabs(cub->enemy.d_y) / cub->enemy.dist) + (PI / 2);
+	if (cub->p_x <= cub->e_x && cub->p_y <= cub->e_y)
+		cub->enemy.angle = PI + acosf(fabs(cub->enemy.d_x) / cub->enemy.dist) + PI;
+	if (cub->p_x >= cub->e_x && cub->p_y <= cub->e_y)
+		cub->enemy.angle = PI + acosf(fabs(cub->enemy.d_y) / cub->enemy.dist) + (3 * PI / 2);
+	if (cub->enemy.angle >= 2 * PI)
+		cub->enemy.angle -= 2 * PI;
+	if (cub->enemy.angle <= -2 * PI)
+		cub->enemy.angle += 2 * PI;
+	theta1 = cub->enemy.angle - atanf(0.5 / cub->enemy.dist);
+	theta2 = cub->enemy.angle + atanf(0.5 / cub->enemy.dist);
 
-    // Calculer l'angle entre l'ennemi et le joueur
-    enemy_angle = atan2(-d_y, d_x);
-    relative_angle = enemy_angle - cub->rot;
-    // if (relative_angle < 0)
-    //     relative_angle += 2 * PI;
-    // else if (relative_angle >= 2 * PI)
-    //     relative_angle -= 2 * PI;
 
-    // Calculer les ratios de largeur et de hauteur
-    ratio_height = (float)cub->enemy.enemy_i[0]->height / (float)height;
-    ratio_width = relative_angle / 2 * PI;
+	// debug_float(GREEN, "angle: ", ray->angle);
+	// debug_float(RED, "enemy: ", cub->enemy.angle);
+	// debug_float(BLUE, "theta1: ", theta1);
+	// debug_float(BLUE, "theta2: ", theta2);
+	// printf("\n");
 
-    // Calculer la position horizontale de l'ennemi à l'écran
-    enemy_screen_x = (int)((WIDTH / 2) * (1 + tan(relative_angle)));
 
-    start = (height - HEIGHT) / 2;
-    if (start < 0)
-        start = 0;
-    line_tab = start * ratio_height;
-
-    column_tab = (int)(ratio_width * cub->enemy.enemy_i[0]->width) - 1;
-    if (column_tab < 0)
-        column_tab = 0;
-    if (column_tab >= (int)cub->enemy.enemy_i[0]->width)
-        column_tab = (int)cub->enemy.enemy_i[0]->width - 1;
-
-    y = 0;
-    while (y < (HEIGHT - height) / 2)
-    {
-        mlx_put_pixel(cub->world.npc, x, y, 0);
-        y++;
-    }
-
-    // Afficher les pixels de l'ennemi sur la colonne x
-    if (x >= enemy_screen_x - (height / 2) && x <= enemy_screen_x + (height / 2))
-    {
-        while ((int)floor(line_tab) < (int)cub->enemy.enemy_i[0]->height && y < HEIGHT)
-        {
-            int color = cub->enemy.tab_enemy[0][column_tab][(int)floor(line_tab)];
-            mlx_put_pixel(cub->world.npc, x, y, color);
-            y++;
-            line_tab += ratio_height;
-        }
-    }
-    while (y < HEIGHT)
-    {
-        mlx_put_pixel(cub->world.npc, x, y, 0);
-        y++;
-    }
+	if ((ray->angle >=theta1 && ray->angle <= theta2) || (ray->angle >= theta1 - 2 * PI && ray->angle <= theta2 - 2 * PI))
+	{
+		y = 0;
+		while (y < (HEIGHT - height) / 2)
+		{
+			mlx_put_pixel(cub->world.npc, x, y, 0);
+			y++;
+		}
+		while (y < (HEIGHT + height) / 2)
+		{
+			mlx_put_pixel(cub->world.npc, x, y, H_YELLOW);
+			y++;
+		}
+		while (y < HEIGHT)
+		{
+			mlx_put_pixel(cub->world.npc, x, y, 0);
+			y++;
+		}
+	}
 }
