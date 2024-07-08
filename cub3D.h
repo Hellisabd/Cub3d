@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/05 17:40:46 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/08 12:04:28 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,17 @@
 # define LEFT 1
 # define UP 2
 # define DOWN 3
+
+typedef struct s_draw
+{
+	int	dy;
+	int	dx;
+	int	e;
+	int	start_x;
+	int	start_y;
+	int	end_x;
+	int	end_y;
+}	t_draw;
 
 typedef struct s_color
 {
@@ -252,8 +263,6 @@ int		**image_to_tab(mlx_image_t *image);
 void	init_raycast(t_cub *cub);
 void	raycasting(t_cub *cub);
 void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y);
-void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int clor);
-void	draw_ray(t_ray **ray, t_mini_map *mini_map, t_cub *cub, int color);
 void	set_player_pos(t_cub *cub);
 void	printlist(t_ray *node, char *color);
 
@@ -277,6 +286,20 @@ void	rotations(double xpos, double ypos, void *param);
 
 //DISPLAY
 void	fog(t_cub *cub);
+void	draw_ray(t_ray **ray, t_mini_map *mini_map, t_cub *cub, int color);
+void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int clor);
+void	verticality(t_draw *draw, t_mini_map *mini_map, int color);
+void	horizontal_right(t_draw draw, t_mini_map *mini_map, int color);
+void	second_and_third_quadrant(t_draw draw, t_mini_map *mini_map, int color);
+void	first_and_last_quadrant(t_draw draw, t_mini_map *mini_map, int color);
+void	last_octan(t_draw draw, t_mini_map *mini_map, int color);
+void	seventh_octan(t_draw draw, t_mini_map *mini_map, int color);
+void	sixth_octan(t_draw draw, t_mini_map *mini_map, int color);
+void	fifth_octan(t_draw draw, t_mini_map *mini_map, int color);
+void	fourth_octan(t_draw draw, t_mini_map *mini_map, int color);
+void	third_octan(t_draw draw, t_mini_map *mini_map, int color);
+void	second_octant(t_draw draw, t_mini_map *mini_map, int color);
+void	first_octan(t_draw draw, t_mini_map *mini_map, int color);
 
 //INTERACTION
 void	interaction(mlx_key_data_t key, void *param);

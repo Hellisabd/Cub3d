@@ -19,7 +19,9 @@ SRCS	=	parsing/get_map.c \
 			game/open_window.c \
 			game/display/raycasting.c \
 			game/display/raycasting_utils.c \
-			game/display/draw_line.c \
+			game/display/drawline/draw_line.c \
+			game/display/drawline/octans.c \
+			game/display/drawline/utils.c \
 			game/display/3D_world.c \
 			game/display/fog.c \
 			game/animation/init_walls_animation.c \
