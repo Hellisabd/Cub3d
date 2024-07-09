@@ -127,6 +127,8 @@ typedef struct s_anim
 	bool	b_so;
 	bool	b_we;
 	bool	b_ea;
+	mlx_texture_t	*light_t;
+	mlx_image_t		*light_i;
 }	t_anim;
 
 typedef struct s_enemy
@@ -256,6 +258,7 @@ int		draw_walls(t_cub *cub, t_ray *ray);
 int		init_blink(t_cub *cub);
 int		init_enemy(t_cub *cub);
 void	blink(t_cub *cub);
+int		init_light(t_cub *cub);
 
 // ENEMIES
 void	set_enemy_pos(t_cub *cub);

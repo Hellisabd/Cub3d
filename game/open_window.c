@@ -54,22 +54,22 @@ void	put_stamina(t_cub *cub)
 	int	y;
 	
 	n = 100;
-	y = HEIGHT - 150;
-	x = WIDTH / 2 - 300;
+	y = 100;
+	x = 100;
 	while (n-- >= cub->stamina)
 	{
 		if (n == cub->stamina)
 		{
-			while (x++ < WIDTH / 2 + 300 - (6 * (100 - n)))
+			while (x++ < 700 - (6 * (100 - n)))
 			{
-				y = HEIGHT - 150;
-				while (y < HEIGHT - 100)
+				y = 100;
+				while (y < 150)
 					mlx_put_pixel(cub->world.hud, x, y++, H_YELLOW);
 			}
-			while (x++ < WIDTH / 2 + 300)
+			while (x++ < 700)
 			{
-				y = HEIGHT - 150;
-				while (y < HEIGHT - 100)
+				y = 100;
+				while (y < 150)
 					mlx_put_pixel(cub->world.hud, x, y++, 0);
 			}
 		}
@@ -421,7 +421,8 @@ void	open_window(t_cub *cub)
 	map_to_window(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
-	// fog(cub);
+	fog(cub);
+	init_light(cub);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);	
 	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
 	mlx_loop(cub->mlx);

@@ -23,6 +23,7 @@ SRCS	=	parsing/get_map.c \
 			game/3D_world.c \
 			game/walls_animation.c \
 			game/enemy.c \
+			game/light.c \
 			minimap/minimap.c \
 			minimap/init_textures.c \
 			error.c
