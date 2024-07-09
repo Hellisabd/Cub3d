@@ -45,7 +45,7 @@ int	put_wall(t_map *map, t_cub *g)
 	int j;
 	while (map->map[++i])
 	{
-		pos_x = 0;
+		pos_x = WIDTH - g->mini_map.width;
 		j = 0;
 		while (map->map[i][j] && map->map[i][j] != '\n')
 		{
@@ -82,7 +82,7 @@ int map_to_window(t_cub *cub, bool actualise)
 		 cub->mini_map.background_i = mlx_texture_to_image(cub->mlx, cub->mini_map.background_t);
 			mlx_resize_image(cub->mini_map.background_i, cub->mini_map.width, cub->mini_map.height);
 	}
-	if (-1 == mlx_image_to_window(cub->mlx, cub->mini_map.background_i, 0, 0))
+	if (-1 == mlx_image_to_window(cub->mlx, cub->mini_map.background_i,  WIDTH - cub->mini_map.width, 0))
 		exit(1);
 	put_wall(cub->map, cub);
 	return (0);

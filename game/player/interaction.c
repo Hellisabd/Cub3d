@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:19 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/05 15:31:22 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:37:01 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,24 @@ void	put_stamina(t_cub *cub)
 	int	n;
 	int	x;
 	int	y;
-
+	
 	n = 100;
-	y = HEIGHT - 150;
-	x = WIDTH / 2 - 300;
+	y = 100;
+	x = 100;
 	while (n-- >= cub->stamina)
 	{
 		if (n == cub->stamina)
 		{
-			while (x++ < WIDTH / 2 + 300 - (6 * (100 - n)))
+			while (x++ < 700 - (6 * (100 - n)))
 			{
-				y = HEIGHT - 150;
-				while (y < HEIGHT - 100)
+				y = 100;
+				while (y < 150)
 					mlx_put_pixel(cub->world.hud, x, y++, H_YELLOW);
 			}
-			while (x++ < WIDTH / 2 + 300)
+			while (x++ < 700)
 			{
-				y = HEIGHT - 150;
-				while (y < HEIGHT - 100)
+				y = 100;
+				while (y < 150)
 					mlx_put_pixel(cub->world.hud, x, y++, 0);
 			}
 		}
