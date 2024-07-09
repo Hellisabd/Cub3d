@@ -58,11 +58,6 @@ int	put_wall(t_map *map, t_cub *g)
 				map->map[i][j] = '0';
 				mlx_image_to_window(g->mlx, g->mini_map.player_i, pos_x, pos_y);
 			} 
-			if (map->map[i][j] == 'A')
-			{
-				map->map[i][j] = '0';
-				mlx_image_to_window(g->mlx, g->mini_map.player_i, pos_x, pos_y);
-			} 
 			pos_x += g->mini_map.size_wall_x;
 			j++;
 		}
@@ -71,13 +66,6 @@ int	put_wall(t_map *map, t_cub *g)
 	if (round != 0)
 		mlx_image_to_window(g->mlx, g->mini_map.player_i, g->player.pos_x, g->player.pos_y);
 	round++;
-	// i = 0;
-	// j = 0;
-	// while (map->map[i])
-	// {
-	// 	printf("%s", map->map[i]);
-	// 	i++;
-	// }
 	return (0);
 }
 
