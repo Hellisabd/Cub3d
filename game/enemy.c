@@ -107,7 +107,7 @@ void put_enemy(t_cub *cub, t_ray *ray, int x)
 	// printf("\n");
 
 
-	if ((ray->angle >=theta1 && ray->angle <= theta2) || (ray->angle >= theta1 - 2 * PI && ray->angle <= theta2 - 2 * PI))
+	if ((ray->hyp > cub->enemy.dist) && ((ray->angle >=theta1 && ray->angle <= theta2) || (ray->angle >= theta1 - 2 * PI && ray->angle <= theta2 - 2 * PI)))
 	{
 		y = 0;
 		while (y < (HEIGHT - height) / 2)
