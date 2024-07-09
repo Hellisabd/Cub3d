@@ -154,8 +154,8 @@ void	raycasting(t_cub *cub)
 		}
 		cub->next_x =  calc_ray_x(fabs(cub->dist_x), cub);
 		cub->next_y =  calc_ray_y(fabs(cub->dist_y), cub);
-		// debug_str(BLUE, NULL, "New ray");
-		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->player_char || cub->map->map[i][j] == 'o')
+		cub->ene = false;
+		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->player_char || cub->map->map[i][j] == 'o' || cub->map->map[i][j] == 'A')
 		{
 			if (cub->dist_x < 0 && cub->dist_y < 0) //3eme quadrant
 			{
@@ -237,10 +237,17 @@ void	raycasting(t_cub *cub)
 					cub->next_y = calc_ray_y((cub->dist_y), cub);
 				}
 			}
+			if (cub->map->map[i][j] == 'A')
+			{
+				cub->ene = true;
+				cub->hyp_e = cub->hyp;
+				cub->y_e = (cub->p_y) + sin(cub->angle) * fabs(cub->hyp);
+				cub->x_e = (cub->p_x) + cos(cub->angle) * fabs(cub->hyp);
+			}
 		}
 		cub->y = (cub->p_y) + sin(cub->angle) * fabs(cub->hyp);
 		cub->x = (cub->p_x) + cos(cub->angle) * fabs(cub->hyp);
-		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
+		ft_add_back_raycast(&cub->ray, cub, cub->x_e, cub->y_e);
 		cub->angle += cub->fov / cub->n;
 	}
 	// printlist((cub->ray), GREEN);

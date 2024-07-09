@@ -126,6 +126,10 @@ typedef struct s_ray
 	float			x;
 	float			y;
 	bool			door;
+	bool			enemy;
+	float			x_e;
+	float			y_e;
+	float			hyp_e;
 	struct s_ray	*next;
 }	t_ray;
 
@@ -243,6 +247,8 @@ typedef struct s_cub
 	float			fov;
 	float			p_x;
 	float			p_y;
+	float			e_x;
+	float			e_y;
 	float			dir_x;
 	float			dir_y;
 	float			hyp;
@@ -254,6 +260,7 @@ typedef struct s_cub
 	float			rot;
 	int				speed;
 	int				stamina;
+	bool			ene;
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
 	t_world			world;
@@ -288,6 +295,7 @@ void	open_window(t_cub *cub);
 int		lets_go_3d(t_cub *cub);
 int		draw_walls(t_cub *cub, t_ray *ray);
 int		init_blink(t_cub *cub);
+int		init_enemy(t_cub *cub);
 void	blink(t_cub *cub);
 
 //MOVEMENT
@@ -329,6 +337,10 @@ void	blink_we(t_cub *cub);
 void	blink_ea(t_cub *cub);
 void	blink_no(t_cub *cub);
 void	blink_so(t_cub *cub);
+
+// ENEMIES
+void	set_enemy_pos(t_cub *cub);
+void 	put_enemy(t_cub *cub, t_ray *ray, int x);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);
