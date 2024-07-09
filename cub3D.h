@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/09 11:37:50 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:43:13 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,8 +255,6 @@ typedef struct s_cub
 	float			angle;
 	float			x;
 	float			y;
-	float			e_x;
-	float			e_y;
 	float			rot;
 	int				speed;
 	int				stamina;

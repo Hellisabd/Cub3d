@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:16 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/05 17:45:38 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:46:42 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	open_window(t_cub *cub)
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	fog(cub);
+	init_light(cub);
 	mlx_key_hook(cub->mlx, interaction, cub);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);
 	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);

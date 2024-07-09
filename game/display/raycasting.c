@@ -237,17 +237,10 @@ void	raycasting(t_cub *cub)
 					cub->next_y = calc_ray_y((cub->dist_y), cub);
 				}
 			}
-			if (cub->map->map[i][j] == 'A')
-			{
-				cub->ene = true;
-				cub->hyp_e = cub->hyp;
-				cub->y_e = (cub->p_y) + sin(cub->angle) * fabs(cub->hyp);
-				cub->x_e = (cub->p_x) + cos(cub->angle) * fabs(cub->hyp);
-			}
 		}
 		cub->y = (cub->p_y) + sin(cub->angle) * fabs(cub->hyp);
 		cub->x = (cub->p_x) + cos(cub->angle) * fabs(cub->hyp);
-		ft_add_back_raycast(&cub->ray, cub, cub->x_e, cub->y_e);
+		ft_add_back_raycast(&cub->ray, cub, cub->x, cub->y);
 		cub->angle += cub->fov / cub->n;
 	}
 	// printlist((cub->ray), GREEN);

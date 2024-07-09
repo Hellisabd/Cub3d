@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:00:33 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/05 18:00:34 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:49:46 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub)
 	mlx_delete_texture(cub->enemy.enemy_t[0]);
 	mlx_delete_texture(cub->enemy.enemy_t[1]);
 	mlx_delete_texture(cub->enemy.enemy_t[2]);
+	mlx_delete_texture(cub->anim.light_t);
 	mlx_delete_image(mlx, cub->enemy.enemy_i[0]);
 	mlx_delete_image(mlx, cub->enemy.enemy_i[1]);
 	mlx_delete_image(mlx, cub->enemy.enemy_i[2]);
