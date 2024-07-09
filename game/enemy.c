@@ -54,14 +54,14 @@ void put_enemy(t_cub *cub, t_ray *ray, int x)
 {
 	int	  	y;
 	int	  	height;
-	// float	width;
 	float	ratio;
 	float	theta1;
 	float	theta2;
 	float	ratio_height;
-	// int		column_tab;
-	// float	line_tab;
-	// int		start;
+	// float	ratio_width;
+	int		column_tab;
+	float	line_tab;
+	int		start;
 
 	y = 0;
 		while (y < HEIGHT)
@@ -78,12 +78,12 @@ void put_enemy(t_cub *cub, t_ray *ray, int x)
 	// width = 1 / ratio;
 	if (cub->p_x >= cub->e_x && cub->p_y >= cub->e_y)
 		cub->enemy.angle = PI + acosf(fabs(cub->enemy.d_x) / cub->enemy.dist);
-	if (cub->p_x <= cub->e_x && cub->p_y >= cub->e_y)
-		cub->enemy.angle = PI + acosf(fabs(cub->enemy.d_y) / cub->enemy.dist) + (PI / 2);
-	if (cub->p_x <= cub->e_x && cub->p_y <= cub->e_y)
-		cub->enemy.angle = PI + acosf(fabs(cub->enemy.d_x) / cub->enemy.dist) + PI;
-	if (cub->p_x >= cub->e_x && cub->p_y <= cub->e_y)
-		cub->enemy.angle = PI + acosf(fabs(cub->enemy.d_y) / cub->enemy.dist) + (3 * PI / 2);
+	else if (cub->p_x <= cub->e_x && cub->p_y >= cub->e_y)
+		cub->enemy.angle = 3 * PI / 2 + acosf(fabs(cub->enemy.d_y) / cub->enemy.dist);
+	else if (cub->p_x <= cub->e_x && cub->p_y <= cub->e_y)
+		cub->enemy.angle = 2 * PI + acosf(fabs(cub->enemy.d_x) / cub->enemy.dist);
+	else if (cub->p_x >= cub->e_x && cub->p_y <= cub->e_y)
+		cub->enemy.angle = PI / 2 + acosf(fabs(cub->enemy.d_y) / cub->enemy.dist);
 	if (cub->enemy.angle >= 2 * PI)
 		cub->enemy.angle -= 2 * PI;
 	if (cub->enemy.angle <= -2 * PI)
@@ -91,6 +91,14 @@ void put_enemy(t_cub *cub, t_ray *ray, int x)
 	theta1 = cub->enemy.angle - atanf(0.5 / cub->enemy.dist);
 	theta2 = cub->enemy.angle + atanf(0.5 / cub->enemy.dist);
 
+
+	start = (height - HEIGHT) / 2;
+	if (start < 0)
+		start = 0;
+	line_tab = start * ratio_height;
+	column_tab = (int)(ratio_height * cub->enemy.enemy_i[0]->width) - 1;
+	if (column_tab < 0)
+		column_tab = 0;
 
 	// debug_float(GREEN, "angle: ", ray->angle);
 	// debug_float(RED, "enemy: ", cub->enemy.angle);
@@ -109,9 +117,15 @@ void put_enemy(t_cub *cub, t_ray *ray, int x)
 		}
 		while (y < (HEIGHT + height) / 2)
 		{
-			mlx_put_pixel(cub->world.npc, x, y, H_YELLOW);
+			mlx_put_pixel(cub->world.npc, x, y, H_PINK);
 			y++;
 		}
+		// while ((int)floor(line_tab) < (int)cub->enemy.enemy_i[0]->height && y < HEIGHT)
+		// {
+		// 	mlx_put_pixel(cub->world.npc, x, y, (int)cub->enemy.tab_enemy[column_tab][(int)floor(line_tab)]);
+		// 	y++;
+		// 	line_tab += ratio_height;
+		// }
 		while (y < HEIGHT)
 		{
 			mlx_put_pixel(cub->world.npc, x, y, 0);
