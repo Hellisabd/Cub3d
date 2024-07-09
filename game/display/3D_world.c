@@ -173,7 +173,8 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 				break ;
 		}
 		disp_world(cub, ray, i);
-		put_enemy(cub, ray, i);
+		if (cub->n_ennemy == 1)
+			put_enemy(cub, ray, i);
 		i++;
 	}
 	return (0);

@@ -154,7 +154,6 @@ void	raycasting(t_cub *cub)
 		}
 		cub->next_x =  calc_ray_x(fabs(cub->dist_x), cub);
 		cub->next_y =  calc_ray_y(fabs(cub->dist_y), cub);
-		cub->ene = false;
 		while (cub->map->map[i][j] == '0' || cub->map->map[i][j] == cub->map->player_char || cub->map->map[i][j] == 'o' || cub->map->map[i][j] == 'A')
 		{
 			if (cub->dist_x < 0 && cub->dist_y < 0) //3eme quadrant

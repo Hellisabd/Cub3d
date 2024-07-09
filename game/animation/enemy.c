@@ -115,17 +115,17 @@ void put_enemy(t_cub *cub, t_ray *ray, int x)
 			mlx_put_pixel(cub->world.npc, x, y, 0);
 			y++;
 		}
-		while (y < (HEIGHT + height) / 2)
-		{
-			mlx_put_pixel(cub->world.npc, x, y, H_PINK);
-			y++;
-		}
-		// while ((int)floor(line_tab) < (int)cub->enemy.enemy_i[0]->height && y < HEIGHT)
+		// while (y < (HEIGHT + height) / 2)
 		// {
-		// 	mlx_put_pixel(cub->world.npc, x, y, (int)cub->enemy.tab_enemy[column_tab][(int)floor(line_tab)]);
+		// 	mlx_put_pixel(cub->world.npc, x, y, H_PINK);
 		// 	y++;
-		// 	line_tab += ratio_height;
 		// }
+		while ((int)floor(line_tab) < (int)cub->enemy.enemy_i[0]->height && y < HEIGHT)
+		{
+			mlx_put_pixel(cub->world.npc, x, y, (int)cub->enemy.tab_enemy[0][column_tab][(int)floor(line_tab)]);
+			y++;
+			line_tab += ratio_height;
+		}
 		while (y < HEIGHT)
 		{
 			mlx_put_pixel(cub->world.npc, x, y, 0);

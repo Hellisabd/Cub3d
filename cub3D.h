@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/09 11:43:13 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:54:11 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,7 +258,7 @@ typedef struct s_cub
 	float			rot;
 	int				speed;
 	int				stamina;
-	bool			ene;
+	size_t			n_ennemy;
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
 	t_world			world;
@@ -274,6 +274,7 @@ int		parsing_map(t_map *map, t_cub *cub);
 void	check_cub(char *s);
 int		rgb_to_hex(char *rgb);
 int		**image_to_tab(mlx_image_t *image);
+size_t	count_c(t_map *map, char c);
 
 // RAYCASTING
 void	init_raycast(t_cub *cub);
