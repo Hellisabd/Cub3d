@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/09 10:52:10 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/09 11:37:50 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,6 +168,8 @@ typedef struct s_anim
 	int		door_count;
 	int		door_opening;
 	int		door_closing;
+	mlx_texture_t	*light_t;
+	mlx_image_t		*light_i;
 }	t_anim;
 
 typedef struct s_enemy
@@ -177,6 +179,10 @@ typedef struct s_enemy
 	int				**tab_enemy[3];
 	int				pos_x;
 	int				pos_y;
+	float			d_x;
+	float			d_y;
+	float			dist;
+	float			angle;
 }	t_enemy;
 
 typedef struct s_world
@@ -249,9 +255,8 @@ typedef struct s_cub
 	float			angle;
 	float			x;
 	float			y;
-	float			x_e;
-	float			y_e;
-	float			hyp_e;
+	float			e_x;
+	float			e_y;
 	float			rot;
 	int				speed;
 	int				stamina;
@@ -314,6 +319,11 @@ void	fourth_octan(t_draw draw, t_mini_map *mini_map, int color);
 void	third_octan(t_draw draw, t_mini_map *mini_map, int color);
 void	second_octant(t_draw draw, t_mini_map *mini_map, int color);
 void	first_octan(t_draw draw, t_mini_map *mini_map, int color);
+int		init_light(t_cub *cub);
+
+// ENEMIES
+void	set_enemy_pos(t_cub *cub);
+void 	put_enemy(t_cub *cub, t_ray *ray, int x);
 
 //INTERACTION
 void	interaction(mlx_key_data_t key, void *param);
