@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/08 12:04:28 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/09 10:52:10 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,10 @@ typedef struct s_ray
 	float			x;
 	float			y;
 	bool			door;
+	bool			enemy;
+	float			x_e;
+	float			y_e;
+	float			hyp_e;
 	struct s_ray	*next;
 }	t_ray;
 
@@ -168,8 +172,11 @@ typedef struct s_anim
 
 typedef struct s_enemy
 {
-	mlx_texture_t	*enemy_t[2];
-	mlx_image_t		*enemy_i[2];
+	mlx_texture_t	*enemy_t[3];
+	mlx_image_t		*enemy_i[3];
+	int				**tab_enemy[3];
+	int				pos_x;
+	int				pos_y;
 }	t_enemy;
 
 typedef struct s_world
@@ -234,15 +241,21 @@ typedef struct s_cub
 	float			fov;
 	float			p_x;
 	float			p_y;
+	float			e_x;
+	float			e_y;
 	float			dir_x;
 	float			dir_y;
 	float			hyp;
 	float			angle;
 	float			x;
 	float			y;
+	float			x_e;
+	float			y_e;
+	float			hyp_e;
 	float			rot;
 	int				speed;
 	int				stamina;
+	bool			ene;
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
 	t_world			world;
@@ -277,6 +290,7 @@ void	open_window(t_cub *cub);
 int		lets_go_3d(t_cub *cub);
 int		draw_walls(t_cub *cub, t_ray *ray);
 int		init_blink(t_cub *cub);
+int		init_enemy(t_cub *cub);
 void	blink(t_cub *cub);
 
 //MOVEMENT
@@ -313,6 +327,10 @@ void	blink_we(t_cub *cub);
 void	blink_ea(t_cub *cub);
 void	blink_no(t_cub *cub);
 void	blink_so(t_cub *cub);
+
+// ENEMIES
+void	set_enemy_pos(t_cub *cub);
+void 	put_enemy(t_cub *cub, t_ray *ray, int x);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);

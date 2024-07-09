@@ -173,6 +173,9 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 				break ;
 		}
 		disp_world(cub, ray, i);
+		// if (ray->enemy == true)
+		put_enemy(cub, ray, i);
+		blink(cub);
 		i++;
 	}
 	return (0);
@@ -181,6 +184,7 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 int	lets_go_3d(t_cub *cub)
 {
 	init_world(cub);
+	init_enemy(cub);
 	init_blink(cub);
 	cub->world.background_i = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.background_i, 0, 0) == -1)
