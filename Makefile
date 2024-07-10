@@ -32,6 +32,7 @@ SRCS	=	parsing/get_map.c \
 			game/player/movement.c \
 			game/player/movements_setup.c \
 			game/player/interaction.c \
+			game/player/stamina.c \
 			minimap/minimap.c \
 			minimap/init_textures.c \
 			parsing/error.c \

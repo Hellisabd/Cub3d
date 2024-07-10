@@ -58,35 +58,6 @@ int	close_door(t_cub *cub, int player_x, int player_y)
 	return (0);
 }
 
-void	put_stamina(t_cub *cub)
-{
-	int	n;
-	int	x;
-	int	y;
-	
-	n = 200;
-	y = 100;
-	x = 100;
-	while (n-- >= cub->stamina)
-	{
-		if (n == cub->stamina)
-		{
-			while (x++ < 700 - (6 * (100 - n)))
-			{
-				y = 100;
-				while (y < 150)
-					mlx_put_pixel(cub->world.hud, x, y++, H_YELLOW);
-			}
-			while (x++ < 700)
-			{
-				y = 100;
-				while (y < 150)
-					mlx_put_pixel(cub->world.hud, x, y++, 0);
-			}
-		}
-	}
-}
-
 int	open_door(t_cub *cub, int player_x, int player_y)
 {
 	player_y = cub->player.pos_y / cub->mini_map.size_wall_y;
