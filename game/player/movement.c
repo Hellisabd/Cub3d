@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:22 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 13:08:07 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:13:48 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	move_player(t_cub *cub, float dir)
 			cub->speed = 2;
 		// debug_nbr(GREEN, NULL, stamina);
 		cub->stamina -= 2;
+		if (cub->stamina < 2)
+			cub->sprint = false;
 	}
 	else
 		cub->sprint = false;
