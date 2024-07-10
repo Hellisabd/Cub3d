@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 17:09:21 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:54:36 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define STARTING 1
 # define END 2
 
-# define WALL "assets/red_square.png"
+# define WALL "assets/walls/black.png"
 # define BACKGROUND "assets/white_square.png"
 # define PLAYER_T "assets/blue_circle.png"
 # define CURSOR "assets/invisible_pixel.png"

@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:16 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 14:49:12 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:57:49 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	refresh(t_cub *cub)
 	blink(cub);
 	anim_enemy(cub);
 	check_doors(cub);
-	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	draw_ray(&cub->ray, &cub->mini_map, cub, H_RED);
 }
 
 void	ft_hook(void *param)
@@ -80,7 +80,7 @@ void	open_window(t_cub *cub)
 	init_anim(cub);
 	raycasting(cub);
 	map_to_window(cub, false);
-	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
+	draw_ray(&cub->ray, &cub->mini_map, cub, H_RED);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	fog(cub);
 	init_light(cub);

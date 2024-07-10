@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:22 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 17:40:23 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:56:05 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	rotations(double xpos, double ypos, void *param)
 	y = (int)ypos;
 	mlx_get_mouse_pos(cub->mlx, &x, &y);
 	if (x > WIDTH / 2)
-		cub->rot += PI / 20;
+		cub->rot += PI / 10;
 	if (x < WIDTH / 2)
-		cub->rot -= PI / 20;
+		cub->rot -= PI / 10;
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 }
 
