@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:22 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 17:38:03 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:40:23 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,52 +27,6 @@ void	rotations(double xpos, double ypos, void *param)
 	if (x < WIDTH / 2)
 		cub->rot -= PI / 20;
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
-}
-
-void	move_player_up(t_deplacement *dep, t_cub *cub, int dir)
-{
-	if ((dir > 3 * PI / 2 && dir <= PI * 2) || (dir >= -PI / 2 && dir <= 0))
-	{
-		dep->next_pos_x = ((int)round((float)((cub->player.pos_x) \
-		+ dep->deplacement_x) / (float)cub->mini_map.size_wall_x));
-		dep->next_pos_y = ((int)round(((cub->player.pos_y) + \
-		dep->deplacement_y) / (float)cub->mini_map.size_wall_y));
-	}
-	else
-	{
-		dep->next_pos_x = ((int)round((float)((cub->player.pos_x) + \
-		dep->deplacement_x) / (float)cub->mini_map.size_wall_x));
-		dep->next_pos_y = ((int)round(((cub->player.pos_y) + \
-		dep->deplacement_y) / (float)cub->mini_map.size_wall_y));
-	}
-}
-
-void	move_player_down(t_deplacement *dep, t_cub *cub, int dir)
-{
-	if ((dir < PI / 2 && dir > 0) || (dir < -3 * PI / 2 && dir > -2 * PI))
-	{
-		if (dep->deplacement_y != 0)
-		{
-			dep->next_pos_x = ((int)round((float)((cub->player.pos_x) + \
-			dep->deplacement_x) / (float)cub->mini_map.size_wall_x));
-			dep->next_pos_y = ((int)round(((cub->player.pos_y) + \
-			dep->deplacement_y) / (float)cub->mini_map.size_wall_y));
-		}
-		else
-		{
-			dep->next_pos_x = ((int)round((float)((cub->player.pos_x) + \
-			dep->deplacement_x) / (float)cub->mini_map.size_wall_x));
-			dep->next_pos_y = ((int)floor(((cub->player.pos_y) + \
-			dep->deplacement_y) / (float)cub->mini_map.size_wall_y));
-		}
-	}
-	else
-	{
-		dep->next_pos_x = ((int)round((float)((cub->player.pos_x) + \
-		dep->deplacement_x) / (float)cub->mini_map.size_wall_x));
-		dep->next_pos_y = ((int)round(((cub->player.pos_y) + \
-		dep->deplacement_y) / (float)cub->mini_map.size_wall_y));
-	}
 }
 
 bool	can_move(t_cub *cub, t_deplacement *dep)
