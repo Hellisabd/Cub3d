@@ -110,12 +110,12 @@ void	raycasting(t_cub *cub)
 	int		j;
 	// static int count_middle;
 
-	// debug_float(RED, "avant p_x :", cub->p_x);
 	// debug_nbr(GREEN, "avant player pos_x :", cub->player.pos_x);
-	// debug_float(RED, "avant p_y :", cub->p_y);
+	// debug_float(RED, "p_x :", cub->p_x);
+	// debug_float(RED, "p_y :", cub->p_y);
 	// debug_nbr(GREEN, "avant player pos_y :", cub->player.pos_y);
-	cub->p_x = 0.5 + (float)cub->player.pos_x / (float)cub->mini_map.size_wall_x;
-	cub->p_y =  0.5 +(float)cub->player.pos_y / (float)cub->mini_map.size_wall_y;
+	// cub->p_x = 0.5 + (float)cub->player.pos_x / (float)cub->mini_map.size_wall_x;
+	// cub->p_y =  0.5 + (float)cub->player.pos_y / (float)cub->mini_map.size_wall_y;
 	if (cub->rot >= 2 * PI)
 		cub->rot -= 2 * PI;
 	if (cub->rot <= -2 * PI)

@@ -18,20 +18,19 @@ size_t ft_strlen_custom(char *str)
 
 int init_data_mini_map(t_mini_map *minimap, t_map *map)
 {
-	size_t max_length;
 	int	i;
 
 	i = 0;
-	max_length = 0;
+	map->max_length = 0;
 	while (map->map[i])
 	{
-		if (max_length < ft_strlen_custom(map->map[i]))
-			max_length = ft_strlen_custom(map->map[i]);
+		if ((size_t)map->max_length < ft_strlen_custom(map->map[i]))
+			map->max_length = ft_strlen_custom(map->map[i]);
 		i++;
 	}
-	minimap->size_wall_x = ceil(HEIGHT / (float)(max_length)) / 5;
+	minimap->size_wall_x = ceil(HEIGHT / (float)(map->max_length)) / 5;
 	minimap->size_wall_y = ceil(HEIGHT / (float)(i)) / 5;
-	minimap->width = minimap->size_wall_x * max_length;
+	minimap->width = minimap->size_wall_x * map->max_length;
 	minimap->height = minimap->size_wall_y * i;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:46:25 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 14:47:09 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:16:06 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,11 @@
 
 void	stam_handling(t_cub *cub)
 {
-	cub->speed = cub->mini_map.size_wall_x / 8;
-	if (cub->speed == 0)
-		cub->speed = 1;
-	if (cub->stamina > 100)
-		cub->stamina = 100;
-	if (cub->stamina > 20)
-		cub->sprint = true;
+	cub->speed = 2;
+	cub->sprint = true;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT) && cub->sprint == true)
 	{
-		cub->speed = cub->mini_map.size_wall_x / 4;
-		if (cub->speed == 0)
-			cub->speed = 2;
+		cub->speed = 3;
 		cub->stamina -= 2;
 		if (cub->stamina < 2)
 			cub->sprint = false;

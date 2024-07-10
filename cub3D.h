@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 14:50:48 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/10 17:09:21 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,15 @@
 
 typedef struct s_deplacement
 {
-	int			deplacement_x;
-	int			deplacement_y;
+	float		deplacement_x;
+	float		deplacement_y;
 	int 		next_pos_x;
 	int 		next_pos_y;
 	int 		old_pos_x;
 	int 		old_pos_y;
+	float		e_y;
+	float		e_x;
+	float		old_dir;
 }	t_deplacement;
 
 typedef struct s_draw
@@ -124,6 +127,7 @@ typedef struct s_map
 	char	**tab_f;
 	char	**tab_c;
 	int		*length;
+	int		max_length;
 	int		height;
 	char	player_char;
 	int		i;
@@ -278,6 +282,7 @@ typedef struct s_cub
 	t_player		player;
 	t_anim			anim;
 	t_enemy			enemy;
+	t_deplacement	dep;
 }	t_cub;
 
 // PARSING
@@ -313,7 +318,7 @@ void	blink(t_cub *cub);
 
 //MOVEMENT
 void	move(t_cub *cub);
-void	move_player(t_cub *cub, float dir);
+void	move_player(t_cub *cub, float dir, t_deplacement *dep);
 void	rotations(double xpos, double ypos, void *param);
 
 //DISPLAY

@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:24 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 13:01:14 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 16:04:40 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	move_left(t_cub *cub)
 {
-	move_player(cub, cub->player.dir_left);
+	move_player(cub, cub->player.dir_left, &cub->dep);
 }
 
 void	move_right(t_cub *cub)
 {
-	move_player(cub, cub->player.dir_right);
+	move_player(cub, cub->player.dir_right, &cub->dep);
 }
 
 void	move_down(t_cub *cub)
 {
-	move_player(cub, cub->player.dir_down);
+	move_player(cub, cub->player.dir_down, &cub->dep);
 }
 
 void	move_up(t_cub *cub)
 {
-	move_player(cub, cub->player.dir_up);
+	move_player(cub, cub->player.dir_up, &cub->dep);
 }
 
 void	move(t_cub *cub)
