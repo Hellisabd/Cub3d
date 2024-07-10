@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:22 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 13:13:48 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:14:14 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	move_player(t_cub *cub, float dir)
 		cub->speed = 1;
 	if (cub->stamina > 100)
 		cub->stamina = 100;
-	if (cub->stamina == 100)
+	if (cub->stamina > 20)
 		cub->sprint = true;
 	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT) && cub->sprint == true)
 	{
