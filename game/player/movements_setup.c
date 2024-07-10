@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:24 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/05 15:25:30 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:01:14 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,21 @@
 void	move_left(t_cub *cub)
 {
 	move_player(cub, cub->player.dir_left);
-	put_stamina(cub);
 }
 
 void	move_right(t_cub *cub)
 {
 	move_player(cub, cub->player.dir_right);
-	put_stamina(cub);
 }
 
 void	move_down(t_cub *cub)
 {
 	move_player(cub, cub->player.dir_down);
-	put_stamina(cub);
 }
 
 void	move_up(t_cub *cub)
 {
 	move_player(cub, cub->player.dir_up);
-	put_stamina(cub);
 }
 
 void	move(t_cub *cub)

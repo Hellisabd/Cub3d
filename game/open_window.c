@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:16 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/09 13:55:53 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:03:22 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void	refresh(t_cub *cub)
 	if (cub->player.dir_right >= 2 * PI)
 		cub->player.dir_right -= 2 * PI;
 	raycasting(cub);
+	if (cub->stamina < 100 && cub->anim.frame % 2 == 0)
+		cub->stamina++;
+	put_stamina(cub);
 	cub->anim.frame++;
 	blink(cub);
 	check_doors(cub);
@@ -60,6 +63,7 @@ void	ft_cursor(t_cub *cub)
 
 void	open_window(t_cub *cub)
 {
+	cub->stamina = 100;
 	init_data_mini_map(&cub->mini_map, cub->map);
 	set_player_pos(cub);
 	set_enemy_pos(cub);

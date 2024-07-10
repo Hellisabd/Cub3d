@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:22 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/08 14:21:35 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:08:07 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,25 @@ void	move_player(t_cub *cub, float dir)
 {
 	int			deplacement_x;
 	int			deplacement_y;
-	static int	stamina = 100;
+	// static int	stamina = 100;
 
 	cub->speed = cub->mini_map.size_wall_x / 8;
-	cub->stamina = stamina;
-	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT) && stamina > 0)
+	if (cub->speed == 0)
+		cub->speed = 1;
+	if (cub->stamina > 100)
+		cub->stamina = 100;
+	if (cub->stamina == 100)
+		cub->sprint = true;
+	if (mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT) && cub->sprint == true)
 	{
 		cub->speed = cub->mini_map.size_wall_x / 4;
 		if (cub->speed == 0)
 			cub->speed = 2;
 		// debug_nbr(GREEN, NULL, stamina);
-		cub->stamina = stamina;
-		stamina--;
+		cub->stamina -= 2;
 	}
-	if (!mlx_is_key_down(cub->mlx, MLX_KEY_LEFT_SHIFT) && stamina < 100)
-	{
-		cub->speed = cub->mini_map.size_wall_x / 8;
-		if (cub->speed == 0)
-			cub->speed = 1;
-		if (stamina > 100)
-			stamina = 100;
-		// debug_nbr(BLUE, NULL, stamina);
-		cub->stamina = stamina;
-		stamina++;
-	}
+	else
+		cub->sprint = false;
 	deplacement_x = (int)(round(cos(dir) * cub->speed));
 	deplacement_y = (int)(round(sin(dir) * cub->speed));
 	int next_pos_x;

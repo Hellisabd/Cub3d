@@ -53,17 +53,13 @@ void	set_enemy_pos(t_cub *cub)
 void put_enemy(t_cub *cub, t_ray *ray, int x)
 {
 	int	  	y;
-	int	  	height;
 	float	ratio;
 	float	theta1;
 	float	theta2;
-	int		ratio_height;
+	float	ratio_height;
 	float	ratio_width;
-	// int		column_tab;
 	float	line_tab;
 	int		start;
-	float	d_theta;
-	float	div;
 	int		max_rays;
 
 	y = 0;
@@ -76,9 +72,7 @@ void put_enemy(t_cub *cub, t_ray *ray, int x)
 	cub->enemy.d_y = cub->p_y - cub->e_y;
 	cub->enemy.dist = fabs(sqrt((cub->enemy.d_x * cub->enemy.d_x) + (cub->enemy.d_y * cub->enemy.d_y)));
 	ratio = HEIGHT / cub->enemy.dist;
-	height = (int)ratio;
-	ratio_height = cub->enemy.enemy_i[0]->height / height;
-	// width = 1 / ratio;
+	ratio_height = (float)cub->enemy.enemy_i[0]->height / ratio;
 	if (cub->p_x >= cub->e_x && cub->p_y >= cub->e_y)
 		cub->enemy.angle = PI + acosf(fabs(cub->enemy.d_x) / cub->enemy.dist);
 	else if (cub->p_x <= cub->e_x && cub->p_y >= cub->e_y)
@@ -93,62 +87,34 @@ void put_enemy(t_cub *cub, t_ray *ray, int x)
 		cub->enemy.angle += 2 * PI;
 	theta1 = cub->enemy.angle - atanf(0.5 / cub->enemy.dist);
 	theta2 = cub->enemy.angle + atanf(0.5 / cub->enemy.dist);
-	// angle total
-	d_theta = fabs(theta1 - theta2);
-	// 1 rayon tous les div radian
-	div = cub->fov / cub->n;
-	// nombre de rayons entre theta1 et theta2
-	max_rays = (int)(d_theta / div);
-	// nombre de pixel par rayon
+	max_rays = (int)(fabs(theta1 - theta2)/ (cub->fov / cub->n));
 	ratio_width = (float)cub->enemy.enemy_i[0]->width / (float)max_rays;
 
-	start = (height - HEIGHT) / 2;
+	start = ((int)ratio - HEIGHT) / 2;
 	if (start < 0)
 		start = 0;
 	line_tab = start * ratio_height;
-	// column_tab = (int)(ratio_width * cub->enemy.enemy_i[0]->width);
-	// if (column_tab < 0)
-	// 	column_tab = 0;
-
-	// debug_float(BLUE, "d_theta: ", d_theta);
-	// debug_float(BLUE, "div: ", div);
-	// debug_float(YELLOW, "n: ", ratio_width);
-	// debug_nbr(YELLOW, "max: ", max_rays);
-	// debug_float(GREEN, "angle: ", ray->angle);
-	// debug_float(RED, "enemy: ", cub->enemy.angle);
-	// debug_float(BLUE, "theta1: ", theta1);
-	// debug_float(BLUE, "theta2: ", theta2);
-	// printf("\n");
-
-
 	if ((ray->hyp > cub->enemy.dist) && ((ray->angle >=theta1 && ray->angle <= theta2) || (ray->angle >= theta1 - 2 * PI && ray->angle <= theta2 - 2 * PI)))
 	{
-		// debug_nbr(RED, "n_ray", cub->n_ray);
-		debug_nbr(RED, NULL, (int)(cub->n_ray * ratio_width));
 		y = 0;
-		while (y < (HEIGHT - height) / 2)
+		while (y < (HEIGHT - ratio + 50) / 2)
 		{
 			mlx_put_pixel(cub->world.npc, x, y, 0);
 			y++;
 		}
 		while ((int)floor(line_tab) < (int)cub->enemy.enemy_i[0]->height && y < HEIGHT)
 		{
-			mlx_put_pixel(cub->world.npc, x, y, (int)cub->enemy.tab_enemy[0][(int)(floor)(cub->n_ray * ratio_width)][(int)floor(line_tab)]);
+			mlx_put_pixel(cub->world.npc, x, y, (int)cub->enemy.tab_enemy[0][(int)(floor)(cub->n_ray / 3 * ratio_width)][(int)floor(line_tab)]);
 			y++;
 			line_tab += ratio_height;
 		}
-		// while (y < (HEIGHT + height) / 2)
-		// {
-		// 	mlx_put_pixel(cub->world.npc, x, y, H_PINK);
-		// 	y++;
-		// }
 		while (y < HEIGHT)
 		{
 			mlx_put_pixel(cub->world.npc, x, y, 0);
 			y++;
 		}
 		cub->n_ray++;
-		if (cub->n_ray >= max_rays)
+		if (cub->n_ray >= max_rays * 3)
 			cub->n_ray = 0;
 	}
 }
