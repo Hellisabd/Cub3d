@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_walls_animation.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:10 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/05 15:33:14 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:50:44 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_anim(t_cub *cub)
 	cub->anim.i_so = 0;
 	cub->anim.i_we = 0;
 	cub->anim.i_ea = 0;
+	cub->anim.i_enemy = 0;
 	cub->anim.b_no = false;
 	cub->anim.b_so = false;
 	cub->anim.b_we = false;
@@ -27,6 +28,8 @@ void	init_anim(t_cub *cub)
 	cub->anim.door_closing = NONE;
 	cub->anim.door_opening = NONE;
 	cub->anim.door_count = 0;
+	cub->enemy.enemy_im = cub->enemy.enemy_i[0];
+	cub->enemy.pix_enemy = cub->enemy.tab_enemy[0];
 }
 
 void	init_blink3(t_cub *cub)

@@ -20,18 +20,45 @@ int	init_enemy(t_cub *cub)
 	return (0);
 }
 
+void	anim_enemy(t_cub *cub)
+{
+	if (cub->anim.i_enemy == 0)
+	{
+		cub->enemy.enemy_im = cub->enemy.enemy_i[0];
+		cub->enemy.pix_enemy = cub->enemy.tab_enemy[0];
+	}
+	if (cub->anim.i_enemy == 1)
+	{
+		cub->enemy.enemy_im = cub->enemy.enemy_i[1];
+		cub->enemy.pix_enemy = cub->enemy.tab_enemy[1];
+	}
+	if (cub->anim.i_enemy == 2)
+	{
+		cub->enemy.enemy_im = cub->enemy.enemy_i[2];
+		cub->enemy.pix_enemy = cub->enemy.tab_enemy[2];
+	}
+	if (cub->anim.i_enemy == 3)
+	{
+		cub->enemy.enemy_im = cub->enemy.enemy_i[1];
+		cub->enemy.pix_enemy = cub->enemy.tab_enemy[1];
+	}
+	if (cub->anim.i_enemy == 4)
+	{
+		cub->enemy.enemy_im = cub->enemy.enemy_i[0];
+		cub->enemy.pix_enemy = cub->enemy.tab_enemy[0];
+		cub->anim.i_enemy = -1;
+	}
+	cub->anim.i_enemy++;
+}
+
 void	set_enemy_pos(t_cub *cub)
 {
 	int	i;
-	int pos_x;
-	int pos_y;
 	int	j;
 
 	i = 0;
-	pos_y = 0;
 	while (i < cub->map->height)
 	{
-		pos_x = 0;
 		j = 0;
 		while (cub->map->map[i][j])
 		{
@@ -39,13 +66,9 @@ void	set_enemy_pos(t_cub *cub)
 			{
 				cub->e_x = j + 0.5;
 				cub->e_y = i + 0.5;
-				cub->enemy.pos_x = pos_x;
-				cub->enemy.pos_y = pos_y;
 			}
-			pos_x += cub->mini_map.size_wall_x;
 			j++;
 		}
-		pos_y += cub->mini_map.size_wall_y;
 		i++;
 	}
 }
@@ -104,7 +127,7 @@ void put_enemy(t_cub *cub, t_ray *ray, int x)
 		}
 		while ((int)floor(line_tab) < (int)cub->enemy.enemy_i[0]->height && y < HEIGHT)
 		{
-			mlx_put_pixel(cub->world.npc, x, y, (int)cub->enemy.tab_enemy[0][(int)(floor)(cub->n_ray / 3 * ratio_width)][(int)floor(line_tab)]);
+			mlx_put_pixel(cub->world.npc, x, y, (int)cub->enemy.pix_enemy[(int)(floor)(cub->n_ray / 3 * ratio_width)][(int)floor(line_tab)]);
 			y++;
 			line_tab += ratio_height;
 		}

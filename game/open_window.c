@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_window.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:16 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 13:03:22 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:49:12 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	refresh(t_cub *cub)
 	put_stamina(cub);
 	cub->anim.frame++;
 	blink(cub);
+	anim_enemy(cub);
 	check_doors(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
 }
@@ -67,7 +68,7 @@ void	open_window(t_cub *cub)
 	init_data_mini_map(&cub->mini_map, cub->map);
 	set_player_pos(cub);
 	set_enemy_pos(cub);
-	cub->n_ennemy = count_c(cub->map, 'A');
+	cub->n_enemy = count_c(cub->map, 'A');
 	cub->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!cub->mlx)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));
@@ -76,6 +77,7 @@ void	open_window(t_cub *cub)
 	ft_cursor(cub);
 	init_raycast(cub);
 	lets_go_3d(cub);
+	init_anim(cub);
 	raycasting(cub);
 	map_to_window(cub, false);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_GREEN);
