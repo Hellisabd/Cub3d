@@ -29,7 +29,7 @@ int init_data_mini_map(t_mini_map *minimap, t_map *map)
 			max_length = ft_strlen_custom(map->map[i]);
 		i++;
 	}
-	minimap->size_wall_x = ceil(WIDTH / (float)(max_length)) / 5;
+	minimap->size_wall_x = ceil(HEIGHT / (float)(max_length)) / 5;
 	minimap->size_wall_y = ceil(HEIGHT / (float)(i)) / 5;
 	minimap->width = minimap->size_wall_x * max_length;
 	minimap->height = minimap->size_wall_y * i;
