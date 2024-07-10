@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 13:08:32 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:47:55 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@
 # define LEFT 1
 # define UP 2
 # define DOWN 3
+
+typedef struct s_deplacement
+{
+	int			deplacement_x;
+	int			deplacement_y;
+	int 		next_pos_x;
+	int 		next_pos_y;
+	int 		old_pos_x;
+	int 		old_pos_y;
+}	t_deplacement;
 
 typedef struct s_draw
 {
@@ -297,6 +307,7 @@ int		lets_go_3d(t_cub *cub);
 int		draw_walls(t_cub *cub, t_ray *ray);
 int		init_blink(t_cub *cub);
 int		init_enemy(t_cub *cub);
+void	stam_handling(t_cub *cub);
 void	blink(t_cub *cub);
 
 //MOVEMENT

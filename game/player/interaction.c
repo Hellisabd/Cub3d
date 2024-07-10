@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:19 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 13:05:21 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:47:02 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,36 +56,6 @@ int	close_door(t_cub *cub, int player_x, int player_y)
 		return (cub->map->map[player_y][player_x - 1] = 'd', 1);
 	}
 	return (0);
-}
-
-void	put_stamina(t_cub *cub)
-{
-	int	n;
-	int	x;
-	int	y;
-	
-	n = 200;
-	y = 100;
-	x = 100;
-	debug_nbr(RED, "stam", cub->stamina);
-	while (n-- >= cub->stamina)
-	{
-		if (n == cub->stamina)
-		{
-			while (x++ < 700 - (6 * (100 - n)))
-			{
-				y = 100;
-				while (y < 150)
-					mlx_put_pixel(cub->world.hud, x, y++, H_YELLOW);
-			}
-			while (x++ < 700)
-			{
-				y = 100;
-				while (y < 150)
-					mlx_put_pixel(cub->world.hud, x, y++, 0);
-			}
-		}
-	}
 }
 
 int	open_door(t_cub *cub, int player_x, int player_y)
