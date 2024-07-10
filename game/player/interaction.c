@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interaction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:19 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 13:05:21 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 13:32:48 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ void	put_stamina(t_cub *cub)
 	n = 200;
 	y = 100;
 	x = 100;
-	debug_nbr(RED, "stam", cub->stamina);
 	while (n-- >= cub->stamina)
 	{
 		if (n == cub->stamina)

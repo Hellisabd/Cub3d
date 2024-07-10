@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 13:08:32 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/10 14:50:48 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,6 +161,7 @@ typedef struct s_anim
 	int		i_so;
 	int		i_we;
 	int		i_ea;
+	int		i_enemy;
 	bool	b_no;
 	bool	b_so;
 	bool	b_we;
@@ -176,9 +177,9 @@ typedef struct s_enemy
 {
 	mlx_texture_t	*enemy_t[3];
 	mlx_image_t		*enemy_i[3];
+	mlx_image_t		*enemy_im;
 	int				**tab_enemy[3];
-	int				pos_x;
-	int				pos_y;
+	int				**pix_enemy;
 	float			d_x;
 	float			d_y;
 	float			dist;
@@ -259,7 +260,7 @@ typedef struct s_cub
 	int				speed;
 	int				stamina;
 	bool			sprint;
-	size_t			n_ennemy;
+	size_t			n_enemy;
 	int				n_ray;
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
@@ -325,6 +326,7 @@ int		init_light(t_cub *cub);
 // ENEMIES
 void	set_enemy_pos(t_cub *cub);
 void 	put_enemy(t_cub *cub, t_ray *ray, int x);
+void	anim_enemy(t_cub *cub);
 
 //INTERACTION
 void	interaction(mlx_key_data_t key, void *param);
@@ -334,6 +336,7 @@ void	check_doors(t_cub *cub);
 int		open_door(t_cub *cub, int player_x, int player_y);
 
 //ANIMATION
+void	init_anim(t_cub *cub);
 void	blink_we(t_cub *cub);
 void	blink_ea(t_cub *cub);
 void	blink_no(t_cub *cub);
