@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:16 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 15:00:36 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:02:41 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,6 @@ void	refresh(t_cub *cub)
 	anim_enemy(cub);
 	check_doors(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_RED);
-	if (cub->alive == true && cub->n_enemy == 1 && cub->n_enemy == 1)
-	{
-		move_enemy(cub);
-		check_death(cub);
-		check_exit(cub);
-	}
 }
 
 void	ft_hook(void *param)
@@ -54,6 +48,13 @@ void	ft_hook(void *param)
 		if (cub->alive == true)
 			move(cub);
 		refresh(cub);
+		if (cub->alive == true && cub->n_enemy == 1)
+		{
+			move_enemy(cub);
+			check_death(cub);
+		}
+		if (cub->alive == true && cub->n_exit == 1)
+			check_exit(cub);
 		cub->anim.time = 0;
 	}
 }
