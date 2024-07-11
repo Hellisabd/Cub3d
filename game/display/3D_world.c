@@ -6,71 +6,11 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:57:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 14:44:35 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:17:40 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../cub3D.h"
-
-void	load_door(t_cub *cub)
-{
-	int		i;
-	char	*str;
-	char	*nbr_str;
-
-	i = 1;
-	cub->world.door_t = malloc(sizeof(mlx_texture_t *) * 24);
-	cub->world.door_i = malloc(sizeof(mlx_image_t *) * 24);
-	cub->world.tab_anim_door = malloc(sizeof(int **) * 24);
-	while (i < 25)
-	{
-		nbr_str = ft_itoa(i);
-		str = ft_strjoin_const("assets/door/evil_door_anim", nbr_str);
-		str = ft_strjoin(str, ".png");
-		free(nbr_str);
-		cub->world.door_t[i - 1] = mlx_load_png(str);
-		cub->world.door_i[i - 1] = mlx_texture_to_image(cub->mlx, \
-			cub->world.door_t[i - 1]);
-		cub->world.tab_anim_door[i - 1] = \
-			image_to_tab(cub->world.door_i[i - 1]);
-		i++;
-		free(str);
-	}
-}
-
-int	init_world(t_cub *cub)
-{
-	load_door(cub);
-	cub->world.no_t[0] = mlx_load_png(cub->map->no);
-	if (cub->world.no_t[0] == NULL)
-		debug_str(RED, NULL, "failed to load textures");
-	cub->world.so_t[0] = mlx_load_png(cub->map->so);
-	if (cub->world.so_t[0] == NULL)
-		debug_str(RED, NULL, "failed to load textures");
-	cub->world.we_t[0] = mlx_load_png(cub->map->we);
-	if (cub->world.we_t[0] == NULL)
-		debug_str(RED, NULL, "failed to load textures");
-	cub->world.ea_t[0] = mlx_load_png(cub->map->ea);
-	if (cub->world.ea_t[0] == NULL)
-		debug_str(RED, NULL, "failed to load textures");
-	cub->world.no[0] = mlx_texture_to_image(cub->mlx, cub->world.no_t[0]);
-	cub->world.so[0] = mlx_texture_to_image(cub->mlx, cub->world.so_t[0]);
-	cub->world.we[0] = mlx_texture_to_image(cub->mlx, cub->world.we_t[0]);
-	cub->world.ea[0] = mlx_texture_to_image(cub->mlx, cub->world.ea_t[0]);
-	cub->world.tab_tab_no[0] = image_to_tab(cub->world.no[0]);
-	cub->world.tab_tab_so[0] = image_to_tab(cub->world.so[0]);
-	cub->world.tab_tab_we[0] = image_to_tab(cub->world.we[0]);
-	cub->world.tab_tab_ea[0] = image_to_tab(cub->world.ea[0]);
-	cub->world.tab_no = cub->world.tab_tab_no[0];
-	cub->world.tab_so = cub->world.tab_tab_so[0];
-	cub->world.tab_we = cub->world.tab_tab_we[0];
-	cub->world.tab_ea = cub->world.tab_tab_ea[0];
-	cub->world.no_i = cub->world.no[0];
-	cub->world.so_i = cub->world.so[0];
-	cub->world.we_i = cub->world.we[0];
-	cub->world.ea_i = cub->world.ea[0];
-	return (0);
-}
 
 void	put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, \
 	int **pixel_tab)
@@ -115,10 +55,12 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 	}
 	if (ray->door)
 	{
-		put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
+		put_wall_in3d(&wall, cub, cub->world.door_i[0], \
+			cub->world.tab_anim_door[0]);
 		ray->door = false;
 	}
-	if ((int)round(ray->x * 100000) % 100000 == 0 && (int)round(ray->y * 100000) % 100000 != 0)
+	if ((int)round(ray->x * 100000) % 100000 == 0 && \
+		(int)round(ray->y * 100000) % 100000 != 0)
 	{
 		wall.side = 1;
 		if (ray->x > cub->p_x)
@@ -128,39 +70,60 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 				cub->world.tab_anim_door[0]);
 			else if (cub->map->map[(int)floor(ray->y)] \
 					[(int)round(ray->x)] == 'd')
-				put_wall_in3d(&wall, cub, cub->world.door_i[cub->anim.door_count], \
-				cub->world.tab_anim_door[cub->anim.door_count]);
+				put_wall_in3d(&wall, cub, \
+					cub->world.door_i[cub->anim.door_count], \
+					cub->world.tab_anim_door[cub->anim.door_count]);
 			else
 				put_wall_in3d(&wall, cub, cub->world.ea_i, cub->world.tab_ea);
 		}
 		else
 		{
-			if ((int)ray->x != 0 && cub->map->map[(int)floor(ray->y)][(int)round(ray->x) - 1] == 'D')
-				put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
-			else if ((int)ray->x != 0 && cub->map->map[(int)floor(ray->y)][(int)round(ray->x) - 1] == 'd')
-				put_wall_in3d(&wall, cub, cub->world.door_i[cub->anim.door_count], cub->world.tab_anim_door[cub->anim.door_count]);
+			if ((int)ray->x != 0 && \
+				cub->map->map[(int)floor(ray->y)][(int)round(ray->x) \
+				- 1] == 'D')
+				put_wall_in3d(&wall, cub, cub->world.door_i[0], \
+					cub->world.tab_anim_door[0]);
+			else if ((int)ray->x != 0 && \
+				cub->map->map[(int)floor(ray->y)][(int)round(ray->x) \
+				- 1] == 'd')
+				put_wall_in3d(&wall, cub, \
+					cub->world.door_i[cub->anim.door_count], \
+					cub->world.tab_anim_door[cub->anim.door_count]);
 			else
 				put_wall_in3d(&wall, cub, cub->world.we_i, cub->world.tab_we);
 		}
 	}
-	else if ((int)round(ray->y *100000) % 100000 == 0 && (int)round(ray->x *100000) % 100000 != 0)
+	else if ((int)round(ray->y * 100000) % 100000 == 0 && \
+		(int)round(ray->x * 100000) % 100000 != 0)
 	{
 		wall.side = 0;
 		if (ray->y > cub->p_y)
 		{
-			if (cub->map->map[(int)round(ray->y) + 1] && cub->map->map[(int)round(ray->y)][(int)floor(ray->x)] == 'D')
-				put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
-			else if (cub->map->map[(int)round(ray->y) + 1] && cub->map->map[(int)round(ray->y)][(int)floor(ray->x)] == 'd')
-				put_wall_in3d(&wall, cub, cub->world.door_i[cub->anim.door_count], cub->world.tab_anim_door[cub->anim.door_count]);
+			if (cub->map->map[(int)round(ray->y) + 1] && \
+				cub->map->map[(int)round(ray->y)][(int)floor(ray->x)] == 'D')
+				put_wall_in3d(&wall, cub, cub->world.door_i[0], \
+					cub->world.tab_anim_door[0]);
+			else if (cub->map->map[(int)round(ray->y) + 1] && \
+				cub->map->map[(int)round(ray->y)][(int)floor(ray->x)] == 'd')
+				put_wall_in3d(&wall, cub, \
+					cub->world.door_i[cub->anim.door_count], \
+					cub->world.tab_anim_door[cub->anim.door_count]);
 			else
 				put_wall_in3d(&wall, cub, cub->world.so_i, cub->world.tab_so);
 		}
 		else
 		{
-			if (ray->y > 1 && cub->map->map[(int)round(ray->y) - 1][(int)floor(ray->x)] == 'D')
-				put_wall_in3d(&wall, cub, cub->world.door_i[0], cub->world.tab_anim_door[0]);
-			else if (ray->y > 1 && cub->map->map[(int)round(ray->y) - 1][(int)floor(ray->x)] == 'd')
-				put_wall_in3d(&wall, cub, cub->world.door_i[cub->anim.door_count], cub->world.tab_anim_door[cub->anim.door_count]);
+			if (ray->y > 1 && \
+				cub->map->map[(int)round(ray->y) - 1][(int)floor(ray->x)] \
+				== 'D')
+				put_wall_in3d(&wall, cub, cub->world.door_i[0], \
+					cub->world.tab_anim_door[0]);
+			else if (ray->y > 1 && \
+				cub->map->map[(int)round(ray->y) - 1][(int)floor(ray->x)] \
+				== 'd')
+				put_wall_in3d(&wall, cub, \
+					cub->world.door_i[cub->anim.door_count], \
+					cub->world.tab_anim_door[cub->anim.door_count]);
 			else
 				put_wall_in3d(&wall, cub, cub->world.no_i, cub->world.tab_no);
 		}

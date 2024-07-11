@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:16 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 14:53:43 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:00:36 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,20 @@ void	ft_cursor(t_cub *cub)
 	mlx_set_cursor(cub->mlx, cursor);
 }
 
-void	open_window(t_cub *cub)
+void	init_pos_count(t_cub *cub)
 {
-	cub->stamina = 100;
-	init_data_mini_map(&cub->mini_map, cub->map);
 	set_player_pos(cub);
 	set_enemy_pos(cub);
 	set_exit_pos(cub);
 	cub->n_enemy = count_c(cub->map, 'A');
 	cub->n_exit = count_c(cub->map, 'X');
+}
+
+void	open_window(t_cub *cub)
+{
+	cub->stamina = 100;
+	init_data_mini_map(&cub->mini_map, cub->map);
+	init_pos_count(cub);
 	cub->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!cub->mlx)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));

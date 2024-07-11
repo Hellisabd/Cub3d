@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 14:54:05 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 15:25:40 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -368,6 +368,7 @@ void	move_player(t_cub *cub, float dir, t_deplacement *dep);
 void	rotations(double xpos, double ypos, void *param);
 
 // DISPLAY
+int		init_world(t_cub *cub);
 void	fog(t_cub *cub);
 void	draw_ray(t_ray **ray, t_mini_map *mini_map, t_cub *cub, int color);
 void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int clor);
