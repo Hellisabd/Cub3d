@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:16 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 13:19:14 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:53:43 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@ void	refresh(t_cub *cub)
 	anim_enemy(cub);
 	check_doors(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_RED);
-	if (cub->alive == true)
+	if (cub->alive == true && cub->n_enemy == 1 && cub->n_enemy == 1)
 	{
 		move_enemy(cub);
 		check_death(cub);
+		check_exit(cub);
 	}
 }
 
@@ -74,7 +75,9 @@ void	open_window(t_cub *cub)
 	init_data_mini_map(&cub->mini_map, cub->map);
 	set_player_pos(cub);
 	set_enemy_pos(cub);
+	set_exit_pos(cub);
 	cub->n_enemy = count_c(cub->map, 'A');
+	cub->n_exit = count_c(cub->map, 'X');
 	cub->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", true);
 	if (!cub->mlx)
 		exit((ft_printf("Error\nInitializing MLX!\n"), EXIT_FAILURE));

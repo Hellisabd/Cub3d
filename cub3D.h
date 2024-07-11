@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 13:52:14 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:54:05 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,30 @@ typedef struct s_line
 	int	end_y;
 }	t_line;
 
+typedef struct s_exit
+{
+	mlx_texture_t	*exit_t;
+	mlx_image_t		*exit_i;
+	int				**tab_exit;
+	mlx_texture_t	*success_t;
+	mlx_image_t		*success_i;
+	float			e_x;
+	float			e_y;
+	float			d_x;
+	float			d_y;
+	float			dist;
+	float			angle;
+	float			ratio;
+	float			theta1;
+	float			theta2;
+	float			ratio_height;
+	float			ratio_width;
+	float			line_tab;
+	int				start;
+	int				max_rays;
+	int				n_ray;
+}	t_exit;
+
 typedef struct s_anim
 {
 	double			time;
@@ -231,6 +255,7 @@ typedef struct s_world
 	mlx_image_t		*fog;
 	mlx_image_t		*hud;
 	mlx_image_t		*npc;
+	mlx_image_t		*exit;
 	mlx_image_t		*no_i;
 	mlx_image_t		*no[4];
 	mlx_image_t		*so_i;
@@ -294,6 +319,7 @@ typedef struct s_cub
 	bool			sprint;
 	bool			alive;
 	size_t			n_enemy;
+	size_t			n_exit;
 	int				n_ray;
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
@@ -302,6 +328,7 @@ typedef struct s_cub
 	t_anim			anim;
 	t_enemy			enemy;
 	t_deplacement	dep;
+	t_exit			exit;
 }	t_cub;
 
 // PARSING
@@ -385,6 +412,13 @@ void	moving_light(t_cub *cub);
 void	set_enemy_pos(t_cub *cub);
 void	put_enemy(t_cub *cub, t_ray *ray, int x);
 void	maths_enemy(t_cub *cub);
+
+// EXIT
+void	init_exit(t_cub *cub);
+void	set_exit_pos(t_cub *cub);
+void	maths_exit(t_cub *cub);
+void	put_exit(t_cub *cub, t_ray *ray, int x);
+void	check_exit(t_cub *cub);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);

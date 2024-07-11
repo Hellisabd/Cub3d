@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:10 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 11:00:56 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:31:47 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	init_anim(t_cub *cub)
 	cub->enemy.enemy_im = cub->enemy.enemy_i[0];
 	cub->enemy.pix_enemy = cub->enemy.tab_enemy[0];
 	init_light(cub);
-	init_death(cub);
 }
 
 void	init_blink3(t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:00:33 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 10:21:10 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 14:33:40 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,15 @@ void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub)
 	mlx_delete_texture(cub->enemy.enemy_t[2]);
 	mlx_delete_texture(cub->anim.light_t);
 	mlx_delete_texture(cub->anim.death_t);
+	mlx_delete_texture(cub->exit.exit_t);
+	mlx_delete_texture(cub->exit.success_t);
 	mlx_delete_image(mlx, cub->enemy.enemy_i[0]);
 	mlx_delete_image(mlx, cub->enemy.enemy_i[1]);
 	mlx_delete_image(mlx, cub->enemy.enemy_i[2]);
 	ft_free_tab_int(cub->enemy.tab_enemy[0]);
 	ft_free_tab_int(cub->enemy.tab_enemy[1]);
 	ft_free_tab_int(cub->enemy.tab_enemy[2]);
+	ft_free_tab_int(cub->exit.tab_exit);
 	mlx_delete_image(mlx, mini->background_i);
 	mlx_delete_image(mlx, mini->wall_i);
 	mlx_delete_image(mlx, mini->player_i);
