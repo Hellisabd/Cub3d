@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   3D_world.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/11 13:57:09 by amirloup          #+#    #+#             */
+/*   Updated: 2024/07/11 13:58:29 by amirloup         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../cub3D.h"
 
 void	load_door(t_cub *cub)
 {
-	int i;
-	char *str;
-	char *nbr_str;
+	int		i;
+	char	*str;
+	char	*nbr_str;
 
 	i = 1;
 	cub->world.door_t = malloc(sizeof(mlx_texture_t *) * 24);
@@ -17,8 +29,10 @@ void	load_door(t_cub *cub)
 		str = ft_strjoin(str, ".png");
 		free(nbr_str);
 		cub->world.door_t[i - 1] = mlx_load_png(str);
-		cub->world.door_i[i - 1] = mlx_texture_to_image(cub->mlx, cub->world.door_t[i - 1]);
-		cub->world.tab_anim_door[i - 1] = image_to_tab(cub->world.door_i[i - 1]);
+		cub->world.door_i[i - 1] = mlx_texture_to_image(cub->mlx, \
+			cub->world.door_t[i - 1]);
+		cub->world.tab_anim_door[i - 1] = \
+			image_to_tab(cub->world.door_i[i - 1]);
 		i++;
 		free(str);
 	}
@@ -58,7 +72,8 @@ int	init_world(t_cub *cub)
 	return (0);
 }
 
-void	put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, int **pixel_tab)
+void	put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, \
+	int **pixel_tab)
 {
 	int		column_tab;
 	float	line_tab;
@@ -199,5 +214,5 @@ int	lets_go_3d(t_cub *cub)
 	cub->world.hud = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.hud, 0, 0) == -1)
 		exit (1);
-	return (0);	
+	return (0);
 }

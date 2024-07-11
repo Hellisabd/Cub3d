@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:48:36 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 13:14:48 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:56:30 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,10 @@ void	move_enemy(t_cub *cub)
 {
 	cub->enemy.deplacement_x = cos(cub->enemy.angle + PI);
 	cub->enemy.deplacement_y = sin(cub->enemy.angle + PI);
-	cub->enemy.next_pos_x = (int)floor(cub->e_x + cub->enemy.deplacement_x / 10);
-	cub->enemy.next_pos_y = (int)floor(cub->e_y + cub->enemy.deplacement_y / 10);
+	cub->enemy.next_pos_x = (int)floor(cub->e_x + \
+		cub->enemy.deplacement_x / 10);
+	cub->enemy.next_pos_y = (int)floor(cub->e_y + \
+		cub->enemy.deplacement_y / 10);
 	if (enemy_can_move(cub))
 	{
 		cub->e_x += cub->enemy.deplacement_x / 10;

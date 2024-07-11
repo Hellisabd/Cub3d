@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 12:03:05 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:52:14 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,9 @@ typedef struct s_map
 	int		height;
 	char	player_char;
 	int		i;
+	int		j;
+	int		pos_x;
+	int		pos_y;
 }	t_map;
 
 typedef struct s_ray
