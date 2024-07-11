@@ -165,6 +165,7 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 	i = 0;
 	ratio = WIDTH / cub->n;
 	cub->n_ray = 0;
+	maths_enemy(cub);
 	while (i < WIDTH && ray)
 	{
 		if (i % ratio == 0)

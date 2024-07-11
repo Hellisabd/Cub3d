@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 11:03:30 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:26:15 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,14 @@ typedef struct s_enemy
 	float			d_y;
 	float			dist;
 	float			angle;
+	float			ratio;
+	float			theta1;
+	float			theta2;
+	float			ratio_height;
+	float			ratio_width;
+	float			line_tab;
+	int				start;
+	int				max_rays;
 }	t_enemy;
 
 typedef struct s_world
@@ -368,6 +376,7 @@ void	moving_light(t_cub *cub);
 // ENEMIES
 void	set_enemy_pos(t_cub *cub);
 void 	put_enemy(t_cub *cub, t_ray *ray, int x);
+void	maths_enemy(t_cub * cub);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);
