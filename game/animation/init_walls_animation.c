@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:10 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 10:17:39 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:00:56 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	init_anim(t_cub *cub)
 	cub->anim.i_we = 0;
 	cub->anim.i_ea = 0;
 	cub->anim.i_enemy = 0;
+	cub->anim.i_light = 0;
 	cub->anim.b_no = false;
 	cub->anim.b_so = false;
 	cub->anim.b_we = false;

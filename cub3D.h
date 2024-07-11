@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 10:22:57 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 11:03:30 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,7 @@ typedef struct s_anim
 	int				i_we;
 	int				i_ea;
 	int				i_enemy;
+	int				i_light;
 	bool			b_no;
 	bool			b_so;
 	bool			b_we;
@@ -345,7 +346,6 @@ int		init_light(t_cub *cub);
 // ENEMIES
 void	set_enemy_pos(t_cub *cub);
 void 	put_enemy(t_cub *cub, t_ray *ray, int x);
-void	anim_enemy(t_cub *cub);
 int		init_death(t_cub *cub);
 void	check_death(t_cub *cub);
 
@@ -358,10 +358,12 @@ int		open_door(t_cub *cub, int player_x, int player_y);
 
 // ANIMATION
 void	init_anim(t_cub *cub);
+void	anim_enemy(t_cub *cub);
 void	blink_we(t_cub *cub);
 void	blink_ea(t_cub *cub);
 void	blink_no(t_cub *cub);
 void	blink_so(t_cub *cub);
+void	moving_light(t_cub *cub);
 
 // ENEMIES
 void	set_enemy_pos(t_cub *cub);

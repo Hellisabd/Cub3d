@@ -10,3 +10,25 @@ int	init_light(t_cub *cub)
 	mlx_image_to_window(cub->mlx, cub->anim.light_i, WIDTH / 2 + WIDTH / 10, HEIGHT - (HEIGHT / 3));
 	return (0);
 }
+
+void	moving_light(t_cub *cub)
+{
+	int	n;
+
+	if (cub->sprint == true)
+		n = HEIGHT / 50;
+	else if (cub->sprint == false)
+		n = HEIGHT / 100;
+	if (cub->anim.i_light == 0)
+		cub->anim.light_i->instances[0].y -= n;
+	if (cub->anim.i_light == 1)
+		cub->anim.light_i->instances[0].y -= n;
+	if (cub->anim.i_light == 2)
+		cub->anim.light_i->instances[0].y += n;
+	if (cub->anim.i_light == 3)
+	{
+		cub->anim.light_i->instances[0].y += n;
+		cub->anim.i_light = -1;
+	}
+	cub->anim.i_light++;
+}
