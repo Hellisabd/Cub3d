@@ -1,4 +1,58 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/11 13:23:16 by amirloup          #+#    #+#             */
+/*   Updated: 2024/07/11 13:38:19 by amirloup         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
+
+void	image_to_tab_2(mlx_image_t *image, t_color stock)
+{
+	stock.i = 0;
+	while (stock.i < (int)(image->width * image->height * 4))
+	{
+		stock.tab[stock.j][stock.i % (image->width * 4)] = \
+			image->pixels[stock.i];
+		stock.i++;
+		if (stock.i % (image->width * 4) == 0)
+			stock.j++;
+	}
+}
+
+void	image_to_tab_3(mlx_image_t *image, t_color stock)
+{
+	while (stock.j++ <= (int)image->height && stock.i < (int)image->width * 4)
+	{
+		stock.i = stock.colonne * 4;
+		while (1)
+		{
+			stock.tab_color[stock.i % 4] = (int)stock.tab[stock.j][stock.i];
+			stock.i++;
+			if (stock.i % 4 == 0)
+				break ;
+		}
+		stock.tab_colonnes[stock.y][stock.x] = (stock.tab_color[0] << 24) | \
+			(stock.tab_color[1] << 16) | (stock.tab_color[2] << 8) | \
+			stock.tab_color[3];
+		if (stock.j == (int)(image->height - 1))
+		{
+			stock.j = 0;
+			stock.y++;
+			stock.x = 0;
+			stock.colonne++;
+		}
+		stock.tab_colonnes[stock.y][stock.x] = (stock.tab_color[0] << 24) | \
+			(stock.tab_color[1] << 16) | (stock.tab_color[2] << 8) | \
+			stock.tab_color[3];
+		stock.x++;
+	}
+}
 
 int	**image_to_tab(mlx_image_t *image)
 {
@@ -9,15 +63,7 @@ int	**image_to_tab(mlx_image_t *image)
 	stock.i = -1;
 	while (++stock.i < (int)image->height)
 		stock.tab[stock.i] = malloc(sizeof(unsigned char) * (image->width * 4));
-	stock.i = 0;
-	while (stock.i < (int)(image->width * image->height * 4))
-	{
-		stock.tab[stock.j][stock.i % (image->width * 4)] = image->pixels[stock.i];
-		stock.i++;
-		if (stock.i % (image->width * 4) == 0)
-			stock.j++;
-	}
-	// tab_line_to_tab_col();
+	image_to_tab_2(image, stock);
 	stock.colonne = 0;
 	stock.x = 0;
 	stock.y = 0;
@@ -26,28 +72,7 @@ int	**image_to_tab(mlx_image_t *image)
 	stock.tab_colonnes = malloc(sizeof(int *) * image->width);
 	while (++stock.i < (int)image->width)
 		stock.tab_colonnes[stock.i] = malloc(sizeof (int) * image->height);
-	while (stock.j <= (int)image->height && stock.i < (int)image->width * 4)
-	{
-		stock.i = stock.colonne * 4;
-		while (1)
-		{
-			stock.tab_color[stock.i % 4] = (int)stock.tab[stock.j][stock.i];
-			stock.i++;
-			if (stock.i % 4 == 0)
-				break ;
-		}
-		stock.tab_colonnes[stock.y][stock.x] = (stock.tab_color[0] << 24) | (stock.tab_color[1] << 16) | (stock.tab_color[2] << 8) | stock.tab_color[3];
-		if (stock.j == (int)(image->height - 1))
-		{
-			stock.j = 0;
-			stock.y++;
-			stock.x = 0;
-			stock.colonne++;
-		}
-		stock.tab_colonnes[stock.y][stock.x] = (stock.tab_color[0] << 24) | (stock.tab_color[1] << 16) | (stock.tab_color[2] << 8) | stock.tab_color[3];
-		stock.x++;
-		stock.j++;
-	}
+	image_to_tab_3(image, stock);
 	ft_free_tab_int((int **)stock.tab);
 	return (stock.tab_colonnes);
 }

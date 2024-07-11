@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/11 13:22:40 by amirloup          #+#    #+#             */
+/*   Updated: 2024/07/11 13:22:57 by amirloup         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3D.h"
 
 int	check_floor_and_ceiling(t_map *map)
@@ -78,14 +90,13 @@ void	get_map(char *line, t_map *map, int fd)
 		free(line);
 		line = get_next_line(fd);
 	}
-	map->map[map->i] = NULL;	
+	map->map[map->i] = NULL;
 	map->no = ft_strtrim(map->no, "\n");
 	map->so = ft_strtrim(map->so, "\n");
 	map->we = ft_strtrim(map->we, "\n");
 	map->ea = ft_strtrim(map->ea, "\n");
 	map->f_h = rgb_to_hex(map->f);
 	map->c_h = rgb_to_hex(map->c);
-
 }
 
 void	open_map(t_map *map, char **argv)

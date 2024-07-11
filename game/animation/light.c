@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:44:24 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 11:44:30 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:20:48 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	moving_light(t_cub *cub)
 	else if (cub->sprint == false)
 		n = HEIGHT / 100;
 	if (cub->anim.i_light == 0)
-		cub->anim.light_i->instances[0].y -= n;
-	if (cub->anim.i_light == 1)
-		cub->anim.light_i->instances[0].y -= n;
-	if (cub->anim.i_light == 2)
 		cub->anim.light_i->instances[0].y += n;
+	if (cub->anim.i_light == 1)
+		cub->anim.light_i->instances[0].y += n;
+	if (cub->anim.i_light == 2)
+		cub->anim.light_i->instances[0].y -= n;
 	if (cub->anim.i_light == 3)
 	{
-		cub->anim.light_i->instances[0].y += n;
+		cub->anim.light_i->instances[0].y -= n;
 		cub->anim.i_light = -1;
 	}
 	cub->anim.i_light++;

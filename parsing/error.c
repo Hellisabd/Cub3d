@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 16:26:31 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/09 13:56:54 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 13:22:07 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t	count_c(t_map *map, char c)
 	size_t	n;
 	int		x;
 	int		y;
-	
+
 	n = 0;
 	y = 0;
 	x = 0;
