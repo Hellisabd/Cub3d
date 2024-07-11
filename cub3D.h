@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 17:54:36 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 10:22:57 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,22 +169,24 @@ typedef struct s_line
 
 typedef struct s_anim
 {
-	double	time;
-	int		frame;
-	int		i_no;
-	int		i_so;
-	int		i_we;
-	int		i_ea;
-	int		i_enemy;
-	bool	b_no;
-	bool	b_so;
-	bool	b_we;
-	bool	b_ea;
-	int		door_count;
-	int		door_opening;
-	int		door_closing;
+	double			time;
+	int				frame;
+	int				i_no;
+	int				i_so;
+	int				i_we;
+	int				i_ea;
+	int				i_enemy;
+	bool			b_no;
+	bool			b_so;
+	bool			b_we;
+	bool			b_ea;
+	int				door_count;
+	int				door_opening;
+	int				door_closing;
 	mlx_texture_t	*light_t;
 	mlx_image_t		*light_i;
+	mlx_texture_t	*death_t;
+	mlx_image_t		*death_i;
 }	t_anim;
 
 typedef struct s_enemy
@@ -274,6 +276,7 @@ typedef struct s_cub
 	int				speed;
 	int				stamina;
 	bool			sprint;
+	bool			alive;
 	size_t			n_enemy;
 	int				n_ray;
 	mlx_texture_t	*cursor_t;
@@ -316,12 +319,12 @@ int		init_enemy(t_cub *cub);
 void	stam_handling(t_cub *cub);
 void	blink(t_cub *cub);
 
-//MOVEMENT
+// MOVEMENT
 void	move(t_cub *cub);
 void	move_player(t_cub *cub, float dir, t_deplacement *dep);
 void	rotations(double xpos, double ypos, void *param);
 
-//DISPLAY
+// DISPLAY
 void	fog(t_cub *cub);
 void	draw_ray(t_ray **ray, t_mini_map *mini_map, t_cub *cub, int color);
 void	drawline(t_ray *ray, t_mini_map *mini_map, t_player *player, int clor);
@@ -343,15 +346,17 @@ int		init_light(t_cub *cub);
 void	set_enemy_pos(t_cub *cub);
 void 	put_enemy(t_cub *cub, t_ray *ray, int x);
 void	anim_enemy(t_cub *cub);
+int		init_death(t_cub *cub);
+void	check_death(t_cub *cub);
 
-//INTERACTION
+// INTERACTION
 void	interaction(mlx_key_data_t key, void *param);
 void	put_stamina(t_cub *cub);
 int		close_door(t_cub *cub, int player_x, int player_y);
 void	check_doors(t_cub *cub);
 int		open_door(t_cub *cub, int player_x, int player_y);
 
-//ANIMATION
+// ANIMATION
 void	init_anim(t_cub *cub);
 void	blink_we(t_cub *cub);
 void	blink_ea(t_cub *cub);
@@ -370,7 +375,7 @@ void	free_in_window(t_cub *cub);
 // ERROR
 void	print_error(char *msg);
 
-//DEBUG
+// DEBUG
 
 void	debug_nbr(char *color, char *msg, long long int content);
 void	debug_str(char *color, char *msg, char *content);

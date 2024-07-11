@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:16 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 17:57:49 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 10:25:51 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	refresh(t_cub *cub)
 	anim_enemy(cub);
 	check_doors(cub);
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_RED);
+	if (cub->alive == true)
+		check_death(cub);
 }
 
 void	ft_hook(void *param)
@@ -45,7 +47,8 @@ void	ft_hook(void *param)
 	cub->anim.time += cub->mlx->delta_time;
 	if (cub->anim.time > 0.03)
 	{
-		move(cub);
+		if (cub->alive == true)
+			move(cub);
 		refresh(cub);
 		cub->anim.time = 0;
 	}
@@ -83,7 +86,6 @@ void	open_window(t_cub *cub)
 	draw_ray(&cub->ray, &cub->mini_map, cub, H_RED);
 	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	fog(cub);
-	init_light(cub);
 	mlx_key_hook(cub->mlx, interaction, cub);
 	mlx_loop_hook(cub->mlx, ft_hook, (void *)cub);
 	mlx_cursor_hook(cub->mlx, rotations, (void *)cub);
