@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:30 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/05 15:41:31 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:42:31 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ int	main(int argc, char **argv)
 
 	cub.map = malloc(sizeof(t_map));
 	if (argc == 1)
-		return (printf("Error\nPlease load a .cub file!\n"), 1);
+		return (print_error("Please load a .cub file!\n"), 1);
 	if (argc > 2)
-		return (printf("Error\nToo many arguments!\n"), 1);
+		return (print_error("Too many arguments!\n"), 1);
 	if (argc == 2)
 	{
 		init_var(cub.map);
 		open_map(cub.map, argv);
 		if (-1 == parsing_map(cub.map, &cub))
-			printf("open map\n");
+			exit(EXIT_FAILURE);
 		open_window(&cub);
 		free_rays(cub.ray);
 		free_in_window(&cub);

@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 15:25:40 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:54:13 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,14 @@
 # define H_PINK 0xFF33FFFF
 # define H_YELLOW 0xF0C127FF
 
-# define OPEN "Wrong input : map open.\n"
-# define PLAYER "Wrong input : too many players.\n"
+# define OPEN "Wrong input: map open.\n"
+# define PLAYER "Wrong input: too many players.\n"
 # define CUB "The map is not a .cub file!\n"
 # define MALLOC "Malloc error!\n"
 # define RGB "Wrong RGB format!\n"
 # define LOAD_MAP "Error while opening the map!\n"
 # define TEXTURE "Texture is missing!\n"
+# define TEXTURE2 "Too many texture inputs!\n"
 # define NONE 0
 # define STARTING 1
 # define END 2
@@ -134,6 +135,12 @@ typedef struct s_map
 	int		j;
 	int		pos_x;
 	int		pos_y;
+	int		i_no;
+	int		i_so;
+	int		i_we;
+	int		i_ea;
+	int		i_f;
+	int		i_c;
 }	t_map;
 
 typedef struct s_ray
@@ -334,6 +341,8 @@ typedef struct s_cub
 // PARSING
 
 void	open_map(t_map *map, char **argv);
+int		check_floor_and_ceiling(t_map *map);
+void	get_textures(t_map *map, char *line);
 int		parsing_map(t_map *map, t_cub *cub);
 void	check_cub(char *s);
 int		rgb_to_hex(char *rgb);

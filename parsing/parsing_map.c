@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 13:23:10 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 16:41:54 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ int	check_hole(t_map *map, int *i, int *j)
 int	basic_check(t_map *map, int j, t_cub *cub)
 {
 	if (count_player(map, cub) != 1)
-		return (printf("Too many players!\n"), -1);
+		return (print_error(PLAYER), -1);
 	while (map->map[0][j] && (map->map[0][j] == '1'
 		|| ft_isspace(map->map[0][j])))
 		j++;
 	if (map->map[0][j])
-		return (debug_str(BLUE, NULL, "sortie 1"), -1);
+		return (print_error("Wrong input!\n"), -1);
 	j = 0;
 	while (map->map[map->height - 1][j] && (map->map[map->height - 1][j] == '1'
 		|| ft_isspace(map->map[map->height - 1][j])))
