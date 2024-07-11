@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 11:26:15 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/11 12:03:05 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ typedef struct s_deplacement
 {
 	float		deplacement_x;
 	float		deplacement_y;
-	int 		next_pos_x;
-	int 		next_pos_y;
-	int 		old_pos_x;
-	int 		old_pos_y;
+	int			next_pos_x;
+	int			next_pos_y;
+	int			old_pos_x;
+	int			old_pos_y;
 	float		e_y;
 	float		e_x;
 	float		old_dir;
@@ -209,6 +209,10 @@ typedef struct s_enemy
 	float			line_tab;
 	int				start;
 	int				max_rays;
+	float			deplacement_x;
+	float			deplacement_y;
+	int				next_pos_x;
+	int				next_pos_y;
 }	t_enemy;
 
 typedef struct s_world
@@ -353,9 +357,10 @@ int		init_light(t_cub *cub);
 
 // ENEMIES
 void	set_enemy_pos(t_cub *cub);
-void 	put_enemy(t_cub *cub, t_ray *ray, int x);
+void	put_enemy(t_cub *cub, t_ray *ray, int x);
 int		init_death(t_cub *cub);
 void	check_death(t_cub *cub);
+void	move_enemy(t_cub *cub);
 
 // INTERACTION
 void	interaction(mlx_key_data_t key, void *param);
@@ -375,8 +380,8 @@ void	moving_light(t_cub *cub);
 
 // ENEMIES
 void	set_enemy_pos(t_cub *cub);
-void 	put_enemy(t_cub *cub, t_ray *ray, int x);
-void	maths_enemy(t_cub * cub);
+void	put_enemy(t_cub *cub, t_ray *ray, int x);
+void	maths_enemy(t_cub *cub);
 
 // FREE AND DESTROY
 void	free_map_stuff(t_map *map);

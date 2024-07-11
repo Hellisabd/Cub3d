@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/11 11:44:24 by amirloup          #+#    #+#             */
+/*   Updated: 2024/07/11 11:44:30 by amirloup         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../cub3D.h"
 
 int	init_light(t_cub *cub)
@@ -7,7 +19,8 @@ int	init_light(t_cub *cub)
 		debug_str(RED, NULL, "failed to load textures");
 	cub->anim.light_i = mlx_texture_to_image(cub->mlx, cub->anim.light_t);
 	mlx_resize_image(cub->anim.light_i, WIDTH / 4, HEIGHT / 3);
-	mlx_image_to_window(cub->mlx, cub->anim.light_i, WIDTH / 2 + WIDTH / 10, HEIGHT - (HEIGHT / 3));
+	mlx_image_to_window(cub->mlx, cub->anim.light_i, WIDTH / 2 + WIDTH / 10, \
+		HEIGHT - (HEIGHT / 3));
 	return (0);
 }
 

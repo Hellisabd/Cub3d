@@ -29,8 +29,9 @@ SRCS	=	parsing/get_map.c \
 			game/animation/wall_no_so.c \
 			game/animation/light.c \
 			game/animation/death.c \
-			game/animation/enemy_1.c \
-			game/animation/enemy_2.c \
+			game/enemy/enemy_1.c \
+			game/enemy/enemy_2.c \
+			game/enemy/move_enemy.c \
 			game/player/movement.c \
 			game/player/movements_setup.c \
 			game/player/interaction.c \
