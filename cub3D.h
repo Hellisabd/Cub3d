@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 16:54:13 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:16:14 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -434,6 +434,7 @@ void	check_exit(t_cub *cub);
 void	free_map_stuff(t_map *map);
 void	free_rays(t_ray *ray);
 void	free_in_window(t_cub *cub);
+void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub);
 
 // ERROR
 void	print_error(char *msg);

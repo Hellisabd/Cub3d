@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:19 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 13:32:48 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:04:46 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	interaction(mlx_key_data_t key, void *param)
 
 int	close_door(t_cub *cub, int player_x, int player_y)
 {
-	player_y = cub->player.pos_y / cub->mini_map.size_wall_y;
-	player_x = cub->player.pos_x / cub->mini_map.size_wall_x;
+	player_y = cub->p_y;
+	player_x = cub->p_x;
 	if (cub->map->map[player_y][player_x + 1] == 'o')
 	{
 		cub->map->map[player_y][player_x] = cub->map->player_char;
@@ -60,8 +60,8 @@ int	close_door(t_cub *cub, int player_x, int player_y)
 
 int	open_door(t_cub *cub, int player_x, int player_y)
 {
-	player_y = cub->player.pos_y / cub->mini_map.size_wall_y;
-	player_x = cub->player.pos_x / cub->mini_map.size_wall_x;
+	player_y = cub->p_y;
+	player_x = cub->p_x;
 	if (cub->map->map[player_y][player_x + 1] == 'D')
 	{
 		cub->map->map[player_y][player_x + 1] = 'd';
