@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/12 10:08:51 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 10:44:27 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -400,6 +400,9 @@ void	third_octan(t_draw draw, t_mini_map *mini_map, int color);
 void	second_octant(t_draw draw, t_mini_map *mini_map, int color);
 void	first_octan(t_draw draw, t_mini_map *mini_map, int color);
 int		init_light(t_cub *cub);
+void	put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, \
+		int **pixel_tab);
+void	disp_world_2(t_cub *cub, t_ray *ray, t_wall *wall);
 
 // ENEMIES
 void	set_enemy_pos(t_cub *cub);

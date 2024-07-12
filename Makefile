@@ -26,7 +26,8 @@ SRCS	=	parsing/get_map.c \
 			game/display/drawline/octans.c \
 			game/display/drawline/utils.c \
 			game/display/init_3D_world.c \
-			game/display/3D_world.c \
+			game/display/3D_world_1.c \
+			game/display/3D_world_2.c \
 			game/display/fog.c \
 			game/animation/init_walls_animation.c \
 			game/animation/wall_ea_we.c \
