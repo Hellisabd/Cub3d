@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/12 09:27:06 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 10:08:51 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -354,7 +354,13 @@ void	init_raycast(t_cub *cub);
 void	raycasting(t_cub *cub);
 void	ft_add_back_raycast(t_ray **ray, t_cub *cub, float x, float y);
 void	set_player_pos(t_cub *cub);
-void	printlist(t_ray *node, char *color);
+float	calc_ray_y(float dist_y, t_cub *cub);
+float	calc_ray_x(float dist_x, t_cub *cub);
+void	draw_ray(t_ray **ray, t_mini_map *mini_map, t_cub *cub, int color);
+void	first_quadrant(t_cub *cub, int *i, int *j);
+void	second_quadrant(t_cub *cub, int *i, int *j);
+void	third_quadrant(t_cub *cub, int *i, int *j);
+void	fourth_quadrant(t_cub *cub, int *i, int *j);
 
 // MINIMAP
 
