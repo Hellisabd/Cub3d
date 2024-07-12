@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:46:08 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 13:55:23 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:53:48 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,33 +47,37 @@ int	init_data_mini_map(t_mini_map *minimap, t_map *map)
 	return (0);
 }
 
-void	init_pull_wall(t_map *map)
+void	put_wall_2(t_map *map, t_cub *g)
 {
-	map->pos_x = 0;
-	map->pos_y = 0;
-	map->i = -1;
+	if (map->map[map->i][map->j] == 'd' && g->anim.door_opening == END)
+		map->map[map->i][map->j] = 'o';
+	else if (map->map[map->i][map->j] == 'd' && \
+		g->anim.door_closing == END)
+		map->map[map->i][map->j] = 'D';
+	if (map->map[map->i][map->j] == 'D')
+		if (mlx_image_to_window(g->mlx, g->mini_map.door_i, \
+			map->pos_x, map->pos_y) == -1)
+			exit((print_error(WINDOW), free_in_window(g), \
+				EXIT_FAILURE));
+	if (map->map[map->i][map->j] == '1')
+		if (mlx_image_to_window(g->mlx, g->mini_map.wall_i, \
+			map->pos_x, map->pos_y) == -1)
+			exit((print_error(WINDOW), free_in_window(g), \
+				EXIT_FAILURE));
 }
 
 int	put_wall(t_map *map, t_cub *g)
 {
-	init_pull_wall(map);
+	map->pos_x = 0;
+	map->pos_y = 0;
+	map->i = -1;
 	while (map->map[++map->i])
 	{
 		map->pos_x = WIDTH - g->mini_map.width;
 		map->j = 0;
 		while (map->map[map->i][map->j] && map->map[map->i][map->j] != '\n')
 		{
-			if (map->map[map->i][map->j] == 'd' && g->anim.door_opening == END)
-				map->map[map->i][map->j] = 'o';
-			else if (map->map[map->i][map->j] == 'd' && \
-				g->anim.door_closing == END)
-				map->map[map->i][map->j] = 'D';
-			if (map->map[map->i][map->j] == 'D')
-				mlx_image_to_window(g->mlx, g->mini_map.door_i, \
-					map->pos_x, map->pos_y);
-			if (map->map[map->i][map->j] == '1')
-				mlx_image_to_window(g->mlx, g->mini_map.wall_i, \
-					map->pos_x, map->pos_y);
+			put_wall_2(map, g);
 			map->pos_x += g->mini_map.size_wall_x;
 			map->j++;
 		}
@@ -90,12 +94,13 @@ int	map_to_window(t_cub *cub, bool actualise)
 	{
 		cub->mini_map.background_i = mlx_texture_to_image(cub->mlx, \
 			cub->mini_map.background_t);
-		mlx_resize_image(cub->mini_map.background_i, cub->mini_map.width, \
-			cub->mini_map.height);
+		if (mlx_resize_image(cub->mini_map.background_i, cub->mini_map.width, \
+			cub->mini_map.height) == false)
+			exit((print_error(RESIZE), free_in_window(cub), EXIT_FAILURE));
 	}
 	if (-1 == mlx_image_to_window(cub->mlx, cub->mini_map.background_i, WIDTH - \
 		cub->mini_map.width, 0))
-		exit(1);
+		exit((print_error(WINDOW), free_in_window(cub), EXIT_FAILURE));
 	put_wall(cub->map, cub);
 	return (0);
 }

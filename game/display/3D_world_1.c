@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:57:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/12 10:43:45 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:46:19 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,18 +105,18 @@ int	lets_go_3d(t_cub *cub)
 	init_exit(cub);
 	cub->world.background_i = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.background_i, 0, 0) == -1)
-		exit (1);
+		exit((print_error(WINDOW), free_in_window(cub), EXIT_FAILURE));
 	cub->world.exit = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.exit, 0, 0) == -1)
-		exit (1);
+		exit((print_error(WINDOW), free_in_window(cub), EXIT_FAILURE));
 	cub->world.npc = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.npc, 0, 0) == -1)
-		exit (1);
+		exit((print_error(WINDOW), free_in_window(cub), EXIT_FAILURE));
 	cub->world.fog = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.fog, 0, 0) == -1)
-		exit (1);
+		exit((print_error(WINDOW), free_in_window(cub), EXIT_FAILURE));
 	cub->world.hud = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.hud, 0, 0) == -1)
-		exit (1);
+		exit((print_error(WINDOW), free_in_window(cub), EXIT_FAILURE));
 	return (0);
 }

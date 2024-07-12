@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:37:23 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 11:39:06 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:36:13 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	init_enemy(t_cub *cub)
 {
 	cub->enemy.enemy_t[0] = mlx_load_png("assets/npc/enemy_1.png");
 	if (cub->enemy.enemy_t[0] == NULL)
-		debug_str(RED, NULL, "failed to load textures");
+		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
 	cub->enemy.enemy_t[1] = mlx_load_png("assets/npc/enemy_2.png");
 	if (cub->enemy.enemy_t[1] == NULL)
-		debug_str(RED, NULL, "failed to load textures");
+		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
 	cub->enemy.enemy_t[2] = mlx_load_png("assets/npc/enemy_3.png");
 	if (cub->enemy.enemy_t[2] == NULL)
-		debug_str(RED, NULL, "failed to load textures");
+		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
 	cub->enemy.enemy_i[0] = mlx_texture_to_image(cub->mlx, \
 		cub->enemy.enemy_t[0]);
 	cub->enemy.enemy_i[1] = mlx_texture_to_image(cub->mlx, \

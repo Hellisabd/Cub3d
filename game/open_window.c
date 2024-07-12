@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:16 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 16:42:54 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:31:18 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_cursor(t_cub *cub)
 
 	cub->cursor_t = mlx_load_png(CURSOR);
 	if (cub->cursor_t == NULL)
-		debug_str(RED, NULL, "failed to load textures");
+		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
 	cursor = mlx_create_cursor(cub->cursor_t);
 	mlx_set_cursor(cub->mlx, cursor);
 }

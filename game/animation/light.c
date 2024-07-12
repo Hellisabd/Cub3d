@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:44:24 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 13:20:48 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:45:33 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ int	init_light(t_cub *cub)
 {
 	cub->anim.light_t = mlx_load_png("assets/light.png");
 	if (cub->anim.light_t == NULL)
-		debug_str(RED, NULL, "failed to load textures");
+		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
 	cub->anim.light_i = mlx_texture_to_image(cub->mlx, cub->anim.light_t);
-	mlx_resize_image(cub->anim.light_i, WIDTH / 4, HEIGHT / 3);
-	mlx_image_to_window(cub->mlx, cub->anim.light_i, WIDTH / 2 + WIDTH / 10, \
-		HEIGHT - (HEIGHT / 3));
+	if (mlx_resize_image(cub->anim.light_i, WIDTH / 4, HEIGHT / 3) == false)
+		exit((print_error(RESIZE), free_in_window(cub), EXIT_FAILURE));
+	if (mlx_image_to_window(cub->mlx, cub->anim.light_i, WIDTH / 2 + \
+		WIDTH / 10, HEIGHT - (HEIGHT / 3)) == -1)
+		exit((print_error(WINDOW), free_in_window(cub), EXIT_FAILURE));
 	return (0);
 }
 

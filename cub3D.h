@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/12 10:44:27 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 11:40:25 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define LOAD_MAP "Error while opening the map!\n"
 # define TEXTURE "Texture is missing!\n"
 # define TEXTURE2 "Too many texture inputs!\n"
+# define RESIZE "Resizing image!\n"
+# define LOADING "Loading texture!\n"
+# define WINDOW "Image to window!\n"
 # define NONE 0
 # define STARTING 1
 # define END 2
