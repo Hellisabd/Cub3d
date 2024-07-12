@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:34:32 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/10 15:33:29 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:32:13 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,4 @@ void	fog(t_cub *cub)
 		}
 		y++;
 	}
-	mlx_put_pixel(cub->world.fog, WIDTH / 2, HEIGHT / 2, H_PINK);
-	mlx_put_pixel(cub->world.fog, WIDTH / 2, HEIGHT / 2 + 1, H_PINK);
-	mlx_put_pixel(cub->world.fog, WIDTH / 2, HEIGHT / 2 - 1, H_PINK);
-	mlx_put_pixel(cub->world.fog, WIDTH / 2 + 1, HEIGHT / 2, H_PINK);
-	mlx_put_pixel(cub->world.fog, WIDTH / 2 - 1, HEIGHT / 2, H_PINK);
 }

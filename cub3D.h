@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/12 09:16:14 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/12 09:27:06 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@
 # define BACKGROUND "assets/white_square.png"
 # define PLAYER_T "assets/blue_circle.png"
 # define CURSOR "assets/invisible_pixel.png"
-# define DOOR "assets/yellow_square.png"
+# define DOOR "assets/key.png"
 
 # include <unistd.h>
 # include <fcntl.h>
