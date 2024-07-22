@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/22 16:32:26 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:47:39 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ int	*get_length(t_map *map)
 	if (!length)
 		return (NULL);
 	while (map->map[++i])
+	{
 		length[i] = ft_strlen(map->map[i]);
+		if (length[i] > 100 || map->height > 100)
+			return (print_error("Map too big\n"), \
+				free(length), NULL);
+	}
 	return (length);
 }
 
@@ -99,6 +104,8 @@ int	parsing_map(t_map *map, t_cub *cub)
 	i = 1;
 	j = 0;
 	map->length = get_length(map);
+	if (!map->length)
+		return (-1);
 	if (basic_check(map, j, cub) == -1)
 		return (-1);
 	while (i < map->height - 1)

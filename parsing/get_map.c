@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:22:40 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/22 16:08:30 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:41:02 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ void	get_map(char *line, t_map *map, int fd)
 			&& line[0] != 'F' && line[0] != 'C' && line[0] != '\n'
 			&& ft_strisspace(line) == false)
 			{
-				map->map[map->i++] = ft_strdup(line);
-				if (!map->map[map->i])
+				map->map[map->i] = ft_strdup(line);
+				if (!map->map[map->i++])
 					exit ((free_map_stuff(map), EXIT_FAILURE));					
 			}
 		free(line);
