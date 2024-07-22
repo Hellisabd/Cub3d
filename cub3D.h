@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/12 11:40:25 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:30:57 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -331,6 +331,7 @@ typedef struct s_cub
 	size_t			n_enemy;
 	size_t			n_exit;
 	int				n_ray;
+	int				status;
 	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
 	t_world			world;

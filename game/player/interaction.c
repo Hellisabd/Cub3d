@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:19 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/12 09:04:46 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:37:54 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ void	interaction(mlx_key_data_t key, void *param)
 	{
 		cub->anim.door_count = 23;
 		cub->anim.door_closing = STARTING;
+	}
+	if (key.key == MLX_KEY_B && key.action == 1 && cub->status == 1)
+	{
+		mlx_set_cursor_mode(cub->mlx, MLX_MOUSE_NORMAL);
+		cub->status = 0;
+	}
+	else if (key.key == MLX_KEY_B && key.action == 1 && cub->status == 0)
+	{
+		mlx_set_cursor_mode(cub->mlx, MLX_MOUSE_HIDDEN);
+		cub->status = 1;
 	}
 }
 

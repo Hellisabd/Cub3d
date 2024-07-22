@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:22 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 15:26:09 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 11:33:40 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ void	rotations(double xpos, double ypos, void *param)
 	cub = param;
 	x = (int)xpos;
 	y = (int)ypos;
-	mlx_get_mouse_pos(cub->mlx, &x, &y);
-	if (x > WIDTH / 2)
-		cub->rot += PI / 10;
-	if (x < WIDTH / 2)
-		cub->rot -= PI / 10;
-	mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
+	if (cub->status == 1)
+	{
+		mlx_get_mouse_pos(cub->mlx, &x, &y);
+		if (x != WIDTH / 2)
+			cub->rot += (x - (WIDTH / 2)) * (2 * PI / WIDTH);
+		mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
+	}
 }
 
 bool	can_move(t_cub *cub, t_deplacement *dep)
