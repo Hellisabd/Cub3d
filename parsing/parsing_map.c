@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 16:41:54 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:32:26 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_hole(t_map *map, int *i, int *j)
 			|| map->map[*i][*j] == 'W')
 	{
 		if (ft_isspace(map->map[*i][(*j) - 1]))
-			return (debug_str(BLUE, NULL, "sortie 3"), -1);
+			return (-1);
 		if (ft_isspace(map->map[*i][(*j) + 1]))
 			return (-1);
 		if (map->length[(*i) - 1] < (*j) - 1

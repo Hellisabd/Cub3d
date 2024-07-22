@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 18:00:33 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/12 09:12:54 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:08:41 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void	free_rays(t_ray *ray)
 void	free_in_window(t_cub *cub)
 {
 	free_map_stuff(cub->map);
-	destroyer(&cub->mini_map, cub->mlx, cub);
+	destroyer(cub->mlx, cub);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:30 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 16:42:31 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:59:22 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int argc, char **argv)
 	t_cub	cub;
 
 	cub.map = malloc(sizeof(t_map));
+	init_all(&cub);
 	if (argc == 1)
 		return (print_error("Please load a .cub file!\n"), 1);
 	if (argc > 2)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_walls_animation.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:10 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/12 11:32:34 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:26:53 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,11 @@ void	init_blink3(t_cub *cub)
 	cub->world.tab_tab_ea[1] = image_to_tab(cub->world.ea[1]);
 	cub->world.tab_tab_ea[2] = image_to_tab(cub->world.ea[2]);
 	cub->world.tab_tab_ea[3] = image_to_tab(cub->world.ea[3]);
+	if (!cub->world.tab_tab_no[1] || !cub->world.tab_tab_no[2] || !cub->world.tab_tab_no[3]
+		|| !cub->world.tab_tab_so[1] || !cub->world.tab_tab_so[2] || !cub->world.tab_tab_so[3]
+		|| !cub->world.tab_tab_we[1] || !cub->world.tab_tab_we[2] || !cub->world.tab_tab_we[3]
+		|| !cub->world.tab_tab_ea[1] || !cub->world.tab_tab_ea[2] || !cub->world.tab_tab_ea[3])
+		exit((free_in_window(cub), 1));
 }
 
 void	init_blink2(t_cub *cub)
@@ -70,6 +75,11 @@ void	init_blink2(t_cub *cub)
 	cub->world.ea[1] = mlx_texture_to_image(cub->mlx, cub->world.ea_t[1]);
 	cub->world.ea[2] = mlx_texture_to_image(cub->mlx, cub->world.ea_t[2]);
 	cub->world.ea[3] = mlx_texture_to_image(cub->mlx, cub->world.black_t);
+	if (!cub->world.no[1] || !cub->world.no[2] || !cub->world.no[3]
+		|| !cub->world.so[1] || !cub->world.so[2] || !cub->world.so[3]
+		|| !cub->world.we[1] || !cub->world.we[2] || !cub->world.we[3]
+		|| !cub->world.ea[1] || !cub->world.ea[2] || !cub->world.ea[3])
+		exit((free_in_window(cub), 1));
 }
 
 int	init_blink(t_cub *cub)

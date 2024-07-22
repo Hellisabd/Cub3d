@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/22 12:07:00 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:23:54 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,14 +267,14 @@ typedef struct s_world
 	mlx_image_t		*npc;
 	mlx_image_t		*exit;
 	mlx_image_t		*no_i;
-	mlx_image_t		*no[4];
 	mlx_image_t		*so_i;
-	mlx_image_t		*so[4];
 	mlx_image_t		*we_i;
-	mlx_image_t		*we[4];
 	mlx_image_t		*ea_i;
-	mlx_image_t		**door_i;
+	mlx_image_t		*no[4];
+	mlx_image_t		*so[4];
+	mlx_image_t		*we[4];
 	mlx_image_t		*ea[4];
+	mlx_image_t		**door_i;
 	int				**tab_ea;
 	int				**tab_so;
 	int				**tab_no;
@@ -332,7 +332,6 @@ typedef struct s_cub
 	size_t			n_exit;
 	int				n_ray;
 	int				status;
-	mlx_texture_t	*cursor_t;
 	t_mini_map		mini_map;
 	t_world			world;
 	t_player		player;
@@ -341,6 +340,12 @@ typedef struct s_cub
 	t_deplacement	dep;
 	t_exit			exit;
 }	t_cub;
+
+//INITIALISATION
+
+void	open_window(t_cub *cub);
+void init_all(t_cub *cub);
+
 
 // PARSING
 
@@ -373,7 +378,6 @@ int		init_data_mini_map(t_mini_map *minimap, t_map *map);
 int		init_mini_map(t_cub *cub, t_mini_map *mini_map);
 
 // GAME
-void	open_window(t_cub *cub);
 int		lets_go_3d(t_cub *cub);
 int		draw_walls(t_cub *cub, t_ray *ray);
 int		init_blink(t_cub *cub);
@@ -448,7 +452,7 @@ void	check_exit(t_cub *cub);
 void	free_map_stuff(t_map *map);
 void	free_rays(t_ray *ray);
 void	free_in_window(t_cub *cub);
-void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub);
+void	destroyer(mlx_t *mlx, t_cub *cub);
 
 // ERROR
 void	print_error(char *msg);

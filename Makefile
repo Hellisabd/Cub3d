@@ -18,7 +18,8 @@ SRCS	=	parsing/get_map.c \
 			parsing/parsing_utils.c \
 			free_and_destroy/free_all.c \
 			free_and_destroy/destroyer.c \
-			game/open_window.c \
+			game/init_game/open_window.c \
+			game/init_game/init_things.c \
 			game/display/raycasting_1.c \
 			game/display/raycasting_2.c \
 			game/display/raycasting_utils.c \

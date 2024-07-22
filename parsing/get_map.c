@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:22:40 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 16:53:39 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:08:30 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ void	get_map(char *line, t_map *map, int fd)
 		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
 			&& line[0] != 'F' && line[0] != 'C' && line[0] != '\n'
 			&& ft_strisspace(line) == false)
-			map->map[map->i++] = ft_strdup(line);
+			{
+				map->map[map->i++] = ft_strdup(line);
+				if (!map->map[map->i])
+					exit ((free_map_stuff(map), EXIT_FAILURE));					
+			}
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -53,6 +57,8 @@ void	get_map(char *line, t_map *map, int fd)
 	map->ea = ft_strtrim(map->ea, "\n");
 	map->f_h = rgb_to_hex(map->f);
 	map->c_h = rgb_to_hex(map->c);
+	if (!map->no || !map->so || !map->we || !map->ea || map->f_h == -1 || map->c_h == -1)
+		exit ((free_map_stuff(map), EXIT_FAILURE));
 }
 
 void	open_map(t_map *map, char **argv)

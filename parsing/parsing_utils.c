@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:16 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 13:38:19 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 16:15:55 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int	rgb_to_hex(char *rgb)
 
 	i = 0;
 	r_g_b = ft_split(rgb, ',');
+	if (!r_g_b)
+		return (-1);
 	while (i < 3)
 	{
 		tab[i] = ft_atoi(r_g_b[i]);

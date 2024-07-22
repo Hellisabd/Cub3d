@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:53:18 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/11 16:57:28 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:20:29 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,36 @@ void	get_textures_2(t_map *map, char *line)
 		map->i_ea++;
 		if (map->i_ea <= 1)
 			map->ea = ft_strdup(line + 3);
+		if (!map->ea)
+			exit ((free_map_stuff(map), EXIT_FAILURE));
 	}
 	if (line[0] == 'F')
 	{
 		map->i_f++;
 		if (map->i_f <= 1)
 			map->f = ft_strdup(line + 2);
+		if (!map->f)
+			exit ((free_map_stuff(map), EXIT_FAILURE));
 	}
 	if (line[0] == 'C')
 	{
 		map->i_c++;
 		if (map->i_c <= 1)
 			map->c = ft_strdup(line + 2);
+		if (!map->c)
+			exit ((free_map_stuff(map), EXIT_FAILURE));
+	}
+}
+
+void	get_textures_3(t_map *map, char *line)
+{
+	if (line[0] == 'W' && line[1] == 'E')
+	{
+		map->i_we++;
+		if (map->i_we <= 1)
+			map->we = ft_strdup(line + 3);
+		if (!map->we)
+			exit ((free_map_stuff(map), EXIT_FAILURE));
 	}
 }
 
@@ -69,20 +87,19 @@ void	get_textures(t_map *map, char *line)
 		map->i_no++;
 		if (map->i_no <= 1)
 			map->no = ft_strdup(line + 3);
+		if (!map->no)
+			exit ((free_map_stuff(map), EXIT_FAILURE));
 	}
 	if (line[0] == 'S' && line[1] == 'O')
 	{
 		map->i_so++;
 		if (map->i_so <= 1)
 			map->so = ft_strdup(line + 3);
-	}
-	if (line[0] == 'W' && line[1] == 'E')
-	{
-		map->i_we++;
-		if (map->i_we <= 1)
-			map->we = ft_strdup(line + 3);
+		if (!map->so)
+			exit ((free_map_stuff(map), EXIT_FAILURE));
 	}
 	get_textures_2(map, line);
+	get_textures_3(map, line);
 	if (map->i_no > 1 || map->i_so > 1 || map->i_we > 1 || map->i_ea > 1 \
 		|| map->i_f > 1 || map->i_c > 1)
 		exit ((print_error(TEXTURE2), EXIT_FAILURE));

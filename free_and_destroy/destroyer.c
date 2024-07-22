@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroyer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 09:12:31 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/22 11:35:17 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 15:27:55 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	destroyer_2(mlx_t *mlx, t_cub *cub, int i)
 	}
 }
 
-void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub)
+void	destroyer(mlx_t *mlx, t_cub *cub)
 {
 	int	i;
 
@@ -70,5 +70,5 @@ void	destroyer(t_mini_map *mini, mlx_t *mlx, t_cub *cub)
 	ft_free_tab_int(cub->enemy.tab_enemy[1]);
 	ft_free_tab_int(cub->enemy.tab_enemy[2]);
 	ft_free_tab_int(cub->exit.tab_exit);
-	destroyer_3(mini, cub);
+	destroyer_3(&cub->mini_map, cub);
 }
