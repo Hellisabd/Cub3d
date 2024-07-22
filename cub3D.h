@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/22 11:30:57 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:07:00 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -407,6 +407,7 @@ int		init_light(t_cub *cub);
 void	put_wall_in3d(t_wall *wall, t_cub *cub, mlx_image_t *image, \
 		int **pixel_tab);
 void	disp_world_2(t_cub *cub, t_ray *ray, t_wall *wall);
+void	clear_npc_layer(t_cub *cub, int x);
 
 // ENEMIES
 void	set_enemy_pos(t_cub *cub);

@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 11:38:26 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/12 09:01:36 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:06:31 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ void	put_enemy(t_cub *cub, t_ray *ray, int x)
 {
 	int	y;
 
-	clear_npc_layer(cub, x);
 	cub->enemy.line_tab = cub->enemy.start * cub->enemy.ratio_height;
 	if ((ray->hyp > cub->enemy.dist) && ((ray->angle >= cub->enemy.theta1 && \
 		ray->angle <= cub->enemy.theta2) || (ray->angle >= cub->enemy.theta1 \

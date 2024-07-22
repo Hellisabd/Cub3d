@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 14:35:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/12 09:01:39 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:08:28 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,11 @@ void	maths_exit(t_cub *cub)
 	maths_exit_2(cub);
 }
 
-void	clear_exit_layer(t_cub *cub, int x)
-{
-	int	y;
-
-	y = 0;
-	while (y < HEIGHT)
-	{
-		mlx_put_pixel(cub->world.exit, x, y, 0);
-		y++;
-	}
-}
-
 void	put_exit_2(t_cub *cub, int x, int y)
 {
 	while (y < HEIGHT)
 	{
-		mlx_put_pixel(cub->world.exit, x, y, 0);
+		mlx_put_pixel(cub->world.npc, x, y, 0);
 		y++;
 	}
 	cub->exit.n_ray++;
@@ -80,7 +68,7 @@ void	put_exit(t_cub *cub, t_ray *ray, int x)
 {
 	int	y;
 
-	clear_exit_layer(cub, x);
+	clear_npc_layer(cub, x);
 	cub->exit.line_tab = cub->exit.start * cub->exit.ratio_height;
 	if ((ray->hyp > cub->exit.dist) && ((ray->angle >= cub->exit.theta1 && \
 		ray->angle <= cub->exit.theta2) || (ray->angle >= cub->exit.theta1 \
@@ -89,13 +77,13 @@ void	put_exit(t_cub *cub, t_ray *ray, int x)
 		y = 0;
 		while (y < (HEIGHT - cub->exit.ratio + 50) / 2)
 		{
-			mlx_put_pixel(cub->world.exit, x, y, 0);
+			mlx_put_pixel(cub->world.npc, x, y, 0);
 			y++;
 		}
 		while ((int)floor(cub->exit.line_tab) < \
 			(int)cub->exit.exit_i->height && y < HEIGHT)
 		{
-			mlx_put_pixel(cub->world.exit, x, y, \
+			mlx_put_pixel(cub->world.npc, x, y, \
 				(int)cub->exit.tab_exit[(int)(floor)(cub->exit.n_ray / 3 * \
 				cub->exit.ratio_width)][(int)floor(cub->exit.line_tab)]);
 			y++;

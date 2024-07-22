@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:57:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/12 11:46:19 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/22 12:08:21 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 				break ;
 		}
 		disp_world(cub, ray, i);
-		if (cub->n_enemy == 1)
-			put_enemy(cub, ray, i);
 		if (cub->n_exit == 1)
 			put_exit(cub, ray, i);
+		if (cub->n_enemy == 1)
+			put_enemy(cub, ray, i);
 		i++;
 	}
 	return (0);
@@ -105,9 +105,6 @@ int	lets_go_3d(t_cub *cub)
 	init_exit(cub);
 	cub->world.background_i = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.background_i, 0, 0) == -1)
-		exit((print_error(WINDOW), free_in_window(cub), EXIT_FAILURE));
-	cub->world.exit = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
-	if (mlx_image_to_window(cub->mlx, cub->world.exit, 0, 0) == -1)
 		exit((print_error(WINDOW), free_in_window(cub), EXIT_FAILURE));
 	cub->world.npc = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.npc, 0, 0) == -1)
