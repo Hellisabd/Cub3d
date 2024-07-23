@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_things.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:15:21 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/22 16:15:22 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:02:29 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	init_other(t_cub *cub)
 	}
 }
 
-void init_all(t_cub *cub)
+void	init_all(t_cub *cub)
 {
 	cub->world.door_t = NULL;
 	cub->world.door_i = NULL;

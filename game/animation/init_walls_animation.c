@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_walls_animation.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:10 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/22 16:26:53 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:06:10 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,12 @@ void	init_blink3(t_cub *cub)
 	cub->world.tab_tab_ea[1] = image_to_tab(cub->world.ea[1]);
 	cub->world.tab_tab_ea[2] = image_to_tab(cub->world.ea[2]);
 	cub->world.tab_tab_ea[3] = image_to_tab(cub->world.ea[3]);
-	if (!cub->world.tab_tab_no[1] || !cub->world.tab_tab_no[2] || !cub->world.tab_tab_no[3]
-		|| !cub->world.tab_tab_so[1] || !cub->world.tab_tab_so[2] || !cub->world.tab_tab_so[3]
-		|| !cub->world.tab_tab_we[1] || !cub->world.tab_tab_we[2] || !cub->world.tab_tab_we[3]
-		|| !cub->world.tab_tab_ea[1] || !cub->world.tab_tab_ea[2] || !cub->world.tab_tab_ea[3])
+	if (!cub->world.tab_tab_no[1] || !cub->world.tab_tab_no[2]
+		|| !cub->world.tab_tab_no[3] || !cub->world.tab_tab_so[1]
+		|| !cub->world.tab_tab_so[2] || !cub->world.tab_tab_so[3]
+		|| !cub->world.tab_tab_we[1] || !cub->world.tab_tab_we[2]
+		|| !cub->world.tab_tab_we[3] || !cub->world.tab_tab_ea[1]
+		|| !cub->world.tab_tab_ea[2] || !cub->world.tab_tab_ea[3])
 		exit((free_in_window(cub), 1));
 }
 

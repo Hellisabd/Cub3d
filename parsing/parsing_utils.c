@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:16 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/23 13:43:32 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:02:08 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,9 @@ int	**image_to_tab(mlx_image_t *image)
 	while (++stock.i < (int)image->width)
 		stock.tab_colonnes[stock.i] = malloc(sizeof (int) * image->height);
 	image_to_tab_3(image, stock);
-	stock.i = 0;
-	while (stock.i < (int)image->height)
-	{
+	stock.i = -1;
+	while (++stock.i < (int)image->height)
 		free(stock.tab[stock.i]);
-		stock.i++;
-	}
 	free(stock.tab);
 	return (stock.tab_colonnes);
 }

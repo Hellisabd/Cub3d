@@ -1,6 +1,8 @@
 NAME	= cub3D
 
-LIBS	= libmlx42.a -ldl -lglfw -pthread -lm
+LIBS	= MLX42/build/libmlx42.a -ldl -lglfw -pthread -lm
+
+MLX_DIRECTORY = ./MLX42
 
 DEF_COLOR = \033[0;39m
 GRAY = \033[0;90m
@@ -46,8 +48,7 @@ SRCS	=	parsing/get_map.c \
 			game/player/stamina.c \
 			minimap/minimap.c \
 			minimap/init_textures.c \
-			parsing/error.c \
-			ne_pas_rendre/debug_stderr.c
+			parsing/error.c
 
 SRCS_MAIN	= main.c 
 
@@ -83,6 +84,18 @@ re :	fclean all
 
 ex :	re clean
 	@echo "$(GREEN)(•̀ᴗ•́)و ̑̑ALL FINE!(•̀ᴗ•́)و ̑̑$(DEF_COLOR)"
+
+mlx_clean:
+	@ rm -rf MLX42
+
+mlx_install:
+	@ git clone https://github.com/codam-coding-college/MLX42.git ${MLX_DIRECTORY}
+
+mlx_init:
+	@ cd ${MLX_DIRECTORY} && cmake -B build
+	@ cd ${MLX_DIRECTORY} && cmake --build build -j4
+
+mlx_re: mlx_clean mlx_install mlx_init
 
 git	:	fclean
 	@$(RM) */a.out a.out

@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:57:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/23 10:35:38 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:03:59 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,12 @@ void	disp_world(t_cub *cub, t_ray *ray, int x)
 	}
 }
 
-int	draw_walls(t_cub *cub, t_ray *ray)
+void	draw_walls(t_cub *cub, t_ray *ray)
 {
 	int	ratio;
 	int	i;
 
-	i = 0;
+	i = -1;
 	ratio = WIDTH / cub->n;
 	cub->n_ray = 0;
 	cub->exit.n_ray = 0;
@@ -80,7 +80,7 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 		maths_enemy(cub);
 	if (cub->n_exit == 1)
 		maths_exit(cub);
-	while (i < WIDTH && ray)
+	while (++i < WIDTH && ray)
 	{
 		if (i % ratio == 0)
 		{
@@ -93,9 +93,7 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 			put_exit(cub, ray, i);
 		if (cub->n_enemy == 1)
 			put_enemy(cub, ray, i);
-		i++;
 	}
-	return (0);
 }
 
 int	lets_go_3d(t_cub *cub)

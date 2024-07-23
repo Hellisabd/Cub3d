@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 15:01:17 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:13:04 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@
 # include <math.h>
 
 # include "Libft/libft.h"
-# include ".MLX42/include/MLX42/MLX42.h"
+# include "MLX42/include/MLX42/MLX42.h"
 
 # define PI		3.14159265358979323846
 # define WIDTH 3000
@@ -382,7 +382,7 @@ int		init_mini_map(t_cub *cub, t_mini_map *mini_map);
 
 // GAME
 int		lets_go_3d(t_cub *cub);
-int		draw_walls(t_cub *cub, t_ray *ray);
+void	draw_walls(t_cub *cub, t_ray *ray);
 int		init_blink(t_cub *cub);
 int		init_enemy(t_cub *cub);
 void	stam_handling(t_cub *cub);
