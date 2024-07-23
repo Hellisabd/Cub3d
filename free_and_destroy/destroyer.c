@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroyer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 09:12:31 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/22 15:27:55 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:01:19 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,19 @@
 
 void	destroyer_3(t_mini_map *mini, t_cub *cub)
 {
-	mlx_delete_texture(cub->enemy.enemy_t[0]);
-	mlx_delete_texture(cub->enemy.enemy_t[1]);
-	mlx_delete_texture(cub->enemy.enemy_t[2]);
+	if (cub->n_enemy == 1)
+	{
+		mlx_delete_texture(cub->enemy.enemy_t[0]);
+		mlx_delete_texture(cub->enemy.enemy_t[1]);
+		mlx_delete_texture(cub->enemy.enemy_t[2]);
+	}
 	mlx_delete_texture(cub->anim.light_t);
 	mlx_delete_texture(cub->anim.death_t);
-	mlx_delete_texture(cub->exit.exit_t);
-	mlx_delete_texture(cub->exit.success_t);
+	if (cub->n_exit == 1)
+	{
+		mlx_delete_texture(cub->exit.exit_t);
+		mlx_delete_texture(cub->exit.success_t);
+	}
 	mlx_delete_texture(mini->player_t);
 	mlx_delete_texture(mini->wall_t);
 	mlx_delete_texture(mini->door_t);
@@ -66,9 +72,13 @@ void	destroyer(mlx_t *mlx, t_cub *cub)
 	free(cub->world.tab_anim_door);
 	free(cub->world.door_t);
 	free(cub->world.door_i);
-	ft_free_tab_int(cub->enemy.tab_enemy[0]);
-	ft_free_tab_int(cub->enemy.tab_enemy[1]);
-	ft_free_tab_int(cub->enemy.tab_enemy[2]);
-	ft_free_tab_int(cub->exit.tab_exit);
+	if (cub->n_enemy == 1)
+	{
+		ft_free_tab_int(cub->enemy.tab_enemy[0]);
+		ft_free_tab_int(cub->enemy.tab_enemy[1]);
+		ft_free_tab_int(cub->enemy.tab_enemy[2]);
+	}
+	if (cub->n_exit == 1)
+		ft_free_tab_int(cub->exit.tab_exit);
 	destroyer_3(&cub->mini_map, cub);
 }

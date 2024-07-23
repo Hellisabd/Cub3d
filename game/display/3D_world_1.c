@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:57:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/23 09:29:37 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:35:38 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,10 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 	ratio = WIDTH / cub->n;
 	cub->n_ray = 0;
 	cub->exit.n_ray = 0;
-	maths_enemy(cub);
-	maths_exit(cub);
+	if (cub->n_enemy == 1)
+		maths_enemy(cub);
+	if (cub->n_exit == 1)
+		maths_exit(cub);
 	while (i < WIDTH && ray)
 	{
 		if (i % ratio == 0)
@@ -99,10 +101,12 @@ int	draw_walls(t_cub *cub, t_ray *ray)
 int	lets_go_3d(t_cub *cub)
 {
 	init_world(cub);
-	init_enemy(cub);
+	if (cub->n_enemy == 1)
+		init_enemy(cub);
 	init_blink(cub);
 	init_death(cub);
-	init_exit(cub);
+	if (cub->n_exit == 1)
+		init_exit(cub);
 	cub->world.background_i = mlx_new_image(cub->mlx, WIDTH, HEIGHT);
 	if (mlx_image_to_window(cub->mlx, cub->world.background_i, 0, 0) == -1)
 		exit((print_error(WINDOW), free_in_window(cub), EXIT_FAILURE));

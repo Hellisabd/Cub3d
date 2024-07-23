@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:16 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 09:28:59 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/23 11:05:38 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@ void	init_pos_count(t_cub *cub)
 	set_exit_pos(cub);
 	cub->n_enemy = count_c(cub->map, 'A');
 	cub->n_exit = count_c(cub->map, 'X');
+	if (cub->n_enemy > 1)
+		exit((print_error("Too many enemies!\n"), \
+			free_map_stuff(cub->map), EXIT_FAILURE));
+	if (cub->n_exit > 1)
+		exit((print_error("Too many exits!\n"), \
+			free_map_stuff(cub->map), EXIT_FAILURE));
 }
 
 void	open_window(t_cub *cub)
