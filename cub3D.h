@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 14:22:03 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/23 15:01:17 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -348,8 +348,7 @@ typedef struct s_cub
 //INITIALISATION
 
 void	open_window(t_cub *cub);
-void init_all(t_cub *cub);
-
+void	init_all(t_cub *cub);
 
 // PARSING
 
