@@ -1,3 +1,0 @@
-proteger les free et destroy
-
-minimap qui suit le joueur ?

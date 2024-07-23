@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/22 15:23:54 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:22:03 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -257,10 +257,10 @@ typedef struct s_world
 	mlx_texture_t	*background_t;
 	mlx_texture_t	**door_t;
 	mlx_texture_t	*black_t;
-	mlx_texture_t	*no_t[4];
-	mlx_texture_t	*so_t[4];
-	mlx_texture_t	*we_t[4];
-	mlx_texture_t	*ea_t[4];
+	mlx_texture_t	*no_t[3];
+	mlx_texture_t	*so_t[3];
+	mlx_texture_t	*we_t[3];
+	mlx_texture_t	*ea_t[3];
 	mlx_image_t		*background_i;
 	mlx_image_t		*fog;
 	mlx_image_t		*hud;
@@ -275,6 +275,10 @@ typedef struct s_world
 	mlx_image_t		*we[4];
 	mlx_image_t		*ea[4];
 	mlx_image_t		**door_i;
+	int				s_no;
+	int				s_so;
+	int				s_ea;
+	int				s_we;
 	int				**tab_ea;
 	int				**tab_so;
 	int				**tab_no;

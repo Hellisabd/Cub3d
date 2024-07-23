@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 13:52:12 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 11:12:05 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/23 13:58:16 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@ void	ft_free_tab(char **tab)
 	}
 }
 
-void	ft_free_tab_int(int **tab)
+void	ft_free_tab_int(int **tab, int size)
 {
 	int	i;
 
 	i = 0;
 	if (tab)
 	{
-		while (tab[i])
+		while (i < size)
 		{
 			free (tab[i]);
 			i++;

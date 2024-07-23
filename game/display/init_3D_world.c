@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_3D_world.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:16:11 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/23 10:11:19 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/23 14:28:05 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,17 @@ void	load_door(t_cub *cub)
 
 int	init_world_2(t_cub *cub)
 {
+	mlx_resize_image(cub->world.no[0], 450, 450);
+	mlx_resize_image(cub->world.so[0], 450, 450);
+	mlx_resize_image(cub->world.ea[0], 450, 450);
+	mlx_resize_image(cub->world.we[0], 450, 450);
 	cub->world.tab_tab_no[0] = image_to_tab(cub->world.no[0]);
 	cub->world.tab_tab_so[0] = image_to_tab(cub->world.so[0]);
 	cub->world.tab_tab_we[0] = image_to_tab(cub->world.we[0]);
 	cub->world.tab_tab_ea[0] = image_to_tab(cub->world.ea[0]);
 	if (!cub->world.tab_tab_no[0] || !cub->world.tab_tab_so[0]
 		|| !cub->world.tab_tab_we[0] || !cub->world.tab_tab_ea[0])
-		exit((destroyer(cub->mlx, cub), 1));
+		exit((free_in_window(cub), 1));
 	cub->world.tab_no = cub->world.tab_tab_no[0];
 	cub->world.tab_so = cub->world.tab_tab_so[0];
 	cub->world.tab_we = cub->world.tab_tab_we[0];
@@ -98,6 +102,9 @@ int	init_world(t_cub *cub)
 	cub->world.so[0] = mlx_texture_to_image(cub->mlx, cub->world.so_t[0]);
 	cub->world.we[0] = mlx_texture_to_image(cub->mlx, cub->world.we_t[0]);
 	cub->world.ea[0] = mlx_texture_to_image(cub->mlx, cub->world.ea_t[0]);
+	if (!cub->world.no[0] || !cub->world.so[0] || !cub->world.we[0]
+		|| !cub->world.ea[0])
+		exit((free_in_window(cub), 1));
 	if (init_world_2(cub) != 0)
 		return (1);
 	return (0);
