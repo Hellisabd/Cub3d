@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:16:11 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/22 16:17:57 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:11:19 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	load_door_2(t_cub *cub, int i, char *str)
 		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
 	cub->world.door_i[i - 1] = mlx_texture_to_image(cub->mlx, \
 		cub->world.door_t[i - 1]);
-	cub->world.tab_anim_door[i - 1] = \
-		image_to_tab(cub->world.door_i[i - 1]);
+	cub->world.tab_anim_door[i - 1] = image_to_tab(cub->world.door_i[i - 1]);
 	free(str);
 	str = NULL;
 }

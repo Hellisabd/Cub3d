@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:16 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/22 16:15:55 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:11:05 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ int	**image_to_tab(mlx_image_t *image)
 {
 	t_color	stock;
 
-	stock.tab = malloc(sizeof(unsigned char *) * image->height);
+	stock.tab = malloc(sizeof(unsigned char *) * image->height + 1);
+	stock.tab[image->height] = NULL;
 	stock.j = 0;
 	stock.i = -1;
 	while (++stock.i < (int)image->height)
@@ -73,7 +74,7 @@ int	**image_to_tab(mlx_image_t *image)
 	while (++stock.i < (int)image->width)
 		stock.tab_colonnes[stock.i] = malloc(sizeof (int) * image->height);
 	image_to_tab_3(image, stock);
-	ft_free_tab_int((int **)stock.tab);
+	ft_free_tab((char **)stock.tab);
 	return (stock.tab_colonnes);
 }
 
