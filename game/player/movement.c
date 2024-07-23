@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:22 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 16:20:26 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:27:10 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	rotations(double xpos, double ypos, void *param)
 	{
 		mlx_get_mouse_pos(cub->mlx, &x, &y);
 		if (x != WIDTH / 2)
-			cub->rot += (x - (WIDTH / 2)) * 0.001;
+			cub->rot += (x - (WIDTH / 2)) * 0.0001 * SENSI;
 		mlx_set_mouse_pos(cub->mlx, WIDTH / 2, HEIGHT / 2);
 	}
 }

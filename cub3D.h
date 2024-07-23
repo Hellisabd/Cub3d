@@ -6,12 +6,14 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 15:13:04 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:28:30 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# define SENSI 5
 
 # define NC "\e[0m"
 # define RED "\e[1;31m"
