@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:16 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/23 10:11:05 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/23 10:26:01 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ int	**image_to_tab(mlx_image_t *image)
 {
 	t_color	stock;
 
-	stock.tab = malloc(sizeof(unsigned char *) * image->height + 1);
-	stock.tab[image->height] = NULL;
+	stock.tab = malloc(sizeof(unsigned char *) * image->height);
+	stock.tab[image->height - 1] = NULL;
 	stock.j = 0;
 	stock.i = -1;
 	while (++stock.i < (int)image->height)
