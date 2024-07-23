@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:30 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 15:25:05 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:07:02 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 		init_var(cub.map);
 		open_map(cub.map, argv);
 		if (-1 == parsing_map(cub.map, &cub))
-			exit((printf("prout1\n"), EXIT_FAILURE));
+			exit(EXIT_FAILURE);
 		open_window(&cub);
 		free_rays(cub.ray);
 		free_in_window(&cub);

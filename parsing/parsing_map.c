@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/23 15:34:01 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/23 16:12:32 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,15 @@ int	check_hole(t_map *map, int *i, int *j)
 		|| map->map[*i][*j] == 'A' || map->map[*i][*j] == 'X')
 	{
 		if (ft_isspace(map->map[*i][(*j) - 1]))
-			return (printf("prout1\n"), -1);
+			return (-1);
 		if (ft_isspace(map->map[*i][(*j) + 1]))
-			return (printf("prout2\n"), -1);
+			return (-1);
 		if (map->length[(*i) - 1] < (*j) - 1
 			|| ft_isspace(map->map[*i - 1][*j]))
-			return (printf("prout3\n"), -1);
+			return (-1);
 		if (map->length[(*i) + 1] < (*j) + 1
 			|| ft_isspace(map->map[(*i) + 1][*j]))
-			return (printf("prout4\n"), -1);
+			return (-1);
 	}
 	return (0);
 }
@@ -102,23 +102,26 @@ int	parsing_map(t_map *map, t_cub *cub)
 	int	i;
 	int	j;
 
-	i = 1;
-	j = 0;
-	map->length = get_length(map);
+	map->length = get_length((i = 0, j = 0, map));
 	if (!map->length)
 		return (-1);
 	if (basic_check(map, j, cub) == -1)
 		return (-1);
-	while (i < map->height - 1)
+	while (++i < map->height - 1)
 	{
-		j = 0;
-		while (map->map[i][j])
+		j = -1;
+		while (map->map[i][++j])
 		{
 			if (check_hole(map, &i, &j) == -1)
 				return (print_error("map open\n"), -1);
-			j++;
+			if (map->map[i][j] != '0' && map->map[i][j] != 'E'
+				&& map->map[i][j] != 'S' && map->map[i][j] != 'N'
+				&& map->map[i][j] != 'W' && map->map[i][j] != 'D'
+				&& map->map[i][j] != 'A' && map->map[i][j] != 'X'
+				&& map->map[i][j] != '1' && map->map[i][j] != ' '
+				&& map->map[i][j] != '\n')
+				return (print_error("Wrong input\n"), -1);
 		}
-		i++;
 	}
 	return (0);
 }
