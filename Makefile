@@ -100,7 +100,7 @@ mlx_re: mlx_clean mlx_install mlx_init
 git	:	fclean
 	@$(RM) */a.out a.out
 	@git add . > /dev/null 2>&1
-	@@msg=$${MSG:-"main $(CURRENT_DATE)"}; git commit -m "$(USER) $$msg main $(CURRENT_DATE)" > /dev/null 2>&1 
+	@@msg=$${MSG:-"main $(CURRENT_DATE)"}; git commit -m "$(USER) $$msg" > /dev/null 2>&1 
 	@git push > /dev/null 2>&1
 	@echo "$(GREEN)(•̀ᴗ•́)و ̑̑GIT UPDATE!(•̀ᴗ•́)و ̑̑$(DEF_COLOR)"
 
