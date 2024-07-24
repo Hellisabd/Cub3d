@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 16:28:30 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:48:11 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@
 
 # define WALL "assets/walls/black.png"
 # define BACKGROUND "assets/white_square.png"
-# define PLAYER_T "assets/blue_circle.png"
 # define CURSOR "assets/invisible_pixel.png"
 # define DOOR "assets/key.png"
 
@@ -296,12 +295,10 @@ typedef struct s_mini_map
 {
 	mlx_texture_t	*wall_t;
 	mlx_texture_t	*door_t;
-	mlx_texture_t	*player_t;
 	mlx_texture_t	*background_t;
 	mlx_image_t		*wall_i;
 	mlx_image_t		*door_i;
 	mlx_image_t		*background_i;
-	mlx_image_t		*player_i;
 	int				height;
 	int				width;
 	int				size_wall_x;
@@ -358,7 +355,7 @@ void	open_map(t_map *map, char **argv);
 int		check_floor_and_ceiling(t_map *map);
 void	get_textures(t_map *map, char *line);
 int		parsing_map(t_map *map, t_cub *cub);
-void	check_cub(char *s);
+void	check_cub(t_map *map, char *s);
 int		rgb_to_hex(char *rgb);
 int		**image_to_tab(mlx_image_t *image);
 size_t	count_c(t_map *map, char c);

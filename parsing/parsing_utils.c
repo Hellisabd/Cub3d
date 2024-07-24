@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:16 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/23 15:02:08 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:47:55 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	**image_to_tab(mlx_image_t *image)
 	return (stock.tab_colonnes);
 }
 
-void	check_cub(char *s)
+void	check_cub(t_map *map, char *s)
 {
 	int		i;
 
@@ -90,7 +90,7 @@ void	check_cub(char *s)
 		i++;
 	if (s[i - 1] != 'b' || s[i - 2] != 'u' \
 		|| s[i - 3] != 'c' || s[i - 4] != '.')
-		exit((print_error(CUB), EXIT_FAILURE));
+		exit((free_map_stuff(map), print_error(CUB), EXIT_FAILURE));
 }
 
 int	rgb_to_hex(char *rgb)

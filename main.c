@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:30 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 16:07:02 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:46:09 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ int	main(int argc, char **argv)
 {
 	t_cub	cub;
 
-	cub.map = malloc(sizeof(t_map));
-	init_all(&cub);
 	if (argc == 1)
 		return (print_error("Please load a .cub file!\n"), 1);
 	if (argc > 2)
 		return (print_error("Too many arguments!\n"), 1);
+	cub.map = malloc(sizeof(t_map));
+	init_all(&cub);
 	if (argc == 2)
 	{
 		init_var(cub.map);

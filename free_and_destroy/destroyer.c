@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 09:12:31 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/23 14:28:24 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:43:37 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	destroyer_3(t_mini_map *mini, t_cub *cub)
 		mlx_delete_texture(cub->exit.exit_t);
 		mlx_delete_texture(cub->exit.success_t);
 	}
-	mlx_delete_texture(mini->player_t);
 	mlx_delete_texture(mini->wall_t);
 	mlx_delete_texture(mini->door_t);
 	mlx_delete_texture(mini->background_t);

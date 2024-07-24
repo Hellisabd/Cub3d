@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:22:40 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/22 16:56:04 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:47:28 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_map_heigth(t_map *map, char **argv)
 	map->height = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		exit((print_error(LOAD_MAP), EXIT_FAILURE));
+		exit((free_map_stuff(map), print_error(LOAD_MAP), EXIT_FAILURE));
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -76,12 +76,12 @@ void	open_map(t_map *map, char **argv)
 	map->i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		exit((print_error(LOAD_MAP), EXIT_FAILURE));
-	check_cub(argv[1]);
+		exit((free_map_stuff(map), print_error(LOAD_MAP), EXIT_FAILURE));
+	check_cub(map, argv[1]);
 	get_map_heigth(map, argv);
 	map->map = malloc(sizeof(char *) * (map->height + 1));
 	if (!map->map)
-		exit((print_error(MALLOC), EXIT_FAILURE));
+		exit((free_map_stuff(map), print_error(MALLOC), EXIT_FAILURE));
 	line = get_next_line(fd);
 	get_map(line, map, fd);
 	if (!map->no || !map->so || !map->we || !map->ea || !map->f || !map->c)

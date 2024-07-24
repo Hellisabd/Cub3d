@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 16:15:21 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 15:02:29 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:42:31 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,6 @@ void	init_all(t_cub *cub)
 	cub->mini_map.door_t = NULL;
 	cub->mini_map.wall_i = NULL;
 	cub->mini_map.wall_t = NULL;
-	cub->mini_map.player_i = NULL;
-	cub->mini_map.player_t = NULL;
 	init_struct_world(cub);
 	cub->exit.exit_t = NULL;
 	cub->exit.tab_exit = NULL;
