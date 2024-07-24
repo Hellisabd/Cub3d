@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 10:09:13 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/12 11:50:55 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:51:58 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	init_death(t_cub *cub)
 	if (cub->anim.death_t == NULL)
 		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
 	cub->anim.death_i = mlx_texture_to_image(cub->mlx, cub->anim.death_t);
+	if (!cub->anim.death_i)
+		exit((free_in_window(cub), 1));
 	if (mlx_resize_image(cub->anim.death_i, WIDTH, HEIGHT) == false)
 		exit((print_error(RESIZE), free_in_window(cub), EXIT_FAILURE));
 	return (0);

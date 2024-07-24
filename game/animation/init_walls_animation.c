@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:25:10 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/23 15:06:10 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/24 11:56:23 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ void	init_blink3(t_cub *cub)
 
 void	init_blink2(t_cub *cub)
 {
-	if (cub->world.no_t[1] == NULL)
+	if (cub->world.ea_t[1] == NULL)
 		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
 	cub->world.ea_t[2] = mlx_load_png("assets/walls/green_red_eye_3.png");
-	if (cub->world.no_t[2] == NULL)
+	if (cub->world.ea_t[2] == NULL)
 		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
 	cub->world.no[1] = mlx_texture_to_image(cub->mlx, cub->world.no_t[1]);
 	cub->world.no[2] = mlx_texture_to_image(cub->mlx, cub->world.no_t[2]);
