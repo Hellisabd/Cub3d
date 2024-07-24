@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/23 16:12:32 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:54:00 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	parsing_map(t_map *map, t_cub *cub)
 	if (!map->length)
 		return (-1);
 	if (basic_check(map, j, cub) == -1)
-		return (-1);
+		return (print_error("Map open\n"), -1);
 	while (++i < map->height - 1)
 	{
 		j = -1;

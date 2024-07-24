@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:30 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/24 11:46:09 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/24 12:52:46 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 		init_var(cub.map);
 		open_map(cub.map, argv);
 		if (-1 == parsing_map(cub.map, &cub))
-			exit(EXIT_FAILURE);
+			exit((free_map_stuff(cub.map), EXIT_FAILURE));
 		open_window(&cub);
 		free_rays(cub.ray);
 		free_in_window(&cub);
