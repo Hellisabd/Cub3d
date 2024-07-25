@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:46:25 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/11 11:48:06 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:50:13 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	put_stamina(t_cub *cub)
 			{
 				y = 100;
 				while (y < 130)
-					mlx_put_pixel(cub->world.hud, x, y++, 0);
+					mlx_put_pixel(cub->world.hud, x, y++, H_YELLOW2);
 			}
 		}
 	}

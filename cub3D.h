@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/24 11:48:11 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/07/25 16:54:32 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define H_BLACK 0x000000FF
 # define H_PINK 0xFF33FFFF
 # define H_YELLOW 0xF0C127FF
+# define H_YELLOW2 0x663300FF
 
 # define OPEN "Wrong input: map open.\n"
 # define PLAYER "Wrong input: too many players.\n"
