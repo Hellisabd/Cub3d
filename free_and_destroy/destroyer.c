@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   destroyer.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 09:12:31 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/24 11:43:37 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:53:18 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ void	destroyer_2(t_cub *cub, int i)
 {
 	if (i < 4)
 	{
-		ft_free_tab_int(cub->world.tab_tab_no[i], 450);
-		ft_free_tab_int(cub->world.tab_tab_so[i], 450);
-		ft_free_tab_int(cub->world.tab_tab_ea[i], 450);
-		ft_free_tab_int(cub->world.tab_tab_we[i], 450);
+		if (cub->world.tab_tab_no[i])
+			ft_free_tab_int(cub->world.tab_tab_no[i], 450);
+		if (cub->world.tab_tab_so[i])
+			ft_free_tab_int(cub->world.tab_tab_so[i], 450);
+		if (cub->world.tab_tab_ea[i])
+			ft_free_tab_int(cub->world.tab_tab_ea[i], 450);
+		if (cub->world.tab_tab_we[i])
+			ft_free_tab_int(cub->world.tab_tab_we[i], 450);
 	}
 	if (i < 3)
 	{

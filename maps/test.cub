@@ -1,11 +1,26 @@
-NO assets/walls/red_eye.png
-SO assets/walls/blue_eye.png
-WE assets/walls/green_red_eye.png
-EA assets/walls/green_eye.png
+NO            assets/walls/red_eye.png
 
-F 51,153,51
+
+
+SO       assets/walls/blue_eye.png
+
+
+
+WE          assets/walls/green_red_eye.png
+
+
+
+EA     assets/walls/green_eye.png
+
+
+
+
+F       51,153,51
 C 51,204,255
-		
-111111111111111111                1111
-111111W1    1001                   101
-11111111111111111111               1111
+
+111111111
+10000D001
+100000001
+1D00N00D1
+1000D0001
+111111111

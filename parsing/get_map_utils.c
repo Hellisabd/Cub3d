@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 16:53:18 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/22 15:20:29 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/08/01 11:10:23 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	get_textures_2(t_map *map, char *line)
 	{
 		map->i_ea++;
 		if (map->i_ea <= 1)
-			map->ea = ft_strdup(line + 3);
+			map->ea = ft_strtrim((map->ea = ft_strdup(line + 3), map->ea), " ");
 		if (!map->ea)
 			exit ((free_map_stuff(map), EXIT_FAILURE));
 	}
@@ -54,7 +54,7 @@ void	get_textures_2(t_map *map, char *line)
 	{
 		map->i_f++;
 		if (map->i_f <= 1)
-			map->f = ft_strdup(line + 2);
+			map->f = ft_strtrim((map->f = ft_strdup(line + 2), map->f), " ");
 		if (!map->f)
 			exit ((free_map_stuff(map), EXIT_FAILURE));
 	}
@@ -74,7 +74,10 @@ void	get_textures_3(t_map *map, char *line)
 	{
 		map->i_we++;
 		if (map->i_we <= 1)
+		{
 			map->we = ft_strdup(line + 3);
+			map->we = ft_strtrim(map->we, " ");
+		}
 		if (!map->we)
 			exit ((free_map_stuff(map), EXIT_FAILURE));
 	}
@@ -86,7 +89,10 @@ void	get_textures(t_map *map, char *line)
 	{
 		map->i_no++;
 		if (map->i_no <= 1)
+		{
 			map->no = ft_strdup(line + 3);
+			map->no = ft_strtrim(map->no, " ");
+		}
 		if (!map->no)
 			exit ((free_map_stuff(map), EXIT_FAILURE));
 	}
@@ -94,7 +100,7 @@ void	get_textures(t_map *map, char *line)
 	{
 		map->i_so++;
 		if (map->i_so <= 1)
-			map->so = ft_strdup(line + 3);
+			map->so = ft_strtrim((map->so = ft_strdup(line + 3), map->so), " ");
 		if (!map->so)
 			exit ((free_map_stuff(map), EXIT_FAILURE));
 	}

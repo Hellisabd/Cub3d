@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:22:40 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/24 11:47:28 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:29:24 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	get_map_heigth(t_map *map, char **argv)
 	if (fd == -1)
 		exit((free_map_stuff(map), print_error(LOAD_MAP), EXIT_FAILURE));
 	line = get_next_line(fd);
+	if (!line)
+		exit((free_map_stuff(map), print_error(EMPTY), EXIT_FAILURE));
 	while (line != NULL)
 	{
 		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
@@ -31,6 +33,8 @@ void	get_map_heigth(t_map *map, char **argv)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (!map->height)
+		exit((free_map_stuff(map), print_error(EMPTY), EXIT_FAILURE));
 	close (fd);
 }
 

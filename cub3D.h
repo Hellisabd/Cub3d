@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/25 16:55:59 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:25:50 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define H_YELLOW2 0x333333FF
 
 # define OPEN "Wrong input: map open.\n"
+# define EMPTY "Wrong input: map empty.\n"
 # define PLAYER "Wrong input: too many players.\n"
 # define CUB "The map is not a .cub file!\n"
 # define MALLOC "Malloc error!\n"

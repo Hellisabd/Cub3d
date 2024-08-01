@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/24 12:54:00 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:35:28 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	basic_check(t_map *map, int j, t_cub *cub)
 		|| ft_isspace(map->map[0][j])))
 		j++;
 	if (map->map[0][j])
-		return (print_error("Wrong input!\n"), -1);
+		exit((free_map_stuff(map), print_error("Wrong input\n"), EXIT_FAILURE));
 	j = 0;
 	while (map->map[map->height - 1][j] && (map->map[map->height - 1][j] == '1'
 		|| ft_isspace(map->map[map->height - 1][j])))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_3D_world.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 15:16:11 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/24 11:54:07 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/08/01 10:57:57 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,16 @@ int	init_world(t_cub *cub)
 	load_door(cub);
 	cub->world.no_t[0] = mlx_load_png(cub->map->no);
 	if (cub->world.no_t[0] == NULL)
-		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
+		exit((print_error(LOADING), EXIT_FAILURE));
 	cub->world.so_t[0] = mlx_load_png(cub->map->so);
 	if (cub->world.so_t[0] == NULL)
-		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
+		exit((print_error(LOADING), EXIT_FAILURE));
 	cub->world.we_t[0] = mlx_load_png(cub->map->we);
 	if (cub->world.we_t[0] == NULL)
-		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
+		exit((print_error(LOADING), EXIT_FAILURE));
 	cub->world.ea_t[0] = mlx_load_png(cub->map->ea);
 	if (cub->world.ea_t[0] == NULL)
-		exit((print_error(LOADING), free_in_window(cub), EXIT_FAILURE));
+		exit((print_error(LOADING), EXIT_FAILURE));
 	cub->world.no[0] = mlx_texture_to_image(cub->mlx, cub->world.no_t[0]);
 	cub->world.so[0] = mlx_texture_to_image(cub->mlx, cub->world.so_t[0]);
 	cub->world.we[0] = mlx_texture_to_image(cub->mlx, cub->world.we_t[0]);
