@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:30 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/07/24 12:52:46 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:44:04 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	init_var(t_map *map)
 	map->ea = NULL;
 	map->c = NULL;
 	map->f = NULL;
+	map->c_h = INT_MIN;
+	map->f_h = INT_MIN;
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/08/01 10:25:50 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/08/01 15:39:08 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 
 # define OPEN "Wrong input: map open.\n"
 # define EMPTY "Wrong input: map empty.\n"
+# define MISSING "Missing textures\n"
 # define PLAYER "Wrong input: too many players.\n"
 # define CUB "The map is not a .cub file!\n"
 # define MALLOC "Malloc error!\n"
