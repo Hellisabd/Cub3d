@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:09 by amirloup          #+#    #+#             */
-/*   Updated: 2024/08/01 10:35:28 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:30:07 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	parsing_map(t_map *map, t_cub *cub)
 		while (map->map[i][++j])
 		{
 			if (check_hole(map, &i, &j) == -1)
-				return (print_error("map open\n"), -1);
+				return (print_error("Map open\n"), -1);
 			if (map->map[i][j] != '0' && map->map[i][j] != 'E'
 				&& map->map[i][j] != 'S' && map->map[i][j] != 'N'
 				&& map->map[i][j] != 'W' && map->map[i][j] != 'D'

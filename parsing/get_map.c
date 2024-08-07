@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:22:40 by amirloup          #+#    #+#             */
-/*   Updated: 2024/08/07 14:34:43 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:30:59 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,31 @@
 
 void	remove_blank(t_map *map)
 {
-	int	i;
-	bool in_map;
-	char **new_map;
-	
+	int		i;
+	int		j;
+	int		k;
+	char	**new_map;
+
 	i = 0;
-	map->height = 0;
-	printf("lol\n");
-	in_map = false;
-	while (map->map[i])
-	{
-		if (map->map[i][0] != '\n')
-			in_map = true;
-		if (in_map)
-			map->height++;
+	j = map->height - 1;
+	while (ft_strisspace(map->map[i]) == true)
 		i++;
-	}
+	while (ft_strisspace(map->map[j]) == true)
+		j--;
+	map->height = j - i + 1;
 	new_map = malloc(sizeof(char *) * (map->height + 1));
-	i = 0;
-	while (map->map[i])
+	if (!new_map)
+		exit((free_map_stuff(map), print_error(MALLOC), EXIT_FAILURE));
+	k = 0;
+	while (i <= j)
 	{
-		if (in_map)
-			new_map[i] = ft_strdup(map->map[i]);
-		if (map->map[i][0] != '\n')
-			in_map = true;
+		new_map[k] = ft_strdup(map->map[i]);
 		i++;
+		k++;
 	}
-	new_map[i] = NULL;
+	new_map[k] = NULL;
 	ft_free_tab(map->map);
 	map->map = new_map;
-	for (int i = 0; new_map[i]; i++)
-		printf("index of new map :%d\n", i);
 }
 
 void	get_map_heigth(t_map *map, char **argv)
@@ -62,8 +56,8 @@ void	get_map_heigth(t_map *map, char **argv)
 	while (line != NULL)
 	{
 		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
-			&& line[0] != 'F' && line[0] != 'C' && line[0] != '\n'
-			&& ft_strisspace(line) == false)
+			&& line[0] != 'F' && line[0] != 'C' /*&& line[0] != '\n'
+			&& ft_strisspace(line) == false*/)
 			map->height++;
 		free(line);
 		line = get_next_line(fd);
@@ -79,8 +73,8 @@ void	get_map(char *line, t_map *map, int fd)
 	{
 		get_textures(map, line);
 		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
-			&& line[0] != 'F' && line[0] != 'C' && line[0] != '\n'
-			&& ft_strisspace(line) == false)
+			&& line[0] != 'F' && line[0] != 'C' /*&& line[0] != '\n'
+			&& ft_strisspace(line) == false*/)
 		{
 			map->map[map->i] = ft_strdup(line);
 			if (!map->map[map->i++])
@@ -90,6 +84,7 @@ void	get_map(char *line, t_map *map, int fd)
 		line = get_next_line(fd);
 	}
 	map->map[map->i] = NULL;
+	remove_blank(map);
 	map->no = ft_strtrim(map->no, "\n");
 	map->so = ft_strtrim(map->so, "\n");
 	map->we = ft_strtrim(map->we, "\n");
