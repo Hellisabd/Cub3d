@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:16 by amirloup          #+#    #+#             */
-/*   Updated: 2024/08/07 15:51:22 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:53:02 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	rgb_to_hex(t_map *map, char *rgb)
 	if (!r_g_b)
 		exit((free_map_stuff(map), print_error(MALLOC), EXIT_FAILURE));
 	if (!r_g_b[0] || !r_g_b[1] || !r_g_b[2])
-		exit((free_map_stuff(map), print_error(RGB), EXIT_FAILURE));		
+		exit((free_map_stuff(map), print_error(RGB), EXIT_FAILURE));
 	while (i < 3)
 	{
 		tab[i] = ft_atoi(r_g_b[i]);
