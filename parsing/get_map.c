@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:22:40 by amirloup          #+#    #+#             */
-/*   Updated: 2024/08/07 15:30:59 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:32:07 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ void	get_map_heigth(t_map *map, char **argv)
 	while (line != NULL)
 	{
 		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
-			&& line[0] != 'F' && line[0] != 'C' /*&& line[0] != '\n'
-			&& ft_strisspace(line) == false*/)
+			&& line[0] != 'F' && line[0] != 'C')
 			map->height++;
 		free(line);
 		line = get_next_line(fd);
@@ -73,8 +72,7 @@ void	get_map(char *line, t_map *map, int fd)
 	{
 		get_textures(map, line);
 		if (line[0] != 'N' && line[0] != 'S' && line[0] != 'W' && line[0] != 'E'
-			&& line[0] != 'F' && line[0] != 'C' /*&& line[0] != '\n'
-			&& ft_strisspace(line) == false*/)
+			&& line[0] != 'F' && line[0] != 'C')
 		{
 			map->map[map->i] = ft_strdup(line);
 			if (!map->map[map->i++])
