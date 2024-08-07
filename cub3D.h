@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 15:41:01 by bgrosjea          #+#    #+#             */
-/*   Updated: 2024/08/01 15:39:08 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:50:10 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -359,7 +359,7 @@ int		check_floor_and_ceiling(t_map *map);
 void	get_textures(t_map *map, char *line);
 int		parsing_map(t_map *map, t_cub *cub);
 void	check_cub(t_map *map, char *s);
-int		rgb_to_hex(char *rgb);
+int		rgb_to_hex(t_map *map, char *rgb);
 int		**image_to_tab(mlx_image_t *image);
 size_t	count_c(t_map *map, char c);
 

@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:22:40 by amirloup          #+#    #+#             */
-/*   Updated: 2024/08/07 15:32:07 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:49:40 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	get_map(char *line, t_map *map, int fd)
 	map->so = ft_strtrim(map->so, "\n");
 	map->we = ft_strtrim(map->we, "\n");
 	map->ea = ft_strtrim(map->ea, "\n");
-	map->f_h = rgb_to_hex(map->f);
-	map->c_h = rgb_to_hex(map->c);
+	map->f_h = rgb_to_hex(map, map->f);
+	map->c_h = rgb_to_hex(map, map->c);
 	if (!map->no || !map->so || !map->we || !map->ea || map->f_h == INT_MIN \
 		|| map->c_h == INT_MIN)
 		exit ((free_map_stuff(map), print_error(MISSING), EXIT_FAILURE));

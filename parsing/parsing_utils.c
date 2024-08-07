@@ -6,7 +6,7 @@
 /*   By: amirloup <amirloup@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:23:16 by amirloup          #+#    #+#             */
-/*   Updated: 2024/07/24 11:47:55 by amirloup         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:51:22 by amirloup         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	check_cub(t_map *map, char *s)
 		exit((free_map_stuff(map), print_error(CUB), EXIT_FAILURE));
 }
 
-int	rgb_to_hex(char *rgb)
+int	rgb_to_hex(t_map *map, char *rgb)
 {
 	int		i;
 	int		hex;
@@ -103,7 +103,9 @@ int	rgb_to_hex(char *rgb)
 	i = 0;
 	r_g_b = ft_split(rgb, ',');
 	if (!r_g_b)
-		return (-1);
+		exit((free_map_stuff(map), print_error(MALLOC), EXIT_FAILURE));
+	if (!r_g_b[0] || !r_g_b[1] || !r_g_b[2])
+		exit((free_map_stuff(map), print_error(RGB), EXIT_FAILURE));		
 	while (i < 3)
 	{
 		tab[i] = ft_atoi(r_g_b[i]);
