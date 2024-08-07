@@ -6,11 +6,46 @@
 /*   By: bgrosjea <bgrosjea@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/11 13:22:40 by amirloup          #+#    #+#             */
-/*   Updated: 2024/08/01 15:44:35 by bgrosjea         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:34:43 by bgrosjea         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3D.h"
+
+void	remove_blank(t_map *map)
+{
+	int	i;
+	bool in_map;
+	char **new_map;
+	
+	i = 0;
+	map->height = 0;
+	printf("lol\n");
+	in_map = false;
+	while (map->map[i])
+	{
+		if (map->map[i][0] != '\n')
+			in_map = true;
+		if (in_map)
+			map->height++;
+		i++;
+	}
+	new_map = malloc(sizeof(char *) * (map->height + 1));
+	i = 0;
+	while (map->map[i])
+	{
+		if (in_map)
+			new_map[i] = ft_strdup(map->map[i]);
+		if (map->map[i][0] != '\n')
+			in_map = true;
+		i++;
+	}
+	new_map[i] = NULL;
+	ft_free_tab(map->map);
+	map->map = new_map;
+	for (int i = 0; new_map[i]; i++)
+		printf("index of new map :%d\n", i);
+}
 
 void	get_map_heigth(t_map *map, char **argv)
 {
