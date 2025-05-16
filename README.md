@@ -2,4 +2,4 @@
 - We had a lot of fun working on it and even pushed it a bit further than what was required.
 
 
-markdown<br>![In game – aperçu](assets/in_game.png)<br>
+
