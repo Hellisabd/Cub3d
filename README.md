@@ -21,6 +21,7 @@
 # Clone the repository
 git clone https://github.com/Hellisabd/Eyes-Cube.git
 cd Eyes-Cube
+make mlx_init
 make
 ```
 
