@@ -28,7 +28,7 @@ make
 ### Running the Program
 
 ```bash
-./cub3D path/to/map.cub
+./cub3D maps/level1.cub
 ```
 
 ---
